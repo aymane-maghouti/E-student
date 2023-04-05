@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Exemple de modèle HTMl</title>
+  </head>
+  <body>
+    <h1 >  <img id="c1" src="C:\Users\pc\PycharmProjects\pythonProject\projet_web\logo-ensah.png" width=10% height=10%> <center>Fichier d'inscription</center>  </h1>
+
+   <img id ="c2"  src= "{{ path }}"  width=20% height=50%>
+
+    
+    <style>
+        #c2 {
+            float: right;
+        }
+    </style>
+      
+    <style>
+        #c1 {
+         display: inline-block;
+        vertical-align: middle; /* aligner verticalement avec les autres éléments */
+        margin: 0; /* aucune marge pour l'image */
+        padding: 0; /* aucun rembourrage pour l'image */
+        border: none; /* aucune bordure pour l'image */
+          }
+    </style>
+
+
+
+    <h2>
+        Nom : {{nom}}
+    </h2>  
+    <h2>
+        Prenom : {{prenom}}
+    </h2>    
+
+    <h2>
+        age : {{age}}
+    </h2>
+
+  </body>
+</html>
