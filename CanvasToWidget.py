@@ -25,12 +25,13 @@ def toTransparent(image):
     return ImageTk.PhotoImage(img)
 
 class MyButton():
-    def __init__(self,base,x,y,standardImg,cursor="arrow",hoverImg=None,clickImg=None,behavior=lambda:None,entry=None,padx=0,pady=0,fgSelected="white",fgNotSelected="white",*args,**kwargs):
+    def __init__(self,base,x,y,standardImg,cursor="arrow",hoverImg=None,clickImg=None,behavior=lambda:None,entry=None,padx=0,pady=0,fgSelected="black",fgNotSelected="white",*args,**kwargs):
         self.x=x
         self.y=y
         self.padx=padx
         self.pady=pady
         self.base=base
+        self.entry=entry
         self.cursor=cursor
         self.behavior=behavior
         self.fgSelected=fgSelected
@@ -44,13 +45,15 @@ class MyButton():
         self.base.tag_bind(self.standardImgObject, "<Button-1>", self.buttonClick)
         self.base.tag_bind(self.standardImgObject, "<ButtonRelease-1>", self.buttonRelease)
 
-        if entry!=None:
-            self.entry=self.base.create_text(self.x+self.padx,self.y+self.pady,fill=self.fgNotSelected,*args,**kwargs)
+        if self.entry!=None:
+            self.entry=self.base.create_text(self.x+self.padx,self.y+self.pady,text=entry,fill=self.fgNotSelected,*args,**kwargs)
             self.base.tag_bind(self.entry, "<Enter>", self.buttonHover)
-            # self.base.tag_bind(self.entry, "<Leave>", self.buttonLeave)
+            self.base.tag_bind(self.entry, "<Leave>", self.buttonLeave)
             self.base.tag_bind(self.entry, "<Button-1>", self.buttonClick)
             self.base.tag_bind(self.entry, "<ButtonRelease-1>", self.buttonRelease)
 
+    def setFgSelected(self):
+        self.base.itemconfig(self.entry,fill=self.fgSelected)
     def buttonHover(self,event):
         self.base.config(cursor=self.cursor)
         if self.hoverImg != None:
@@ -61,6 +64,9 @@ class MyButton():
         self.base.itemconfig(self.standardImgObject, image=self.standardImg)
 
     def buttonClick(self,event):
+        if self.entry!=None:
+            self.base.itemconfig(self.entry, fill=self.fgSelected)
+
         if self.clickImg != None:
             self.base.itemconfig(self.standardImgObject, image=self.clickImg)
         self.behavior()
@@ -70,8 +76,12 @@ class MyButton():
         if self.clickImg != None:
             self.base.itemconfig(self.standardImgObject, image=self.standardImg)
 
+    def place_forget(self):
+        self.base.delete(self.standardImgObject)
+
+
 class MyEntry:
-    def __init__(self,base,entry,x,y,standardImg,hoverImg=None,clickImg=None,behavior=lambda:None,marginX=0,marginY=0,placeholder=""):
+    def __init__(self,base,x,y,standardImg,entry=None,hoverImg=None,clickImg=None,behavior=lambda:None,marginX=0,marginY=0,placeholder=""):
         self.x=x
         self.y=y
         self.marginX=marginX
@@ -79,21 +89,24 @@ class MyEntry:
         self.base=base
         self.entry=entry
         self.placeholder=placeholder
-        self.entry.insert(0,self.placeholder)
-        self.entry.config(state=DISABLED)
         self.standardImg = None if standardImg == None else toTransparent(standardImg)
         self.hoverImg = None if hoverImg == None else toTransparent(hoverImg)
         self.clickImg = None if clickImg == None else toTransparent(clickImg)
         self.behavior=behavior
         self.standardImgObject = self.base.create_image(self.x, self.y, image=self.standardImg, anchor=NW)
         self.base.tag_bind(self.standardImgObject, "<Enter>", self.inputHover)
-        self.entry.bind("<Enter>",self.inputHover)
         self.base.tag_bind(self.standardImgObject, "<Leave>", self.inputLeave)
-        self.entry.bind("<Leave>",self.inputLeave)
         self.base.tag_bind(self.standardImgObject, "<Button-1>", self.inputClick)
-        self.entry.bind("<Button-1>",self.inputClick)
         self.base.tag_bind(self.standardImgObject, "<ButtonRelease-1>", self.inputRelease)
-        self.entry.bind("<ButtonRelease-1>",self.inputRelease)
+
+        if self.entry!=None:
+            self.entry.insert(0, self.placeholder)
+            self.entry.config(state=DISABLED)
+
+            self.entry.bind("<Enter>", self.inputHover)
+            self.entry.bind("<Leave>", self.inputLeave)
+            self.entry.bind("<Button-1>", self.inputClick)
+            self.entry.bind("<ButtonRelease-1>", self.inputRelease)
 
         self.entry.place(x=self.x+self.marginX,y=self.y+self.marginY)
 
@@ -313,12 +326,16 @@ class MyMenu:
 
 
 class MyOption(MyButton):
-    def __init__(self,base,x,y,value=None,text="option",*args,**kwargs):
-        super().__init__(base,x,y,text=text,*args,**kwargs)
+    def __init__(self,base,x,y,entry=None,value=None,fgSelected="blue",fgNotSelected="blue",text="option",*args,**kwargs):
+        super().__init__(base,x,y,entry=entry,fgSelected=fgSelected,fgNotSelected=fgNotSelected,*args,**kwargs)
+        # self.label=entry
+        self.fgSelected=fgSelected
+        self.fgNotSelected=fgNotSelected
         self.base=base
         self.isSelected=False
         self.value=value
         self.optionList=None
+        self.setOff()
 
     def setOptionlist(self,optionList):
         self.optionList=optionList
@@ -336,7 +353,9 @@ class MyOption(MyButton):
 
     def setOn(self):
         self.base.itemconfig(self.standardImgObject, image=self.clickImg)
-        self.base.itemconfig(self.entry,fill=self.fgSelected)
+        if self.entry!=None:
+            self.base.itemconfig(self.entry,fill=self.fgSelected)
+
         self.isSelected = True
         self.optionList.setActiveOption(self)
         for option in self.optionList.optionsList:
@@ -344,7 +363,8 @@ class MyOption(MyButton):
                 option.setOff()
     def setOff(self):
         self.base.itemconfig(self.standardImgObject, image=self.standardImg)
-        self.base.itemconfig(self.entry,fill=self.fgNotSelected)
+        if self.entry!=None:
+            self.base.itemconfig(self.entry,fill=self.fgNotSelected)
         self.isSelected = False
 
     def buttonRelease(self,event):
@@ -352,6 +372,10 @@ class MyOption(MyButton):
 
     def buttonLeave(self,event):
         pass
+
+    def place_forget(self):
+        super().place_forget()
+        self.base.delete(self.entry)
 
 class MyOptionList:
     def __init__(self,options):
