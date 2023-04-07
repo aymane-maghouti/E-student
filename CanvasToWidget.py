@@ -5,10 +5,9 @@ from time import *
 from threading import *
 
 def toTransparent(image):
-    img = Image.open(image)
 
     # create a transparent version of the image
-    img = img.convert("RGBA")
+    img = image.convert("RGBA")
     img_data = img.getdata()
 
     # replace black pixels with transparent pixels
@@ -26,18 +25,19 @@ def toTransparent(image):
     return ImageTk.PhotoImage(img)
 
 class MyButton():
-    def __init__(self,base,x,y,standardImg,hoverImg=None,clickImg=None,behavior=lambda:None,entry=None,padx=0,pady=0,fgSelected="white",fgNotSelected="white",*args,**kwargs):
+    def __init__(self,base,x,y,standardImg,cursor="arrow",hoverImg=None,clickImg=None,behavior=lambda:None,entry=None,padx=0,pady=0,fgSelected="white",fgNotSelected="white",*args,**kwargs):
         self.x=x
         self.y=y
         self.padx=padx
         self.pady=pady
         self.base=base
+        self.cursor=cursor
         self.behavior=behavior
         self.fgSelected=fgSelected
         self.fgNotSelected=fgNotSelected
         self.standardImg = None if standardImg == None else toTransparent(standardImg)
-        self.hoverImg = None if hoverImg == None else ImageTk.PhotoImage(Image.open(hoverImg))
-        self.clickImg = None if clickImg == None else ImageTk.PhotoImage(Image.open(clickImg))
+        self.hoverImg = None if hoverImg == None else toTransparent(hoverImg)
+        self.clickImg = None if clickImg == None else toTransparent(clickImg)
         self.standardImgObject = self.base.create_image(self.x, self.y, image=self.standardImg, anchor=NW)
         self.base.tag_bind(self.standardImgObject, "<Enter>", self.buttonHover)
         self.base.tag_bind(self.standardImgObject, "<Leave>", self.buttonLeave)
@@ -52,10 +52,12 @@ class MyButton():
             self.base.tag_bind(self.entry, "<ButtonRelease-1>", self.buttonRelease)
 
     def buttonHover(self,event):
+        self.base.config(cursor=self.cursor)
         if self.hoverImg != None:
             self.base.itemconfig(self.standardImgObject, image=self.hoverImg)
 
     def buttonLeave(self,event):
+        self.base.config(cursor="arrow")
         self.base.itemconfig(self.standardImgObject, image=self.standardImg)
 
     def buttonClick(self,event):
@@ -64,6 +66,7 @@ class MyButton():
         self.behavior()
 
     def buttonRelease(self,event):
+        self.base.config(cursor=self.cursor)
         if self.clickImg != None:
             self.base.itemconfig(self.standardImgObject, image=self.standardImg)
 
@@ -78,9 +81,9 @@ class MyEntry:
         self.placeholder=placeholder
         self.entry.insert(0,self.placeholder)
         self.entry.config(state=DISABLED)
-        self.standardImg = None if standardImg == None else ImageTk.PhotoImage(Image.open(standardImg))
-        self.hoverImg = None if hoverImg == None else ImageTk.PhotoImage(Image.open(hoverImg))
-        self.clickImg = None if clickImg == None else ImageTk.PhotoImage(Image.open(clickImg))
+        self.standardImg = None if standardImg == None else toTransparent(standardImg)
+        self.hoverImg = None if hoverImg == None else toTransparent(hoverImg)
+        self.clickImg = None if clickImg == None else toTransparent(clickImg)
         self.behavior=behavior
         self.standardImgObject = self.base.create_image(self.x, self.y, image=self.standardImg, anchor=NW)
         self.base.tag_bind(self.standardImgObject, "<Enter>", self.inputHover)
@@ -116,6 +119,11 @@ class MyEntry:
     def inputRelease(self,event):
         if self.clickImg != None:
             self.base.itemconfig(self.standardImgObject, image=self.standardImg)
+
+    def place_forget(self):
+        self.entry.destroy()
+        self.base.delete(self.standardImgObject)
+
 
 
 class MyListBox(Listbox):
@@ -210,13 +218,13 @@ class MyMenu:
         self.isActive=False
 
         #main label for the menu button
-        self.defaultMenuButtonPhoto=ImageTk.PhotoImage(Image.open(defaultMenuButtonImg))
+        self.defaultMenuButtonPhoto=toTransparent(defaultMenuButtonImg)
 
         #Menu button when hovered
-        self.hoverMenuButtonPhoto = ImageTk.PhotoImage(Image.open(hoverMenuButtonImg))
+        self.hoverMenuButtonPhoto = toTransparent(hoverMenuButtonImg)
 
         #Menu Button when clicked
-        self.clickedMenuButtonPhoto = ImageTk.PhotoImage(Image.open(clickedMenuButtonImg))
+        self.clickedMenuButtonPhoto = toTransparent(clickedMenuButtonImg)
 
         #the actual menu button
         self.menuButton=self.base.create_image(self.x,self.y,image=self.defaultMenuButtonPhoto,anchor=anchor)
@@ -233,7 +241,7 @@ class MyMenu:
         self.textLabel.bind("<Enter>", self.menuButtonHover)
 
         #main label for the menu list
-        self.defaultMenuListPhoto = ImageTk.PhotoImage(Image.open(defaultMenuListImg))
+        self.defaultMenuListPhoto = toTransparent(defaultMenuListImg)
 
         self.menuList = MyListBox(self.base, standardbg=self.standardbg, standardfg=self.standardfg,
                                   highlightbg=self.highlightbg, highlightfg=self.highlightfg,options=options, *args, **kwargs)
@@ -352,6 +360,29 @@ class MyOptionList:
 
     def setActiveOption(self,option):
         self.activeOption=option
+
+class MyForm:
+    def __init__(self,base,*args):
+        self.components=[]
+        for element in args:
+            self.components.append(element)
+
+class MyWidgetsGroup:
+    def __init__(self,canvas,*args):
+        self.canvas=canvas
+        self.components=[]
+        for element in args:
+            self.components.append(element)
+
+    def removeGroup(self):
+        for element in self.components:
+            try:
+                element.place_forget()
+            except:
+                self.canvas.delete(element)
+    def addElement(self,element):
+        self.components.append(element)
+
 
 
 

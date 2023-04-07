@@ -1,6 +1,6 @@
 from tkinter import *
 from PIL import Image,ImageTk
-from CanvasToWidget import MyButton,MyEntry,MyMenu,MyOption,MyOptionList
+from CanvasToWidget import MyButton,MyEntry,MyMenu,MyOption,MyOptionList,MyForm
 
 def printing():
     print("hello")
@@ -105,6 +105,7 @@ class App(Tk):
         self.title_bar.bind("<ButtonPress-1>", self.start_move)
         self.title_bar.bind("<ButtonRelease-1>", self.stop_move)
         self.title_bar.bind("<B1-Motion>", self.on_move)
+
 
     def start_move(self, event):
         self._dragging = True
