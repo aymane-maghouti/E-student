@@ -64,6 +64,7 @@ class MyButton():
         self.base.itemconfig(self.standardImgObject, image=self.standardImg)
 
     def buttonClick(self,event):
+        self.base.config(cursor="arrow")
         if self.entry!=None:
             self.base.itemconfig(self.entry, fill=self.fgSelected)
 
@@ -72,7 +73,7 @@ class MyButton():
         self.behavior()
 
     def buttonRelease(self,event):
-        self.base.config(cursor=self.cursor)
+        # self.base.config(cursor="arrow")
         if self.clickImg != None:
             self.base.itemconfig(self.standardImgObject, image=self.standardImg)
 
@@ -81,7 +82,7 @@ class MyButton():
 
 
 class MyEntry:
-    def __init__(self,base,x,y,standardImg,entry=None,hoverImg=None,clickImg=None,behavior=lambda:None,marginX=0,marginY=0,placeholder=""):
+    def __init__(self,base,x,y,standardImg,entry=None,hoverImg=None,clickImg=None,behavior=lambda:None,marginX=0,marginY=0,placeholder="",modified=False):
         self.x=x
         self.y=y
         self.marginX=marginX
@@ -89,6 +90,7 @@ class MyEntry:
         self.base=base
         self.entry=entry
         self.placeholder=placeholder
+        self.modified=modified
         self.standardImg = None if standardImg == None else toTransparent(standardImg)
         self.hoverImg = None if hoverImg == None else toTransparent(hoverImg)
         self.clickImg = None if clickImg == None else toTransparent(clickImg)
@@ -99,9 +101,15 @@ class MyEntry:
         self.base.tag_bind(self.standardImgObject, "<Button-1>", self.inputClick)
         self.base.tag_bind(self.standardImgObject, "<ButtonRelease-1>", self.inputRelease)
 
+        self.entry.bind("<KeyRelease>",self.detectTyping)
+
         if self.entry!=None:
-            self.entry.insert(0, self.placeholder)
-            self.entry.config(state=DISABLED)
+            if self.entry.get()==''and modified==False:
+                self.entry.insert(0, self.placeholder)
+                self.entry.config(state=DISABLED)
+
+            elif self.entry.get()==placeholder and modified==False:
+                self.entry.config(state=DISABLED)
 
             self.entry.bind("<Enter>", self.inputHover)
             self.entry.bind("<Leave>", self.inputLeave)
@@ -109,6 +117,15 @@ class MyEntry:
             self.entry.bind("<ButtonRelease-1>", self.inputRelease)
 
         self.entry.place(x=self.x+self.marginX,y=self.y+self.marginY)
+
+    def getModified(self):
+        return self.modified
+    def detectTyping(self,event):
+        if self.entry.get()=="":
+            self.modified=False
+        else:
+            self.modified= True
+
 
     def inputHover(self,event):
         if self.hoverImg != None:
@@ -124,9 +141,13 @@ class MyEntry:
         if self.clickImg != None:
             self.base.itemconfig(self.standardImgObject, image=self.clickImg)
 
+
         self.entry.config(state=NORMAL)
-        if self.entry.get() == self.placeholder:
+
+        if self.entry.get() == self.placeholder and self.modified==False:
             self.entry.delete(0,END)
+        print(self.modified)
+        print(self.get())
         self.behavior()
 
     def inputRelease(self,event):
@@ -136,6 +157,11 @@ class MyEntry:
     def place_forget(self):
         self.entry.destroy()
         self.base.delete(self.standardImgObject)
+
+    def get(self):
+        if not self.getModified():
+            return ""
+        return self.entry.get()
 
 
 
@@ -195,8 +221,10 @@ class MyListBox(Listbox):
         self.current = -1
 
 
+
+
 class MyMenu:
-    def __init__(self,base,x,y,textLabel,hideWidgets,defaultMenuButtonImg,hoverMenuButtonImg,clickedMenuButtonImg,defaultMenuListImg,
+    def __init__(self,base,x,y,textLabel,defaultMenuButtonImg,hoverMenuButtonImg,clickedMenuButtonImg,defaultMenuListImg,hideWidgets=[],
                  padx=10,pady=7,menuListMarginX=0,menuListMarginY=40,listBoxMarginX=10,listBoxMarginY=50,anchor=NW,
                  standardbg="#1f1a24",standardfg="white",highlightbg="#bb86fc",highlightfg="#1f1a24",options=[],*args,**kwargs):
 
@@ -324,6 +352,11 @@ class MyMenu:
     def get(self):
         return self.textLabel["text"]
 
+    def place_forget(self):
+        self.base.delete(self.menuButton)
+        self.base.delete(self.menuList)
+
+
 
 class MyOption(MyButton):
     def __init__(self,base,x,y,entry=None,value=None,fgSelected="blue",fgNotSelected="blue",text="option",*args,**kwargs):
@@ -341,6 +374,8 @@ class MyOption(MyButton):
         self.optionList=optionList
 
     def getValue(self):
+        if self.value==None:
+            return None
         return self.value
 
     def buttonClick(self,event):
@@ -371,7 +406,8 @@ class MyOption(MyButton):
         pass
 
     def buttonLeave(self,event):
-        pass
+        self.base.config(cursor="arrow")
+
 
     def place_forget(self):
         super().place_forget()
@@ -385,11 +421,22 @@ class MyOptionList:
     def setActiveOption(self,option):
         self.activeOption=option
 
+    def get(self):
+        if self.activeOption==None:
+            return None
+        return self.activeOption.getValue()
+
 class MyForm:
     def __init__(self,base,*args):
         self.components=[]
         for element in args:
             self.components.append(element)
+
+    def get(self):
+        values=[]
+        for element in self.components:
+            values.append(element.get())
+        return values
 
 class MyWidgetsGroup:
     def __init__(self,canvas,*args):

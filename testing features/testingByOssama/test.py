@@ -1,26 +1,44 @@
 import tkinter as tk
 
+def change_cursor(event):
+    event.widget.config(cursor="hand2")
+
+def restore_cursor(event):
+    event.widget.config(cursor="")
+
+def sign_up(name):
+    # Code to execute when clicking on the text
+    print(f"{name} signed up!")
+
 root = tk.Tk()
 
-top = tk.Toplevel(root)
+canvas = tk.Canvas(root, width=400, height=300)
+canvas.pack()
 
-# Remove the title bar and borders
-top.overrideredirect(True)
+def create_text():
+    text = canvas.create_text(
+        215, 208,
+        text="Sign up",
+        font=("Montserrat", 8, "underline"),
+        fill="#bb86fc",
+        anchor=tk.NW,
+        activefill="white"
+    )
 
-# Set the transparency level (0=fully transparent, 1=fully opaque)
-top.wm_attributes('-transparentcolor', '#ab23ff')
+    canvas.tag_bind(text, "<Enter>", change_cursor)
+    canvas.tag_bind(text, "<Leave>", restore_cursor)
+    canvas.tag_bind(text, "<Button-1>", lambda event: sign_up("Alice"))
 
-# Create a canvas with a transparent background
-canvas = tk.Canvas(top, bg="blue", highlightthickness=0)
-canvas.pack(fill="both", expand=True)
+    return text
 
-# Draw a transparent rectangle on the canvas
-frame=tk.Frame(canvas,background="#ab23ff",width=400,height=100)
-frame.pack()
+text = create_text()
 
-# Add some content to the canvas
-label = tk.Label(frame, text="Hello, world!", font=("Arial", 24))
-label.place(relx=0.5, rely=0.5, anchor="center")
+def recreate_text():
+    global text
+    canvas.delete(text)
+    text = create_text()
 
+button = tk.Button(root, text="Recreate Text", command=recreate_text)
+button.pack()
 
-top.mainloop()
+root.mainloop()
