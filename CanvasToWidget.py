@@ -91,6 +91,7 @@ class MyEntry:
         self.entry=entry
         self.placeholder=placeholder
         self.modified=modified
+        self.validation=None
         self.standardImg = None if standardImg == None else toTransparent(standardImg)
         self.hoverImg = None if hoverImg == None else toTransparent(hoverImg)
         self.clickImg = None if clickImg == None else toTransparent(clickImg)
@@ -420,6 +421,8 @@ class MyOptionList:
 
     def setActiveOption(self,option):
         self.activeOption=option
+    def getActiveOption(self):
+        return  self.activeOption
 
     def get(self):
         if self.activeOption==None:
