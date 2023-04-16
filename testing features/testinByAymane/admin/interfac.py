@@ -100,7 +100,6 @@ publicate_data_indicate.place(x=3,y=250,width=5,height=40)
 
 
 
-
 options_frame.pack(side=tk.LEFT)
 options_frame.pack_propagate(False)
 options_frame.configure(width=100,height=400)
