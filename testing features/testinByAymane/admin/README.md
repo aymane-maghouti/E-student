@@ -1,6 +1,6 @@
-# Admin fonctionnalities 
+# Admin functionalities
 
-here are the scripts that have responsible for giving functionality to the application administrator
+here are the scripts that have responsible for giving functionalities to the application administrator
 
 1- show data students (students of a filier) 
 2- search by the ID  of the student
