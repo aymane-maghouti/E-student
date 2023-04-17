@@ -85,12 +85,26 @@ image longBlob,
 email_admin varchar(200)
 );
 
-create table  publication(
-id_publication int primary key auto_increment,
-type varchar(45),
-description varchar(200),
-file longblob,
+create table affichage(
+id_affichage int primary key auto_increment,
+class varchar(45),
+module  varchar(45),
+notetable longblob,
 date_pub datetime
+);
+create table emploi_temps(
+id_emploi int primary key auto_increment,
+class varchar(45),
+timetable longblob,
+date_pub datetime
+);
+create table documents(
+id_cours int primary key auto_increment,
+type varchar(45),
+titre varchar(45),
+class varchar(45),
+file longblob,
+date_doc datetime
 );
 
 create table prof(
