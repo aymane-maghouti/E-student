@@ -1,0 +1,350 @@
+from CanvasToWidget import *
+import tkinter as tk
+import re
+from register2Canvas import Register2
+
+def checkLenght(self,size,labelName="entry"):
+    if len(self.get())>size or len(self.get())<1 :
+        print(f"invalide {labelName}")
+        return False
+    print(f"valide {labelName}")
+    return True
+def checkOption(self):
+    if self.get()==None:
+        print("invalide gender")
+        return False
+    print("valide gender")
+    return True
+
+def check_email(self):
+    pattern = r"^[a-zA-Z0-9]+\.([a-zA-Z0-9]+)+@+etu.uae.ac.ma$"
+    if re.match(pattern, self.get()):
+        print("matched")
+        return True
+    print("not Matched")
+    return False
+
+def checkRegister1Form(self):
+    valide=True
+    for element in self.components:
+        try:
+            if not element.validate():
+                valide=False
+        except Exception as e:
+            print(e)
+
+            continue
+    return valide
+
+def checkBirthdayGroup(self):
+    day=self.components[0].get()
+    month=self.components[1].get()
+    year=self.components[2].get()
+    valide=True
+    if day=="Day"or month=="Month" or year=="Year":
+        valide=False
+    else:
+        if month=="February":
+            if day >29:
+                valide=False
+            else:
+                if year % 4 == 0:
+                    if year % 100 == 0:
+                        if year % 400 == 0:
+                            if day==29:
+                                valide=False
+                else:
+                    if day == 29:
+                        valide = False
+
+        elif month in ["April","June","September","November"]and day==31:
+            valide=False
+
+    if valide==False:
+        print("invalide Birthday")
+    else:
+        print("valide Birthday")
+
+    return valide
+
+
+class Register1:
+
+    def __init__(self):
+        self.firstNameVar = None
+        self.firstNameModified = False
+        self.lastNameVar = None
+        self.lastNameModified = False
+        self.CINVar = None
+        self.CINModified = False
+        self.CNEVar = None
+        self.CNEModified = False
+
+        self.dayVar = None
+        self.monthVar = None
+        self.yearVar = None
+
+        self.genderVar = None
+
+    def createRegister1(self, base):
+        # base=tk.Tk()
+        # base.Background=tk.Canvas()
+        base.config(cursor="arrow")
+
+        try:
+            base.nextRegister2Button.place_forget()
+        except:
+            pass
+        try:
+            base.backRegister2Button.place_forget()
+        except:
+            pass
+
+        base.config(cursor="arrow")
+
+        if self.firstNameVar == None:
+            self.firstNameVar = tk.StringVar(base)
+        if self.lastNameVar == None:
+            self.lastNameVar = tk.StringVar(base)
+        if self.CINVar == None:
+            self.CINVar = tk.StringVar(base)
+        if self.CNEVar == None:
+            self.CNEVar = tk.StringVar(base)
+
+        base.loginWidgetsImg = tk.PhotoImage(
+            file=r"C:\Users\ID 1\tkinterTest\E-student\client\assest\register1Page\registerFrame.png")
+        base.register1WidgetsFrame = base.Background.create_image(55, 136, image=base.loginWidgetsImg, anchor=tk.NW)
+        base.register1Title = base.Background.create_text(94, 158, text="Create your account",
+                                                          font=("Montserrat", 23, "bold"), fill="white", anchor=tk.NW)
+
+        # option small
+        base.optionStandardlImg = Image.open(
+            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionStandardImg.png")
+        base.optionClickImg = Image.open(
+            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionClickedImg.png")
+
+        # option medium
+        base.optionMediumStandardlImg = Image.open(
+            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionMediumStandardImg.png")
+        base.optionMediumClickImg = Image.open(
+            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionMediumClickedImg.png")
+
+        # input label
+        base.inputSmallStandardlImg = Image.open(
+            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\inputLabelSmallImg.png")
+        base.inputSmallHoverImg = Image.open(
+            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\inputLabelSmallHoveredImg.png")
+
+        # day menu list
+        base.menuDayStandardlImg = Image.open(
+            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\register1Page\dayStandardImg.png")
+        base.menuDayHoverImg = Image.open(
+            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\register1Page\dayHoverImg.png")
+
+        base.menuDayClickedImg = Image.open(
+            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\register1Page\dayClickedImg.png")
+
+        base.menuDayListStandardImg = Image.open(
+            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\register1Page\dayListHoverImg.png")
+
+        # month menu list
+        base.menuMonthStandardlImg = Image.open(
+            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\register1Page\monthStandardImg.png")
+        base.menuMonthHoverImg = Image.open(
+            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\register1Page\monthHoverImg.png")
+
+        base.menuMonthClickedImg = Image.open(
+            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\register1Page\monthClickedImg.png")
+
+        base.menuMonthListStandardImg = Image.open(
+            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\register1Page\monthListStandardImg.png")
+
+        # year menu list
+        base.menuYearStandardlImg = Image.open(
+            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\register1Page\yearStandardImg.png")
+        base.menuYearHoverImg = Image.open(
+            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\register1Page\yearHoverImg.png")
+        base.menuYearClickedImg = Image.open(
+            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\register1Page\yearClickedImg.png")
+        base.menuYearListStandardImg = Image.open(
+            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\register1Page\dayListHoverImg.png")
+
+        # Firstname
+        base.firstNameRegisterText = base.Background.create_text(115, 241, text="First name",
+                                                                 font=("Montserrat", 6, "bold"), fill="#bb86fc",
+                                                                 anchor=tk.NW)
+
+        base.firstNameRegisterEntry = tk.Entry(base.Background, border=0, bg="#1f1a24", fg="white",
+                                               font=("Montserrat", 10, "bold"), disabledbackground="#1f1a24",
+                                               highlightthickness=0, borderwidth=0, width=12,
+                                               textvariable=self.firstNameVar)
+        try:
+            self.firstNameModified = base.firstNameRegisterStandardObject.getModified()
+        except:
+            pass
+        base.firstNameRegisterStandardObject = MyEntry(base.Background, 94, 254, entry=base.firstNameRegisterEntry,
+                                                       standardImg=base.inputSmallStandardlImg,
+                                                       hoverImg=base.inputSmallHoverImg, marginX=21, marginY=5,
+                                                       placeholder="Ossama", modified=self.firstNameModified)
+        base.firstNameRegisterStandardObject.validate=lambda :checkLenght(base.firstNameRegisterStandardObject,4,"first name")
+        print(self.firstNameModified)
+        # Lastname
+        base.lastNameRegisterText = base.Background.create_text(325, 241, text="Last name",
+                                                                font=("Montserrat", 6, "bold"),
+                                                                fill="#bb86fc", anchor=tk.NW)
+        base.lastNameRegisterEntry = tk.Entry(base.Background, border=0, bg="#1f1a24", fg="white",
+                                              font=("Montserrat", 10, "bold"), disabledbackground="#1f1a24",
+                                              highlightthickness=0, borderwidth=0, width=12,
+                                              textvariable=self.lastNameVar)
+        try:
+            self.lastNameModified = base.lastNameRegisterStandardObject.getModified()
+        except:
+            pass
+        base.lastNameRegisterStandardObject = MyEntry(base.Background, 305, 254, entry=base.lastNameRegisterEntry,
+                                                      standardImg=base.inputSmallStandardlImg,
+                                                      hoverImg=base.inputSmallHoverImg, marginX=21, marginY=5,
+                                                      placeholder="Maghouti", modified=self.lastNameModified)
+        base.lastNameRegisterStandardObject.validate=lambda :checkLenght(base.lastNameRegisterStandardObject,4,"last name")
+
+        # CIN
+        base.CINRegisterText = base.Background.create_text(115, 292, text="CIN", font=("Montserrat", 6, "bold"),
+                                                           fill="#bb86fc", anchor=tk.NW)
+        base.CINRegisterEntry = tk.Entry(base.Background, border=0, bg="#1f1a24", fg="white",
+                                         font=("Montserrat", 10, "bold"), disabledbackground="#1f1a24",
+                                         highlightthickness=0, borderwidth=0, width=12, textvariable=self.CINVar)
+        try:
+            self.CINModified = base.CINRegisterStandardObject.getModified()
+        except:
+            pass
+
+        base.CINRegisterStandardObject = MyEntry(base.Background, 94, 305, entry=base.CINRegisterEntry,
+                                                 standardImg=base.inputSmallStandardlImg,
+                                                 hoverImg=base.inputSmallHoverImg,
+                                                 marginX=21, marginY=5, placeholder="RB459900",
+                                                 modified=self.CINModified)
+        base.CINRegisterStandardObject.validate=lambda :checkLenght(base.CINRegisterStandardObject,4,"CIN")
+        # CNE
+        base.CNERegisterText = base.Background.create_text(325, 292, text="CNE", font=("Montserrat", 6, "bold"),
+                                                           fill="#bb86fc", anchor=tk.NW)
+        base.CNERegisterEntry = tk.Entry(base.Background, border=0, bg="#1f1a24", fg="white",
+                                         font=("Montserrat", 10, "bold"), disabledbackground="#1f1a24",
+                                         highlightthickness=0, borderwidth=0, width=12, textvariable=self.CNEVar)
+        try:
+            self.CNEModified = base.CNERegisterStandardObject.getModified()
+        except:
+            pass
+        base.CNERegisterStandardObject = MyEntry(base.Background, 305, 305, entry=base.CNERegisterEntry,
+                                                 standardImg=base.inputSmallStandardlImg,
+                                                 hoverImg=base.inputSmallHoverImg,
+                                                 marginX=21, marginY=5, placeholder="P111222333",
+                                                 modified=self.CNEModified)
+        base.CNERegisterStandardObject.validate=lambda :checkLenght(base.CNERegisterStandardObject,4,"CNE")
+        # Gender
+        base.genderRegisterText = base.Background.create_text(115, 343, text="Gender", font=("Montserrat", 6, "bold"),
+                                                              fill="#bb86fc", anchor=tk.NW)
+
+        base.genderRegisterOptionList = MyOptionList([])
+        base.maleRegisterOption = MyOption(base.Background, 94, 356, value="Male", entry="Male",
+                                           font=("Montserrat", 8, "bold"), standardImg=base.optionStandardlImg,
+                                           clickImg=base.optionClickImg, fgSelected="#121212", fgNotSelected="white",
+                                           anchor=tk.NW, padx=37, pady=8, cursor="hand2")
+        base.maleRegisterOption.setOptionlist(base.genderRegisterOptionList)
+
+        base.femaleRegisterOption = MyOption(base.Background, 186, 357, value="Female", entry="Female",
+                                             font=("Montserrat", 8, "bold"), standardImg=base.optionMediumStandardlImg,
+                                             clickImg=base.optionMediumClickImg, fgSelected="#121212",
+                                             fgNotSelected="white", anchor=tk.NW, padx=35, pady=7, cursor="hand2")
+        base.femaleRegisterOption.setOptionlist(base.genderRegisterOptionList)
+
+        base.genderRegisterOptionList.optionsList = [base.maleRegisterOption, base.femaleRegisterOption]
+        base.genderRegisterOptionList.validate=lambda :checkOption(base.genderRegisterOptionList)
+        if self.genderVar!=None:
+            for option in base.genderRegisterOptionList.optionsList:
+                if option.getValue()==self.genderVar:
+                    option.setOn()
+                    break
+        # Birthday
+        base.birthdayRegisterText = base.Background.create_text(115, 394, text="Birthday",
+                                                                font=("Montserrat", 6, "bold"),
+                                                                fill="#bb86fc", anchor=tk.NW)
+
+        base.dayLabel = tk.Label(text="Day", foreground="white", background="#1f1a24", bd=0, relief="flat",
+                                 font=("Montserrat", 8, "bold"), cursor="hand2")
+        base.dayLabel.config(text=self.dayVar if self.dayVar!=None else "Day")
+        base.dayRegisterList = MyMenu(base.Background, 95, 405, base.dayLabel, base.menuDayStandardlImg,
+                                      base.menuDayHoverImg, base.menuDayClickedImg, base.menuDayListStandardImg,
+                                      menuListMarginY=35, options=["Day"]+list(range(1, 32)), width=8, height=5,
+                                      listBoxMarginY=40,
+                                      border=0, highlightthickness=0, padx=15, pady=7)
+
+        base.dayMonthSlash = base.Background.create_text(178, 410, text="/", font=("Montserrat", 12, "bold"),
+                                                         fill="white",
+                                                         anchor=tk.NW)
+
+        base.monthLabel = tk.Label(text="Month", foreground="white", background="#1f1a24", bd=0, relief="flat",
+                                   font=("Montserrat", 8, "bold"), cursor="hand2")
+        base.monthLabel.config(text=self.monthVar if self.monthVar!=None else "Month")
+        base.monthRegisterList = MyMenu(base.Background, 200, 405, base.monthLabel, base.menuMonthStandardlImg,
+                                        base.menuMonthHoverImg, base.menuMonthClickedImg, base.menuMonthListStandardImg,
+                                        menuListMarginY=35, options=["Month","January","February","March","April","May","June","July","November","October","November","December"], width=12, height=5,
+                                        listBoxMarginY=40, border=0, highlightthickness=0, padx=15, pady=7)
+
+        base.monthYearSlash = base.Background.create_text(328, 410, text="/", font=("Montserrat", 12, "bold"),
+                                                          fill="white",
+                                                          anchor=tk.NW)
+
+        base.yearLabel = tk.Label(text="Year", foreground="white", background="#1f1a24", bd=0, relief="flat",
+                                  font=("Montserrat", 8, "bold"), cursor="hand2")
+        base.yearLabel.config(text=self.yearVar if self.yearVar!=None else "Year")
+        base.yearRegisterList = MyMenu(base.Background, 342, 405, base.yearLabel, base.menuYearStandardlImg,
+                                       base.menuYearHoverImg, base.menuYearClickedImg, base.menuYearListStandardImg,
+                                       menuListMarginY=35, options=["Year"]+list(range(1960, 2010)), width=8, height=5,
+                                       listBoxMarginY=40, border=0, highlightthickness=0, padx=15, pady=7)
+
+        base.birthdayGroup = MyWidgetsGroup(base, base.dayRegisterList, base.monthRegisterList, base.yearRegisterList)
+        base.birthdayGroup.validate=lambda:checkBirthdayGroup(base.birthdayGroup)
+
+        base.register1Form = MyForm(base, base.firstNameRegisterStandardObject, base.lastNameRegisterStandardObject,
+                                    base.CINRegisterStandardObject, base.CNERegisterStandardObject,
+                                    base.genderRegisterOptionList, base.birthdayGroup)
+        base.register1Form.validate=lambda:checkRegister1Form(base.register1Form)
+        # submi
+        base.submitLoginButtonImg = Image.open(
+            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\submitDisabledButtonImg.png")
+        base.submitLoginButtonClickedImg = Image.open(
+            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\loginPage\submitClicked.png")
+
+        base.nextRegister1ButtonImg = Image.open(
+            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\nextButtonStandardImg.png")
+        base.nextRegister1Button = MyButton(base.Background, 340, 453, standardImg=base.nextRegister1ButtonImg,
+                                            cursor="hand2", behavior=base.register1ToRegister2)
+
+        base.submitLoginButtonImg = Image.open(
+            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\submitDisabledButtonImg.png")
+        base.submitRegister1Button = MyButton(base.Background, 221, 453, standardImg=base.submitLoginButtonImg,
+                                              cursor="X_cursor")
+
+        base.backDisabledButtonImg = Image.open(
+            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\backDisabledButtonImg.png")
+        base.backDisabledButton = MyButton(base.Background, 141, 453, standardImg=base.backDisabledButtonImg,
+                                           cursor="X_cursor")
+
+        base.register1Group = MyWidgetsGroup(base.Background, base.birthdayRegisterText, base.backDisabledButton,
+                                             base.submitRegister1Button, base.dayMonthSlash, base.monthYearSlash,
+                                             base.dayLabel, base.dayRegisterList, base.monthLabel,
+                                             base.monthRegisterList,
+                                             base.yearLabel, base.yearRegisterList, base.femaleRegisterOption,
+                                             base.maleRegisterOption, base.genderRegisterText, base.CNERegisterText,
+                                             base.CNERegisterStandardObject, base.CINRegisterText,
+                                             base.CINRegisterStandardObject, base.firstNameRegisterStandardObject,
+                                             base.firstNameRegisterText, base.lastNameRegisterEntry,
+                                             base.lastNameRegisterText, base.lastNameRegisterStandardObject,
+                                             base.register1Title, base.firstNameRegisterStandardObject,
+                                             base.passwordLogingStandardObject, base.Background.signup, base.forgot,
+                                             base.notMember, base.register1WidgetsFrame, base.passwordLoginText)
+
+
+        # base.register1Group.validate=lambda:checkRegister1Form(base.register1Group)
+
+        # base.emailLogingStandardObject.validate=lambda:check_email(base.emailLogingStandardObject)
+
