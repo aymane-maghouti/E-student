@@ -7,4 +7,6 @@ here are the scripts that have responsible for giving functionalities to the app
 3- delete student by ID
 4- add notification 
 5- change data student 
-6- publicate a file with a description 
+6- add  cours-tp-td 
+7- add timetable
+8- add the marks of the students 
