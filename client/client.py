@@ -117,14 +117,25 @@ class App(tk.Tk):
             self.r2.createRegister2(self)
 
     def register2ToRegister1(self):
+        self.r2.bacCityVar=self.bacCityRegister2List.get()
+        self.r2.bacSectorVar=self.bacSectorRegister2List.get()
+        self.r2.bacLanguageVar=self.bacLanguageRegister2List.get()
+        self.r2.schoolTypeVar = self.hTypeRegisterOptionList.get()
+
         self.register2Group.removeGroup()
         self.r1.createRegister1(self)
 
     def register2ToRegister3(self):
-        self.register2Group.removeGroup()
-        self.nextRegister2Button.place_forget()
-        self.backRegister2Button.place_forget()
-        self.r3.createRegister3(self)
+        if self.register2Form.validate():
+            self.r2.bacCityVar=self.bacCityRegister2List.get()
+            self.r2.bacSectorVar=self.bacSectorRegister2List.get()
+            self.r2.bacLanguageVar=self.bacLanguageRegister2List.get()
+            self.r2.schoolTypeVar=self.hTypeRegisterOptionList.get()
+
+            self.register2Group.removeGroup()
+            self.nextRegister2Button.place_forget()
+            self.backRegister2Button.place_forget()
+            self.r3.createRegister3(self)
 
     def register3ToRegister2(self):
         self.register3Group.removeGroup()

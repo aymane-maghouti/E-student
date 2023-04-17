@@ -258,6 +258,7 @@ class Register1:
 
         base.genderRegisterOptionList.optionsList = [base.maleRegisterOption, base.femaleRegisterOption]
         base.genderRegisterOptionList.validate=lambda :checkOption(base.genderRegisterOptionList)
+
         if self.genderVar!=None:
             for option in base.genderRegisterOptionList.optionsList:
                 if option.getValue()==self.genderVar:
