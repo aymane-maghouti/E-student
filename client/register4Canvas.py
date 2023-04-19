@@ -35,7 +35,15 @@ def checkPassword(password, confirm_password):
         return False
     return True
 
-def checkRegister4Form(self):
+def getRegisterInfo(self):
+    values=[]
+    for element in self.components:
+            values.append(element.validate())
+    print(values)
+    return values
+
+def checkRegister4Form(self,base):
+
     valide=True
     for element in self.components:
         try:
@@ -45,6 +53,8 @@ def checkRegister4Form(self):
             print(e)
 
             continue
+
+    print(self.get())
     return valide
 
 
@@ -111,7 +121,7 @@ class Register4:
         base.emailRegister4StandardObject = MyEntry(base.Background, 94, 254, entry=base.emailRegister4Entry,
                                                        standardImg=base.emailLogingStandardlImg,
                                                        hoverImg=base.emailLogingHoverImg, marginX=21, marginY=5,
-                                                       placeholder="exemple@etu.uae.ac.ma",modified=self.emailRegisterModified)
+                                                       placeholder="exemple@etu.uae.ac.ma",modified=self.emailRegisterModified,value=self.emailRegisterVar)
         base.emailRegister4StandardObject.validate=lambda :checkEmail( base.emailRegister4StandardObject)
 
         # password
@@ -129,7 +139,7 @@ class Register4:
         base.passwordRegister4StandardObject = MyEntry(base.Background, 94, 305, entry=base.passwordRegister4Entry,
                                                        standardImg=base.emailLogingStandardlImg,
                                                        hoverImg=base.emailLogingHoverImg, marginX=21, marginY=5,
-                                                       placeholder="***********",modified=self.passwordRegisterModified)
+                                                       placeholder="***********",modified=self.passwordRegisterModified,value=self.passwordRegisterVar)
         base.passwordRegister4StandardObject.validate=lambda :passFunction()
 
         # password confirmation
@@ -146,11 +156,15 @@ class Register4:
         base.pconfirmRegister4StandardObject = MyEntry(base.Background, 94, 356, entry=base.confirmRegister4Entry,
                                                        standardImg=base.emailLogingStandardlImg,
                                                        hoverImg=base.emailLogingHoverImg, marginX=21, marginY=5,
-                                                       placeholder="***********",modified=self.pConfirmationRegisterModified)
+                                                       placeholder="***********",modified=self.pConfirmationRegisterModified,value=self.pConfirmationRegisterVar)
         base.pconfirmRegister4StandardObject.validate=lambda :checkPassword(base.passwordRegister4Entry.get(),base.confirmRegister4Entry.get())
 
         base.register4Form = MyForm(base,base.emailRegister4StandardObject,base.passwordRegister4StandardObject,base.pconfirmRegister4StandardObject)
-        base.register4Form.validate=lambda:checkRegister4Form(base.register4Form)
+        base.register4Form.validate=lambda:checkRegister4Form(base.register4Form,base)
+        base.registerForm = MyForm(base,base.register1Form,base.register2Form,base.register3Form,base.register4Form)
+        base.registerForm.validate=lambda:getRegisterInfo(base.registerForm)
+
+
 
         # next
         base.nextRegister4ButtonImg = Image.open(
@@ -162,7 +176,7 @@ class Register4:
         base.submitRegister4ButtonImg = Image.open(
             r"C:\Users\ID 1\tkinterTest\E-student\client\assest\loginPage\submitButton.png")
         base.submitRegister4Button = MyButton(base.Background, 221, 453, standardImg=base.submitRegister4ButtonImg,
-                                              cursor="hand2",behavior=base.register4Form.validate)
+                                              cursor="hand2",behavior=base.registerForm.validate)
 
         # back
         base.backRegister4ButtonImg = Image.open(

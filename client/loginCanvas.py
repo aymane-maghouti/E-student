@@ -80,7 +80,7 @@ class Login:
         base.emailLogingStandardObject = MyEntry(base.Background, 94, 254, entry=base.emailLogingEntry,
                                                  standardImg=base.emailLogingStandardlImg,
                                                  hoverImg=base.emailLogingHoverImg, marginX=21, marginY=5,
-                                                 placeholder="exemple@etu.uae.ac.ma",modified=self.emailModified)
+                                                 placeholder="exemple@etu.uae.ac.ma",modified=self.emailModified,value=self.emailVar)
         base.emailLogingStandardObject.validate=lambda:check_email(base.emailLogingStandardObject)
 
         base.passwordLoginText = base.Background.create_text(115, 315, text="Password", font=("Montserrat", 6, "bold"),
@@ -95,7 +95,7 @@ class Login:
         base.passwordLogingStandardObject = MyEntry(base.Background, 94, 326, entry=base.passwordLogingEntry,
                                                     standardImg=base.emailLogingStandardlImg,
                                                     hoverImg=base.emailLogingHoverImg, marginX=21, marginY=5,
-                                                    placeholder="**********",modified=self.passwordModified)
+                                                    placeholder="**********",modified=self.passwordModified,value=self.passwordVar)
 
         base.forgot = base.Background.create_text(219, 375, text="Forgot password ?", font=("Montserrat", 10, "underline"),
                                                   fill="#bb86fc", anchor=tk.NW, activefill="white")

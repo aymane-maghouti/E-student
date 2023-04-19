@@ -2,7 +2,7 @@ from CanvasToWidget import *
 import tkinter as tk
 
 def checkLenght(self,size,labelName="entry"):
-    if len(self.get())>size or len(self.get())<0 :#remake it 0
+    if len(self.get())>size or len(self.get())<1 :#remake it 1
         print(f"invalide {labelName}")
         return False
     print(f"valide {labelName}")
@@ -128,7 +128,7 @@ class Register2:
         base.gradeRegisterStandardObject = MyEntry(base.Background, 94, 305, entry=base.gradeRegisterEntry,
                                                    standardImg=base.inputSmallStandardlImg,
                                                    hoverImg=base.inputSmallHoverImg, marginX=21, marginY=5,
-                                                   placeholder="15.27",modified=self.bacGradeModified)
+                                                   placeholder="15.27",modified=self.bacGradeModified,value=self.bacGradeVar)
         base.gradeRegisterStandardObject.validate=lambda :checkGrade(base.gradeRegisterStandardObject,"grade")
         # High School Name
         base.highRegisterText = base.Background.create_text(115, 343, text="High school name",
@@ -144,7 +144,7 @@ class Register2:
         base.highRegisterStandardObject = MyEntry(base.Background, 94, 356, entry=base.highRegisterEntry,
                                                   standardImg=base.emailLogingStandardlImg,
                                                   hoverImg=base.emailLogingHoverImg, marginX=21, marginY=5,
-                                                  placeholder="Imzoren High school",modified=self.highSchoolNameModified)
+                                                  placeholder="Imzoren High school",modified=self.highSchoolNameModified,value=self.highSchoolNameVar)
         base.highRegisterStandardObject.validate=lambda :checkLenght(base.highRegisterStandardObject,4,"high school name")
 
         # bac Sector

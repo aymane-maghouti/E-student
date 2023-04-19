@@ -82,12 +82,13 @@ class MyButton():
 
 
 class MyEntry:
-    def __init__(self,base,x,y,standardImg,entry=None,hoverImg=None,clickImg=None,behavior=lambda:None,marginX=0,marginY=0,placeholder="",modified=False):
+    def __init__(self,base,x,y,standardImg,entry=None,hoverImg=None,clickImg=None,behavior=lambda:None,marginX=0,marginY=0,placeholder="",modified=False,value=None):
         self.x=x
         self.y=y
         self.marginX=marginX
         self.marginY=marginY
         self.base=base
+        self.value=value
         self.entry=entry
         self.placeholder=placeholder
         self.modified=modified
@@ -162,7 +163,7 @@ class MyEntry:
     def get(self):
         if not self.getModified():
             return ""
-        return self.entry.get()
+        return self.value.get()
 
 
 
@@ -462,6 +463,7 @@ class MyWidgetsGroup:
                 self.canvas.delete(element)
     def addElement(self,element):
         self.components.append(element)
+
 
 
 

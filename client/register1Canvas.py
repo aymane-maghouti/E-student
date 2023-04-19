@@ -4,7 +4,7 @@ import re
 from register2Canvas import Register2
 
 def checkLenght(self,size,labelName="entry"):
-    if len(self.get())>size or len(self.get())<0 :#remake it 0
+    if len(self.get())>size or len(self.get())<1 :#remake it 1
         print(f"invalide {labelName}")
         return False
     print(f"valide {labelName}")
@@ -185,7 +185,7 @@ class Register1:
         base.firstNameRegisterStandardObject = MyEntry(base.Background, 94, 254, entry=base.firstNameRegisterEntry,
                                                        standardImg=base.inputSmallStandardlImg,
                                                        hoverImg=base.inputSmallHoverImg, marginX=21, marginY=5,
-                                                       placeholder="Ossama", modified=self.firstNameModified)
+                                                       placeholder="Ossama", modified=self.firstNameModified,value=self.firstNameVar)
         base.firstNameRegisterStandardObject.validate=lambda :checkLenght(base.firstNameRegisterStandardObject,4,"first name")
         print(self.firstNameModified)
         # Lastname
@@ -203,7 +203,7 @@ class Register1:
         base.lastNameRegisterStandardObject = MyEntry(base.Background, 305, 254, entry=base.lastNameRegisterEntry,
                                                       standardImg=base.inputSmallStandardlImg,
                                                       hoverImg=base.inputSmallHoverImg, marginX=21, marginY=5,
-                                                      placeholder="Maghouti", modified=self.lastNameModified)
+                                                      placeholder="Maghouti", modified=self.lastNameModified,value=self.lastNameVar)
         base.lastNameRegisterStandardObject.validate=lambda :checkLenght(base.lastNameRegisterStandardObject,4,"last name")
 
         # CIN
@@ -221,7 +221,7 @@ class Register1:
                                                  standardImg=base.inputSmallStandardlImg,
                                                  hoverImg=base.inputSmallHoverImg,
                                                  marginX=21, marginY=5, placeholder="RB459900",
-                                                 modified=self.CINModified)
+                                                 modified=self.CINModified,value=self.CINVar)
         base.CINRegisterStandardObject.validate=lambda :checkLenght(base.CINRegisterStandardObject,4,"CIN")
         # CNE
         base.CNERegisterText = base.Background.create_text(325, 292, text="CNE", font=("Montserrat", 6, "bold"),
@@ -237,7 +237,7 @@ class Register1:
                                                  standardImg=base.inputSmallStandardlImg,
                                                  hoverImg=base.inputSmallHoverImg,
                                                  marginX=21, marginY=5, placeholder="P111222333",
-                                                 modified=self.CNEModified)
+                                                 modified=self.CNEModified,value=self.CNEVar)
         base.CNERegisterStandardObject.validate=lambda :checkLenght(base.CNERegisterStandardObject,4,"CNE")
         # Gender
         base.genderRegisterText = base.Background.create_text(115, 343, text="Gender", font=("Montserrat", 6, "bold"),
@@ -338,11 +338,9 @@ class Register1:
                                              base.maleRegisterOption, base.genderRegisterText, base.CNERegisterText,
                                              base.CNERegisterStandardObject, base.CINRegisterText,
                                              base.CINRegisterStandardObject, base.firstNameRegisterStandardObject,
-                                             base.firstNameRegisterText, base.lastNameRegisterEntry,
+                                             base.firstNameRegisterText,
                                              base.lastNameRegisterText, base.lastNameRegisterStandardObject,
-                                             base.register1Title, base.firstNameRegisterStandardObject,
-                                             base.passwordLogingStandardObject, base.Background.signup, base.forgot,
-                                             base.notMember, base.register1WidgetsFrame, base.passwordLoginText)
+                                             base.register1Title, base.firstNameRegisterStandardObject)
 
 
         # base.register1Group.validate=lambda:checkRegister1Form(base.register1Group)

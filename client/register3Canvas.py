@@ -134,7 +134,7 @@ class Register3:
         base.address1Register3StandardObject = MyEntry(base.Background, 94, 254, entry=base.address1Register3Entry,
                                                        standardImg=base.emailLogingStandardlImg,
                                                        hoverImg=base.emailLogingHoverImg, marginX=21, marginY=5,
-                                                       placeholder="Av Najah Nr 12 bouki Hoceima",modified=self.address1Modified)
+                                                       placeholder="Av Najah Nr 12 bouki Hoceima",modified=self.address1Modified,value=self.address1Var)
         base.address1Register3StandardObject.validate=lambda :checkLenght(base.address1Register3StandardObject,4,"Address line 1")
 
         # address line 2
@@ -151,7 +151,7 @@ class Register3:
         base.address2Register3StandardObject = MyEntry(base.Background, 94, 305, entry=base.address2Register3Entry,
                                                        standardImg=base.emailLogingStandardlImg,
                                                        hoverImg=base.emailLogingHoverImg, marginX=21, marginY=5,
-                                                       placeholder="floor Nr 2 App 7",modified=self.address2Modified)
+                                                       placeholder="floor Nr 2 App 7",modified=self.address2Modified,value=self.address2Var)
         base.address2Register3StandardObject.validate=lambda :checkLenght(base.address2Register3StandardObject,4,"Address line 2")
 
 
@@ -168,7 +168,7 @@ class Register3:
         base.postalRegisterStandardObject = MyEntry(base.Background, 94, 405, entry=base.postalRegisterEntry,
                                                     standardImg=base.inputSmallStandardlImg,
                                                     hoverImg=base.inputSmallHoverImg, marginX=21, marginY=5,
-                                                    placeholder="93000",modified=self.postalCodeModified)
+                                                    placeholder="93000",modified=self.postalCodeModified,value=self.postalCodeVar)
         base.postalRegisterStandardObject.validate=lambda :checkPostal(base.postalRegisterStandardObject,"Postal code")
 
         # Country
@@ -200,7 +200,7 @@ class Register3:
         base.phoneRegisterStandardObject = MyEntry(base.Background, 304, 405, entry=base.phoneRegisterEntry,
                                                    standardImg=base.inputSmallStandardlImg,
                                                    hoverImg=base.inputSmallHoverImg, marginX=21, marginY=5,
-                                                   placeholder="0680992244",modified=self.phoneModified)
+                                                   placeholder="0680992244",modified=self.phoneModified,value=self.phoneVar)
         base.phoneRegisterStandardObject.validate=lambda :checkPhone( base.phoneRegisterStandardObject,4,"Phone number")
 
         # City
