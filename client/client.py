@@ -8,7 +8,7 @@ from loginCanvas import Login
 from register1Canvas import Register1
 from register2Canvas import Register2
 from register3Canvas import Register3
-from register4Canvas import createRegister4
+from register4Canvas import Register4
 
 
 
@@ -26,6 +26,7 @@ class App(tk.Tk):
         self.r1=Register1()
         self.r2=Register2()
         self.r3=Register3()
+        self.r4=Register4()
 
         #adding the background image to canvas
         self.backImage = tk.PhotoImage(file=r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\loginBackgroundImg.png")
@@ -144,16 +145,21 @@ class App(tk.Tk):
         self.r2.createRegister2(self)
 
     def register3ToRegister4(self):
-        self.register3Group.removeGroup()
-        self.nextRegister3Button.place_forget()
-        self.backRegister3Button.place_forget()
-        createRegister4(self)
+        if self.register3Form.validate():
+            self.r3.cityVar=self.cityRegister3List.get()
+            self.r3.countryVar=self.countryRegister3List.get()
+
+
+            self.register3Group.removeGroup()
+            self.nextRegister3Button.place_forget()
+            self.backRegister3Button.place_forget()
+            self.r4.createRegister4(self)
 
     def register4ToRegister3(self):
-        self.register3Group.removeGroup()
+        self.register4Group.removeGroup()
         self.nextRegister3Button.place_forget()
         self.backRegister3Button.place_forget()
-        createRegister4(self)
+        self.r3.createRegister3(self)
 
 
 

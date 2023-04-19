@@ -253,7 +253,7 @@ class MyMenu:
 
         # widgets to hide while the menu is active
         self.hideWidgets=hideWidgets
-        self.hiddenWidgetsPlaces={}
+        self.hiddenWidgetsPlaces=[]
 
 
         #to track if the drop down list is shown or not
@@ -304,11 +304,14 @@ class MyMenu:
 
             #saving the coorinates of widgets to hide while menu is active
             for widget in self.hideWidgets:
-                self.hiddenWidgetsPlaces[widget] = (widget.place_info()["x"], widget.place_info()["y"])
+                print(widget.place_info()["x"])
+                self.hiddenWidgetsPlaces.append((widget,(int(widget.place_info()["x"]), int(widget.place_info()["y"]))))
+            # for k,v in self.hiddenWidgetsPlaces.items():
+            #     print(k,v)
 
             #hiding the widgets while menu is active
             for widget in self.hiddenWidgetsPlaces:
-                widget.place_forget()
+                widget[0].place_forget()
 
         else:
             self.isActive = False
@@ -324,7 +327,10 @@ class MyMenu:
 
         #recreating the hidden widgets when menu list is closed
         for widget in self.hiddenWidgetsPlaces:
-            widget.place(x=self.hiddenWidgetsPlaces[widget][0],y=self.hiddenWidgetsPlaces[widget][1])
+            try:#to avoid an unexplained error
+                widget[0].place(x=widget[1][0],y=widget[1][1])
+            except:
+                print("menu list error")
 
         self.menuList.place_forget()
         self.base.delete(self.clickedMenuListObject)

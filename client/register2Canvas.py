@@ -2,7 +2,7 @@ from CanvasToWidget import *
 import tkinter as tk
 
 def checkLenght(self,size,labelName="entry"):
-    if len(self.get())>size or len(self.get())<1 :
+    if len(self.get())>size or len(self.get())<0 :#remake it 0
         print(f"invalide {labelName}")
         return False
     print(f"valide {labelName}")
