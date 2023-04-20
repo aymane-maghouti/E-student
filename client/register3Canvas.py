@@ -44,6 +44,7 @@ def checkPostal(self,labelName="entry"):
 
 def checkRegister3Form(self):
     valide=True
+    values=[]
     for element in self.components:
         try:
             if not element.validate():
@@ -52,6 +53,8 @@ def checkRegister3Form(self):
             print(e)
 
             continue
+        values.append(element.get())
+    print(values)
     return valide
 
 class Register3:
@@ -110,15 +113,15 @@ class Register3:
 
         # option menu list
         base.menuRegister2MidStandardlImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionMidStandardImg.png")
+            base.resourcePath("assest\general\optionMidStandardImg.png"))
         base.menuRegister2MidHoverImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionMidHoverImg.png")
+            base.resourcePath("assest\general\optionMidHoverImg.png"))
 
         base.menuRegister2MidClickedImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionMidClickedImg.png")
+            base.resourcePath("assest\general\optionMidClickedImg.png"))
 
         base.menuListRegister2MidStandardImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionlistMidStandardImg.png")
+            base.resourcePath("assest\general\optionlistMidStandardImg.png"))
 
         # address line 1
         base.address1Register3Text = base.Background.create_text(115, 241, text="Address Line 1",
@@ -225,25 +228,25 @@ class Register3:
 
         # #submit
         # base.submitLoginButtonImg = Image.open(
-        #     r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\submitDisabledButtonImg.png")
+        #     base.resourcePath("assest\general\submitDisabledButtonImg.png")
         # base.submitLoginButtonClickedImg = Image.open(
-        #     r"C:\Users\ID 1\tkinterTest\E-student\client\assest\loginPage\submitClicked.png")
+        #     base.resourcePath("assest\loginPage\submitClicked.png")
 
         # next
         base.nextRegister3ButtonImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\nextButtonStandardImg.png")
+            base.resourcePath("assest\general\\nextButtonStandardImg.png"))
         base.nextRegister3Button = MyButton(base.Background, 340, 453, standardImg=base.nextRegister1ButtonImg,
                                             cursor="hand2", behavior=base.register3ToRegister4)
 
         # submit
         base.submitLoginButtonImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\submitDisabledButtonImg.png")
+            base.resourcePath("assest\general\submitDisabledButtonImg.png"))
         base.submitRegister3Button = MyButton(base.Background, 221, 453, standardImg=base.submitLoginButtonImg,
                                               cursor="X_cursor")
 
         # back
         base.backRegister3ButtonImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\backButtonStandardImg.png")
+            base.resourcePath("assest\general\\backButtonStandardImg.png"))
         base.backRegister3Button = MyButton(base.Background, 141, 453, standardImg=base.backRegister3ButtonImg,
                                             cursor="hand2", behavior=base.register3ToRegister2)
 

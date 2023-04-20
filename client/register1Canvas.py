@@ -26,6 +26,7 @@ def check_email(self):
 
 def checkRegister1Form(self):
     valide=True
+    values=[]
     for element in self.components:
         try:
             if not element.validate():
@@ -34,6 +35,9 @@ def checkRegister1Form(self):
             print(e)
 
             continue
+        values.append(element.get())
+    print(values)
+
     return valide
 
 def checkBirthdayGroup(self):
@@ -119,55 +123,55 @@ class Register1:
 
         # option small
         base.optionStandardlImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionStandardImg.png")
+           base.resourcePath("assest\general\optionStandardImg.png"))
         base.optionClickImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionClickedImg.png")
+           base.resourcePath("assest\general\optionClickedImg.png"))
 
         # option medium
         base.optionMediumStandardlImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionMediumStandardImg.png")
+           base.resourcePath("assest\general\optionMediumStandardImg.png"))
         base.optionMediumClickImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionMediumClickedImg.png")
+           base.resourcePath("assest\general\optionMediumClickedImg.png"))
 
         # input label
         base.inputSmallStandardlImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\inputLabelSmallImg.png")
+           base.resourcePath("assest\general\inputLabelSmallImg.png"))
         base.inputSmallHoverImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\inputLabelSmallHoveredImg.png")
+           base.resourcePath("assest\general\inputLabelSmallHoveredImg.png"))
 
         # day menu list
         base.menuDayStandardlImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\register1Page\dayStandardImg.png")
+           base.resourcePath("assest\\register1Page\dayStandardImg.png"))
         base.menuDayHoverImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\register1Page\dayHoverImg.png")
+           base.resourcePath("assest\\register1Page\dayHoverImg.png"))
 
         base.menuDayClickedImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\register1Page\dayClickedImg.png")
+           base.resourcePath("assest\\register1Page\dayClickedImg.png"))
 
         base.menuDayListStandardImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\register1Page\dayListHoverImg.png")
+           base.resourcePath("assest\\register1Page\dayListHoverImg.png"))
 
         # month menu list
         base.menuMonthStandardlImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\register1Page\monthStandardImg.png")
+           base.resourcePath("assest\\register1Page\monthStandardImg.png"))
         base.menuMonthHoverImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\register1Page\monthHoverImg.png")
+           base.resourcePath("assest\\register1Page\monthHoverImg.png"))
 
         base.menuMonthClickedImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\register1Page\monthClickedImg.png")
+           base.resourcePath("assest\\register1Page\monthClickedImg.png"))
 
         base.menuMonthListStandardImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\register1Page\monthListStandardImg.png")
+           base.resourcePath("assest\\register1Page\monthListStandardImg.png"))
 
         # year menu list
         base.menuYearStandardlImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\register1Page\yearStandardImg.png")
+           base.resourcePath("assest\\register1Page\yearStandardImg.png"))
         base.menuYearHoverImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\register1Page\yearHoverImg.png")
+           base.resourcePath("assest\\register1Page\yearHoverImg.png"))
         base.menuYearClickedImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\register1Page\yearClickedImg.png")
+           base.resourcePath("assest\\register1Page\yearClickedImg.png"))
         base.menuYearListStandardImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\register1Page\dayListHoverImg.png")
+           base.resourcePath("assest\\register1Page\dayListHoverImg.png"))
 
         # Firstname
         base.firstNameRegisterText = base.Background.create_text(115, 241, text="First name",
@@ -311,22 +315,22 @@ class Register1:
         base.register1Form.validate=lambda:checkRegister1Form(base.register1Form)
         # submi
         base.submitLoginButtonImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\submitDisabledButtonImg.png")
+           base.resourcePath("assest\general\submitDisabledButtonImg.png"))
         base.submitLoginButtonClickedImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\loginPage\submitClicked.png")
+           base.resourcePath("assest\loginPage\submitClicked.png"))
 
         base.nextRegister1ButtonImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\nextButtonStandardImg.png")
+           base.resourcePath("assest\general\\nextButtonStandardImg.png"))
         base.nextRegister1Button = MyButton(base.Background, 340, 453, standardImg=base.nextRegister1ButtonImg,
                                             cursor="hand2", behavior=base.register1ToRegister2)
 
         base.submitLoginButtonImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\submitDisabledButtonImg.png")
+           base.resourcePath("assest\general\submitDisabledButtonImg.png"))
         base.submitRegister1Button = MyButton(base.Background, 221, 453, standardImg=base.submitLoginButtonImg,
                                               cursor="X_cursor")
 
         base.backDisabledButtonImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\backDisabledButtonImg.png")
+           base.resourcePath("assest\general\\backDisabledButtonImg.png"))
         base.backDisabledButton = MyButton(base.Background, 141, 453, standardImg=base.backDisabledButtonImg,
                                            cursor="X_cursor")
 

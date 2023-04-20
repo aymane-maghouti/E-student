@@ -41,15 +41,15 @@ class Login:
 
 
         base.loginWidgetsImg = tk.PhotoImage(
-            file=r"C:\Users\ID 1\tkinterTest\E-student\client\assest\loginPage\loginFrame.png")
+            file=base.resourcePath("assest\loginPage\loginFrame.png"))
         base.loginWidgetsFrame = base.Background.create_image(55, 136, image=base.loginWidgetsImg, anchor=tk.NW)
         base.loginTitle = base.Background.create_text(94, 158, text="Login to your account",
                                                       font=("Montserrat", 23, "bold"), fill="white", anchor=tk.NW)
 
         base.signupStandardlImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\loginPage\signupStandardImg.png")
+            base.resourcePath("assest\loginPage\signupStandardImg.png"))
         base.signupHoverImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\loginPage\signupHoverImg.png")
+            base.resourcePath("assest\loginPage\signupHoverImg.png"))
 
         base.Background.signup = MyButton(base.Background, 221, 212,base.signupStandardlImg,hoverImg=base.signupHoverImg,cursor="hand2",behavior=lambda :signUpOnClick(base))
         base.notMember = base.Background.create_text(130, 210, text="not a member ?", font=("Montserrat", 7), fill="white",
@@ -63,10 +63,9 @@ class Login:
         # base.Background.tag_bind(base.Background.signup, "<ButtonRelease-1>", lambda event: base.config(cursor="arrow"))
         # base.Background.tag_bind(base.Background.signup, "<Button-1>", lambda event: base.loginToRegister1())
 
-        base.emailLogingStandardlImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\inputLabelImg.png")
+        base.emailLogingStandardlImg = Image.open(base.resourcePath("assest\general\inputLabelImg.png"))
         base.emailLogingHoverImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\inputLabelHoveredImg.png")
+            base.resourcePath("assest\general\inputLabelHoveredImg.png"))
 
         base.emailLoginText = base.Background.create_text(115, 241, text="Email address", font=("Montserrat", 6, "bold"),
                                                           fill="#bb86fc", anchor=tk.NW)
@@ -103,9 +102,9 @@ class Login:
         base.Background.tag_bind(base.forgot, "<Leave>", lambda event: base.config(cursor="arrow"))
 
         base.submitLoginButtonImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\loginPage\submitButton.png")
+            base.resourcePath("assest\loginPage\submitButton.png"))
         base.submitLoginButtonClickedImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\loginPage\submitClicked.png")
+            base.resourcePath("assest\loginPage\submitClicked.png"))
         base.submitLoginButton = MyButton(base.Background, 221, 412, standardImg=base.submitLoginButtonImg,
                                           clickImg=base.submitLoginButtonClickedImg, cursor="hand2",
                                           behavior=base.loginToRegister1)

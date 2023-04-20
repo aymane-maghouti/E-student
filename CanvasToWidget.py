@@ -463,6 +463,11 @@ class MyWidgetsGroup:
                 self.canvas.delete(element)
     def addElement(self,element):
         self.components.append(element)
+    def get(self):
+        values=[]
+        for element in self.components:
+            values.append(element.get())
+        return values
 
 
 

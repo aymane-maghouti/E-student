@@ -11,7 +11,7 @@ def checkEmail(self):
     return False
 
 def passFunction():
-    pass
+    return True
 def checkPassword(password, confirm_password):
     # Vérification de la longueur
     if len(password) < 8:
@@ -45,16 +45,16 @@ def getRegisterInfo(self):
 def checkRegister4Form(self,base):
 
     valide=True
+    values=[]
     for element in self.components:
         try:
             if not element.validate():
                 valide=False
         except Exception as e:
             print(e)
-
             continue
-
-    print(self.get())
+        values.append(element.get())
+    print(values)
     return valide
 
 
@@ -89,22 +89,22 @@ class Register4:
 
         base.config(cursor="arrow")
         base.register4WidgetsImg = tk.PhotoImage(
-            file=r"C:\Users\ID 1\tkinterTest\E-student\client\assest\register1Page\registerFrame.png")
+            file=base.resourcePath("assest\\register1Page\\registerFrame.png"))
         base.register4WidgetsFrame = base.Background.create_image(55, 136, image=base.register3WidgetsImg, anchor=tk.NW)
         base.register4Title = base.Background.create_text(94, 158, text="Create your account",
                                                           font=("Montserrat", 23, "bold"), fill="white", anchor=tk.NW)
 
         # option menu list
         base.menuRegister2MidStandardlImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionMidStandardImg.png")
+            base.resourcePath("assest\general\optionMidStandardImg.png"))
         base.menuRegister2MidHoverImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionMidHoverImg.png")
+            base.resourcePath("assest\general\optionMidHoverImg.png"))
 
         base.menuRegister2MidClickedImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionMidClickedImg.png")
+            base.resourcePath("assest\general\optionMidClickedImg.png"))
 
         base.menuListRegister2MidStandardImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionlistMidStandardImg.png")
+            base.resourcePath("assest\general\optionlistMidStandardImg.png"))
 
         # email
         base.emailRegister4Text = base.Background.create_text(115, 241, text="Email address",
@@ -168,19 +168,19 @@ class Register4:
 
         # next
         base.nextRegister4ButtonImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\nextDisabledButtonImg.png")
+            base.resourcePath("assest\general\\nextDisabledButtonImg.png"))
         base.nextRegister4Button = MyButton(base.Background, 340, 453, standardImg=base.nextRegister4ButtonImg,
                                             cursor="X_cursor", behavior=lambda :print("hi"))
 
         # submit
         base.submitRegister4ButtonImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\loginPage\submitButton.png")
+            base.resourcePath("assest\loginPage\submitButton.png"))
         base.submitRegister4Button = MyButton(base.Background, 221, 453, standardImg=base.submitRegister4ButtonImg,
                                               cursor="hand2",behavior=base.registerForm.validate)
 
         # back
         base.backRegister4ButtonImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\backButtonStandardImg.png")
+            base.resourcePath("assest\general\\backButtonStandardImg.png"))
         base.backRegister4Button = MyButton(base.Background, 141, 453, standardImg=base.backRegister4ButtonImg,
                                             cursor="hand2", behavior=base.register4ToRegister3)
 

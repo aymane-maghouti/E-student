@@ -37,6 +37,7 @@ def checkOption(self):
 
 def checkRegister2Form(self):
     valide=True
+    values=[]
     for element in self.components:
         try:
             if not element.validate():
@@ -45,6 +46,8 @@ def checkRegister2Form(self):
             print(e)
 
             continue
+        values.append(element.get())
+    print(values)
     return valide
 
 

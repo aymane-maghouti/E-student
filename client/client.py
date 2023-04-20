@@ -9,8 +9,7 @@ from register1Canvas import Register1
 from register2Canvas import Register2
 from register3Canvas import Register3
 from register4Canvas import Register4
-
-
+import sys,os
 
 class App(tk.Tk):
     def __init__(self):
@@ -46,7 +45,7 @@ class App(tk.Tk):
         # adding the close button
         self.closeStandardImg = Image.open(r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\closeStandardImg.png").resize((46,46))
         self.closeHoverImg = Image.open(r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\closeHoverImg.png").resize((46,46))
-        self.closeButton = MyButton(self.Background,standardImg=self.closeStandardImg,hoverImg=self.closeHoverImg,x=812,y=43,behavior=exit)
+        self.closeButton = MyButton(self.Background,standardImg=self.closeStandardImg,hoverImg=self.closeHoverImg,x=812,y=43,behavior=self.quit)
 
         self.logoImg = ImageTk.PhotoImage(Image.open(r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\EstudentLogo.png"))
         self.loginObject = self.Background.create_image(79, 51, image=self.logoImg, anchor=tk.NW)
@@ -81,23 +80,22 @@ class App(tk.Tk):
 
             self.geometry(f"+{x}+{y}")
 
+    def resourcePath(self,relative_path):
+        """ Get absolute path to resource, works for dev and for PyInstaller """
+        try:
+            # PyInstaller creates a temp folder and stores path in _MEIPASS
+            base_path = sys._MEIPASS
+        except Exception:
+            base_path = os.path.abspath(".")
+
+        return os.path.join(base_path, relative_path)
+
     def loginToRegister1(self):
-        # th1=threading.Thread(target=self.thLoginToRegister)
-        # th1.start()
         self.config(cursor="arrow")
         self.Background.signup.place_forget()
         self.loginGroup.removeGroup()
         self.submitLoginButton.place_forget()
         self.r1.createRegister1(self)
-
-
-
-    # def thLoginToRegister(self):
-        # self.Background.signup.place_forget()
-        # self.loginGroup.removeGroup()
-        # self.submitLoginButton.place_forget()
-        #
-        # self.r1.createRegister1(self)
 
 
     def register1ToLogin(self):
