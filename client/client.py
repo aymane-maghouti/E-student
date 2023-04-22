@@ -9,7 +9,10 @@ from register1Canvas import Register1
 from register2Canvas import Register2
 from register3Canvas import Register3
 from register4Canvas import Register4
+from register5Canvas import Register5
 import sys,os
+import cv2
+import numpy as np
 
 class App(tk.Tk):
     def __init__(self):
@@ -26,6 +29,7 @@ class App(tk.Tk):
         self.r2=Register2()
         self.r3=Register3()
         self.r4=Register4()
+        self.r5=Register5()
 
         #adding the background image to canvas
         self.backImage = tk.PhotoImage(file=r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\loginBackgroundImg.png")
@@ -90,6 +94,41 @@ class App(tk.Tk):
 
         return os.path.join(base_path, relative_path)
 
+    def detectFaces(self,photo):
+        # Load the Haar Cascade classifier for face detection
+        face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+
+        # photo=Image.open('humanface2.jpg')
+        # Load the image
+        img = np.array(photo)
+        print(img.shape)
+
+        # Convert the image to grayscale
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+        # Detect faces in the image
+        faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
+        return faces
+
+    def drawFace(self,img,faces,color=(187,134,252),width=1):
+        (x, y, w, h) = faces[0]
+        cv2.rectangle(img, (x, y), (x + w, y + h), color, width)
+
+    def cropFace(self,photo, faces,size=100):
+        # If a face is detected, crop the image to the region containing the face
+        img = np.array(photo)
+        (x, y, w, h) = faces[0]
+        pading = min(int(w / 5), int(h / 5))
+        cropped_img = img[y - pading:y + h + pading, x - pading:x + w + pading]
+
+        # Resize the cropped image to a square with the specified dimensions
+        resized_img = cv2.resize(cropped_img, (size, size), interpolation=cv2.INTER_AREA)
+        return resized_img
+
+    def numpyToStr(self,npImage):
+        photo = tk.PhotoImage(width=npImage.shape[1], height=npImage.shape[0])
+        photo.put("{" + " ".join(str(x) for x in np.ravel(npImage)) + "}", to=(0, 0))
+        return photo
     def loginToRegister1(self):
         self.config(cursor="arrow")
         self.Background.signup.place_forget()
@@ -115,22 +154,18 @@ class App(tk.Tk):
             self.register1Group.removeGroup()
             self.r2.createRegister2(self)
 
-    def register2ToRegister1(self):
-        self.r2.bacCityVar=self.bacCityRegister2List.get()
-        self.r2.bacSectorVar=self.bacSectorRegister2List.get()
-        self.r2.bacLanguageVar=self.bacLanguageRegister2List.get()
-        self.r2.schoolTypeVar = self.hTypeRegisterOptionList.get()
+    # def register2ToRegister2(self):
+    #     self.register1Group.removeGroup()
+    #     self.r2.createRegister2(self)
 
+    def register2ToRegister1(self):
         self.register2Group.removeGroup()
+        self.nextRegister2Button.place_forget()
+        self.backRegister2Button.place_forget()
         self.r1.createRegister1(self)
 
     def register2ToRegister3(self):
         if self.register2Form.validate():
-            self.r2.bacCityVar=self.bacCityRegister2List.get()
-            self.r2.bacSectorVar=self.bacSectorRegister2List.get()
-            self.r2.bacLanguageVar=self.bacLanguageRegister2List.get()
-            self.r2.schoolTypeVar=self.hTypeRegisterOptionList.get()
-
             self.register2Group.removeGroup()
             self.nextRegister2Button.place_forget()
             self.backRegister2Button.place_forget()
@@ -142,11 +177,21 @@ class App(tk.Tk):
         self.backRegister3Button.place_forget()
         self.r2.createRegister2(self)
 
+    # def register3ToRegister2(self):
+    #     self.r3.bacCityVar=self.bacCityRegister3List.get()
+    #     self.r3.bacSectorVar=self.bacSectorRegister3List.get()
+    #     self.r3.bacLanguageVar=self.bacLanguageRegister3List.get()
+    #     self.r3.schoolTypeVar = self.hTypeRegisterOptionList.get()
+    #
+    #     self.register3Group.removeGroup()
+    #     self.r2.createRegister1(self)
+
     def register3ToRegister4(self):
         if self.register3Form.validate():
-            self.r3.cityVar=self.cityRegister3List.get()
-            self.r3.countryVar=self.countryRegister3List.get()
-
+            self.r3.bacCityVar=self.bacCityRegister3List.get()
+            self.r3.bacSectorVar=self.bacSectorRegister3List.get()
+            self.r3.bacLanguageVar=self.bacLanguageRegister3List.get()
+            self.r3.schoolTypeVar=self.hTypeRegisterOptionList.get()
 
             self.register3Group.removeGroup()
             self.nextRegister3Button.place_forget()
@@ -155,9 +200,26 @@ class App(tk.Tk):
 
     def register4ToRegister3(self):
         self.register4Group.removeGroup()
-        self.nextRegister3Button.place_forget()
-        self.backRegister3Button.place_forget()
+        self.nextRegister4Button.place_forget()
+        self.backRegister4Button.place_forget()
         self.r3.createRegister3(self)
+
+    def register4ToRegister5(self):
+        if self.register4Form.validate():
+            self.r4.cityVar=self.cityRegister4List.get()
+            self.r4.countryVar=self.countryRegister4List.get()
+
+
+            self.register4Group.removeGroup()
+            self.nextRegister4Button.place_forget()
+            self.backRegister4Button.place_forget()
+            self.r5.createRegister5(self)
+
+    def register5ToRegister4(self):
+        self.register5Group.removeGroup()
+        self.nextRegister5Button.place_forget()
+        self.backRegister5Button.place_forget()
+        self.r4.createRegister4(self)
 
 
 

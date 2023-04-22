@@ -1,7 +1,6 @@
 from CanvasToWidget import *
 import tkinter as tk
 import re
-from register2Canvas import Register2
 
 def checkLenght(self,size,labelName="entry"):
     if len(self.get())>size or len(self.get())<1 :#remake it 1

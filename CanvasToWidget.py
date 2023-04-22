@@ -64,7 +64,7 @@ class MyButton():
         self.base.itemconfig(self.standardImgObject, image=self.standardImg)
 
     def buttonClick(self,event):
-        self.base.config(cursor="arrow")
+        self.base.config(cursor=self.cursor)
         if self.entry!=None:
             self.base.itemconfig(self.entry, fill=self.fgSelected)
 
@@ -79,6 +79,13 @@ class MyButton():
 
     def place_forget(self):
         self.base.delete(self.standardImgObject)
+
+    def setImage(self,frame,photo,value=True):
+        self.base.itemconfig(self.standardImgObject, image=photo)
+        frame.photoVar = ImageTk.getimage(photo) if value!=None else None
+        self.standardImg=photo
+
+
 
 
 class MyEntry:
