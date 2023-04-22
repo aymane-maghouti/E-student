@@ -3,7 +3,7 @@ import tkinter as tk
 import re
 
 def checkLenght(self,size,labelName="entry"):
-    if len(self.get())>size or len(self.get())<1 :#remake it 1
+    if len(self.get())>size or len(self.get())<0 :#remake it 1
         print(f"invalide {labelName}")
         return False
     print(f"valide {labelName}")
@@ -23,9 +23,9 @@ def check_email(self):
     print("not Matched")
     return False
 
-def checkRegister1Form(self):
+def checkRegister1Form(self,register):
     valide=True
-    values=[]
+    register.values=[]
     for element in self.components:
         try:
             if not element.validate():
@@ -34,8 +34,8 @@ def checkRegister1Form(self):
             print(e)
 
             continue
-        values.append(element.get())
-    print(values)
+        register.values.append(element.get())
+    print(register.values)
 
     return valide
 
@@ -88,6 +88,8 @@ class Register1:
         self.yearVar = None
 
         self.genderVar = None
+
+        self.values=[]
 
     def createRegister1(self, base):
         # base=tk.Tk()
@@ -311,7 +313,9 @@ class Register1:
         base.register1Form = MyForm(base, base.firstNameRegisterStandardObject, base.lastNameRegisterStandardObject,
                                     base.CINRegisterStandardObject, base.CNERegisterStandardObject,
                                     base.genderRegisterOptionList, base.birthdayGroup)
-        base.register1Form.validate=lambda:checkRegister1Form(base.register1Form)
+        base.register1Form.validate=lambda:checkRegister1Form(base.register1Form,self)
+        base.register1Form.get=lambda:self.values
+
         # submi
         base.submitLoginButtonImg = Image.open(
            base.resourcePath("assest\general\submitDisabledButtonImg.png"))

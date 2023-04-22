@@ -2,7 +2,7 @@ from CanvasToWidget import *
 import tkinter as tk
 
 def checkLenght(self,size,labelName="entry"):
-    if len(self.get())>size or len(self.get())<1 :#remake it 1
+    if len(self.get())>size or len(self.get())<0 :#remake it 1
         print(f"invalide {labelName}")
         return False
     print(f"valide {labelName}")
@@ -35,9 +35,9 @@ def checkOption(self):
     return True
 
 
-def checkRegister3Form(self):
+def checkRegister3Form(self,register):
     valide=True
-    values=[]
+    register.values=[]
     for element in self.components:
         try:
             if not element.validate():
@@ -46,8 +46,8 @@ def checkRegister3Form(self):
             print(e)
 
             continue
-        values.append(element.get())
-    print(values)
+        register.values.append(element.get())
+    print(register.values)
     return valide
 
 
@@ -64,6 +64,8 @@ class Register3:
         self.bacCityVar = None
 
         self.schoolTypeVar=None
+
+        self.values=[]
 
 
     def createRegister3(self,base):
@@ -231,7 +233,8 @@ class Register3:
 
 
         base.register3Form = MyForm(base,base.bacCityRegister3List,base.bacSectorRegister3List,base.bacLanguageRegister3List,base.gradeRegisterStandardObject,base.highRegisterStandardObject )
-        base.register3Form.validate=lambda:checkRegister3Form(base.register3Form)
+        base.register3Form.validate=lambda:checkRegister3Form(base.register3Form,self)
+        base.register3Form.get=lambda:self.values
 
 
 

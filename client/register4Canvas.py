@@ -2,7 +2,7 @@ from CanvasToWidget import *
 import tkinter as tk
 
 def checkLenght(self,size,labelName="entry"):
-    if len(self.get())>size or len(self.get())<1 :#remake it 0
+    if len(self.get())>size or len(self.get())<0 :#remake it 0
         print(f"invalide {labelName}")
         return False
     print(f"valide {labelName}")
@@ -42,9 +42,9 @@ def checkPostal(self,labelName="entry"):
     return False
 
 
-def checkRegister4Form(self):
+def checkRegister4Form(self,register):
     valide=True
-    values=[]
+    register.values=[]
     for element in self.components:
         try:
             if not element.validate():
@@ -53,8 +53,8 @@ def checkRegister4Form(self):
             print(e)
 
             continue
-        values.append(element.get())
-    print(values)
+        register.values.append(element.get())
+    print(register.values)
     return valide
 
 class Register4:
@@ -71,6 +71,7 @@ class Register4:
         self.cityVar=None
         self.countryVar=None
 
+        self.values=[]
 
 
     def createRegister4(self,base):
@@ -224,7 +225,8 @@ class Register4:
 
 
         base.register4Form = MyForm(base,base.address1Register4StandardObject,base.address2Register4StandardObject,base.postalRegisterStandardObject,base.phoneRegisterStandardObject,base.cityRegister4List,base.countryRegister4List)
-        base.register4Form.validate=lambda:checkRegister4Form(base.register4Form)
+        base.register4Form.validate=lambda:checkRegister4Form(base.register4Form,self)
+        base.register4Form.get=lambda:self.values
 
         # #submit
         # base.submitLoginButtonImg = Image.open(

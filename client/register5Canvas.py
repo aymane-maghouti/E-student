@@ -38,24 +38,25 @@ def checkPassword(password, confirm_password):
 def getRegisterInfo(self):
     values=[]
     for element in self.components:
-            values.append(element.validate())
-    print(values)
-    return values
+            values.append(element.get())
+    # print(values)
+    self.values=values
+    print(self.values)
 
-def checkRegister5Form(self,base):
+def checkRegister5Form(self,register):
 
     valide=True
-    values=[]
+    register.values=[]
     for element in self.components:
-        try:
-            if not element.validate():
-                valide=False
-        except Exception as e:
-            print(e)
-            continue
-        values.append(element.get())
-    print(values)
+        if not element.validate():
+            valide=False
+        register.values.append(element.get())
+    print(register.values)
     return valide
+
+
+
+
 
 
 class Register5:
@@ -66,6 +67,8 @@ class Register5:
         self.passwordRegisterModified=False
         self.pConfirmationRegisterVar=None
         self.pConfirmationRegisterModified=False
+
+        self.values=[]
 
     def createRegister5(self,base):
         # base=tk.Tk()
@@ -90,7 +93,7 @@ class Register5:
         base.config(cursor="arrow")
         base.register5WidgetsImg = tk.PhotoImage(
             file=base.resourcePath("assest\\register1Page\\registerFrame.png"))
-        base.register5WidgetsFrame = base.Background.create_image(55, 136, image=base.register3WidgetsImg, anchor=tk.NW)
+        base.register5WidgetsFrame = base.Background.create_image(55, 136, image=base.register5WidgetsImg, anchor=tk.NW)
         base.register5Title = base.Background.create_text(94, 158, text="Create your account",
                                                           font=("Montserrat", 23, "bold"), fill="white", anchor=tk.NW)
 
@@ -160,8 +163,11 @@ class Register5:
         base.pconfirmRegister5StandardObject.validate=lambda :checkPassword(base.passwordRegister5Entry.get(),base.confirmRegister5Entry.get())
 
         base.register5Form = MyForm(base,base.emailRegister5StandardObject,base.passwordRegister5StandardObject,base.pconfirmRegister5StandardObject)
-        base.register5Form.validate=lambda:checkRegister5Form(base.register5Form,base)
-        base.registerForm = MyForm(base,base.register1Form,base.register2Form,base.register3Form,base.register5Form)
+        base.register5Form.validate=lambda:checkRegister5Form(base.register5Form,self)
+        base.register5Form.get=lambda:self.values
+
+        base.registerForm = MyForm(base,base.register1Form,base.register2Form,base.register3Form,base.register4Form,base.register5Form)
+        base.registerForm.values=[]
         base.registerForm.validate=lambda:getRegisterInfo(base.registerForm)
 
 
@@ -170,13 +176,13 @@ class Register5:
         base.nextRegister5ButtonImg = Image.open(
             base.resourcePath("assest\general\\nextDisabledButtonImg.png"))
         base.nextRegister5Button = MyButton(base.Background, 340, 453, standardImg=base.nextRegister5ButtonImg,
-                                            cursor="X_cursor", behavior=lambda :print("hi"))
+                                            cursor="X_cursor", behavior=base.registerForm.validate)
 
         # submit
         base.submitRegister5ButtonImg = Image.open(
             base.resourcePath("assest\loginPage\submitButton.png"))
         base.submitRegister5Button = MyButton(base.Background, 221, 453, standardImg=base.submitRegister5ButtonImg,
-                                              cursor="hand2",behavior=base.registerForm.validate)
+                                              cursor="hand2",behavior=base.register5Form.validate)
 
         # back
         base.backRegister5ButtonImg = Image.open(

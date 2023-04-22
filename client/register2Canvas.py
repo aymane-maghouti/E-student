@@ -16,9 +16,9 @@ def checkPhoto(self,labelName):
     return True
 
 
-def checkRegister2Form(self):
+def checkRegister2Form(self,register):
     valide=True
-    values=[]
+    register.values=[]
     for element in self.components:
         try:
             if not element.validate():
@@ -27,8 +27,8 @@ def checkRegister2Form(self):
             print(e)
 
             continue
-        values.append(element.get())
-    print(values)
+        register.values.append(element.get())
+    print(register.values)
 
     return valide
 
@@ -36,6 +36,8 @@ class Register2:
     def __init__(self):
         self.photoVar = None
         self.photopath=None
+
+        self.values=[]
 
     def removePhoto(self,source):
         source.inputPhotoRegister2Button.setImage(self, ImageTk.PhotoImage(source.inputPhotoRegister2ButtonImg),value=None)
@@ -136,7 +138,7 @@ class Register2:
            base.resourcePath("assest/register2Page/inputPhotoCadreStandardImg.png"))
         base.inputPhotoCadreRegister2Button = MyButton(base.Background, 220, 319, standardImg=base.inputPhotoCadreRegister2ButtonImg,
                                             cursor="hand2", behavior=lambda:print("hi"))
-        base.inputPhotoCadreRegister2Button.get=lambda :self.photopath
+        base.inputPhotoCadreRegister2Button.get=lambda :self.photoVar
         base.inputPhotoCadreRegister2Button.validate=lambda :checkPhoto(self,"Profile photo")
 
 
@@ -160,7 +162,7 @@ class Register2:
 
 
         base.register2Form = MyForm(base,base.inputPhotoCadreRegister2Button)
-        base.register2Form.validate=lambda:checkRegister2Form(base.register2Form)
+        base.register2Form.validate=lambda:checkRegister2Form(base.register2Form,self)
         # submi
         base.nextRegister2ButtonImg = Image.open(
             r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\nextButtonStandardImg.png")
