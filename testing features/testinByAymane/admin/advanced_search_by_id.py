@@ -15,21 +15,19 @@ root = Tk()
 root.geometry("300x300")
 
 record_window = Toplevel(root)
-record_window.geometry("700x400")
+record_window.geometry("400x300")
 
-# Créer les frames gauche et droite pour l'affichage des données
-left_frame = Frame(record_window)
-left_frame.pack(side=LEFT)
 
-right_frame = Frame(record_window)
+
+right_frame = Frame(record_window,width=200,height=20)
 right_frame.pack(side=RIGHT)
 
-canvas = tk.Canvas(right_frame, borderwidth=0, highlightthickness=0)
+canvas = tk.Canvas(right_frame, borderwidth=0, highlightthickness=0,width=200,height=20)
 scrollbar = tk.Scrollbar(right_frame, orient="vertical", command=canvas.yview)
 scrollable_frame = tk.Frame(canvas)
 
 canvas.configure(yscrollcommand=scrollbar.set)
-canvas.pack(side="left", fill="both", expand=True)
+canvas.pack(side="left", fill="both", expand=False)
 scrollbar.pack(side="right", fill="y")
 canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
 
