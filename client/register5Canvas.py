@@ -173,23 +173,23 @@ class Register5:
 
 
         # next
-        base.nextRegister5ButtonImg = Image.open(
-            base.resourcePath("assest\general\\nextDisabledButtonImg.png"))
-        base.nextRegister5Button = MyButton(base.Background, 340, 453, standardImg=base.nextRegister5ButtonImg,
-                                            cursor="X_cursor", behavior=base.registerForm.validate)
+        base.nextRegister4ButtonImg = Image.open(
+            base.resourcePath("assest\general\\nextButtonStandardImg.png"))
+        base.nextRegister5Button = MyButton(base.Background, 340, 453, standardImg=base.nextRegister1ButtonImg,
+                                            cursor="hand2", behavior=base.register5ToRegister6)
 
         # submit
-        base.submitRegister5ButtonImg = Image.open(
-            base.resourcePath("assest\loginPage\submitButton.png"))
-        base.submitRegister5Button = MyButton(base.Background, 221, 453, standardImg=base.submitRegister5ButtonImg,
-                                              cursor="hand2",behavior=base.register5Form.validate)
+        base.submitLoginButtonImg = Image.open(
+            base.resourcePath("assest\general\submitDisabledButtonImg.png"))
+        base.submitRegister5Button = MyButton(base.Background, 221, 453, standardImg=base.submitLoginButtonImg,
+                                              cursor="X_cursor")
 
         # back
-        base.backRegister5ButtonImg = Image.open(
+        base.backRegister4ButtonImg = Image.open(
             base.resourcePath("assest\general\\backButtonStandardImg.png"))
-        base.backRegister5Button = MyButton(base.Background, 141, 453, standardImg=base.backRegister5ButtonImg,
+        base.backRegister5Button = MyButton(base.Background, 141, 453, standardImg=base.backRegister4ButtonImg,
                                             cursor="hand2", behavior=base.register5ToRegister4)
 
-        base.register5Group = MyWidgetsGroup(base.Background,base.emailRegister5Text,base.passwordRegister5Text,base.confirmRegister5Text, base.emailRegister5StandardObject,base.passwordRegister5StandardObject,base.pconfirmRegister5StandardObject,base.submitRegister5Button)
+        base.register5Group = MyWidgetsGroup(base.Background,base.emailRegister5Text,base.passwordRegister5Text,base.confirmRegister5Text, base.emailRegister5StandardObject,base.passwordRegister5StandardObject,base.pconfirmRegister5StandardObject,base.submitRegister5Button,base.register5Title)
 
 

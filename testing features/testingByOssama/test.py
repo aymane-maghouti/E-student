@@ -1,44 +1,18 @@
-import tkinter as tk
+from tkinter import *
 
-def change_cursor(event):
-    event.widget.config(cursor="hand2")
+root = Tk()
 
-def restore_cursor(event):
-    event.widget.config(cursor="")
+# create a frame with a scrollbar
+canvas = Canvas(root)
+scrollable_frame = Frame(canvas)
 
-def sign_up(name):
-    # Code to execute when clicking on the text
-    print(f"{name} signed up!")
+# add some widgets to the frame
+Label(scrollable_frame, text="Column 1", width=15, height=5, bg="red").grid(row=0, column=0, padx=5, pady=5)
+Label(scrollable_frame, text="Column 2", width=25, height=5, bg="green").grid(row=0, column=1, padx=5, pady=5)
+Label(scrollable_frame, text="Column 3", width=35, height=5, bg="blue").grid(row=0, column=2, padx=5, pady=5)
+Label(scrollable_frame, text="Science mathematique A", font=("Montserrat", 8, "bold"), fg="white", bg="#1f1a24", width=30, justify=CENTER).grid(row=1, column=0, columnspan=2, padx=5, pady=5, sticky='nsew')
 
-root = tk.Tk()
-
-canvas = tk.Canvas(root, width=400, height=300)
-canvas.pack()
-
-def create_text():
-    text = canvas.create_text(
-        215, 208,
-        text="Sign up",
-        font=("Montserrat", 8, "underline"),
-        fill="#bb86fc",
-        anchor=tk.NW,
-        activefill="white"
-    )
-
-    canvas.tag_bind(text, "<Enter>", change_cursor)
-    canvas.tag_bind(text, "<Leave>", restore_cursor)
-    canvas.tag_bind(text, "<Button-1>", lambda event: sign_up("Alice"))
-
-    return text
-
-text = create_text()
-
-def recreate_text():
-    global text
-    canvas.delete(text)
-    text = create_text()
-
-button = tk.Button(root, text="Recreate Text", command=recreate_text)
-button.pack()
-
+# pack the frame and scrollbar
+scrollable_frame.pack()
+canvas.pack(side="left", fill="both", expand=True)
 root.mainloop()

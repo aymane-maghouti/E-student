@@ -10,6 +10,7 @@ from register2Canvas import Register2
 from register3Canvas import Register3
 from register4Canvas import Register4
 from register5Canvas import Register5
+from register6Canvas import Register6
 import sys,os
 import cv2
 import numpy as np
@@ -30,6 +31,7 @@ class App(tk.Tk):
         self.r3=Register3()
         self.r4=Register4()
         self.r5=Register5()
+        self.r6=Register6()
 
         #adding the background image to canvas
         self.backImage = tk.PhotoImage(file=r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\loginBackgroundImg.png")
@@ -220,6 +222,27 @@ class App(tk.Tk):
         self.nextRegister5Button.place_forget()
         self.backRegister5Button.place_forget()
         self.r4.createRegister4(self)
+
+    def register5ToRegister6(self):
+        if self.register5Form.validate():
+            self.register5Group.removeGroup()
+            self.nextRegister5Button.place_forget()
+            self.backRegister5Button.place_forget()
+            self.r6.createRegister6(self)
+
+    def register6ToRegister5(self):
+        self.register6Group.removeGroup()
+        self.nextRegister5Button.place_forget()
+        self.backRegister5Button.place_forget()
+        self.r5.createRegister5(self)
+
+    def loginToRegister6(self):
+        self.config(cursor="arrow")
+        self.Background.delete(self.forgot)
+        self.loginGroup.removeGroup()
+        self.submitLoginButton.place_forget()
+        self.r6.createRegister6(self)
+
 
 
 

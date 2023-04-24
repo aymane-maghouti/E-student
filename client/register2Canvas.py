@@ -102,8 +102,8 @@ class Register2:
 
         base.loginWidgetsImg = tk.PhotoImage(
             file=r"C:\Users\ID 1\tkinterTest\E-student\client\assest\register1Page\registerFrame.png")
-        base.register1WidgetsFrame = base.Background.create_image(55, 136, image=base.loginWidgetsImg, anchor=tk.NW)
-        base.register1Title = base.Background.create_text(94, 158, text="Create your account",
+        base.register2WidgetsFrame = base.Background.create_image(55, 136, image=base.loginWidgetsImg, anchor=tk.NW)
+        base.register2Title = base.Background.create_text(94, 158, text="Create your account",
                                                           font=("Montserrat", 23, "bold"), fill="white", anchor=tk.NW)
 
 
@@ -137,7 +137,7 @@ class Register2:
         base.inputPhotoCadreRegister2ButtonImg = Image.open(
            base.resourcePath("assest/register2Page/inputPhotoCadreStandardImg.png"))
         base.inputPhotoCadreRegister2Button = MyButton(base.Background, 220, 319, standardImg=base.inputPhotoCadreRegister2ButtonImg,
-                                            cursor="hand2", behavior=lambda:print("hi"))
+                                            cursor="hand2", behavior=lambda :self.importPhoto(base))
         base.inputPhotoCadreRegister2Button.get=lambda :self.photoVar
         base.inputPhotoCadreRegister2Button.validate=lambda :checkPhoto(self,"Profile photo")
 
@@ -179,7 +179,7 @@ class Register2:
         base.submitRegister2Button = MyButton(base.Background, 221, 453, standardImg=base.submitLoginButtonImg,
                                               cursor="X_cursor")
 
-        base.register2Group = MyWidgetsGroup(base.Background,base.photoRegisterText,base.submitRegister2Button,base.inputPhotoCadreRegister2Button,base.inputPhotoRegister2Button,base.removeRegister2Button,base.importRegister2Button )
+        base.register2Group = MyWidgetsGroup(base.Background,base.photoRegisterText,base.submitRegister2Button,base.inputPhotoCadreRegister2Button,base.inputPhotoRegister2Button,base.removeRegister2Button,base.importRegister2Button,base.register2Title )
 
 
         # base.register1Group.validate=lambda:checkRegister1Form(base.register1Group)

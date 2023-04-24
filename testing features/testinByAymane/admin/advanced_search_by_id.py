@@ -1,14 +1,14 @@
-import mysql.connector
+# import mysql.connector
 from tkinter import *
 from PIL import Image, ImageTk
 import io
 import tkinter as tk
 
 # Créer une connexion à la base de données MySQL
-mydb = mysql.connector.connect(
-user='root', password='MG1234',
-host='localhost', database='gestion_etudiant'
-)
+# mydb = mysql.connector.connect(
+# user='root', password='MG1234',
+# host='localhost', database='gestion_etudiant'
+# )
 
 # Créer une instance de la fenêtre Tkinter
 root = Tk()
@@ -20,14 +20,14 @@ record_window.geometry("400x300")
 
 
 right_frame = Frame(record_window,width=200,height=20)
-right_frame.pack(side=RIGHT)
+right_frame.pack(side=LEFT)
 
 canvas = tk.Canvas(right_frame, borderwidth=0, highlightthickness=0,width=200,height=20)
 scrollbar = tk.Scrollbar(right_frame, orient="vertical", command=canvas.yview)
 scrollable_frame = tk.Frame(canvas)
 
 canvas.configure(yscrollcommand=scrollbar.set)
-canvas.pack(side="left", fill="both", expand=False)
+canvas.pack(side="right", fill="both", expand=False)
 scrollbar.pack(side="right", fill="y")
 canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
 
@@ -37,12 +37,12 @@ def update_scrollregion(event):
 scrollable_frame.bind("<Configure>", update_scrollregion)
 
 # Ajouter des widgets à la frame gauche
-id_label = Label(root, text="ID:")
-id_label.grid(row=0, column=0, padx=5, pady=5)
-id_entry = Entry(root)
-id_entry.grid(row=0, column=1, padx=5, pady=5)
-
-full_name_label = Label(scrollable_frame, text="Full Name :")
+# id_label = Label(root, text="ID:")
+# id_label.grid(row=0, column=0, padx=5, pady=5)
+# id_entry = Entry(root)
+# id_entry.grid(row=1, column=1, padx=5, pady=5)
+#
+full_name_label = Label(scrollable_frame, text="Full Name :",width=1000)
 full_name_label.grid(row=1, column=0, padx=5, pady=5, sticky=W)
 full_name_display = Label(scrollable_frame, text="")
 full_name_display.grid(row=1, column=1, padx=5, pady=5, sticky=W)

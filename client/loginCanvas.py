@@ -100,6 +100,7 @@ class Login:
                                                   fill="#bb86fc", anchor=tk.NW, activefill="white")
         base.Background.tag_bind(base.forgot, "<Enter>", lambda event: base.config(cursor="hand2"))
         base.Background.tag_bind(base.forgot, "<Leave>", lambda event: base.config(cursor="arrow"))
+        base.Background.tag_bind(base.forgot, "<Button-1>", lambda event:base.loginToRegister6())
 
         base.submitLoginButtonImg = Image.open(
             base.resourcePath("assest\loginPage\submitButton.png"))

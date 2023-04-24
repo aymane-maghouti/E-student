@@ -39,6 +39,6 @@ def numpyToStr(npImage):
     photo.put("{" + " ".join(str(x) for x in np.ravel(npImage)) + "}", to=(0, 0))
 
 
-photo=Image.open('humanface2.jpg')
+photo=Image.open('humanface.jpg')
 faces=detectFaces(photo)
 cropFace(photo,faces)
