@@ -1,17 +1,35 @@
 import mysql.connector
+import hashlib
+
+def hash_password(password):
+    hash_object = hashlib.sha256(password.encode())
+    return hash_object.hexdigest()
+
+
+def connectDB(nameDB):
+    try:
+        cnx = mysql.connector.connect(user='root', password='MG1234',
+                                      host='localhost',
+                                      database=nameDB)
+
+        cursor = cnx.cursor()
+        return cnx, cursor
+
+    except mysql.connector.Error as e:
+        return
+
 
 def insert_data(table_name, columns, data):
-    cnx = mysql.connector.connect(user='root', password='MG1234',
-                                   host='localhost',
-                                   database='student_managment')
+    cnx,cursor = connectDB('student_managment')
     cursor = cnx.cursor()
     columns_str = ", ".join(columns)
     values_str = ", ".join(["%s"] * len(columns))
     insert_query = f"INSERT INTO {table_name} ({columns_str}) VALUES ({values_str})"
-    cursor.executemany(insert_query, data)
+    try:
+        cursor.executemany(insert_query, data)
+    except mysql.connector.Error as e :
+        return
     cnx.commit()
-    print(f"{cursor.rowcount} rows added")
-
 
 
 # ADMIN DATA
@@ -238,24 +256,24 @@ data_std=[('ossama','outmani',generate_code(),generate_CNE(),'M','2002-12-17',id
 
 
 #Contact data
-columns_ct = ['id_student','adresse1','adresse2','country','city','postal_code','phone_number','email_personel','email_acadymic']
+columns_ct = ['id_student','adresse1','adresse2','country','city','postal_code','phone_number','email_acadymic']
 def phone_number():
     number = "06"
     for i in range(9):
         number += str(random.randint(0, 9))
     return number
 
-data_ct=[(1,'imzourn,Maroc','hayAMN,N_9','MAROC','Tetouan','32250',phone_number(),'ossamaoutmani@gmail.com','ossama.outmani@etu.uae.ac.ma'),
-         (2,'aknoul,taza,Maroc','haychouhada,N_67','MAROC','Aknoul','53050',phone_number(),'aymanemaghouti@gmail.com','aymane.maghouti@etu.uae.ac.ma'),
-         (3,'agadir,Maroc','hassan2,N_13','MAROC','Agadir','80800',phone_number(),'medtati@gmail.com','mohamed.tati@etu.uae.ac.ma'),
-         (4,'casablanca,Maroc','sidiMoumn,N_83','MAROC','casablanca','20020',phone_number(),'badrjalilli@gmail.com','badr.jalilli@etu.uae.ac.ma'),
-         (5,'taroudant,Maroc','lmdina,N_17','MAROC','Taroudant','83000',phone_number(),'najibMed@gmail.com','mohamed.najib@etu.uae.ac.ma'),
-         (6,'rabat,Maroc','centre,N_19','MAROC','Rabat','10000',phone_number(),'tarikhadaddi@gmail.com','hadaddi.tarik@etu.uae.ac.ma'),
-         (7, 'errachidia,Maroc', 'lkhawarzmi,N_99', 'MAROC', 'Errachidia', '52000', phone_number(), 'ossamazitouni@gmail.com','ossama.zitouni@etu.uae.ac.ma'),
-         (8, 'nador,Maroc', 'srwan,N_101', 'MAROC', 'Nador', '62000', phone_number(), 'medboroumi@gmail.com','mahamed.boroumi@etu.uae.ac.ma'),
-         (9, 'Rabat,Maroc', 'agdal,N_03', 'MAROC', 'Rabat', '10170', phone_number(), 'yassinazizi@gmail.com','yassin.azizi@etu.uae.ac.ma'),
-         (10, 'oujda,Maroc', 'Hay El-Andalouss,N_9', 'MAROC', 'Oujda', '60000', phone_number(), 'medelhadadi@gmail.com','mohamed.elhadadi@etu.uae.ac.ma'),
-         (11, 'casablanca,Maroc', 'lmaarif,N_9', 'MAROC', 'Casablanca', '20090', phone_number(), 'yassinfarissi@gmail.com','yassin.farissi@etu.uae.ac.ma')]
+data_ct=[(1,'imzourn,Maroc','hayAMN,N_9','MAROC','Tetouan','32250',phone_number(),'ossama.outmani@etu.uae.ac.ma'),
+         (2,'aknoul,taza,Maroc','haychouhada,N_67','MAROC','Aknoul','53050',phone_number(),'aymane.maghouti@etu.uae.ac.ma'),
+         (3,'agadir,Maroc','hassan2,N_13','MAROC','Agadir','80800',phone_number(),'mohamed.tati@etu.uae.ac.ma'),
+         (4,'casablanca,Maroc','sidiMoumn,N_83','MAROC','casablanca','20020',phone_number(),'badr.jalilli@etu.uae.ac.ma'),
+         (5,'taroudant,Maroc','lmdina,N_17','MAROC','Taroudant','83000',phone_number(),'mohamed.najib@etu.uae.ac.ma'),
+         (6,'rabat,Maroc','centre,N_19','MAROC','Rabat','10000',phone_number(),'hadaddi.tarik@etu.uae.ac.ma'),
+         (7, 'errachidia,Maroc', 'lkhawarzmi,N_99', 'MAROC', 'Errachidia', '52000', phone_number(),'ossama.zitouni@etu.uae.ac.ma'),
+         (8, 'nador,Maroc', 'srwan,N_101', 'MAROC', 'Nador', '62000', phone_number(),'mahamed.boroumi@etu.uae.ac.ma'),
+         (9, 'Rabat,Maroc', 'agdal,N_03', 'MAROC', 'Rabat', '10170', phone_number(),'yassin.azizi@etu.uae.ac.ma'),
+         (10, 'oujda,Maroc', 'Hay El-Andalouss,N_9', 'MAROC', 'Oujda', '60000', phone_number(),'mohamed.elhadadi@etu.uae.ac.ma'),
+         (11, 'casablanca,Maroc', 'lmaarif,N_9', 'MAROC', 'Casablanca', '20090', phone_number(),'yassin.farissi@etu.uae.ac.ma')]
 
 
 
