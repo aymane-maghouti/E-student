@@ -2,7 +2,7 @@ from insert_data import insert_data,hash_password,connectDB
 import mysql.connector
 
 def student_inscription(l):
-    # cnx = mysql.connector.connect(user='root', password='MG1234', host='localhost', database='student_managment')
+    l[0] = [-1] + l[0]
     cnx,cursor = connectDB('student_managment')
     img = l[1][0]
 
