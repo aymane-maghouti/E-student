@@ -3,6 +3,7 @@ import tkinter as tk
 from tkinter import filedialog
 from io import BytesIO
 import os
+import numpy
 
 def checkPhoto(self,labelName):
     if self.photoVar==None:
@@ -36,6 +37,7 @@ class Register2:
     def __init__(self):
         self.photoVar = None
         self.photopath=None
+        self.original=None
 
         self.values=[]
 
@@ -67,12 +69,13 @@ class Register2:
             return 1
 
         resized=base.cropFace(image,faces)
+        resizedNoFaces=numpy.copy(resized)
         facesResized=base.detectFaces(resized)
         base.drawFace(resized,facesResized)
         photo=Image.fromarray(resized)
         # # Ouvrir l'image avec Pillow
         # photo = Image.open(img_stream)
-        base.inputPhotoRegister2Button.setImage(self,ImageTk.PhotoImage(photo))
+        base.inputPhotoRegister2Button.setImage(self,ImageTk.PhotoImage(photo),Image.fromarray(resizedNoFaces))
         print(self.photoVar)
 
 
@@ -132,6 +135,7 @@ class Register2:
            base.resourcePath("assest/register2Page/inputPhotoStandardImg.png"))
         base.inputPhotoRegister2Button = MyButton(base.Background, 223, 322, standardImg=base.inputPhotoRegister2ButtonImg if self.photoVar==None else self.photoVar,
                                             cursor="hand2",behavior=lambda :self.importPhoto(base))
+        base.inputPhotoRegister2Button.get=lambda :self.original
 
         #Input cadre
         base.inputPhotoCadreRegister2ButtonImg = Image.open(
@@ -161,7 +165,7 @@ class Register2:
 
 
 
-        base.register2Form = MyForm(base,base.inputPhotoCadreRegister2Button)
+        base.register2Form = MyForm(base,base.inputPhotoRegister2Button)
         base.register2Form.validate=lambda:checkRegister2Form(base.register2Form,self)
         # submi
         base.nextRegister2ButtonImg = Image.open(

@@ -35,13 +35,15 @@ def checkPassword(password, confirm_password):
         return False
     return True
 
-def getRegisterInfo(self):
+def getRegisterInfo(base,self):
     values=[]
     for element in self.components:
             values.append(element.get())
-    # print(values)
-    self.values=values
-    print(self.values)
+    print(values)
+    print("hi")
+    # base.setRegisterValues(values)
+    # print(base.getRegisterValues())
+    return values
 
 def checkRegister5Form(self,register):
 
@@ -167,8 +169,7 @@ class Register5:
         base.register5Form.get=lambda:self.values
 
         base.registerForm = MyForm(base,base.register1Form,base.register2Form,base.register3Form,base.register4Form,base.register5Form)
-        base.registerForm.values=[]
-        base.registerForm.validate=lambda:getRegisterInfo(base.registerForm)
+        base.registerForm.get=lambda:getRegisterInfo(base,base.registerForm)
 
 
 
@@ -193,3 +194,4 @@ class Register5:
         base.register5Group = MyWidgetsGroup(base.Background,base.emailRegister5Text,base.passwordRegister5Text,base.confirmRegister5Text, base.emailRegister5StandardObject,base.passwordRegister5StandardObject,base.pconfirmRegister5StandardObject,base.submitRegister5Button,base.register5Title)
 
 
+# l=[['Ossama', 'Outmani', 'L1234', 'P112', 'Male', [2, 'March', 1962]],"[<PIL.Image.Image image mode=RGBA size=100x100 at 0x208E193A550>]",['Tanger', "Sc Mathematique 'B'", 'Spanish', '12', 'Al khawarizmi high school'],['Av masira Nr22 ', 'App3 etage4', '98000', '0689', 'Taza', 'Morocco'],['ossama.outmani@etu.uae.ac.ma', 'Nexos2002', 'Nexos2002']]

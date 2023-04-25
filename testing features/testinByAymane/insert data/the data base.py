@@ -4,16 +4,13 @@ import mysql.connector
 conn = mysql.connector.connect(
   host="localhost",
   user="root",
-  port="3306",
-  password="MG1234"
-)
+  port="3306")
 mycur = conn.cursor()
 mycur.execute("CREATE DATABASE if not exists student_managment")
 
 mydb = mysql.connector.connect(
   host="localhost",
   user="root",
-  password="MG1234",
   database = "student_managment"
 )
 

@@ -1,7 +1,7 @@
 import mysql.connector
 
 def insert_data(table_name, columns, data):
-    cnx = mysql.connector.connect(user='root', password='MG1234',
+    cnx = mysql.connector.connect(user='root',
                                    host='localhost',
                                    database='student_managment')
     cursor = cnx.cursor()

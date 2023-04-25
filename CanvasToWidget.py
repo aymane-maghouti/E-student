@@ -80,9 +80,10 @@ class MyButton():
     def place_forget(self):
         self.base.delete(self.standardImgObject)
 
-    def setImage(self,frame,photo,value=True):
+    def setImage(self,frame,photo,original=None,value=True):
         self.base.itemconfig(self.standardImgObject, image=photo)
         frame.photoVar = ImageTk.getimage(photo) if value!=None else None
+        frame.original =original  if value!=None else None
         self.standardImg=photo
 
 
@@ -465,9 +466,13 @@ class MyWidgetsGroup:
     def removeGroup(self):
         for element in self.components:
             try:
-                element.place_forget()
+                element.destroy()
             except:
-                self.canvas.delete(element)
+                try:
+                    element.place_forget()
+                except:
+                    self.canvas.delete(element)
+
     def addElement(self,element):
         self.components.append(element)
     def get(self):

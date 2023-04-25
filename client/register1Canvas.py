@@ -3,6 +3,7 @@ import tkinter as tk
 import re
 
 def checkLenght(self,size,labelName="entry"):
+    size=20
     if len(self.get())>size or len(self.get())<0 :#remake it 1
         print(f"invalide {labelName}")
         return False
@@ -292,7 +293,7 @@ class Register1:
         base.monthLabel.config(text=self.monthVar if self.monthVar!=None else "Month")
         base.monthRegisterList = MyMenu(base.Background, 200, 405, base.monthLabel, base.menuMonthStandardlImg,
                                         base.menuMonthHoverImg, base.menuMonthClickedImg, base.menuMonthListStandardImg,
-                                        menuListMarginY=35, options=["Month","January","February","March","April","May","June","July","November","October","November","December"], width=12, height=5,
+                                        menuListMarginY=35, options=["Month","January","February","March","April","May","June","July","September","October","November","December"], width=12, height=5,
                                         listBoxMarginY=40, border=0, highlightthickness=0, padx=15, pady=7)
 
         base.monthYearSlash = base.Background.create_text(328, 410, text="/", font=("Montserrat", 12, "bold"),

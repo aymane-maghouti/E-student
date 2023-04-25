@@ -33,6 +33,8 @@ class App(tk.Tk):
         self.r5=Register5()
         self.r6=Register6()
 
+        self.registerValues=[]
+
         #adding the background image to canvas
         self.backImage = tk.PhotoImage(file=r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\loginBackgroundImg.png")
         self.Background = tk.Canvas(self, width=915, height=540, highlightthickness=0, background="#ab23ff")
@@ -138,6 +140,14 @@ class App(tk.Tk):
         self.submitLoginButton.place_forget()
         self.r1.createRegister1(self)
 
+    def setRegisterValues(self,values):
+        self.registerValues=values[::]
+
+
+    def getRegisterValues(self):
+        return self.registerValues
+
+
 
     def register1ToLogin(self):
         self.register1Group.removeGroup()
@@ -225,6 +235,11 @@ class App(tk.Tk):
 
     def register5ToRegister6(self):
         if self.register5Form.validate():
+            print("in client")
+
+            print(self.registerValues)
+            self.registerValues=self.registerForm.get()[::]
+            print(self.registerValues)
             self.register5Group.removeGroup()
             self.nextRegister5Button.place_forget()
             self.backRegister5Button.place_forget()
@@ -232,8 +247,8 @@ class App(tk.Tk):
 
     def register6ToRegister5(self):
         self.register6Group.removeGroup()
-        self.nextRegister5Button.place_forget()
-        self.backRegister5Button.place_forget()
+        self.nextRegister6Button.place_forget()
+        self.backRegister6Button.place_forget()
         self.r5.createRegister5(self)
 
     def loginToRegister6(self):
