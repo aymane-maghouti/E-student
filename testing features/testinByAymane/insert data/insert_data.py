@@ -1,17 +1,35 @@
 import mysql.connector
+import hashlib
+
+def hash_password(password):
+    hash_object = hashlib.sha256(password.encode())
+    return hash_object.hexdigest()
+
+
+def connectDB(nameDB):
+    try:
+        cnx = mysql.connector.connect(user='root', password='MG1234',
+                                      host='localhost',
+                                      database=nameDB)
+
+        cursor = cnx.cursor()
+        return cnx, cursor
+
+    except mysql.connector.Error as e:
+        return
+
 
 def insert_data(table_name, columns, data):
-    cnx = mysql.connector.connect(user='root',
-                                   host='localhost',
-                                   database='student_managment')
+    cnx,cursor = connectDB('student_managment')
     cursor = cnx.cursor()
     columns_str = ", ".join(columns)
     values_str = ", ".join(["%s"] * len(columns))
     insert_query = f"INSERT INTO {table_name} ({columns_str}) VALUES ({values_str})"
-    cursor.executemany(insert_query, data)
+    try:
+        cursor.executemany(insert_query, data)
+    except mysql.connector.Error as e :
+        return
     cnx.commit()
-    print(f"{cursor.rowcount} rows added")
-
 
 
 # ADMIN DATA
@@ -91,6 +109,18 @@ data_time=[('ID1',ID1,'2023-02-27 08:47:31'),
            ('GC2',GC2,'2023-03-22 09:53:24'),
            ('GEER1',GEER1,'2023-03-27 09:23:47'),
            ('GEER2',GEER2,'2023-02-13 08:53:09')]
+
+
+#class data
+columns_class=['name_class','id_filier']
+data_class=[('ID1',1),
+            ('ID2',1),
+            ('GI1',2),
+            ('GI2',2),
+            ('GC2',3),
+            ('GC2',3),
+            ('GEER1',4),
+            ('GEER2',4)]
 
 
 
@@ -218,18 +248,18 @@ with open('image_student/ID1_S1 .jpg', 'rb') as i1,\
     geer1 = i9.read()
     gi2 = i10.read()
     gc2 = i11.read()
-columns_std=['firstname','lastname','CIN','CNE','gender','birthday','image']
-data_std=[('ossama','outmani',generate_code(),generate_CNE(),'M','2002-12-17',id1s1),
-          ('aymane','maghouti',generate_code(),generate_CNE(),'M','2002-07-05',id1s2),
-          ('mahamed','tati',generate_code(),generate_CNE(),'M','2000-12-17',id2s1),
-          ('badr','jalili',generate_code(),generate_CNE(),'M','2001-01-12',id2s2),
-          ('mohamed','najib',generate_code(),generate_CNE(),'M','2001-10-07',gi1s1),
-          ('tarik','hadaddi',generate_code(),generate_CNE(),'M','2001-05-22',gi1s2),
-          ('ossama','zitouni',generate_code(),generate_CNE(),'M','2001-11-29',gc1s1),
-          ('mohamed','boroumi',generate_code(),generate_CNE(),'M','2002-01-19',gc1s2),
-          ('yassin','azizi',generate_code(),generate_CNE(),'M','2001-09-09',geer1),
-          ('mohamed','elhadadi',generate_code(),generate_CNE(),'M','2000-07-20',gi2),
-          ('yassin','farissi',generate_code(),generate_CNE(),'M','2000-06-15',gc2)]
+columns_std=['id_Calss','firstname','lastname','CIN','CNE','gender','birthday','image']
+data_std=[(1,'ossama','outmani',generate_code(),generate_CNE(),'M','2002-12-17',id1s1),
+          (1,'aymane','maghouti',generate_code(),generate_CNE(),'M','2002-07-05',id1s2),
+          (2,'mahamed','tati',generate_code(),generate_CNE(),'M','2000-12-17',id2s1),
+          (2,'badr','jalili',generate_code(),generate_CNE(),'M','2001-01-12',id2s2),
+          (3,'mohamed','najib',generate_code(),generate_CNE(),'M','2001-10-07',gi1s1),
+          (3,'tarik','hadaddi',generate_code(),generate_CNE(),'M','2001-05-22',gi1s2),
+          (5,'ossama','zitouni',generate_code(),generate_CNE(),'M','2001-11-29',gc1s1),
+          (5,'mohamed','boroumi',generate_code(),generate_CNE(),'M','2002-01-19',gc1s2),
+          (7,'yassin','azizi',generate_code(),generate_CNE(),'M','2001-09-09',geer1),
+          (4,'mohamed','elhadadi',generate_code(),generate_CNE(),'M','2000-07-20',gi2),
+          (6,'yassin','farissi',generate_code(),generate_CNE(),'M','2000-06-15',gc2)]
 
 
 
@@ -238,24 +268,24 @@ data_std=[('ossama','outmani',generate_code(),generate_CNE(),'M','2002-12-17',id
 
 
 #Contact data
-columns_ct = ['id_student','adresse1','adresse2','country','city','postal_code','phone_number','email_personel','email_acadymic']
+columns_ct = ['id_student','adresse1','adresse2','country','city','postal_code','phone_number','email_acadymic']
 def phone_number():
     number = "06"
     for i in range(9):
         number += str(random.randint(0, 9))
     return number
 
-data_ct=[(1,'imzourn,Maroc','hayAMN,N_9','MAROC','Tetouan','32250',phone_number(),'ossamaoutmani@gmail.com','ossama.outmani@etu.uae.ac.ma'),
-         (2,'aknoul,taza,Maroc','haychouhada,N_67','MAROC','Aknoul','53050',phone_number(),'aymanemaghouti@gmail.com','aymane.maghouti@etu.uae.ac.ma'),
-         (3,'agadir,Maroc','hassan2,N_13','MAROC','Agadir','80800',phone_number(),'medtati@gmail.com','mohamed.tati@etu.uae.ac.ma'),
-         (4,'casablanca,Maroc','sidiMoumn,N_83','MAROC','casablanca','20020',phone_number(),'badrjalilli@gmail.com','badr.jalilli@etu.uae.ac.ma'),
-         (5,'taroudant,Maroc','lmdina,N_17','MAROC','Taroudant','83000',phone_number(),'najibMed@gmail.com','mohamed.najib@etu.uae.ac.ma'),
-         (6,'rabat,Maroc','centre,N_19','MAROC','Rabat','10000',phone_number(),'tarikhadaddi@gmail.com','hadaddi.tarik@etu.uae.ac.ma'),
-         (7, 'errachidia,Maroc', 'lkhawarzmi,N_99', 'MAROC', 'Errachidia', '52000', phone_number(), 'ossamazitouni@gmail.com','ossama.zitouni@etu.uae.ac.ma'),
-         (8, 'nador,Maroc', 'srwan,N_101', 'MAROC', 'Nador', '62000', phone_number(), 'medboroumi@gmail.com','mahamed.boroumi@etu.uae.ac.ma'),
-         (9, 'Rabat,Maroc', 'agdal,N_03', 'MAROC', 'Rabat', '10170', phone_number(), 'yassinazizi@gmail.com','yassin.azizi@etu.uae.ac.ma'),
-         (10, 'oujda,Maroc', 'Hay El-Andalouss,N_9', 'MAROC', 'Oujda', '60000', phone_number(), 'medelhadadi@gmail.com','mohamed.elhadadi@etu.uae.ac.ma'),
-         (11, 'casablanca,Maroc', 'lmaarif,N_9', 'MAROC', 'Casablanca', '20090', phone_number(), 'yassinfarissi@gmail.com','yassin.farissi@etu.uae.ac.ma')]
+data_ct=[(1,'imzourn,Maroc','hayAMN,N_9','MAROC','Tetouan','32250',phone_number(),'ossama.outmani@etu.uae.ac.ma'),
+         (2,'aknoul,taza,Maroc','haychouhada,N_67','MAROC','Aknoul','53050',phone_number(),'aymane.maghouti@etu.uae.ac.ma'),
+         (3,'agadir,Maroc','hassan2,N_13','MAROC','Agadir','80800',phone_number(),'mohamed.tati@etu.uae.ac.ma'),
+         (4,'casablanca,Maroc','sidiMoumn,N_83','MAROC','casablanca','20020',phone_number(),'badr.jalilli@etu.uae.ac.ma'),
+         (5,'taroudant,Maroc','lmdina,N_17','MAROC','Taroudant','83000',phone_number(),'mohamed.najib@etu.uae.ac.ma'),
+         (6,'rabat,Maroc','centre,N_19','MAROC','Rabat','10000',phone_number(),'hadaddi.tarik@etu.uae.ac.ma'),
+         (7, 'errachidia,Maroc', 'lkhawarzmi,N_99', 'MAROC', 'Errachidia', '52000', phone_number(),'ossama.zitouni@etu.uae.ac.ma'),
+         (8, 'nador,Maroc', 'srwan,N_101', 'MAROC', 'Nador', '62000', phone_number(),'mahamed.boroumi@etu.uae.ac.ma'),
+         (9, 'Rabat,Maroc', 'agdal,N_03', 'MAROC', 'Rabat', '10170', phone_number(),'yassin.azizi@etu.uae.ac.ma'),
+         (10, 'oujda,Maroc', 'Hay El-Andalouss,N_9', 'MAROC', 'Oujda', '60000', phone_number(),'mohamed.elhadadi@etu.uae.ac.ma'),
+         (11, 'casablanca,Maroc', 'lmaarif,N_9', 'MAROC', 'Casablanca', '20090', phone_number(),'yassin.farissi@etu.uae.ac.ma')]
 
 
 
