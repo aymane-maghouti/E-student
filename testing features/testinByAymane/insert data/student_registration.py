@@ -7,7 +7,7 @@ def student_inscription(l):
     img = l[1][0]
 
     img_bytes = img.tobytes()
-    month=l[0][5][1]
+    month=l[0][6][1]
     if month.lower() == "january":
         num = 1
     elif month.lower() == "february":
@@ -35,15 +35,14 @@ def student_inscription(l):
     else:
         num = None
 
-    std_data=[(f'{l[0][0]}',f'{l[0][1]}',f'{l[0][2]}',f'{l[0][3]}',f'{l[0][4]}',f'{l[0][5][2]}-{num}-{l[0][5][0]}',f'{img_bytes}'),]
-
-    columns_std=['firstname','lastname','CIN','CNE','gender','birthday','image']
+    std_data=[(f'{l[0][0]}',f'{l[0][1]}',f'{l[0][2]}',f'{l[0][3]}',f'{l[0][4]}',f'{l[0][5]}',f'{l[0][6][2]}-{num}-{l[0][6][0]}',f'{img_bytes}'),]
+    columns_std=['id_class','firstname','lastname','CIN','CNE','gender','birthday','image']
 
     insert_data("student",columns_std,std_data)
 
     print("done student")
 
-    cin = l[0][2]
+    cin = l[0][3]
     cursor = cnx.cursor()
     query = ("SELECT id_student FROM student WHERE cin = %s")
     try:
