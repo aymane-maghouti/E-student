@@ -13,7 +13,7 @@ img = Image.open(file_path)
 img_bytes = img.tobytes()
 
 #exemple de la liste retourne
-l=[[-1,'aymane', 'Outmani', 'L122234', 'P112', 'Male', [2, 'March', 2002]],
+l=[['aymane', 'Outmani', 'L122234', 'P112', 'Male', [2, 'March', 2002]],
    [img],
    ['Tanger', "Sc Mathematique 'B'", 'Spanish', '12', 'Al khawarizmi high school','State'],
    ['Av masira Nr22 ', 'App3 etage4', '98000', '0689', 'Taza', 'Morocco'],
