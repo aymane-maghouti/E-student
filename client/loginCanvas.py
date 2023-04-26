@@ -115,7 +115,7 @@ class Login:
             base.resourcePath("assest\loginPage\submitClicked.png"))
         base.submitLoginButton = MyButton(base.Background, 221, 412, standardImg=base.submitLoginButtonImg,
                                           clickImg=base.submitLoginButtonClickedImg, cursor="hand2",
-                                          behavior=base.loginToRegister1)
+                                          behavior=base.loginToStudentHome)
 
 
         base.loginGroup = MyWidgetsGroup(base.Background, base.loginTitle, base.emailLogingStandardObject,

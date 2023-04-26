@@ -1,8 +1,5 @@
-import threading
-import tkinter
 import tkinter as tk
-import loginCanvas
-from PIL import Image,ImageTk
+from PIL import Image
 from CanvasToWidget import MyButton
 from loginCanvas import Login
 from register1Canvas import Register1
@@ -11,6 +8,7 @@ from register3Canvas import Register3
 from register4Canvas import Register4
 from register5Canvas import Register5
 from register6Canvas import Register6
+from studentHome import StudentHome
 import sys,os
 import cv2
 import numpy as np
@@ -32,6 +30,8 @@ class App(tk.Tk):
         self.r4=Register4()
         self.r5=Register5()
         self.r6=Register6()
+
+        self.studentHome=StudentHome()
 
         self.currentFrame= self.login
 
@@ -124,6 +124,7 @@ class App(tk.Tk):
     def cropFace(self,photo, faces,size=100):
         # If a face is detected, crop the image to the region containing the face
         img = np.array(photo)
+        print(img)
         (x, y, w, h) = faces[0]
         pading = min(int(w / 5), int(h / 5))
         cropped_img = img[y - pading:y + h + pading, x - pading:x + w + pading]
@@ -275,6 +276,15 @@ class App(tk.Tk):
         self.submitLoginButton.place_forget()
         self.r6.createRegister6(self)
         self.currentFrame = self.r6
+
+    def loginToStudentHome(self):
+        self.loginGroup.removeGroup()
+        self.Background.signup.place_forget()
+        self.submitLoginButton.place_forget()
+        self.studentHome.createStudentHome(self)
+        self.currentFrame=self.studentHome
+        self.config(cursor="arrow")
+
 
 
 window=App()

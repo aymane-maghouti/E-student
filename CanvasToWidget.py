@@ -81,6 +81,9 @@ class MyButton():
     def place_forget(self):
         self.base.delete(self.standardImgObject)
 
+    def place(self,x,y):
+        self.standardImgObject = self.base.create_image(x, y, image=self.standardImg, anchor=NW)
+
     def setImage(self,frame,photo,original=None,value=True):
         self.base.itemconfig(self.standardImgObject, image=photo)
         frame.photoVar = ImageTk.getimage(photo) if value!=None else None
@@ -480,14 +483,14 @@ class MyWidgetsGroup:
         return values
 
 
-class MyFrame:
+class MyScrollableFrame:
     def __init__(self,baseCanvas,backgroundImg,backgroundColor,width,height,x=0,y=0,padx=0,pady=0):
         self.baseCanvas=baseCanvas
         self.BackgroundWidgetsFrame = baseCanvas.create_image(x, y, image=backgroundImg, anchor=NW)
         self.mainFrame=Frame(baseCanvas,border=0,highlightthickness=0,background=backgroundColor)
         self.mainFrame.place(x=x+padx,y=y+pady)
 
-        self.canvas = Canvas(self.mainFrame, borderwidth=0, highlightthickness=0,width=width,height=height)
+        self.canvas = Canvas(self.mainFrame, borderwidth=0, highlightthickness=0,width=width,height=height,background=backgroundColor)
         self.scrollbar = Scrollbar(self.mainFrame, orient="vertical", command=self.canvas.yview)
         self.scrollable_frame = Frame(self.canvas,bg=backgroundColor)
         self.scrollable_frame.bind("<Configure>", self.update_scrollregion)
@@ -504,11 +507,17 @@ class MyFrame:
         self.mainFrame.destroy()
 
 
+class MyFrame:
+    def __init__(self,baseCanvas,backgroundImg,backgroundColor,width,height,x=0,y=0,padx=0,pady=0):
+        self.baseCanvas=baseCanvas
+        self.BackgroundWidgetsFrame = baseCanvas.create_image(x, y, image=backgroundImg, anchor=NW)
+        self.mainFrame=Canvas(baseCanvas,border=0,highlightthickness=0,background=backgroundColor,width=width,height=height)
+        self.mainFrame.place(x=x+padx,y=y+pady)
 
 
-
-
-
+    def place_forget(self):
+        self.baseCanvas.delete(self.BackgroundWidgetsFrame)
+        self.mainFrame.destroy()
 
 
 

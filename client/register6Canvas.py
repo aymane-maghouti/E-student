@@ -56,7 +56,7 @@ class Register6:
         base.register6BackgroundWidgetsImg = tk.PhotoImage(
             file=base.resourcePath("assest/register6Page/backgroundRegister6Img.png"))
 
-        registerInfo=MyFrame(base.Background,base.register6BackgroundWidgetsImg,"#1f1a24",315,159,95,255,14,15)
+        registerInfo=MyScrollableFrame(base.Background,base.register6BackgroundWidgetsImg,"#1f1a24",315,159,95,255,14,15)
         l=base.getRegisterValues()
 
         full_name_label = Label(registerInfo.scrollable_frame, text="Full Name :",font=("Montserrat", 8, "bold"),
