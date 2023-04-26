@@ -74,6 +74,11 @@ class Register4:
 
         self.values=[]
 
+    def remove(self,base):
+        base.register4Group.removeGroup()
+        base.submitRegister4Button.place_forget()
+        base.nextRegister4Button.place_forget()
+        base.backRegister4Button.place_forget()
 
     def createRegister4(self,base):
         # base=tk.Tk()
@@ -260,4 +265,4 @@ class Register4:
                                              base.cityRegister4Label, base.cityRegister4List, base.countryRegister4Text,
                                              base.countryRegister4Label, base.countryRegister4List,
                                              base.address1Register4Text, base.address1Register4StandardObject,
-                                             base.address2Register4Text, base.address2Register4StandardObject, base.submitRegister4Button)
+                                             base.address2Register4Text, base.address2Register4StandardObject, base.submitRegister4Button,base.register4WidgetsFrame)

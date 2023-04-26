@@ -4,8 +4,9 @@ import re
 
 
 def signUpOnClick(base):
-    base.config(cursor="arrow")
     base.loginToRegister1()
+    base.config(cursor="arrow")
+
 
 def check_email(self):
     pattern = r"^[a-zA-Z0-9]+\.([a-zA-Z0-9]+)+@+etu.uae.ac.ma$"
@@ -30,6 +31,12 @@ class Login:
         self.passwordVar=None
         self.passwordModified=False
 
+    def remove(self,base):
+        base.loginGroup.removeGroup()
+        base.Background.signup.place_forget()
+        base.submitLoginButton.place_forget()
+
+
     def createLogin(self,base):
         # base=tk.Tk()
         # base.Background=tk.Canvas()
@@ -51,7 +58,7 @@ class Login:
         base.signupHoverImg = Image.open(
             base.resourcePath("assest\loginPage\signupHoverImg.png"))
 
-        base.Background.signup = MyButton(base.Background, 221, 212,base.signupStandardlImg,hoverImg=base.signupHoverImg,cursor="hand2",behavior=lambda :signUpOnClick(base))
+        base.Background.signup = MyButton(base.Background, 221, 212,base.signupStandardlImg,hoverImg=base.signupHoverImg,cursor="hand2",behavior=base.loginToRegister1)
         base.notMember = base.Background.create_text(130, 210, text="not a member ?", font=("Montserrat", 7), fill="white",
                                                      anchor=tk.NW)
 

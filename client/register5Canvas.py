@@ -72,6 +72,13 @@ class Register5:
 
         self.values=[]
 
+    def remove(self,base):
+        base.register5Group.removeGroup()
+        base.submitRegister5Button.place_forget()
+        base.nextRegister5Button.place_forget()
+        base.backRegister5Button.place_forget()
+
+
     def createRegister5(self,base):
         # base=tk.Tk()
         # base.Background=tk.Canvas()
@@ -191,7 +198,7 @@ class Register5:
         base.backRegister5Button = MyButton(base.Background, 141, 453, standardImg=base.backRegister4ButtonImg,
                                             cursor="hand2", behavior=base.register5ToRegister4)
 
-        base.register5Group = MyWidgetsGroup(base.Background,base.emailRegister5Text,base.passwordRegister5Text,base.confirmRegister5Text, base.emailRegister5StandardObject,base.passwordRegister5StandardObject,base.pconfirmRegister5StandardObject,base.submitRegister5Button,base.register5Title)
+        base.register5Group = MyWidgetsGroup(base.Background,base.register5WidgetsFrame,base.emailRegister5Text,base.passwordRegister5Text,base.confirmRegister5Text, base.emailRegister5StandardObject,base.passwordRegister5StandardObject,base.pconfirmRegister5StandardObject,base.submitRegister5Button,base.register5Title)
 
 
 # l=[['Ossama', 'Outmani', 'L1234', 'P112', 'Male', [2, 'March', 1962]],"[<PIL.Image.Image image mode=RGBA size=100x100 at 0x208E193A550>]",['Tanger', "Sc Mathematique 'B'", 'Spanish', '12', 'Al khawarizmi high school'],['Av masira Nr22 ', 'App3 etage4', '98000', '0689', 'Taza', 'Morocco'],['ossama.outmani@etu.uae.ac.ma', 'Nexos2002', 'Nexos2002']]

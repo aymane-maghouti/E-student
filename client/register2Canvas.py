@@ -41,6 +41,13 @@ class Register2:
 
         self.values=[]
 
+    def remove(self,base):
+        base.register2Group.removeGroup()
+        base.submitRegister2Button.place_forget()
+        base.nextRegister2Button.place_forget()
+        base.backRegister2Button.place_forget()
+
+
     def removePhoto(self,source):
         source.inputPhotoRegister2Button.setImage(self, ImageTk.PhotoImage(source.inputPhotoRegister2ButtonImg),value=None)
         print(self.photoVar)
@@ -136,6 +143,8 @@ class Register2:
         base.inputPhotoRegister2Button = MyButton(base.Background, 223, 322, standardImg=base.inputPhotoRegister2ButtonImg if self.photoVar==None else self.photoVar,
                                             cursor="hand2",behavior=lambda :self.importPhoto(base))
         base.inputPhotoRegister2Button.get=lambda :self.original
+        base.inputPhotoRegister2Button.validate=lambda :checkPhoto(self,"Profile photo")
+
 
         #Input cadre
         base.inputPhotoCadreRegister2ButtonImg = Image.open(
@@ -183,9 +192,5 @@ class Register2:
         base.submitRegister2Button = MyButton(base.Background, 221, 453, standardImg=base.submitLoginButtonImg,
                                               cursor="X_cursor")
 
-        base.register2Group = MyWidgetsGroup(base.Background,base.photoRegisterText,base.submitRegister2Button,base.inputPhotoCadreRegister2Button,base.inputPhotoRegister2Button,base.removeRegister2Button,base.importRegister2Button,base.register2Title )
+        base.register2Group = MyWidgetsGroup(base.Background,base.register2WidgetsFrame,base.photoRegisterText,base.submitRegister2Button,base.inputPhotoCadreRegister2Button,base.inputPhotoRegister2Button,base.removeRegister2Button,base.importRegister2Button,base.register2Title )
 
-
-        # base.register1Group.validate=lambda:checkRegister1Form(base.register1Group)
-
-        # base.emailLogingStandardObject.validate=lambda:check_email(base.emailLogingStandardObject)

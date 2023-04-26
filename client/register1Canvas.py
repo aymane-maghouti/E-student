@@ -92,10 +92,19 @@ class Register1:
 
         self.values=[]
 
+    def remove(self,base):
+        base.register1Group.removeGroup()
+        base.submitRegister1Button.place_forget()
+        base.nextRegister1Button.place_forget()
+
+
+
+
+
+
     def createRegister1(self, base):
         # base=tk.Tk()
         # base.Background=tk.Canvas()
-        base.config(cursor="arrow")
 
         try:
             base.nextRegister2Button.place_forget()
@@ -106,7 +115,6 @@ class Register1:
         except:
             pass
 
-        base.config(cursor="arrow")
 
         if self.firstNameVar == None:
             self.firstNameVar = tk.StringVar(base)

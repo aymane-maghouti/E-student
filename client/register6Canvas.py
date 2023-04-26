@@ -4,21 +4,6 @@ import re
 # from client import *
 
 
-def checkRegister5Form(self,register):
-
-    valide=True
-    register.values=[]
-    for element in self.components:
-        if not element.validate():
-            valide=False
-        register.values.apppend(element.get())
-    print(register.values)
-    return valide
-
-
-
-
-
 
 class Register6:
     def __init__(self):
@@ -28,6 +13,12 @@ class Register6:
         self.passwordRegisterModified=False
         self.pConfirmationRegisterVar=None
         self.pConfirmationRegisterModified=False
+
+    def remove(self,base):
+        base.register6Group.removeGroup()
+        base.submitRegister6Button.place_forget()
+        base.nextRegister6Button.place_forget()
+        base.backRegister6Button.place_forget()
 
     def createRegister6(self,base):
         # base=tk.Tk()
@@ -54,166 +45,144 @@ class Register6:
             file=base.resourcePath("assest\\register1Page\\registerFrame.png"))
         base.register6WidgetsFrame = base.Background.create_image(55, 136, image=base.register6WidgetsImg, anchor=tk.NW)
 
-        base.register6BackgroundWidgetsImg = tk.PhotoImage(
-            file=base.resourcePath("assest/register6Page/backgroundRegister6Img.png"))
-        base.register6BackgroundWidgetsFrame = base.Background.create_image(95, 255, image=base.register6BackgroundWidgetsImg, anchor=tk.NW)
 
-        base.register6Title = base.Background.create_text(94, 158, text="Creat your account",
+        base.register6Title = base.Background.create_text(94, 158, text="Create your account",
                                                           font=("Montserrat", 23, "bold"), fill="white", anchor=tk.NW)
 
         base.confirmChoicesText = base.Background.create_text(223, 241, text="Confirm your choices",
                                                                  font=("Montserrat", 6, "bold"),
                                                                  fill="#bb86fc", anchor=tk.NW)
 
-        right_frame = Frame(base,border=0,highlightthickness=0,background="#1f1a24")
-        right_frame.config()
-        right_frame.place(x=109,y=270)
+        base.register6BackgroundWidgetsImg = tk.PhotoImage(
+            file=base.resourcePath("assest/register6Page/backgroundRegister6Img.png"))
 
-        canvas = tk.Canvas(right_frame, borderwidth=0, highlightthickness=0,highlightcolor="#1f1a24",width=315,height=159,bg="#1f1a24")
-        scrollbar = tk.Scrollbar(right_frame, orient="vertical", command=canvas.yview)
-        scrollable_frame = tk.Frame(canvas,bg="#1f1a24")
-        canvas.configure(yscrollcommand=scrollbar.set)
-        canvas.pack(side="left",fill="both",expand=False)
-        scrollbar.pack(side="right", fill="y")
-        canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
-
-        def update_scrollregion(event):
-            canvas.configure(scrollregion=canvas.bbox("all"))        # # Ajouter des widgets à la frame gauche
-        # # # id_label = Label(base, text="ID:")
-        # # # id_label.grid(row=0, column=0, padx=5)
-        # # # id_entry = Entry(base)
-        # # # id_entry.grid(row=0, column=1, padx=5)
-        # #
-        # #
-        # l=[['Ossama', 'Outmani', 'L1234', 'P112', 'Male', [2, 'March', 1962]],"[<PIL.Image.Image image mode=RGBA size=100x100 at 0x208E193A550>]",['Tanger', "Sc Mathematique 'B'", 'Spanish', '12', 'Al khawarizmi high school'],['Av masira Nr22 ', 'App3 etage4', '98000', '0689', 'Taza', 'Morocco'],['ossama.outmani@etu.uae.ac.ma', 'Nexos2002', 'Nexos2002']]
+        registerInfo=MyFrame(base.Background,base.register6BackgroundWidgetsImg,"#1f1a24",315,159,95,255,14,15)
         l=base.getRegisterValues()
-        print(base.getRegisterValues())
-        scrollable_frame.bind("<Configure>", update_scrollregion)
 
-        full_name_label = Label(scrollable_frame, text="Full Name :",font=("Montserrat", 8, "bold"),
-                                                                 fg="#bb86fc",bg="#1f1a24",width=30,height=0,anchor=W)        # age_label = Label(scrollable_frame, text="Age :")
+        full_name_label = Label(registerInfo.scrollable_frame, text="Full Name :",font=("Montserrat", 8, "bold"),
+                                                                 fg="#bb86fc",bg="#1f1a24",width=30,height=0,anchor=W)        # age_label = Label(registerInfo.scrollable_frame, text="Age :")
         full_name_label.grid(row=1, column=0, padx=5,sticky=W)
-        full_name_display = Label(scrollable_frame, text=f"{l[0][0]} {l[0][1]}",font=("Montserrat", 8, "bold"),
+        full_name_display = Label(registerInfo.scrollable_frame, text=f"{l[0][0]} {l[0][1]}",font=("Montserrat", 8, "bold"),
                                                                   fg="white",bg="#1f1a24",width=30,height=0,pady=0)
         full_name_display.grid(row=2, column=0, padx=5)
 
-        CIN_label =  Label(scrollable_frame, text="CIN :",font=("Montserrat", 8, "bold"),
-                                                                 fg="#bb86fc",bg="#1f1a24",width=20,height=0,anchor=W,pady=0)        # age_label = Label(scrollable_frame, text="Age :")
+        CIN_label =  Label(registerInfo.scrollable_frame, text="CIN :",font=("Montserrat", 8, "bold"),
+                                                                 fg="#bb86fc",bg="#1f1a24",width=20,height=0,anchor=W,pady=0)        # age_label = Label(registerInfo.scrollable_frame, text="Age :")
         CIN_label.grid(row=3, column=0, padx=5, sticky=W)
-        CIN_display = Label(scrollable_frame, text=f"{l[0][2]}",font=("Montserrat", 8, "bold"),
+        CIN_display = Label(registerInfo.scrollable_frame, text=f"{l[0][2]}",font=("Montserrat", 8, "bold"),
                                                                  fg="white",bg="#1f1a24",width=30,height=0)
         CIN_display.grid(row=4, column=0, padx=5)
 
-        CNE_label = Label(scrollable_frame,text="CNE :",font=("Montserrat", 8, "bold"),
-                                                                 fg="#bb86fc",bg="#1f1a24",width=20,height=0,anchor=W,pady=0)        # age_label = Label(scrollable_frame, text="Age :")
+        CNE_label = Label(registerInfo.scrollable_frame,text="CNE :",font=("Montserrat", 8, "bold"),
+                                                                 fg="#bb86fc",bg="#1f1a24",width=20,height=0,anchor=W,pady=0)        # age_label = Label(registerInfo.scrollable_frame, text="Age :")
         CNE_label.grid(row=5, column=0, padx=5, sticky=W)
-        CNE_display = Label(scrollable_frame, text=f"{l[0][3]}",font=("Montserrat", 8, "bold"),
+        CNE_display = Label(registerInfo.scrollable_frame, text=f"{l[0][3]}",font=("Montserrat", 8, "bold"),
                                                                  fg="white",bg="#1f1a24",width=30)
         CNE_display.grid(row=6, column=0, padx=5)
 
-        gender_label = Label(scrollable_frame,text="Gender :",font=("Montserrat", 8, "bold"),
-                                                                 fg="#bb86fc",bg="#1f1a24",width=20,height=0,anchor=W,pady=0)        # age_label = Label(scrollable_frame, text="Age :")
+        gender_label = Label(registerInfo.scrollable_frame,text="Gender :",font=("Montserrat", 8, "bold"),
+                                                                 fg="#bb86fc",bg="#1f1a24",width=20,height=0,anchor=W,pady=0)        # age_label = Label(registerInfo.scrollable_frame, text="Age :")
         gender_label.grid(row=7, column=0, padx=5, sticky=W)
-        gender_display = Label(scrollable_frame, text=f"{l[0][4]}",font=("Montserrat", 8, "bold"),
+        gender_display = Label(registerInfo.scrollable_frame, text=f"{l[0][4]}",font=("Montserrat", 8, "bold"),
                                                                  fg="white",bg="#1f1a24",width=30)
         gender_display.grid(row=8, column=0, padx=5)
 
-        birthday_label = Label(scrollable_frame,text="Birthday :",font=("Montserrat", 8, "bold"),
-                                                                 fg="#bb86fc",bg="#1f1a24",width=20,height=0,anchor=W,pady=0)        # age_label = Label(scrollable_frame, text="Age :")
+        birthday_label = Label(registerInfo.scrollable_frame,text="Birthday :",font=("Montserrat", 8, "bold"),
+                                                                 fg="#bb86fc",bg="#1f1a24",width=20,height=0,anchor=W,pady=0)        # age_label = Label(registerInfo.scrollable_frame, text="Age :")
         birthday_label.grid(row=9, column=0, padx=5, sticky=W)
-        birthday_display = Label(scrollable_frame, text=f"{l[0][5][0]} / {l[0][5][1]} / {l[0][5][2]}",font=("Montserrat", 8, "bold"),
+        birthday_display = Label(registerInfo.scrollable_frame, text=f"{l[0][5][0]} / {l[0][5][1]} / {l[0][5][2]}",font=("Montserrat", 8, "bold"),
                                                                  fg="white",bg="#1f1a24",width=30)
         birthday_display.grid(row=10, column=0,columnspan=2, padx=5)
 
-        bac_sector_label = Label(scrollable_frame,text="Bac Sector :",font=("Montserrat", 8, "bold"),
-                                                                 fg="#bb86fc",bg="#1f1a24",width=20,height=0,anchor=W,pady=0)        # age_label = Label(scrollable_frame, text="Age :")
+        bac_sector_label = Label(registerInfo.scrollable_frame,text="Bac Sector :",font=("Montserrat", 8, "bold"),
+                                                                 fg="#bb86fc",bg="#1f1a24",width=20,height=0,anchor=W,pady=0)        # age_label = Label(registerInfo.scrollable_frame, text="Age :")
         bac_sector_label.grid(row=11, column=0, padx=5, sticky=W)
-        bac_sector_display = Label(scrollable_frame, text=f"{l[2][1]}",font=("Montserrat", 8, "bold"),
+        bac_sector_display = Label(registerInfo.scrollable_frame, text=f"{l[2][1]}",font=("Montserrat", 8, "bold"),
                                                                  fg="white",bg="#1f1a24",width=30)
         bac_sector_display.grid(row=12, column=0,columnspan=2, padx=5)
 
-        bac_language_label = Label(scrollable_frame,text="Bac language :",font=("Montserrat", 8, "bold"),
-                                                                 fg="#bb86fc",bg="#1f1a24",width=20,height=0,anchor=W,pady=0)        # age_label = Label(scrollable_frame, text="Age :")
+        bac_language_label = Label(registerInfo.scrollable_frame,text="Bac language :",font=("Montserrat", 8, "bold"),
+                                                                 fg="#bb86fc",bg="#1f1a24",width=20,height=0,anchor=W,pady=0)        # age_label = Label(registerInfo.scrollable_frame, text="Age :")
         bac_language_label.grid(row=11, column=0, padx=5, sticky=W)
-        bac_language_display = Label(scrollable_frame, text=f"{l[2][2]}",font=("Montserrat", 8, "bold"),
+        bac_language_display = Label(registerInfo.scrollable_frame, text=f"{l[2][2]}",font=("Montserrat", 8, "bold"),
                                                                  fg="white",bg="#1f1a24",width=30)
         bac_language_display.grid(row=12, column=0,columnspan=2, padx=5)
 
-        bac_grade_label = Label(scrollable_frame,text="Bac grade :",font=("Montserrat", 8, "bold"),
-                                                                 fg="#bb86fc",bg="#1f1a24",width=20,height=0,anchor=W,pady=0)        # age_label = Label(scrollable_frame, text="Age :")
+        bac_grade_label = Label(registerInfo.scrollable_frame,text="Bac grade :",font=("Montserrat", 8, "bold"),
+                                                                 fg="#bb86fc",bg="#1f1a24",width=20,height=0,anchor=W,pady=0)        # age_label = Label(registerInfo.scrollable_frame, text="Age :")
         bac_grade_label.grid(row=13, column=0, padx=5, sticky=W)
-        bac_grade_display = Label(scrollable_frame, text=f"{l[2][3]}",font=("Montserrat", 8, "bold"),
+        bac_grade_display = Label(registerInfo.scrollable_frame, text=f"{l[2][3]}",font=("Montserrat", 8, "bold"),
                                                                  fg="white",bg="#1f1a24",width=30)
         bac_grade_display.grid(row=14, column=0,columnspan=2, padx=5)
 
-        bac_city_label = Label(scrollable_frame,text="Bac city :",font=("Montserrat", 8, "bold"),
-                                                                 fg="#bb86fc",bg="#1f1a24",width=20,height=0,anchor=W,pady=0)        # age_label = Label(scrollable_frame, text="Age :")
+        bac_city_label = Label(registerInfo.scrollable_frame,text="Bac city :",font=("Montserrat", 8, "bold"),
+                                                                 fg="#bb86fc",bg="#1f1a24",width=20,height=0,anchor=W,pady=0)        # age_label = Label(registerInfo.scrollable_frame, text="Age :")
         bac_city_label.grid(row=15, column=0, padx=5, sticky=W)
-        bac_city_display = Label(scrollable_frame, text=f"{l[2][0]}",font=("Montserrat", 8, "bold"),
+        bac_city_display = Label(registerInfo.scrollable_frame, text=f"{l[2][0]}",font=("Montserrat", 8, "bold"),
                                                                  fg="white",bg="#1f1a24",width=30)
         bac_city_display.grid(row=16, column=0,columnspan=2, padx=5)
 
-        high_school_name_label = Label(scrollable_frame,text="High school name :",font=("Montserrat", 8, "bold"),
-                                                                 fg="#bb86fc",bg="#1f1a24",width=20,height=0,anchor=W,pady=0)        # age_label = Label(scrollable_frame, text="Age :")
+        high_school_name_label = Label(registerInfo.scrollable_frame,text="High school name :",font=("Montserrat", 8, "bold"),
+                                                                 fg="#bb86fc",bg="#1f1a24",width=20,height=0,anchor=W,pady=0)        # age_label = Label(registerInfo.scrollable_frame, text="Age :")
         high_school_name_label.grid(row=17, column=0, padx=5, sticky=W)
-        high_school_name_display = Label(scrollable_frame, text=f"{l[2][4]}",font=("Montserrat", 8, "bold"),
+        high_school_name_display = Label(registerInfo.scrollable_frame, text=f"{l[2][4]}",font=("Montserrat", 8, "bold"),
                                                                  fg="white",bg="#1f1a24",width=30)
 
         high_school_name_display.grid(row=18, column=0,columnspan=2, padx=5)
 
-        high_school_type_label = Label(scrollable_frame,text="High school type :",font=("Montserrat", 8, "bold"),
-                                                                 fg="#bb86fc",bg="#1f1a24",width=20,height=0,anchor=W,pady=0)        # age_label = Label(scrollable_frame, text="Age :")
+        high_school_type_label = Label(registerInfo.scrollable_frame,text="High school type :",font=("Montserrat", 8, "bold"),
+                                                                 fg="#bb86fc",bg="#1f1a24",width=20,height=0,anchor=W,pady=0)        # age_label = Label(registerInfo.scrollable_frame, text="Age :")
         high_school_type_label.grid(row=19, column=0, padx=5, sticky=W)
-        high_school_type_display = Label(scrollable_frame, text=f"{l[2][5]}",font=("Montserrat", 8, "bold"),
+        high_school_type_display = Label(registerInfo.scrollable_frame, text=f"{l[2][5]}",font=("Montserrat", 8, "bold"),
                                                                  fg="white",bg="#1f1a24",width=30)
         high_school_type_display.grid(row=20, column=0,columnspan=2, padx=5)
 
-        address1_label = Label(scrollable_frame,text="Address line 1 :",font=("Montserrat", 8, "bold"),
-                                                                 fg="#bb86fc",bg="#1f1a24",width=20,height=0,anchor=W,pady=0)        # age_label = Label(scrollable_frame, text="Age :")
+        address1_label = Label(registerInfo.scrollable_frame,text="Address line 1 :",font=("Montserrat", 8, "bold"),
+                                                                 fg="#bb86fc",bg="#1f1a24",width=20,height=0,anchor=W,pady=0)        # age_label = Label(registerInfo.scrollable_frame, text="Age :")
         address1_label.grid(row=21, column=0, padx=5, sticky=W)
-        address1_display = Label(scrollable_frame, text=f"{l[3][0]}",font=("Montserrat", 8, "bold"),
+        address1_display = Label(registerInfo.scrollable_frame, text=f"{l[3][0]}",font=("Montserrat", 8, "bold"),
                                                                  fg="white",bg="#1f1a24",width=30)
         address1_display.grid(row=22, column=0,columnspan=2, padx=5)
 
-        address2_label = Label(scrollable_frame,text="Address line 2 :",font=("Montserrat", 8, "bold"),
-                                                                 fg="#bb86fc",bg="#1f1a24",width=20,height=0,anchor=W,pady=0)        # age_label = Label(scrollable_frame, text="Age :")
+        address2_label = Label(registerInfo.scrollable_frame,text="Address line 2 :",font=("Montserrat", 8, "bold"),
+                                                                 fg="#bb86fc",bg="#1f1a24",width=20,height=0,anchor=W,pady=0)        # age_label = Label(registerInfo.scrollable_frame, text="Age :")
         address2_label.grid(row=23, column=0, padx=5, sticky=W)
-        address2_display = Label(scrollable_frame, text=f"{l[3][1]}",font=("Montserrat", 8, "bold"),
+        address2_display = Label(registerInfo.scrollable_frame, text=f"{l[3][1]}",font=("Montserrat", 8, "bold"),
                                                                  fg="white",bg="#1f1a24",width=30)
         address2_display.grid(row=24, column=0,columnspan=2, padx=5)
 
-        city_label = Label(scrollable_frame,text="City :",font=("Montserrat", 8, "bold"),
-                                                                 fg="#bb86fc",bg="#1f1a24",width=20,height=0,anchor=W,pady=0)        # age_label = Label(scrollable_frame, text="Age :")
+        city_label = Label(registerInfo.scrollable_frame,text="City :",font=("Montserrat", 8, "bold"),
+                                                                 fg="#bb86fc",bg="#1f1a24",width=20,height=0,anchor=W,pady=0)        # age_label = Label(registerInfo.scrollable_frame, text="Age :")
         city_label.grid(row=25, column=0, padx=5, sticky=W)
-        city_display = Label(scrollable_frame, text=f"{l[3][4]}",font=("Montserrat", 8, "bold"),
+        city_display = Label(registerInfo.scrollable_frame, text=f"{l[3][4]}",font=("Montserrat", 8, "bold"),
                                                                  fg="white",bg="#1f1a24",width=30)
         city_display.grid(row=26, column=0,columnspan=2, padx=5)
 
-        country_label = Label(scrollable_frame,text="Country :",font=("Montserrat", 8, "bold"),
-                                                                 fg="#bb86fc",bg="#1f1a24",width=20,height=0,anchor=W,pady=0)        # age_label = Label(scrollable_frame, text="Age :")
+        country_label = Label(registerInfo.scrollable_frame,text="Country :",font=("Montserrat", 8, "bold"),
+                                                                 fg="#bb86fc",bg="#1f1a24",width=20,height=0,anchor=W,pady=0)        # age_label = Label(registerInfo.scrollable_frame, text="Age :")
         country_label.grid(row=27, column=0, padx=5, sticky=W)
-        country_display = Label(scrollable_frame, text=f"{l[3][5]}",font=("Montserrat", 8, "bold"),
+        country_display = Label(registerInfo.scrollable_frame, text=f"{l[3][5]}",font=("Montserrat", 8, "bold"),
                                                                  fg="white",bg="#1f1a24",width=30)
         country_display.grid(row=28, column=0,columnspan=2, padx=5)
 
-        postal_code_label = Label(scrollable_frame,text="Postal code :",font=("Montserrat", 8, "bold"),
-                                                                 fg="#bb86fc",bg="#1f1a24",width=20,height=0,anchor=W,pady=0)        # age_label = Label(scrollable_frame, text="Age :")
+        postal_code_label = Label(registerInfo.scrollable_frame,text="Postal code :",font=("Montserrat", 8, "bold"),
+                                                                 fg="#bb86fc",bg="#1f1a24",width=20,height=0,anchor=W,pady=0)        # age_label = Label(registerInfo.scrollable_frame, text="Age :")
         postal_code_label.grid(row=29, column=0, padx=5, sticky=W)
-        postal_code_display = Label(scrollable_frame, text=f"{l[3][2]}",font=("Montserrat", 8, "bold"),
+        postal_code_display = Label(registerInfo.scrollable_frame, text=f"{l[3][2]}",font=("Montserrat", 8, "bold"),
                                                                  fg="white",bg="#1f1a24",width=30)
         postal_code_display.grid(row=30, column=0,columnspan=2, padx=5)
 
-        phone_number_label = Label(scrollable_frame,text="Phone number :",font=("Montserrat", 8, "bold"),
-                                                                 fg="#bb86fc",bg="#1f1a24",width=20,height=0,anchor=W,pady=0)        # age_label = Label(scrollable_frame, text="Age :")
+        phone_number_label = Label(registerInfo.scrollable_frame,text="Phone number :",font=("Montserrat", 8, "bold"),
+                                                                 fg="#bb86fc",bg="#1f1a24",width=20,height=0,anchor=W,pady=0)        # age_label = Label(registerInfo.scrollable_frame, text="Age :")
         phone_number_label.grid(row=31, column=0, padx=5, sticky=W)
-        phone_number_display = Label(scrollable_frame, text=f"{l[3][3]}",font=("Montserrat", 8, "bold"),
+        phone_number_display = Label(registerInfo.scrollable_frame, text=f"{l[3][3]}",font=("Montserrat", 8, "bold"),
                                                                  fg="white",bg="#1f1a24",width=30)
         phone_number_display.grid(row=32, column=0,columnspan=2, padx=5)
 
-        email_label = Label(scrollable_frame,text="Email address :",font=("Montserrat", 8, "bold"),
-                                                                 fg="#bb86fc",bg="#1f1a24",width=20,height=0,anchor=W,pady=0)        # age_label = Label(scrollable_frame, text="Age :")
+        email_label = Label(registerInfo.scrollable_frame,text="Email address :",font=("Montserrat", 8, "bold"),
+                                                                 fg="#bb86fc",bg="#1f1a24",width=20,height=0,anchor=W,pady=0)        # age_label = Label(registerInfo.scrollable_frame, text="Age :")
         email_label.grid(row=33, column=0, padx=5, sticky=W)
-        email_display = Label(scrollable_frame, text=f"{l[4][0]}",font=("Montserrat", 8, "bold"),
+        email_display = Label(registerInfo.scrollable_frame, text=f"{l[4][0]}",font=("Montserrat", 8, "bold"),
                                                                  fg="white",bg="#1f1a24",width=30)
         email_display.grid(row=34, column=0,columnspan=2, padx=5)
 
@@ -239,13 +208,13 @@ class Register6:
         emptyImg.paste(photo_img, (2, 2,58,58),mask2)
         emptyImg.paste(input_photo_cadre_register_7_button_img, (0, 0,60,60),mask)
 
-        profile_label = Label(scrollable_frame, text="Profile photo :",font=("Montserrat", 8, "bold"),
-                                                                 fg="#bb86fc",bg="#1f1a24",height=0,anchor=W)        # age_label = Label(scrollable_frame, text="Age :")
+        profile_label = Label(registerInfo.scrollable_frame, text="Profile photo :",font=("Montserrat", 8, "bold"),
+                                                                 fg="#bb86fc",bg="#1f1a24",height=0,anchor=W)        # age_label = Label(registerInfo.scrollable_frame, text="Age :")
 
         profile_label.grid(row=1, column=1,padx=0,pady=0, sticky=W)
 
         # Create Label widget and assign image to it
-        image_label = Label(scrollable_frame, bg="#1f1a24", anchor=W)
+        image_label = Label(registerInfo.scrollable_frame, bg="#1f1a24", anchor=W)
         image_label.grid(row=2, column=1, padx=10, rowspan=4, sticky=W)
 
         # Convert image to PhotoImage and resize it
@@ -257,13 +226,13 @@ class Register6:
         print(photo.width(), photo.height())
         print(emptyImg.size, emptyImg.mode)
 
-        canvas.create_image(100,100,image=ImageTk.PhotoImage(emptyImg))
+        registerInfo.canvas.create_image(100,100,image=ImageTk.PhotoImage(emptyImg))
 
         # # Ajouter des widgets à la frame droite pour l'affichage de l'image
         # image_label = Label(right_frame)
         # image_label.pack()
         #
-        base.register6Form = MyForm(base,base.register6Title,base.register6WidgetsFrame,base.register6BackgroundWidgetsFrame)
+        # base.register6Form = MyForm(base,base.register6Title,base.register6WidgetsFrame,base.register6BackgroundWidgetsFrame)
         # base.register6Form.validate=lambda:checkRegister5Form(base.register5F        # base.registerForm = MyForm(base,base.register1Form,base.register2Form,base.register3Form,base.register4Form,base.register5Form)
         #         # base.registerForm.values=[]orm,self)
         # base.register6Form.get=lambda:self.values
@@ -289,7 +258,7 @@ class Register6:
         base.backRegister6Button = MyButton(base.Background, 141, 453, standardImg=base.backRegister6ButtonImg,
                                             cursor="hand2",behavior=base.register6ToRegister5)
 
-        base.register6Group = MyWidgetsGroup(base.Background,scrollable_frame,canvas,scrollbar,base.register6WidgetsFrame,base.register6BackgroundWidgetsFrame,base.register6Title,base.confirmChoicesText,base.submitRegister6Button)
+        base.register6Group = MyWidgetsGroup(base.Background,registerInfo,base.register6WidgetsFrame,base.register6Title,base.confirmChoicesText,base.submitRegister6Button)
 
 
 

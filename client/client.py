@@ -33,6 +33,8 @@ class App(tk.Tk):
         self.r5=Register5()
         self.r6=Register6()
 
+        self.currentFrame= self.login
+
         self.registerValues=[]
 
         #adding the background image to canvas
@@ -55,8 +57,9 @@ class App(tk.Tk):
         self.closeHoverImg = Image.open(r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\closeHoverImg.png").resize((46,46))
         self.closeButton = MyButton(self.Background,standardImg=self.closeStandardImg,hoverImg=self.closeHoverImg,x=812,y=43,behavior=self.quit)
 
-        self.logoImg = ImageTk.PhotoImage(Image.open(r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\EstudentLogo.png"))
-        self.loginObject = self.Background.create_image(79, 51, image=self.logoImg, anchor=tk.NW)
+        self.logoImg = Image.open(r"assest\general\EstudentLogo.png")
+        # self.loginObject = self.Background.create_image(79, 51, image=self.logoImg, anchor=tk.NW)
+        self.logoObject=MyButton(self.Background,79,51,self.logoImg,cursor="hand2",behavior=self.onLogoClick)
 
         # create a Toplevel window
         self.loginWidgetsFrame1=self.login.createLogin(self)
@@ -133,19 +136,29 @@ class App(tk.Tk):
         photo = tk.PhotoImage(width=npImage.shape[1], height=npImage.shape[0])
         photo.put("{" + " ".join(str(x) for x in np.ravel(npImage)) + "}", to=(0, 0))
         return photo
-    def loginToRegister1(self):
-        self.config(cursor="arrow")
-        self.Background.signup.place_forget()
-        self.loginGroup.removeGroup()
-        self.submitLoginButton.place_forget()
-        self.r1.createRegister1(self)
-
     def setRegisterValues(self,values):
         self.registerValues=values[::]
 
-
     def getRegisterValues(self):
         return self.registerValues
+
+    def onLogoClick(self):
+        self.toLogin()
+
+    def toLogin(self):
+        if self.currentFrame!=self.login:
+            self.currentFrame.remove(self)
+            self.login.createLogin(self)
+
+
+    def loginToRegister1(self):
+        # self.config(cursor="arrow")
+        self.loginGroup.removeGroup()
+        self.Background.signup.place_forget()
+        self.submitLoginButton.place_forget()
+        self.r1.createRegister1(self)
+        self.currentFrame=self.r1
+        self.config(cursor="arrow")
 
 
 
@@ -153,6 +166,7 @@ class App(tk.Tk):
         self.register1Group.removeGroup()
         self.submitRegister1Button.place_forget()
         self.login.createLogin(self)
+        self.currentFrame=self.login
 
     def register1ToRegister2(self):
         # print(self.register1Form.get())
@@ -165,6 +179,7 @@ class App(tk.Tk):
             # print(self.r1.genderVar.getValue())
             self.register1Group.removeGroup()
             self.r2.createRegister2(self)
+            self.currentFrame = self.r2
 
     # def register2ToRegister2(self):
     #     self.register1Group.removeGroup()
@@ -175,6 +190,7 @@ class App(tk.Tk):
         self.nextRegister2Button.place_forget()
         self.backRegister2Button.place_forget()
         self.r1.createRegister1(self)
+        self.currentFrame = self.r1
 
     def register2ToRegister3(self):
         if self.register2Form.validate():
@@ -182,21 +198,14 @@ class App(tk.Tk):
             self.nextRegister2Button.place_forget()
             self.backRegister2Button.place_forget()
             self.r3.createRegister3(self)
+            self.currentFrame = self.r3
 
     def register3ToRegister2(self):
         self.register3Group.removeGroup()
         self.nextRegister3Button.place_forget()
         self.backRegister3Button.place_forget()
         self.r2.createRegister2(self)
-
-    # def register3ToRegister2(self):
-    #     self.r3.bacCityVar=self.bacCityRegister3List.get()
-    #     self.r3.bacSectorVar=self.bacSectorRegister3List.get()
-    #     self.r3.bacLanguageVar=self.bacLanguageRegister3List.get()
-    #     self.r3.schoolTypeVar = self.hTypeRegisterOptionList.get()
-    #
-    #     self.register3Group.removeGroup()
-    #     self.r2.createRegister1(self)
+        self.currentFrame = self.r2
 
     def register3ToRegister4(self):
         if self.register3Form.validate():
@@ -209,6 +218,8 @@ class App(tk.Tk):
             self.nextRegister3Button.place_forget()
             self.backRegister3Button.place_forget()
             self.r4.createRegister4(self)
+            self.currentFrame = self.r4
+
 
     def register4ToRegister3(self):
         self.register4Group.removeGroup()
@@ -226,12 +237,15 @@ class App(tk.Tk):
             self.nextRegister4Button.place_forget()
             self.backRegister4Button.place_forget()
             self.r5.createRegister5(self)
+            self.currentFrame = self.r5
+
 
     def register5ToRegister4(self):
         self.register5Group.removeGroup()
         self.nextRegister5Button.place_forget()
         self.backRegister5Button.place_forget()
         self.r4.createRegister4(self)
+        self.currentFrame = self.r4
 
     def register5ToRegister6(self):
         if self.register5Form.validate():
@@ -244,12 +258,15 @@ class App(tk.Tk):
             self.nextRegister5Button.place_forget()
             self.backRegister5Button.place_forget()
             self.r6.createRegister6(self)
+            self.currentFrame = self.r6
+
 
     def register6ToRegister5(self):
         self.register6Group.removeGroup()
         self.nextRegister6Button.place_forget()
         self.backRegister6Button.place_forget()
         self.r5.createRegister5(self)
+        self.currentFrame = self.r5
 
     def loginToRegister6(self):
         self.config(cursor="arrow")
@@ -257,12 +274,7 @@ class App(tk.Tk):
         self.loginGroup.removeGroup()
         self.submitLoginButton.place_forget()
         self.r6.createRegister6(self)
-
-
-
-
-
-
+        self.currentFrame = self.r6
 
 
 window=App()

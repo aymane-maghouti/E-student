@@ -68,6 +68,13 @@ class Register3:
 
         self.values=[]
 
+    def remove(self,base):
+        base.register3Group.removeGroup()
+        base.submitRegister3Button.place_forget()
+        base.nextRegister3Button.place_forget()
+        base.backRegister3Button.place_forget()
+
+
 
     def createRegister3(self,base):
         # base=tk.Tk()
