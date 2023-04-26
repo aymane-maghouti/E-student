@@ -22,7 +22,7 @@ mycursor.execute("create table if not exists departement(id_departement int prim
 mycursor.execute("create table if not exists filier(id_filier int primary key auto_increment,name varchar(45),description varchar(200),id_departement int not null,foreign key (id_departement) references departement(id_departement))")
 
 #TABLE : class
-mycursor.execute("id_class int primary key auto_increment,name_class varchar(45),id_filier int not null,foreign key (id_filier) references filier(id_filier)")
+mycursor.execute("create table if not exists class(id_class int primary key auto_increment,name_class varchar(45),id_filier int not null,foreign key (id_filier) references filier(id_filier))")
 
 # TABLE : student
 mycursor.execute("create table if not exists student (id_student int primary key auto_increment,id_class int not null,firstname varchar(45),lastname varchar(45),CIN varchar(45),CNE varchar(45),gender varchar(45),birthday date,image longBlob),foreign key (id_class) references class(id_class)")
@@ -44,14 +44,16 @@ mycursor.execute("create table  if not exists prof(id_prof int primary key auto_
 # TABLE : filier_student
 mycursor.execute("CREATE table if not exists filier_student (id_filier_student int primary key auto_increment,id_filier int not null,id_student int not null,foreign key (id_filier) references filier(id_filier),foreign key (id_student) references student(id_student))")
 # TABLE : Affichage
-mycursor.execute("create table affichage(id_affichage int primary key auto_increment,class varchar(45),module  varchar(45),notetable longblob,date_pub datetime)")
+mycursor.execute("CREATE table if not exists affichage(id_affichage int primary key auto_increment,class varchar(45),module  varchar(45),notetable longblob,date_pub datetime)")
 # TABLE : emploi_temps
-mycursor.execute("create table emploi_temps(id_emploi int primary key auto_increment,class varchar(45),timetable longblob,date_pub datetime)")
+mycursor.execute("CREATE table if not exists emploi_temps(id_emploi int primary key auto_increment,class varchar(45),timetable longblob,date_pub datetime)")
 # TABLE : documents
-mycursor.execute("create table documents(id_cours int primary key auto_increment,type varchar(45),titre varchar(45),class varchar(45),file longblob,date_doc datetime)")
+mycursor.execute("CREATE table if not exists documents(id_cours int primary key auto_increment,type varchar(45),titre varchar(45),class varchar(45),file longblob,date_doc datetime)")
 
+#Table : graphe
+mycursor.execute("CREATE table if not exists graph_table(id int primary key auto_increment,nb_visiteur int ,date date)")
 
-print("done")
+print("all tables are created ")
 mydb.commit()
 mycursor.close()
 mydb.close()

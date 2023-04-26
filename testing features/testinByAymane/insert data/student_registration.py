@@ -1,12 +1,16 @@
+
 from insert_data import insert_data,hash_password,connectDB
 import mysql.connector
-
+import numpy as np
 def student_inscription(l):
     l[0] = [-1] + l[0]
     cnx,cursor = connectDB('student_managment')
-    img = l[1][0]
 
-    img_bytes = img.tobytes()
+    img = l[1][0]
+    img_np = np.array(img)
+    img_bytes = img_np.tobytes()
+
+
     month=l[0][6][1]
     if month.lower() == "january":
         num = 1

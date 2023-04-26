@@ -220,12 +220,14 @@ data_prof=[('Mohamed','ADDAM',generate_code(),'m.addam@uae.ac.ma',1),
            ('Abdellatif','LAMHAMDI',generate_code(),'a.lamhamdi@uae.ac.ma',2)]
 
 
+
 #Student data
 
 def generate_CNE():
     code = random.choice(string.ascii_uppercase) # Choisissez un caractère aléatoire en majuscule
     code += ''.join(random.choices(string.digits, k=9)) # Ajoutez 9 chiffres aléatoires
     return code
+
 with open('image_student/ID1_S1 .jpg', 'rb') as i1,\
      open('image_student/ID1_S2.jpg', 'rb') as i2,\
      open('image_student/ID2_S1.jpg', 'rb') as i3, \
@@ -238,6 +240,7 @@ with open('image_student/ID1_S1 .jpg', 'rb') as i1,\
      open('image_student/GI2.jpg', 'rb') as i10, \
      open('image_student/GC2.jpg', 'rb') as i11:
     id1s1 = i1.read()
+
     id1s2 = i2.read()
     id2s1 = i3.read()
     id2s2 = i4.read()
@@ -248,18 +251,20 @@ with open('image_student/ID1_S1 .jpg', 'rb') as i1,\
     geer1 = i9.read()
     gi2 = i10.read()
     gc2 = i11.read()
+
+
 columns_std=['id_Calss','firstname','lastname','CIN','CNE','gender','birthday','image']
-data_std=[(1,'ossama','outmani',generate_code(),generate_CNE(),'M','2002-12-17',id1s1),
-          (1,'aymane','maghouti',generate_code(),generate_CNE(),'M','2002-07-05',id1s2),
-          (2,'mahamed','tati',generate_code(),generate_CNE(),'M','2000-12-17',id2s1),
-          (2,'badr','jalili',generate_code(),generate_CNE(),'M','2001-01-12',id2s2),
-          (3,'mohamed','najib',generate_code(),generate_CNE(),'M','2001-10-07',gi1s1),
-          (3,'tarik','hadaddi',generate_code(),generate_CNE(),'M','2001-05-22',gi1s2),
-          (5,'ossama','zitouni',generate_code(),generate_CNE(),'M','2001-11-29',gc1s1),
-          (5,'mohamed','boroumi',generate_code(),generate_CNE(),'M','2002-01-19',gc1s2),
-          (7,'yassin','azizi',generate_code(),generate_CNE(),'M','2001-09-09',geer1),
-          (4,'mohamed','elhadadi',generate_code(),generate_CNE(),'M','2000-07-20',gi2),
-          (6,'yassin','farissi',generate_code(),generate_CNE(),'M','2000-06-15',gc2)]
+data_std=[(1,'ossama','outmani',generate_code(),generate_CNE(),'M','2002-12-17',''),
+          (1,'aymane','maghouti',generate_code(),generate_CNE(),'M','2002-07-05',''),
+          (2,'mahamed','tati',generate_code(),generate_CNE(),'M','2000-12-17',''),
+          (2,'badr','jalili',generate_code(),generate_CNE(),'M','2001-01-12',''),
+          (3,'mohamed','najib',generate_code(),generate_CNE(),'M','2001-10-07',''),
+          (3,'tarik','hadaddi',generate_code(),generate_CNE(),'M','2001-05-22',''),
+          (5,'ossama','zitouni',generate_code(),generate_CNE(),'M','2001-11-29',''),
+          (5,'mohamed','boroumi',generate_code(),generate_CNE(),'M','2002-01-19',''),
+          (7,'yassin','azizi',generate_code(),generate_CNE(),'M','2001-09-09',''),
+          (4,'mohamed','elhadadi',generate_code(),generate_CNE(),'M','2000-07-20',''),
+          (6,'yassin','farissi',generate_code(),generate_CNE(),'M','2000-06-15','')]
 
 
 
