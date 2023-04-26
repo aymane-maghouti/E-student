@@ -18,10 +18,8 @@ def connectDB(nameDB):
 def save_into_affichagee(file_class, file_module, file_path):
     execution_date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     try:
-        # Connexion à la base de données MySQL
         cnx, cursor = connectDB('student_managment')
 
-        # Insertion des données dans la table "files"
         insert_query = ("INSERT INTO affichage(class,module,notetable, date_pub) VALUES (%s,%s, %s, %s)")
         with open(file_path, 'rb') as f:
             pdf_file = f.read()
@@ -39,10 +37,8 @@ def insert_into_document(file_type, file_class, file_titre, file_path):
     execution_date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
     try:
-        # Connexion à la base de données MySQL
         cnx, cursor = connectDB('student_managment')
 
-        # Insertion des données dans la table "files"
         insert_query = ("INSERT INTO documents(type, titre,class, file, date_doc) VALUES (%s,%s, %s, %s, %s)")
         with open(file_path, 'rb') as f:
             pdf_file = f.read()
@@ -62,10 +58,8 @@ def save_into_emploi_temps(file_class, file_path):
     execution_date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
     try:
-        # Connexion à la base de données MySQL
         cnx, cursor = connectDB('student_managment')
 
-        # Insertion des données dans la table "files"
         insert_query = ("INSERT INTO emploi_temps(class, timetable, date_pub) VALUES (%s,%s, %s)")
         with open(file_path, 'rb') as f:
             pdf_file = f.read()
@@ -84,12 +78,10 @@ def save_into_emploi_temps(file_class, file_path):
 def delete_student(student_id):
     mydb, mycursor = connectDB('student_managment')
 
-    # Récupérer l'e-mail académique de l'étudiant depuis la base de données
     select_req = 'SELECT c.email_acadymic FROM student s, contact c WHERE s.id_student = c.id_student AND s.id_student = %s'
     mycursor.execute(select_req, (student_id,))
     email_academic = mycursor.fetchone()[0]
 
-    # Suppression de l'étudiant
     del_from_contact = "DELETE FROM contact WHERE id_student = %s"
     del_from_login = "DELETE FROM login WHERE email_acadymic = %s"
     del_from_bac_student = "DELETE FROM bac_student WHERE id_student = %s"
