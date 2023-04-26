@@ -509,11 +509,17 @@ class MyScrollableFrame:
 
 class MyFrame:
     def __init__(self,baseCanvas,backgroundImg,backgroundColor,width,height,x=0,y=0,padx=0,pady=0):
+        self.x=x
+        self.y=y
         self.baseCanvas=baseCanvas
-        self.BackgroundWidgetsFrame = baseCanvas.create_image(x, y, image=backgroundImg, anchor=NW)
+        self.background=backgroundImg
+        self.BackgroundWidgetsFrame = self.baseCanvas.create_image(self.x, self.y, image=backgroundImg, anchor=NW)
         self.mainFrame=Canvas(baseCanvas,border=0,highlightthickness=0,background=backgroundColor,width=width,height=height)
         self.mainFrame.place(x=x+padx,y=y+pady)
 
+    def place(self):
+        self.BackgroundWidgetsFrame = self.baseCanvas.create_image(self.x, self.y, image=self.backgroundImg, anchor=NW)
+        self.mainFrame.place(x=x+padx,y=y+pady)
 
     def place_forget(self):
         self.baseCanvas.delete(self.BackgroundWidgetsFrame)

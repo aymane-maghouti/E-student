@@ -55,7 +55,7 @@ class StudentHome:
         base.studentMenuIconImg =Image.open(
            base.resourcePath("assest/general/menuIcon.png"))
 
-        base.studentMenuIconButton=MyButton(base.studentHomeMenuFrame.mainFrame,10,10,base.studentMenuIconImg,cursor="hand2",behavior=lambda:self.selectTask(base.studentHomeMenuFrame.mainFrame,base.selectedCircleStudent,0,0))
+        base.studentMenuIconButton=MyButton(base.studentHomeMenuFrame.mainFrame,10,10,base.studentMenuIconImg,cursor="hand2",behavior=lambda:base.studentMenuExtendedFrame.pl)
 
         base.studentBooksIconImg =Image.open(
            base.resourcePath("assest/general/booksIcon.png"))
@@ -88,7 +88,11 @@ class StudentHome:
         base.studentAboutIconButton=MyButton(base.studentHomeMenuFrame.mainFrame,14,319,base.studentAboutIconImg,cursor="hand2",behavior=lambda:self.selectTask(base.studentHomeMenuFrame.mainFrame,base.selectedCircleStudent,0,310))
 
         #Menu extended
-        base.studentAboutIconImg =Image.open(
-           base.resourcePath("assest/general/aboutIcon.png"))
+        base.studentMenuExtendedImg =ImageTk.PhotoImage(Image.open(
+           base.resourcePath("assest/general/menuExtendedBackground.png")))
+
+        base.studentMenuExtendedFrame=MyFrame(base.Background,base.studentMenuExtendedImg,"red",100,351,55,107,4,23)
+        base.studentMenuExtendedFrame.place_forget()
+
 
 
