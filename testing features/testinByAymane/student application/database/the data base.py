@@ -40,8 +40,6 @@ mycursor.execute("create table if not exists login (id_login int primary key aut
 mycursor.execute("create table if not exists Notification (id_notification int primary key auto_increment,id_filier int not null,title varchar(200),detail varchar(9999),date_not datetime,foreign key (id_filier) references filier(id_filier))")
 # TABLE : admin
 mycursor.execute("create table if not exists Admin(id_admin int primary key auto_increment,firstname varchar(45),lastname varchar(45),CIN varchar(45),birthday date,image longBlob,email_admin varchar(200))")
-# TABLE : publication
-mycursor.execute("create table if not exists publication(id_publication int primary key auto_increment,type varchar(45),description varchar(200),file longblob,date_pub datetime)")
 # TABLE : prof
 mycursor.execute("create table  if not exists prof(id_prof int primary key auto_increment,firstname varchar(45),lastname varchar(45),CIN varchar(45),email_prof varchar(200),id_departement int not null,foreign key (id_departement) references departement(id_departement))")
 # TABLE : filier_student
