@@ -28,7 +28,7 @@ mycursor.execute("create table if not exists filier(id_filier int primary key au
 mycursor.execute("create table if not exists class(id_class int primary key auto_increment,name_class varchar(45),id_filier int not null,foreign key (id_filier) references filier(id_filier))")
 
 # TABLE : student
-mycursor.execute("create table if not exists student (id_student int primary key auto_increment,id_class int not null,firstname varchar(45),lastname varchar(45),CIN varchar(45),CNE varchar(45),gender varchar(45),birthday date,image longBlob),foreign key (id_class) references class(id_class))")
+mycursor.execute("create table if not exists student (id_student int primary key auto_increment,id_class int not null,firstname varchar(45),lastname varchar(45),CIN varchar(45),CNE varchar(45),gender varchar(45),birthday date,image longBlob,foreign key (id_class) references class(id_class))")
 # TABLE : bac_student
 mycursor.execute("create table if not exists bac_student (id_bac_student int primary key auto_increment,id_student int not null,bac_filier varchar(45),bac_language varchar(45),grid numeric(4,2),bac_city varchar(45),school_city varchar(45),school_type varchar(45),foreign key (id_student) references student(id_student))")
 # TABLE : contact
