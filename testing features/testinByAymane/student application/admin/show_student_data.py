@@ -98,7 +98,7 @@ def display_students(class_id):
     cursor.close()
 
 # Create a button to display the list of students
-display_button = tk.Button(main_frame, text="Afficher les étudiants", command=display_students)
+display_button = tk.Button(main_frame, text="Afficher les étudiants", command=id_class)
 display_button.pack(pady=10,expand=False)
 
 # Start the main event loop
