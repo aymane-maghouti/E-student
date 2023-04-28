@@ -1,15 +1,27 @@
-
 from insert_data import insert_data,hash_password,connectDB
 import mysql.connector
 import numpy as np
+
+
+def update_image(img, id_student):
+    conn, cursor = connectDB("student_managment")
+    resized_photo = img.resize((60, 60))
+    img_np = np.array(resized_photo)
+    sql_update = "UPDATE student SET image = %s WHERE id_student = %s"
+    val = (img_np.tobytes(), id_student)
+    cursor.execute(sql_update, val)
+    conn.commit()
+    cursor.close()
+    conn.close()
+
 def student_inscription(l):
     l[0] = [-1] + l[0]
     cnx,cursor = connectDB('student_managment')
 
-    img = l[1][0]
+    img = l[1][0].resize((60,60))
+    print(img)
     img_np = np.array(img)
     img_bytes = img_np.tobytes()
-
 
     month=l[0][6][1]
     if month.lower() == "january":
@@ -41,8 +53,8 @@ def student_inscription(l):
 
     std_data=[(f'{l[0][0]}',f'{l[0][1]}',f'{l[0][2]}',f'{l[0][3]}',f'{l[0][4]}',f'{l[0][5]}',f'{l[0][6][2]}-{num}-{l[0][6][0]}',f'{img_bytes}'),]
     columns_std=['id_class','firstname','lastname','CIN','CNE','gender','birthday','image']
-
     insert_data("student",columns_std,std_data)
+
 
     print("done student")
 
@@ -55,8 +67,8 @@ def student_inscription(l):
         return
     id_student = cursor.fetchone()[0]
     print(id_student)
-    cursor.close()
-    cnx.close()
+
+    update_image(img,id_student)
 
 
 
