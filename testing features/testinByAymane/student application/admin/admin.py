@@ -106,6 +106,7 @@ def delete_student(student_id):
 
 
 def update_student(field_name, new_value, id_student):
+
     if field_name == 'class':
         if new_value == 'ID1':
             update_table('student', 'id_class', 1, id_student)
@@ -124,14 +125,24 @@ def update_student(field_name, new_value, id_student):
         elif new_value == 'GEER2':
             update_table('student', 'id_class', 8, id_student)
     if field_name == 'filier':
+        cnx,cursor = connectDB('student_managment')
+        cursor.execute("Select email_acadymic from contact where id_student = %s ", (id_student,))
+        email = cursor.fetchall()[0][0]
+        print(email)
         if new_value == 'ID':
             update_table('filier_student', 'id_filier', 1, id_student)
+            update_login('login','id_filier',1,email)
         elif new_value == 'GI':
             update_table('filier_student', 'id_filier', 2, id_student)
+            update_login('login','id_filier',2,email)
         elif new_value == 'GC':
             update_table('filier_student', 'id_filier', 3, id_student)
+            update_login('login','id_filier',3,email)
+
         elif new_value == 'GEER':
             update_table('filier_student', 'id_filier', 4, id_student)
+            update_login('login','id_filier',4,email)
+
 
 
 def update_table(table_name, field_name, new_value, id_student):
@@ -142,6 +153,16 @@ def update_table(table_name, field_name, new_value, id_student):
     print(f"Nombre de lignes mises à jour : {cursor.rowcount}")
     cursor.close()
     db.close()
+
+def update_login(table_name, field_name, new_value, email):
+    db, cursor = connectDB('student_managment')
+    sql_query = f"UPDATE {table_name} SET {field_name} = %s WHERE email_acadymic = %s"
+    cursor.execute(sql_query, (new_value, email))
+    db.commit()
+    print(f"Nombre de lignes mises à jour : {cursor.rowcount}")
+    cursor.close()
+    db.close()
+
 
 
 # Créer une fonction pour insérer les données
