@@ -319,8 +319,6 @@ class MyMenu:
             for widget in self.hideWidgets:
                 print(widget.place_info()["x"])
                 self.hiddenWidgetsPlaces.append((widget,(int(widget.place_info()["x"]), int(widget.place_info()["y"]))))
-            # for k,v in self.hiddenWidgetsPlaces.items():
-            #     print(k,v)
 
             #hiding the widgets while menu is active
             for widget in self.hiddenWidgetsPlaces:
@@ -511,19 +509,21 @@ class MyFrame:
     def __init__(self,baseCanvas,backgroundImg,backgroundColor,width,height,x=0,y=0,padx=0,pady=0):
         self.x=x
         self.y=y
+        self.padx=padx
+        self.pady=pady
         self.baseCanvas=baseCanvas
-        self.background=backgroundImg
+        self.backgroundImg=backgroundImg
         self.BackgroundWidgetsFrame = self.baseCanvas.create_image(self.x, self.y, image=backgroundImg, anchor=NW)
         self.mainFrame=Canvas(baseCanvas,border=0,highlightthickness=0,background=backgroundColor,width=width,height=height)
-        self.mainFrame.place(x=x+padx,y=y+pady)
+        self.mainFrame.place(x=self.x+self.padx,y=self.y+self.pady)
 
     def place(self):
         self.BackgroundWidgetsFrame = self.baseCanvas.create_image(self.x, self.y, image=self.backgroundImg, anchor=NW)
-        self.mainFrame.place(x=x+padx,y=y+pady)
+        self.mainFrame.place(x=self.x+self.padx,y=self.y+self.pady)
 
     def place_forget(self):
         self.baseCanvas.delete(self.BackgroundWidgetsFrame)
-        self.mainFrame.destroy()
+        self.mainFrame.place_forget()
 
 
 

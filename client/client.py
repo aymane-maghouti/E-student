@@ -55,10 +55,9 @@ class App(tk.Tk):
         # adding the close button
         self.closeStandardImg = Image.open(r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\closeStandardImg.png").resize((46,46))
         self.closeHoverImg = Image.open(r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\closeHoverImg.png").resize((46,46))
-        self.closeButton = MyButton(self.Background,standardImg=self.closeStandardImg,hoverImg=self.closeHoverImg,x=812,y=43,behavior=self.quit)
+        self.closeButton = MyButton(self.Background,standardImg=self.closeStandardImg,hoverImg=self.closeHoverImg,cursor="hand2",x=812,y=43,behavior=self.quit)
 
         self.logoImg = Image.open(r"assest\general\EstudentLogo.png")
-        # self.loginObject = self.Background.create_image(79, 51, image=self.logoImg, anchor=tk.NW)
         self.logoObject=MyButton(self.Background,79,51,self.logoImg,cursor="hand2",behavior=self.onLogoClick)
 
         # create a Toplevel window
@@ -279,6 +278,7 @@ class App(tk.Tk):
 
     def loginToStudentHome(self):
         self.loginGroup.removeGroup()
+        self.logoObject.place_forget()
         self.Background.signup.place_forget()
         self.submitLoginButton.place_forget()
         self.studentHome.createStudentHome(self)
