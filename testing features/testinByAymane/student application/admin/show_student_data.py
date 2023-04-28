@@ -30,7 +30,7 @@ def Convert_IMG(binary_data):
 def id_class():
     class_name = class_entry.get()
     class_id = -1
-    if class_name == 'ID1' :
+    if class_name == 'ID1':
         class_id = 1
     elif class_name == 'ID2':
         class_id = 2
