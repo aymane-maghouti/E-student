@@ -98,8 +98,3 @@ def student_inscription(l):
 
 
     print("fin")
-
-
-
-
-
