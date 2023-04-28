@@ -2,6 +2,7 @@ from CanvasToWidget import *
 import tkinter as tk
 import re
 # from client import *
+from backEndUtilities import student_inscription
 
 
 
@@ -250,7 +251,7 @@ class Register6:
         base.submitRegister6ButtonImg = Image.open(
             base.resourcePath("assest\loginPage\submitButton.png"))
         base.submitRegister6Button = MyButton(base.Background, 221, 453, standardImg=base.submitRegister6ButtonImg,
-                                              cursor="hand2")
+                                              cursor="hand2",behavior=lambda :student_inscription(base.getRegisterValues()))
 
         # back
         base.backRegister6ButtonImg = Image.open(

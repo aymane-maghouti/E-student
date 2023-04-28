@@ -87,7 +87,7 @@ class MyButton():
     def setImage(self,frame,photo,original=None,value=True):
         self.base.itemconfig(self.standardImgObject, image=photo)
         frame.photoVar = ImageTk.getimage(photo) if value!=None else None
-        frame.original =original  if value!=None else None
+        frame.original =original.resize((60,60))  if value!=None else None
         self.standardImg=photo
 
 

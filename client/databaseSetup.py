@@ -1,21 +1,12 @@
+from backEndUtilities import createDb,connectMySQL, connectDB,insert_data
+
 import mysql.connector
 
 
-conn = mysql.connector.connect(
-  host="localhost",
-  user="root",
-  port="3306")
-mycur = conn.cursor()
-mycur.execute("CREATE DATABASE if not exists student_managment")
 
-mydb = mysql.connector.connect(
-  host="localhost",
-  user="root",
-  database = "student_managment"
-)
-
-
-mycursor = mydb.cursor()
+_,mycur = connectMySQL()
+createDb("student_managment")
+cnx,mycursor=connectDB("student_managment")
 # TABLE : departement
 mycursor.execute("create table if not exists departement(id_departement int primary key auto_increment,name varchar(45))")
 # TABLE : filier
@@ -49,12 +40,53 @@ mycursor.execute("CREATE table if not exists emploi_temps(id_emploi int primary 
 mycursor.execute("CREATE table if not exists documents(id_cours int primary key auto_increment,type varchar(45),titre varchar(45),class varchar(45),file longblob,date_doc datetime)")
 #Table : graphe
 mycursor.execute("CREATE table if not exists graph_table(id int primary key auto_increment,nb_visiteur int ,date date)")
-#TABLE : admin_login
+#TABLR : admin_login
 mycursor.execute("create table if not exists admin_login (id int primary key  auto_increment,id_admin int not null,email varchar(100),password varchar(999),foreign key (id_admin) references admin(id_admin))")
 
 
 
 print("all tables are created ")
+cnx.commit()
+mycursor.close()
+cnx.close()
+#inserting starter infos
+
+mydb,mycursor =connectDB('student_managment')
+
+#default empty class,filiere,departement
+mycursor.execute("insert into departement(id_departement,name) values (-1,'------------')")
+mycursor.execute("insert into filier(id_filier,name,description,id_departement) values (-1,'---','----------------',-1)")
+mycursor.execute("insert into class(id_class,name_class,id_filier) values (-1,'------------',-1)")
+
 mydb.commit()
+
 mycursor.close()
 mydb.close()
+
+#departemenet Data
+columns_departement=['name']
+data_depertement=[('Département Mathématiques et Informatique',),('Département Génie Civil Energétique et Environnement',)]
+insert_data("departement", columns_departement, data_depertement)
+
+#filier data
+columns_filier=['name','description','id_departement']
+data_filier=[('ID','Ingénierie des données',1),('GI','Génie Informatique',1),
+             ('GEER','Génie énergétique et énergies renouvelables',2),('GC','Génie Civil',2)]
+insert_data("filier", columns_filier, data_filier)
+
+#class data
+columns_class=['name_class','id_filier']
+data_class=[('ID1',1),
+            ('ID2',1),
+            ('GI1',2),
+            ('GI2',2),
+            ('GC2',3),
+            ('GC2',3),
+            ('GEER1',4),
+            ('GEER2',4)]
+insert_data("class", columns_class, data_class)
+
+
+
+
+

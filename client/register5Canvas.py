@@ -1,6 +1,7 @@
 from CanvasToWidget import *
 import tkinter as tk
 import re
+from backEndUtilities import student_inscription
 
 def checkEmail(self):
     pattern = r"^[a-zA-Z0-9]+\.([a-zA-Z0-9]+)+@+etu.uae.ac.ma$"
