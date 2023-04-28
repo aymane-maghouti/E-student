@@ -1,4 +1,3 @@
-
 from insert_data import insert_data,hash_password,connectDB
 import mysql.connector
 import numpy as np
