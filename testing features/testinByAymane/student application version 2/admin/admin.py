@@ -4,7 +4,7 @@ from datetime import datetime
 
 def connectDB(nameDB):
     try:
-        cnx = mysql.connector.connect(user='root', password='MG1234',
+        cnx = mysql.connector.connect(user='root',
                                       host='localhost',
                                       database=nameDB)
 
@@ -15,7 +15,7 @@ def connectDB(nameDB):
         return
 
 
-def save_into_affichagee(file_class, file_module, file_path):
+def save_into_affichage(file_class, file_module, file_path):
     execution_date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     try:
         # Connexion à la base de données MySQL
@@ -32,6 +32,7 @@ def save_into_affichagee(file_class, file_module, file_path):
         cursor.close()
         cnx.close()
     except mysql.connector.Error as err:
+        print(err)
         return
 
 
@@ -163,7 +164,7 @@ def update_login(table_name, field_name, new_value, email):
     cursor.close()
     db.close()
 
-update_student('class','ID1',51)
+# update_student('class','ID1',51)
 
 # Créer une fonction pour insérer les données
 def insert_into_notification(title, detail, filiere):
@@ -177,4 +178,7 @@ def insert_into_notification(title, detail, filiere):
     mycursor.execute(sql, val)
     mydb.commit()
 
-update_student("class",'ID1',64)
+update_student("filiere",'ID',31)
+update_student("class",'ID1',31)
+# for i in range(23,31):
+#     delete_student(i)

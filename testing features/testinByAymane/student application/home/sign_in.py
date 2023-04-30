@@ -57,7 +57,7 @@ def sign(email, password):
         else:
             return 'Email Error '
 
-
+print(sign("o.o@etu.uae.ac.ma", "Next2002"))
 
 
 

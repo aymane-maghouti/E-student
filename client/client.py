@@ -9,6 +9,7 @@ from register4Canvas import Register4
 from register5Canvas import Register5
 from register6Canvas import Register6
 from studentHome import StudentHome
+from adminHome import AdminHome
 import sys,os
 import cv2
 import numpy as np
@@ -32,10 +33,12 @@ class App(tk.Tk):
         self.r6=Register6()
 
         self.studentHome=StudentHome()
+        self.adminHome=AdminHome()
 
         self.currentFrame= self.login
 
         self.registerValues=[]
+        self.connectedUser=None
 
         #adding the background image to canvas
         self.backImage = tk.PhotoImage(file=r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\loginBackgroundImg.png")
@@ -284,6 +287,28 @@ class App(tk.Tk):
         self.studentHome.createStudentHome(self)
         self.currentFrame=self.studentHome
         self.config(cursor="arrow")
+
+    def loginToAdminHome(self):
+        self.loginGroup.removeGroup()
+        self.logoObject.place_forget()
+        self.Background.signup.place_forget()
+        self.submitLoginButton.place_forget()
+        self.adminHome.createAdminHome(self)
+        self.currentFrame=self.adminHome
+        self.config(cursor="arrow")
+
+    def loginToHome(self):
+        login=self.loginForm.validate()
+        if login!=False:
+            print("logged successfully")
+            if login[0]=="student":
+                self.connectedUser=login[1]
+                self.loginToStudentHome()
+            elif login[0]=="admin":
+                self.loginToAdminHome()
+
+
+
 
 
 

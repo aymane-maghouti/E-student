@@ -4,7 +4,7 @@ from datetime import datetime
 
 def connectDB(nameDB):
     try:
-        cnx = mysql.connector.connect(user='root', password='MG1234',
+        cnx = mysql.connector.connect(user='root',
                                       host='localhost',
                                       database=nameDB)
 
@@ -51,6 +51,7 @@ def insert_into_document(file_type, file_class, file_titre, file_path):
 
 
     except mysql.connector.Error as err:
+        print(err)
         return
 
 

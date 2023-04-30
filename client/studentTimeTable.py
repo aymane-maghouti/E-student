@@ -25,10 +25,6 @@ class StudentTimeTable:
 
         base.studentTimeTableFrame=MyScrollableFrame(base.Background,base.studentTimeTableImg,"yellow",685,297,117,174,20,20)
 
-        # base.studentHomeGraphImg =ImageTk.PhotoImage(Image.open(
-        #    base.resourcePath("assest/studentHomePage/graphBackground.png")))
-        #
-        # base.studentTimeTableGraphFrame=MyFrame(base.Background,base.studentHomeGraphImg,"blue",100,200,117,244,10,10)
 
         base.studentTimeTableGroup=MyWidgetsGroup(base.Background,base.studentTimeTableTitle,base.studentTimeTableFrame)
         self.hideWidgets=[self.base.studentTimeTableFrame]

@@ -8,7 +8,7 @@ def hash_password(password):
 
 def connectDB(nameDB):
     try:
-        cnx = mysql.connector.connect(user='root', password='MG1234',
+        cnx = mysql.connector.connect(user='root',
                                       host='localhost',
                                       database=nameDB)
 
@@ -347,6 +347,6 @@ data_login=[('1','ossama.outmani@etu.uae.ac.ma','69432d34708334dc6088b7b7c76c730
 
 
 #call function
-insert_data("admin", columns_admin, data_admin)
+# insert_data("admin", columns_admin, data_admin)
 
 

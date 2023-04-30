@@ -2,7 +2,22 @@ from PIL import Image,ImageTk
 import numpy as np
 import tkinter as tk
 from admin import connectDB,delete_student
+from mysql import connector
+def connectDB(nameDB):
+    try:
+        conn = connector.Connect(host="localhost",  # your host, usually localhost
+                                 user="root",  # your username
+                                 port="3306",  # port (3306 default)
+                                 db=nameDB
+                                 )
+        # Creating the cursor
+        cur = conn.cursor()
+        print(f"Connected to {nameDB}")
+        return conn, cur
 
+    except connector.Error as e:
+        print(e)
+        return e
 
 liste_images = []
 

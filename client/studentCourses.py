@@ -25,10 +25,6 @@ class StudentCourses:
 
         base.studentCoursesFrame=MyScrollableFrame(base.Background,base.studentCoursesImg,"blue",685,297,117,174,20,20)
 
-        # base.studentHomeGraphImg =ImageTk.PhotoImage(Image.open(
-        #    base.resourcePath("assest/studentHomePage/graphBackground.png")))
-        #
-        # base.studentCoursesGraphFrame=MyFrame(base.Background,base.studentHomeGraphImg,"blue",100,200,117,244,10,10)
 
         base.studentCoursesGroup=MyWidgetsGroup(base.Background,base.studentCoursesTitle,base.studentCoursesFrame)
         self.hideWidgets=[self.base.studentCoursesFrame]

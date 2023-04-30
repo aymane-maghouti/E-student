@@ -359,7 +359,4 @@ class Register1:
                                              base.register1Title, base.firstNameRegisterStandardObject)
 
 
-        # base.register1Group.validate=lambda:checkRegister1Form(base.register1Group)
-
-        # base.emailLogingStandardObject.validate=lambda:check_email(base.emailLogingStandardObject)
 

@@ -22,7 +22,7 @@ def sign(email, password):
             tuple_admin = ('admin', dict_admin)
             return tuple_admin
         else:
-            return 'Password Error '
+            return 'Password Error'
     else:
         # Check if the user is a student
         mycursor.execute("SELECT email_acadymic FROM login")
@@ -53,9 +53,9 @@ def sign(email, password):
                 tuple_std = ('student', dict_std)
                 return tuple_std
             else:
-                return 'Password Error '
+                return 'Password Error'
         else:
-            return 'Email Error '
+            return 'Email Error'
 
 
 

@@ -2,6 +2,17 @@ from insert_data import insert_data,hash_password,connectDB
 import mysql.connector
 import numpy as np
 
+def connectDB(nameDB):
+    try:
+        cnx = mysql.connector.connect(user='root',
+                                      host='localhost',
+                                      database=nameDB)
+
+        cursor = cnx.cursor()
+        return cnx, cursor
+
+    except mysql.connector.Error as e:
+        return
 
 def update_image(img, id_student):
     conn, cursor = connectDB("student_managment")

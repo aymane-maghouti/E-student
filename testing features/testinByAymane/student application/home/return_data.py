@@ -57,7 +57,7 @@ def return_data_by_id(id_student):
                    (id_student,))
     liste6 = [result[0] for result in cursor.fetchall()]
     cursor.execute(
-        "SELECT name FROM filier f, filier_student fs WHERE f.id_filier = fs.id_filier_student AND id_student = %s",
+        "select name from filier f , filier_student fs where f.id_filier = fs.id_filier  and id_student = %s",
         (id_student,))
     liste6.append(cursor.fetchone()[0])
 
@@ -67,3 +67,4 @@ def return_data_by_id(id_student):
     db.close()
     return list_final
 
+print(return_data_by_id(10))

@@ -1,14 +1,24 @@
-import tkinter as tk
+from io import BytesIO
+from PIL import Image
+import mysql.connector
 
-root = tk.Tk()
+# Open the image file with Pillow
+image = Image.open('image.jpg')
 
-# create a Text widget with a fixed width
-text = tk.Text(root, width=50)
+# Convert the image to bytes using BytesIO
+buffer = BytesIO()
+image.save(buffer, format='JPEG')
+image_bytes = buffer.getvalue()
 
-# disable the ability of the parent widget to shrink to fit its contents
-root.pack_propagate(False)
-
-# set the text widget to expand to fill the entire parent widget
-text.pack(fill=tk.BOTH, expand=True)
-
-root.mainloop()
+# Store the image in MySQL
+cnx = mysql.connector.connect(user='your_username', password='your_password',
+                              host='your_host', database='your_database')
+cursor = cnx.cursor()
+add_image = ("INSERT INTO images "
+             "(id, image_data) "
+             "VALUES (%s, %s)")
+data_image = (1, image_bytes)
+cursor.execute(add_image, data_image)
+cnx.commit()
+cursor.close()
+cnx.close()

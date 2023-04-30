@@ -2,6 +2,18 @@
 from insert_data import insert_data,hash_password,connectDB
 import mysql.connector
 import numpy as np
+def connectDB(nameDB):
+    try:
+        cnx = mysql.connector.connect(user='root',
+                                      host='localhost',
+                                      database=nameDB)
+
+        cursor = cnx.cursor()
+        return cnx, cursor
+
+    except mysql.connector.Error as e:
+        return
+
 def student_inscription(l):
     l[0] = [-1] + l[0]
     cnx,cursor = connectDB('student_managment')

@@ -42,8 +42,7 @@ def getRegisterInfo(base,self):
             values.append(element.get())
     print(values)
     print("hi")
-    # base.setRegisterValues(values)
-    # print(base.getRegisterValues())
+
     return values
 
 def checkRegister5Form(self,register):

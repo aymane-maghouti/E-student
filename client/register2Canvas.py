@@ -86,6 +86,12 @@ class Register2:
         base.inputPhotoRegister2Button.setImage(self,ImageTk.PhotoImage(photo),Image.fromarray(resizedNoFaces))
         print(self.photoVar)
 
+    def getJPEGImage(self):
+        b = BytesIO()
+        self.original.save(b, format="jpeg")
+        self.original = Image.open(b)
+        print(self.original,"in get JPEG")
+        return self.original
 
     def createRegister2(self, base):
         # base=tk.Tk()
@@ -143,7 +149,7 @@ class Register2:
            base.resourcePath("assest/register2Page/inputPhotoStandardImg.png"))
         base.inputPhotoRegister2Button = MyButton(base.Background, 223, 322, standardImg=base.inputPhotoRegister2ButtonImg if self.photoVar==None else self.photoVar,
                                             cursor="hand2",behavior=lambda :self.importPhoto(base))
-        base.inputPhotoRegister2Button.get=lambda :self.original
+        base.inputPhotoRegister2Button.get=lambda :self.getJPEGImage()
         base.inputPhotoRegister2Button.validate=lambda :checkPhoto(self,"Profile photo")
 
 
@@ -154,24 +160,6 @@ class Register2:
                                             cursor="hand2", behavior=lambda :self.importPhoto(base))
         base.inputPhotoCadreRegister2Button.get=lambda :self.photoVar
         base.inputPhotoCadreRegister2Button.validate=lambda :checkPhoto(self,"Profile photo")
-
-
-        # Firstname
-        #
-        # base.firstNameRegisterEntry = tk.Entry(base.Background, border=0, bg="#1f1a24", fg="white",
-        #                                        font=("Montserrat", 10, "bold"), disabledbackground="#1f1a24",
-        #                                        highlightthickness=0, borderwidth=0, width=12,
-        #                                        textvariable=self.firstNameVar)
-        # try:
-        #     self.firstNameModified = base.firstNameRegisterStandardObject.getModified()
-        # except:
-        #     pass
-        # base.firstNameRegisterStandardObject = MyEntry(base.Background, 94, 254, entry=base.firstNameRegisterEntry,
-        #                                                standardImg=base.inputSmallStandardlImg,
-        #                                                hoverImg=base.inputSmallHoverImg, marginX=21, marginY=5,
-        #                                                placeholder="Ossama", modified=self.firstNameModified,value=self.firstNameVar)
-        # base.firstNameRegisterStandardObject.validate=lambda :checkLenght(base.firstNameRegisterStandardObject,4,"first name")
-        # print(self.firstNameModified)
 
 
 

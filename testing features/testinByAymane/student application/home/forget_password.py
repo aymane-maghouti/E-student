@@ -64,4 +64,4 @@ def forget(email):
 
 
 
-# print(forget('aymane.maghouti@etu.uae.ac.ma'))
+print(forget('o.o@etu.uae.ac.ma'))

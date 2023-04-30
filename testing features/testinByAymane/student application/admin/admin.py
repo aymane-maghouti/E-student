@@ -4,7 +4,7 @@ from datetime import datetime
 
 def connectDB(nameDB):
     try:
-        cnx = mysql.connector.connect(user='root', password='MG1234',
+        cnx = mysql.connector.connect(user='root',
                                       host='localhost',
                                       database=nameDB)
 
@@ -124,7 +124,7 @@ def update_student(field_name, new_value, id_student):
             update_table('student', 'id_class', 7, id_student)
         elif new_value == 'GEER2':
             update_table('student', 'id_class', 8, id_student)
-    if field_name == 'filier':
+    if field_name == 'filiere':
         cnx,cursor = connectDB('student_managment')
         cursor.execute("Select email_acadymic from contact where id_student = %s ", (id_student,))
         email = cursor.fetchall()[0][0]
@@ -176,3 +176,6 @@ def insert_into_notification(title, detail, filiere):
     val = (id_filier, title, detail, date_pub)
     mycursor.execute(sql, val)
     mydb.commit()
+
+# delete_student(10)
+# update_student("class","ID1",8)

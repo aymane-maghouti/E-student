@@ -2,9 +2,15 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.interpolate import splrep, splev
 from helper import get_data
+import tkinter as tk
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+
 
 
 def show_graph():
+    root = tk.Tk()
+    root.title("Statistiques d'accès à eServices")
+
     nb_visiteurs , dates = get_data()
     labels = []
     for i in range(len(nb_visiteurs)):
@@ -42,5 +48,11 @@ def show_graph():
     plt.ylabel('')
     plt.title("Statistiques d'accès à eServices")
 
-    plt.show()
 
+    canvas = FigureCanvasTkAgg(fig, master=root)
+    canvas.draw()
+    canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
+    root.mainloop()
+
+
+show_graph()

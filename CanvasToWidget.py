@@ -485,12 +485,12 @@ class MyScrollableFrame:
     def __init__(self,baseCanvas,backgroundImg,backgroundColor,width,height,x=0,y=0,padx=0,pady=0):
         self.baseCanvas=baseCanvas
         self.BackgroundWidgetsFrame = baseCanvas.create_image(x, y, image=backgroundImg, anchor=NW)
-        self.mainFrame=Frame(baseCanvas,border=0,highlightthickness=0,background=backgroundColor)
+        self.mainFrame=Frame(baseCanvas,border=0,highlightthickness=0,background=backgroundColor,width=width)
         self.mainFrame.place(x=x+padx,y=y+pady)
 
         self.canvas = Canvas(self.mainFrame, borderwidth=0, highlightthickness=0,width=width,height=height,background=backgroundColor)
         self.scrollbar = Scrollbar(self.mainFrame, orient="vertical", command=self.canvas.yview)
-        self.scrollable_frame = Frame(self.canvas,bg=backgroundColor)
+        self.scrollable_frame = Frame(self.canvas,bg="#1f1a24",width=width-100)
         self.scrollable_frame.bind("<Configure>", self.update_scrollregion)
         self.canvas.configure(yscrollcommand=self.scrollbar.set)
         self.canvas.pack(side="left",fill="both",expand=False)
@@ -524,6 +524,16 @@ class MyFrame:
     def place_forget(self):
         self.baseCanvas.delete(self.BackgroundWidgetsFrame)
         self.mainFrame.place_forget()
+
+class MyTextArea:
+    def __init__(self,textArea):
+        self.textArea=textArea
+    def get(self):
+        return self.textArea.get("1.0","end-1c")
+    def place(self,*args,**kwargs):
+        self.textArea.place(*args,**kwargs)
+    def place_forget(self):
+        self.textArea.place_forget()
 
 
 

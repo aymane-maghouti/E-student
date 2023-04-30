@@ -148,7 +148,7 @@ class Register4:
         base.address1Register4StandardObject.validate=lambda :checkLenght(base.address1Register4StandardObject,4,"Address line 1")
 
         # address line 2
-        base.address2Register4Text = base.Background.create_text(115, 292, text="Address Line 2",
+        base.address2Register4Text = base.Background.create_text(115, 292, text="Address Line 2 (optional)",
                                                                  font=("Montserrat", 6, "bold"),
                                                                  fill="#bb86fc", anchor=tk.NW)
         base.address2Register4Entry = tk.Entry(base.Background, border=0, bg="#1f1a24", fg="white",

@@ -223,23 +223,10 @@ class Register6:
         base.global_photo = photo
         # Configure image_label to display the photo
         image_label.config(image=photo)
-        # image_label.image = photo
         print(photo.width(), photo.height())
         print(emptyImg.size, emptyImg.mode)
 
         registerInfo.canvas.create_image(100,100,image=ImageTk.PhotoImage(emptyImg))
-
-        # # Ajouter des widgets à la frame droite pour l'affichage de l'image
-        # image_label = Label(right_frame)
-        # image_label.pack()
-        #
-        # base.register6Form = MyForm(base,base.register6Title,base.register6WidgetsFrame,base.register6BackgroundWidgetsFrame)
-        # base.register6Form.validate=lambda:checkRegister5Form(base.register5F        # base.registerForm = MyForm(base,base.register1Form,base.register2Form,base.register3Form,base.register4Form,base.register5Form)
-        #         # base.registerForm.values=[]orm,self)
-        # base.register6Form.get=lambda:self.values
-
-        # base.registerForm.validate=lambda:getRegisterInfo(base.registerForm)
-        # emptyImg.show()
 
         # next
         base.nextRegister6ButtonImg = Image.open(

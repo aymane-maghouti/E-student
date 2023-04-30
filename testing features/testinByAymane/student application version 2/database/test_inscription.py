@@ -12,11 +12,11 @@ img = Image.open(file_path)
 print(img)
 
 #exemple de la liste retourne
-l=[['aymane', 'Outmani', 'L1258', 'P112', 'Male', [2, 'March', 2002]],
+l=[['aymane', 'Outmani', 'L1258', 'P112144555', 'Male', [2, 'March', 2002]],
    [img],
    ['Tanger', "Sc Mathematique 'B'", 'Spanish', '12', 'Al khawarizmi high school','State'],
-   ['Av masira Nr22 ', 'App3 etage4', '98000', '0689', 'Taza', 'Morocco'],
-   ['majid.outmani@etu.uae.ac.ma', 'Majid1234', 'Majid1234']]
+   ['Av masira Nr22 ', 'App3 etage4', '98000', '0689557803', 'Taza', 'Morocco'],
+   ['aymane.outmani@etu.uae.ac.ma', 'Majid1234', 'Majid1234']]
 
 
 

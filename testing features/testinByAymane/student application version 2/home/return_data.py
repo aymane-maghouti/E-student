@@ -67,5 +67,5 @@ def return_data_by_id(id_student):
     return list_final
 
 
-print(return_data_by_id(65))
+print(return_data_by_id(12))
 

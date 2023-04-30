@@ -1,7 +1,7 @@
 from CanvasToWidget import *
 import tkinter as tk
 import re
-
+from backEndUtilities import sign
 
 def signUpOnClick(base):
     base.loginToRegister1()
@@ -16,13 +16,16 @@ def check_email(self):
     print("not Matched")
     return False
 
+def checkLoginForm(self,register):
+    valide=sign(self.components[0].get(),self.components[1].get())
+    if valide=="Password Error":
+        print("password Error")
+        return False
+    if valide=='Email Error':
+        print('Email Error')
+        return False
+    return valide
 
-# def signupOnHover(base):
-#     base.config(cursor="hand2")
-#     base.Background.itemconfig(base.Background.signup, fill="white")
-# def signupOnLeave(base):
-#     base.config(cursor="arrow")
-#     # base.Background.itemconfig(base.Background.signup, fill="white")
 
 class Login:
     def __init__(self):
@@ -31,6 +34,9 @@ class Login:
         self.passwordVar=None
         self.passwordModified=False
 
+        self.values=[]
+
+
     def remove(self,base):
         base.loginGroup.removeGroup()
         base.Background.signup.place_forget()
@@ -38,8 +44,6 @@ class Login:
 
 
     def createLogin(self,base):
-        # base=tk.Tk()
-        # base.Background=tk.Canvas()
         base.config(cursor="arrow")
         if self.emailVar == None:
             self.emailVar = tk.StringVar(base)
@@ -63,12 +67,6 @@ class Login:
                                                      anchor=tk.NW)
 
 
-
-        # base.Background.tag_bind(base.Background.signup, "<Enter>",
-        #                          lambda event: signupOnHover(base))  # event: base.config(cursor="hand2")
-        # base.Background.tag_bind(base.Background.signup, "<Leave>", lambda event: signupOnLeave(base))
-        # base.Background.tag_bind(base.Background.signup, "<ButtonRelease-1>", lambda event: base.config(cursor="arrow"))
-        # base.Background.tag_bind(base.Background.signup, "<Button-1>", lambda event: base.loginToRegister1())
 
         base.emailLogingStandardlImg = Image.open(base.resourcePath("assest\general\inputLabelImg.png"))
         base.emailLogingHoverImg = Image.open(
@@ -107,7 +105,12 @@ class Login:
                                                   fill="#bb86fc", anchor=tk.NW, activefill="white")
         base.Background.tag_bind(base.forgot, "<Enter>", lambda event: base.config(cursor="hand2"))
         base.Background.tag_bind(base.forgot, "<Leave>", lambda event: base.config(cursor="arrow"))
-        base.Background.tag_bind(base.forgot, "<Button-1>", lambda event:base.loginToRegister6())
+        base.Background.tag_bind(base.forgot, "<Button-1>", lambda event: base.loginToAdminHome())
+
+        base.loginForm = MyForm(base, base.emailLogingStandardObject, base.passwordLogingStandardObject)
+        base.loginForm.validate=lambda:checkLoginForm(base.loginForm,self)
+        base.loginForm.get=lambda:self.values
+
 
         base.submitLoginButtonImg = Image.open(
             base.resourcePath("assest\loginPage\submitButton.png"))
@@ -115,7 +118,7 @@ class Login:
             base.resourcePath("assest\loginPage\submitClicked.png"))
         base.submitLoginButton = MyButton(base.Background, 221, 412, standardImg=base.submitLoginButtonImg,
                                           clickImg=base.submitLoginButtonClickedImg, cursor="hand2",
-                                          behavior=base.loginToStudentHome)
+                                          behavior=base.loginToHome)
 
 
         base.loginGroup = MyWidgetsGroup(base.Background, base.loginTitle, base.emailLogingStandardObject,

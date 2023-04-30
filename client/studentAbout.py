@@ -25,10 +25,5 @@ class StudentAbout:
 
         base.studentAboutFrame=MyFrame(base.Background,base.studentAboutImg,"orange",685,297,117,174,20,20)
 
-        # base.studentHomeGraphImg =ImageTk.PhotoImage(Image.open(
-        #    base.resourcePath("assest/studentHomePage/graphBackground.png")))
-        #
-        # base.studentAboutGraphFrame=MyFrame(base.Background,base.studentHomeGraphImg,"blue",100,200,117,244,10,10)
-
         base.studentAboutGroup=MyWidgetsGroup(base.Background,base.studentAboutTitle,base.studentAboutFrame)
         self.hideWidgets=[self.base.studentAboutFrame]
