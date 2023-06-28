@@ -2,7 +2,7 @@ from CanvasToWidget import *
 import tkinter as tk
 import re
 from backEndUtilities import sign
-
+from tkinter import messagebox
 def signUpOnClick(base):
     base.loginToRegister1()
     base.config(cursor="arrow")
@@ -19,10 +19,11 @@ def check_email(self):
 def checkLoginForm(self,register):
     valide=sign(self.components[0].get(),self.components[1].get())
     if valide=="Password Error":
+        messagebox.showerror(title="Login Failed", message="Password Error")
         print("password Error")
         return False
     if valide=='Email Error':
-        print('Email Error')
+        messagebox.showerror(title="Login Failed", message="Email Error")
         return False
     return valide
 
@@ -50,6 +51,8 @@ class Login:
         if self.passwordVar == None:
             self.passwordVar = tk.StringVar(base)
 
+        self.base=base
+        self.base.currentFrame=self
 
         base.loginWidgetsImg = tk.PhotoImage(
             file=base.resourcePath("assest\loginPage\loginFrame.png"))
@@ -63,6 +66,14 @@ class Login:
             base.resourcePath("assest\loginPage\signupHoverImg.png"))
 
         base.Background.signup = MyButton(base.Background, 221, 212,base.signupStandardlImg,hoverImg=base.signupHoverImg,cursor="hand2",behavior=base.loginToRegister1)
+
+        base.forgotStandardlImg = Image.open(
+            base.resourcePath("assest\loginPage\\forgotStandardImg.png"))
+        base.forgotHoverImg = Image.open(
+            base.resourcePath("assest\loginPage\\forgotHoverImg.png"))
+
+        base.Background.forgot = MyButton(base.Background, 219, 375,base.forgotStandardlImg,hoverImg=base.forgotHoverImg,cursor="hand2",behavior=base.loginToForgot)
+
         base.notMember = base.Background.create_text(130, 210, text="not a member ?", font=("Montserrat", 7), fill="white",
                                                      anchor=tk.NW)
 
@@ -91,7 +102,7 @@ class Login:
                                                              fill="#bb86fc", anchor=tk.NW)
         base.passwordLogingEntry = tk.Entry(base.Background, border=0, bg="#1f1a24", fg="white",
                                             font=("Montserrat", 10, "bold"), disabledbackground="#1f1a24",
-                                            highlightthickness=0, borderwidth=0, width=36,cursor="hand2", show="*",textvariable=self.passwordVar)
+                                            highlightthickness=0, borderwidth=0, width=36,cursor="arrow", show="*",textvariable=self.passwordVar)
         try :
             self.passwordModified = base.passwordLogingStandardObject.getModified()
         except:
@@ -101,11 +112,11 @@ class Login:
                                                     hoverImg=base.emailLogingHoverImg, marginX=21, marginY=5,
                                                     placeholder="**********",modified=self.passwordModified,value=self.passwordVar)
 
-        base.forgot = base.Background.create_text(219, 375, text="Forgot password ?", font=("Montserrat", 10, "underline"),
-                                                  fill="#bb86fc", anchor=tk.NW, activefill="white")
-        base.Background.tag_bind(base.forgot, "<Enter>", lambda event: base.config(cursor="hand2"))
-        base.Background.tag_bind(base.forgot, "<Leave>", lambda event: base.config(cursor="arrow"))
-        base.Background.tag_bind(base.forgot, "<Button-1>", lambda event: base.loginToAdminHome())
+        # base.forgot = base.Background.create_text(219, 375, text="Forgot password ?", font=("Montserrat", 10, "underline"),
+        #                                           fill="#bb86fc", anchor=tk.NW, activefill="white")
+        # base.Background.tag_bind(base.forgot, "<Enter>", lambda event: base.config(cursor="hand2"))
+        # base.Background.tag_bind(base.forgot, "<Leave>", lambda event: base.config(cursor="arrow"))
+        # base.Background.tag_bind(base.forgot, "<Button-1>", lambda event: base.loginToAdminHome())
 
         base.loginForm = MyForm(base, base.emailLogingStandardObject, base.passwordLogingStandardObject)
         base.loginForm.validate=lambda:checkLoginForm(base.loginForm,self)
@@ -122,6 +133,6 @@ class Login:
 
 
         base.loginGroup = MyWidgetsGroup(base.Background, base.loginTitle, base.emailLogingStandardObject,
-                                         base.passwordLogingStandardObject, base.forgot, base.notMember,
+                                         base.passwordLogingStandardObject, base.notMember,
                                          base.loginWidgetsFrame, base.emailLoginText, base.passwordLoginText)
 

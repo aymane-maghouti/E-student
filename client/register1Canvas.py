@@ -1,10 +1,11 @@
 from CanvasToWidget import *
 import tkinter as tk
 import re
+from tkinter import messagebox
 
 def checkLenght(self,size,labelName="entry"):
-    size=20
-    if len(self.get())>size or len(self.get())<0 :#remake it 1
+    if len(self.get())>size or len(self.get())<1 :#remake it 1
+        messagebox.showerror("Value Error","invalid name")
         print(f"invalide {labelName}")
         return False
     print(f"valide {labelName}")
@@ -12,17 +13,11 @@ def checkLenght(self,size,labelName="entry"):
 def checkOption(self):
     if self.get()==None:
         print("invalide gender")
+        messagebox.showerror("Value Error","invalid gender")
         return False
     print("valide gender")
     return True
 
-def check_email(self):
-    pattern = r"^[a-zA-Z0-9]+\.([a-zA-Z0-9]+)+@+etu.uae.ac.ma$"
-    if re.match(pattern, self.get()):
-        print("matched")
-        return True
-    print("not Matched")
-    return False
 
 def checkRegister1Form(self,register):
     valide=True
@@ -31,6 +26,7 @@ def checkRegister1Form(self,register):
         try:
             if not element.validate():
                 valide=False
+                break
         except Exception as e:
             print(e)
 
@@ -66,10 +62,37 @@ def checkBirthdayGroup(self):
 
     if valide==False:
         print("invalide Birthday")
+        messagebox.showerror("Value Error","invalid Birthday")
     else:
         print("valide Birthday")
 
     return valide
+
+def checkCNE(CNE):
+    if len(CNE) != 10:
+        messagebox.showerror("Value Error","invalid CNE")
+        return False
+    if not CNE[0].isupper():
+        messagebox.showerror("Value Error","invalid CNE")
+        return False
+    for char in CNE[1:]:
+        if not char.isdigit():
+            messagebox.showerror("Value Error", "invalid CNE")
+            return False
+    return True
+
+def checkCIN(CIN):
+    if len(CIN) != 6:
+        messagebox.showerror("Value Error", "invalid CIN")
+        return False
+    if CIN[0].isupper() and CIN[1:].isdigit():
+        return True
+    if CIN[:2].isupper() and CIN[2:].isdigit():
+        return True
+    messagebox.showerror("Value Error", "invalid CIN")
+    return False
+
+
 
 
 class Register1:
@@ -96,9 +119,6 @@ class Register1:
         base.register1Group.removeGroup()
         base.submitRegister1Button.place_forget()
         base.nextRegister1Button.place_forget()
-
-
-
 
 
 
@@ -200,7 +220,7 @@ class Register1:
                                                        standardImg=base.inputSmallStandardlImg,
                                                        hoverImg=base.inputSmallHoverImg, marginX=21, marginY=5,
                                                        placeholder="Ossama", modified=self.firstNameModified,value=self.firstNameVar)
-        base.firstNameRegisterStandardObject.validate=lambda :checkLenght(base.firstNameRegisterStandardObject,4,"first name")
+        base.firstNameRegisterStandardObject.validate=lambda :checkLenght(base.firstNameRegisterStandardObject,45,"first name")
         print(self.firstNameModified)
         # Lastname
         base.lastNameRegisterText = base.Background.create_text(325, 241, text="Last name",
@@ -218,7 +238,7 @@ class Register1:
                                                       standardImg=base.inputSmallStandardlImg,
                                                       hoverImg=base.inputSmallHoverImg, marginX=21, marginY=5,
                                                       placeholder="Maghouti", modified=self.lastNameModified,value=self.lastNameVar)
-        base.lastNameRegisterStandardObject.validate=lambda :checkLenght(base.lastNameRegisterStandardObject,4,"last name")
+        base.lastNameRegisterStandardObject.validate=lambda :checkLenght(base.lastNameRegisterStandardObject,45,"last name")
 
         # CIN
         base.CINRegisterText = base.Background.create_text(115, 292, text="CIN", font=("Montserrat", 6, "bold"),
@@ -236,7 +256,7 @@ class Register1:
                                                  hoverImg=base.inputSmallHoverImg,
                                                  marginX=21, marginY=5, placeholder="RB459900",
                                                  modified=self.CINModified,value=self.CINVar)
-        base.CINRegisterStandardObject.validate=lambda :checkLenght(base.CINRegisterStandardObject,4,"CIN")
+        base.CINRegisterStandardObject.validate=lambda :checkCIN(base.CINRegisterStandardObject.get())
         # CNE
         base.CNERegisterText = base.Background.create_text(325, 292, text="CNE", font=("Montserrat", 6, "bold"),
                                                            fill="#bb86fc", anchor=tk.NW)
@@ -252,7 +272,7 @@ class Register1:
                                                  hoverImg=base.inputSmallHoverImg,
                                                  marginX=21, marginY=5, placeholder="P111222333",
                                                  modified=self.CNEModified,value=self.CNEVar)
-        base.CNERegisterStandardObject.validate=lambda :checkLenght(base.CNERegisterStandardObject,4,"CNE")
+        base.CNERegisterStandardObject.validate=lambda :checkCNE(base.CNERegisterStandardObject.get())
         # Gender
         base.genderRegisterText = base.Background.create_text(115, 343, text="Gender", font=("Montserrat", 6, "bold"),
                                                               fill="#bb86fc", anchor=tk.NW)

@@ -109,7 +109,7 @@ class AdminCourses:
         base.moduleAdminCoursesHoverImg = Image.open(
             base.resourcePath("assest\general\InputMidLargeHoverImg.png"))
 
-        base.moduleLoginText = base.Background.create_text(270, 278, text="Titre", font=("Montserrat", 6, "bold"),
+        base.moduleAdminCoursesText = base.Background.create_text(270, 278, text="Title", font=("Montserrat", 6, "bold"),
                                                           fill="#bb86fc", anchor=tk.NW)
         base.moduleAdminCoursesEntry = tk.Entry(base.Background, border=0, bg="#382b47", fg="white",
                                                font=("Montserrat", 10, "bold"), disabledbackground="#382b47",
@@ -156,7 +156,7 @@ class AdminCourses:
                                             border=0, highlightthickness=0, padx=10, pady=6)
         base.adminCoursesTypeList.validate=lambda:checkListChoice(base.adminCoursesTypeList,"Select","Type")
         #import
-        base.moduleLoginText = base.Background.create_text(270, 349, text="file", font=("Montserrat", 6, "bold"),
+        base.moduleAdminCoursesFileText = base.Background.create_text(270, 349, text="file", font=("Montserrat", 6, "bold"),
                                                           fill="#bb86fc", anchor=tk.NW)
 
         base.importAdminCoursesButtonImg = Image.open(
@@ -180,5 +180,5 @@ class AdminCourses:
                                                  cursor="hand2",behavior=self.insertToDB)
 
 
-        base.adminCoursesGroup=MyWidgetsGroup(base.Background,base.adminCoursesClassText,base.moduleAdminCoursesEntry,base.moduleLoginText,base.adminCoursesTypeText,base.adminCoursesClassLabel,base.adminCoursesTypeLabel,base.adminCoursesTitle,base.adminCoursesFrame,base.adminCoursesTypeList,base.adminCoursesClassList)
+        base.adminCoursesGroup=MyWidgetsGroup(base.Background,base.adminCoursesClassText,base.moduleAdminCoursesEntry,base.moduleAdminCoursesText,base.adminCoursesTypeText,base.adminCoursesClassLabel,base.adminCoursesTypeLabel,base.adminCoursesTitle,base.adminCoursesFrame,base.adminCoursesTypeList,base.adminCoursesClassList,base.moduleAdminCoursesStandardObject,base.moduleAdminCoursesFileText,base.importAdminCoursesButton)
         self.hideWidgets=[]

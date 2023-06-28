@@ -1,46 +1,69 @@
 from CanvasToWidget import *
 import tkinter as tk
+from tkinter import messagebox
 
 def checkLenght(self,size,labelName="entry"):
-    size=20
-    if len(self.get())>size or len(self.get())<0 :#remake it 0
-        print(f"invalide {labelName}")
-        return False
-    print(f"valide {labelName}")
-    return True
-
-def checkPhone(self,size,labelName="entry"):
-    try:
-        value=float(self.get())
-    except:
-        print(f"invalide {labelName}")
-        return False
-
     if len(self.get())>size or len(self.get())<1 :#remake it 0
         print(f"invalide {labelName}")
+        messagebox.showerror("Value Error",f"invalid {labelName}")
         return False
     print(f"valide {labelName}")
     return True
+
+def checkLenghtOptional(self,size,labelName="entry"):
+    if len(self.get())>size or len(self.get())<0 :#remake it 0
+        print(f"invalide {labelName}")
+        messagebox.showerror("Value Error",f"invalid {labelName}")
+        return False
+    print(f"valide {labelName}")
+    return True
+
+# def checkPhone(self,size,labelName="entry"):
+#     try:
+#         value=float(self.get())
+#     except:
+#         print(f"invalide {labelName}")
+#         messagebox.showerror("Value Error",f"invalid {labelName}")
+#         return False
+#
+#     if len(self.get())>size or len(self.get())<1 :#remake it 0
+#         print(f"invalide {labelName}")
+#         messagebox.showerror("Value Error",f"invalid {labelName}")
+#         return False
+#     print(f"valide {labelName}")
+#     return True
 
 
 def checkListChoice(self,choice,optionName="option"):
     if self.get()==choice:
         print(f"invalide {optionName}")
+        messagebox.showerror("Value Error",f"invalid {optionName}")
         return False
     print(f"valide {optionName}")
     return True
 
-def checkPostal(self,labelName="entry"):
-    try:
-        value=float(self.get())
-    except:
-        print(f"invalide {labelName}")
+def checkPostal(code):
+    if len(code) != 5:
+        messagebox.showerror("Value Error",f"invalid postal code")
         return False
-    if 0<=value<=99999:
-        print(f"valide {labelName}")
-        return True
-    print(f"invalide {labelName}")
-    return False
+    for char in code:
+        if not char.isdigit():
+            messagebox.showerror("Value Error", f"invalid postal code")
+            return False
+    return True
+
+def checkPhone(phone):
+    if len(phone) != 10:
+        messagebox.showerror("Value Error",f"invalid phone number (wrong nuber of digits)")
+        return False
+    if phone[0] != '0':
+        messagebox.showerror("Value Error",f"invalid phone number")
+        return False
+    for char in phone[1:]:
+        if not char.isdigit():
+            messagebox.showerror("Value Error", f"invalid phone number")
+            return False
+    return True
 
 
 def checkRegister4Form(self,register):
@@ -50,9 +73,9 @@ def checkRegister4Form(self,register):
         try:
             if not element.validate():
                 valide=False
+                break
         except Exception as e:
             print(e)
-
             continue
         register.values.append(element.get())
     print(register.values)
@@ -145,7 +168,7 @@ class Register4:
                                                        standardImg=base.emailLogingStandardlImg,
                                                        hoverImg=base.emailLogingHoverImg, marginX=21, marginY=5,
                                                        placeholder="Av Najah Nr 12 bouki Hoceima",modified=self.address1Modified,value=self.address1Var)
-        base.address1Register4StandardObject.validate=lambda :checkLenght(base.address1Register4StandardObject,4,"Address line 1")
+        base.address1Register4StandardObject.validate=lambda :checkLenght(base.address1Register4StandardObject,150,"Address line 1")
 
         # address line 2
         base.address2Register4Text = base.Background.create_text(115, 292, text="Address Line 2 (optional)",
@@ -162,7 +185,7 @@ class Register4:
                                                        standardImg=base.emailLogingStandardlImg,
                                                        hoverImg=base.emailLogingHoverImg, marginX=21, marginY=5,
                                                        placeholder="floor Nr 2 App 7",modified=self.address2Modified,value=self.address2Var)
-        base.address2Register4StandardObject.validate=lambda :checkLenght(base.address2Register4StandardObject,4,"Address line 2")
+        base.address2Register4StandardObject.validate=lambda :checkLenghtOptional(base.address2Register4StandardObject,150,"Address line 2")
 
 
         # Postal code
@@ -179,7 +202,7 @@ class Register4:
                                                     standardImg=base.inputSmallStandardlImg,
                                                     hoverImg=base.inputSmallHoverImg, marginX=21, marginY=5,
                                                     placeholder="93000",modified=self.postalCodeModified,value=self.postalCodeVar)
-        base.postalRegisterStandardObject.validate=lambda :checkPostal(base.postalRegisterStandardObject,"Postal code")
+        base.postalRegisterStandardObject.validate=lambda :checkPostal(base.postalRegisterStandardObject.get())
 
         # Country
         base.countryRegister4Text = base.Background.create_text(115, 343, text="Country", font=("Montserrat", 6, "bold"),
@@ -211,7 +234,7 @@ class Register4:
                                                    standardImg=base.inputSmallStandardlImg,
                                                    hoverImg=base.inputSmallHoverImg, marginX=21, marginY=5,
                                                    placeholder="0680992244",modified=self.phoneModified,value=self.phoneVar)
-        base.phoneRegisterStandardObject.validate=lambda :checkPhone( base.phoneRegisterStandardObject,4,"Phone number")
+        base.phoneRegisterStandardObject.validate=lambda :checkPhone( base.phoneRegisterStandardObject.get())
 
         # City
         base.cityRegister4Text = base.Background.create_text(324, 343, text="City", font=("Montserrat", 6, "bold"),

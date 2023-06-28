@@ -10,6 +10,7 @@ from register5Canvas import Register5
 from register6Canvas import Register6
 from studentHome import StudentHome
 from adminHome import AdminHome
+from forgetPassword import Forgot
 import sys,os
 import cv2
 import numpy as np
@@ -17,10 +18,16 @@ import numpy as np
 class App(tk.Tk):
     def __init__(self):
         super(App, self).__init__()
+        self.i=1
         self.geometry("915x540+250+100")
+        if self.i==1:
+            self.overrideredirect(False)
+            self.i+=1
+
         self.overrideredirect(True)
         self.resizable(False, False)
         self.title("test modern app")
+        self.iconbitmap(r'EstudentLogoCircle.ico')
 
         self.wm_attributes('-transparentcolor', '#ab23ff')
 
@@ -35,10 +42,13 @@ class App(tk.Tk):
         self.studentHome=StudentHome()
         self.adminHome=AdminHome()
 
+        self.forgotCanvas=Forgot()
+
         self.currentFrame= self.login
 
         self.registerValues=[]
         self.connectedUser=None
+        # self.overrideredirect(True)
 
         #adding the background image to canvas
         self.backImage = tk.PhotoImage(file=r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\loginBackgroundImg.png")
@@ -66,17 +76,6 @@ class App(tk.Tk):
         # create a Toplevel window
         self.loginWidgetsFrame1=self.login.createLogin(self)
 
-        # loginWidgetsImg = tk.PhotoImage(
-        #     file=r"C:\Users\ID 1\tkinterTest\E-student\client\assest\loginPage\loginFrame.png")
-        # loginWidgetsFrame = self.Background.create_image(55, 136, image=loginWidgetsImg, anchor=tk.NW)
-
-        # loginWidgetsImg =r"C:\Users\ID 1\tkinterTest\E-student\client\assest\loginPage\loginFrame.png"
-        # base=tk.Canvas(base,width=915,height=540)
-        # loginWidgetsFrame = self.Background.create_image(55, 136, image=tk.PhotoImage(file=loginWidgetsImg), anchor=tk.NW)
-
-        # self.loginWidgetsImg = tk.PhotoImage(
-        #     file=r"C:\Users\ID 1\tkinterTest\E-student\client\assest\loginPage\loginFrame.png")
-        # self.loginWidgetsFrame = self.Background.create_image(55, 136, image=self.loginWidgetsImg, anchor=tk.NW)
 
     def start_move(self, event):
         self._dragging = True
@@ -158,6 +157,7 @@ class App(tk.Tk):
         # self.config(cursor="arrow")
         self.loginGroup.removeGroup()
         self.Background.signup.place_forget()
+        self.Background.forgot.place_forget()
         self.submitLoginButton.place_forget()
         self.r1.createRegister1(self)
         self.currentFrame=self.r1
@@ -283,6 +283,7 @@ class App(tk.Tk):
         self.loginGroup.removeGroup()
         self.logoObject.place_forget()
         self.Background.signup.place_forget()
+        self.Background.forgot.place_forget()
         self.submitLoginButton.place_forget()
         self.studentHome.createStudentHome(self)
         self.currentFrame=self.studentHome
@@ -292,6 +293,7 @@ class App(tk.Tk):
         self.loginGroup.removeGroup()
         self.logoObject.place_forget()
         self.Background.signup.place_forget()
+        self.Background.forgot.place_forget()
         self.submitLoginButton.place_forget()
         self.adminHome.createAdminHome(self)
         self.currentFrame=self.adminHome
@@ -306,6 +308,28 @@ class App(tk.Tk):
                 self.loginToStudentHome()
             elif login[0]=="admin":
                 self.loginToAdminHome()
+
+    def loginToForgot(self):
+        self.loginGroup.removeGroup()
+        self.Background.signup.place_forget()
+        self.Background.forgot.place_forget()
+        self.submitLoginButton.place_forget()
+        self.forgotCanvas.createForgot(self)
+        self.config(cursor="arrow")
+
+    def studentLogout(self):
+        self.currentFrame.removeInterface()
+        self.login.createLogin(self)
+        self.logoImg = Image.open(r"assest\general\EstudentLogo.png")
+        self.logoObject=MyButton(self.Background,79,51,self.logoImg,cursor="hand2",behavior=self.onLogoClick)
+
+    def adminLogout(self):
+        self.currentFrame.removeInterface()
+        self.login.createLogin(self)
+        self.logoImg = Image.open(r"assest\general\EstudentLogo.png")
+        self.logoObject=MyButton(self.Background,79,51,self.logoImg,cursor="hand2",behavior=self.onLogoClick)
+
+
 
 
 

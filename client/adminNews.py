@@ -1,10 +1,12 @@
 from CanvasToWidget import *
 import tkinter as tk
 from backEndUtilities import insert_into_notification
+from tkinter import messagebox
 
 def checkListChoice(self,choice,optionName="option"):
     if self.get()==choice:
         print(f"invalide {optionName}")
+        messagebox.showerror("Value Error",f"invalid {optionName}")
         return False
     print(f"valide {optionName}")
     return True
@@ -12,12 +14,14 @@ def checkListChoice(self,choice,optionName="option"):
 def checkLenght(self,size,labelName="entry"):
     if len(self.get())>size or len(self.get())<1 :#remake it 1
         print(f"invalide {labelName}")
+        messagebox.showerror(f"Value Error",f"invalid {labelName}")
         return False
     print(f"valide {labelName}")
     return True
 def checkTextAreaLenght(self,size,labelName="entry"):
     if len(self.get())>size or len(self.get())<1 :#remake it 1
         print(f"invalide {labelName}")
+        messagebox.showerror(f"Value Error",f"invalid {labelName}")
         return False
     print(f"valide {labelName}")
     return True
@@ -106,7 +110,7 @@ class AdminNews:
                                                        standardImg=base.moduleAdminNewsStandardlImg,
                                                        hoverImg=base.moduleAdminNewsHoverImg, marginX=21, marginY=5,
                                                        placeholder="Architecture des ordinateurs",modified=self.titreModified,value=self.titreVar)
-        base.titreAdminNewsStandardObject.validate=lambda:checkLenght(base.titreAdminNewsStandardObject,45,"Titre")
+        base.titreAdminNewsStandardObject.validate=lambda:checkLenght(base.titreAdminNewsStandardObject,150,"Title")
 
         base.detailAdminNewsStandardlImg = ImageTk.PhotoImage(Image.open(base.resourcePath("assest/general/InputTextArea.png")))
         # base.moduleAdminNewsHoverImg = Image.open(
@@ -120,13 +124,13 @@ class AdminNews:
                                                font=("Montserrat", 10, "bold"),height=5,
                                                highlightthickness=0, borderwidth=0, width=30)
         base.detailAdminNewsEntry=MyTextArea(base.tmpdetailAdminNewsEntry)
-        base.detailAdminNewsEntry.validate=lambda:checkTextAreaLenght(base.detailAdminNewsEntry,45,"Detail")
+        base.detailAdminNewsEntry.validate=lambda:checkTextAreaLenght(base.detailAdminNewsEntry,9000,"Detail")
 
 
         base.detailAdminNewsEntry.place(x=255,y=282)
 
 
-        base.adminNewsClassText = base.Background.create_text(270, 399, text="Class",
+        base.adminNewsClassText = base.Background.create_text(270, 399, text="Filiere",
                                                                  font=("Montserrat", 6, "bold"), fill="#bb86fc",
                                                                  anchor=tk.NW)
         base.adminNewsClassLabel = tk.Label(text="Select", foreground="white", background="#382b47", bd=0,
@@ -158,3 +162,5 @@ class AdminNews:
 
         base.adminNewsGroup=MyWidgetsGroup(base.Background,base.titreAdminNewsText,base.titreAdminNewsEntry,base.titreAdminNewsStandardObject,base.adminNewsClassList,base.adminNewsClassLabel,base.adminNewsClassText,base.detailAdminNewsEntry,base.adminNewsTitle,base.adminNewsFrame,base.submitAdminNewsButton)
         self.hideWidgets=[self.base.adminNewsFrame]
+
+

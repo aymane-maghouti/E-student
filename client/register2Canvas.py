@@ -4,14 +4,17 @@ from tkinter import filedialog
 from io import BytesIO
 import os
 import numpy
+from tkinter import messagebox
 
 def checkPhoto(self,labelName):
     if self.photoVar==None:
         print(f"invalide {labelName}")
+        messagebox.showerror("Value Error","invalid Photo")
         return False
     filename, extension = os.path.splitext(os.path.basename(self.photopath))
     if extension not in [".jpg",".jpeg"]:
         print(f"invalide {labelName}")
+        messagebox.showerror("Value Error","invalid Photo (only .jpg and .jpeg are accepted)")
         return False
     print(f"valide {labelName}")
     return True
@@ -24,6 +27,7 @@ def checkRegister2Form(self,register):
         try:
             if not element.validate():
                 valide=False
+                break
         except Exception as e:
             print(e)
 
@@ -165,7 +169,7 @@ class Register2:
 
         base.register2Form = MyForm(base,base.inputPhotoRegister2Button)
         base.register2Form.validate=lambda:checkRegister2Form(base.register2Form,self)
-        # submi
+        # submit
         base.nextRegister2ButtonImg = Image.open(
             r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\nextButtonStandardImg.png")
         base.nextRegister2Button = MyButton(base.Background, 340, 453, standardImg=base.nextRegister2ButtonImg,

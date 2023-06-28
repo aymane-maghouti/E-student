@@ -1,14 +1,13 @@
 from CanvasToWidget import *
 import tkinter as tk
 import re
-from tkinter import messagebox
+from backEndUtilities import connectDB,hash_password
 
 def checkEmail(self):
     pattern = r"^[a-zA-Z0-9]+\.([a-zA-Z0-9]+)+@+etu.uae.ac.ma$"
     if re.match(pattern, self.get()):
         print("matched")
         return True
-    messagebox.showerror("Value Error", f"invalid email")
     print("not Matched")
     return False
 
@@ -18,27 +17,22 @@ def checkPassword(password, confirm_password):
     # Vérification de la longueur
     if len(password) < 8:
         print("nombre de caractere < 8")
-        messagebox.showerror("Value Error", f"invalid password (nb of caracteres less than 8)")
         return False
     # Vérification de la présence d'une lettre majuscule
     if not re.search("[A-Z]", password):
         print("pas de majuscule")
-        messagebox.showerror("Value Error", f"invalid password (missing upercase caracteres)")
         return False
     # Vérification de la présence d'une lettre minuscule
     if not re.search("[a-z]", password):
         print("pas de minuscule")
-        messagebox.showerror("Value Error", f"invalid password (missing lowercase caracteres)")
         return False
     # Vérification de la présence d'un chiffre
     if not re.search("[0-9]", password):
         print("pas de chiffre")
-        messagebox.showerror("Value Error", f"invalid password (missing digits)")
         return False
     # Vérification de la correspondance des mots de passe
     if password != confirm_password:
         print("password non identique")
-        messagebox.showerror("Value Error", f"invalid password (failed confirmation)")
         return False
     return True
 
@@ -51,20 +45,23 @@ def getRegisterInfo(base,self):
 
     return values
 
-def checkRegister5Form(self,register):
+def checkForgotForm(self,register):
+
     valide=True
     register.values=[]
     for element in self.components:
         if not element.validate():
             valide=False
-            break
         register.values.append(element.get())
     print(register.values)
     return valide
 
 
 
-class Register5:
+
+
+
+class Forgot:
     def __init__(self):
         self.emailRegisterVar=None
         self.emailRegisterModified=False
@@ -76,25 +73,15 @@ class Register5:
         self.values=[]
 
     def remove(self,base):
-        base.register5Group.removeGroup()
-        base.submitRegister5Button.place_forget()
-        base.nextRegister5Button.place_forget()
-        base.backRegister5Button.place_forget()
+        base.forgotGroup.removeGroup()
+        base.submitForgotButton.place_forget()
 
 
-    def createRegister5(self,base):
+    def createForgot(self,base):
         # base=tk.Tk()
         # base.Background=tk.Canvas()
-        try:
-            base.nextRegister3Button.place_forget()
-        except:
-            pass
 
-        try:
-            base.backRegister3Button.place_forget()
-        except:
-            pass
-
+        self.base=base
         if self.emailRegisterVar == None:
             self.emailRegisterVar = tk.StringVar(base)
         if self.passwordRegisterVar == None:
@@ -102,106 +89,108 @@ class Register5:
         if self.pConfirmationRegisterVar == None:
             self.pConfirmationRegisterVar = tk.StringVar(base)
 
+        base.currentFrame=self
         base.config(cursor="arrow")
-        base.register5WidgetsImg = tk.PhotoImage(
+        base.ForgotWidgetsImg = tk.PhotoImage(
             file=base.resourcePath("assest\\register1Page\\registerFrame.png"))
-        base.register5WidgetsFrame = base.Background.create_image(55, 136, image=base.register5WidgetsImg, anchor=tk.NW)
-        base.register5Title = base.Background.create_text(94, 158, text="Create your account",
+        base.ForgotWidgetsFrame = base.Background.create_image(55, 136, image=base.ForgotWidgetsImg, anchor=tk.NW)
+        base.ForgotTitle = base.Background.create_text(94, 158, text="Forgot Password",
                                                           font=("Montserrat", 23, "bold"), fill="white", anchor=tk.NW)
 
-        # option menu list
-        base.menuRegister2MidStandardlImg = Image.open(
-            base.resourcePath("assest\general\optionMidStandardImg.png"))
-        base.menuRegister2MidHoverImg = Image.open(
-            base.resourcePath("assest\general\optionMidHoverImg.png"))
-
-        base.menuRegister2MidClickedImg = Image.open(
-            base.resourcePath("assest\general\optionMidClickedImg.png"))
-
-        base.menuListRegister2MidStandardImg = Image.open(
-            base.resourcePath("assest\general\optionlistMidStandardImg.png"))
 
         # email
-        base.emailRegister5Text = base.Background.create_text(115, 241, text="Email address",
+        base.emailForgotText = base.Background.create_text(115, 241, text="Email address",
                                                                  font=("Montserrat", 6, "bold"),
                                                                  fill="#bb86fc", anchor=tk.NW)
-        base.emailRegister5Entry = tk.Entry(base.Background, border=0, bg="#1f1a24", fg="white",
+        base.emailForgotEntry = tk.Entry(base.Background, border=0, bg="#1f1a24", fg="white",
                                                font=("Montserrat", 10, "bold"), disabledbackground="#1f1a24",
                                                highlightthickness=0, borderwidth=0, width=36,textvariable=self.emailRegisterVar)
         try :
-            self.emailRegisterModified = base.emailRegister5StandardObject.getModified()
+            self.emailRegisterModified = base.emailForgotStandardObject.getModified()
         except:
             pass
 
-        base.emailRegister5StandardObject = MyEntry(base.Background, 94, 254, entry=base.emailRegister5Entry,
+        base.emailForgotStandardObject = MyEntry(base.Background, 94, 254, entry=base.emailForgotEntry,
                                                        standardImg=base.emailLogingStandardlImg,
                                                        hoverImg=base.emailLogingHoverImg, marginX=21, marginY=5,
-                                                       placeholder="exemple@etu.uae.ac.ma",modified=self.emailRegisterModified,value=self.emailRegisterVar)
-        base.emailRegister5StandardObject.validate=lambda :checkEmail( base.emailRegister5StandardObject)
+                                                       placeholder="fname.lname@etu.uae.ac.ma",modified=self.emailRegisterModified,value=self.emailRegisterVar)
+        base.emailForgotStandardObject.validate=lambda :checkEmail( base.emailForgotStandardObject)
 
         # password
-        base.passwordRegister5Text = base.Background.create_text(115, 292, text="Password",
+        base.passwordForgotText = base.Background.create_text(115, 292, text="New Password",
                                                                  font=("Montserrat", 6, "bold"),
                                                                  fill="#bb86fc", anchor=tk.NW)
-        base.passwordRegister5Entry = tk.Entry(base.Background, border=0, bg="#1f1a24", fg="white",
+        base.passwordForgotEntry = tk.Entry(base.Background, border=0, bg="#1f1a24", fg="white",
                                                font=("Montserrat", 10, "bold"), disabledbackground="#1f1a24",
                                                highlightthickness=0, borderwidth=0, width=36,show="*",textvariable=self.passwordRegisterVar)
         try :
-            self.passwordRegisterModified = base.passwordRegister5StandardObject.getModified()
+            self.passwordRegisterModified = base.passwordForgotStandardObject.getModified()
         except:
             pass
 
-        base.passwordRegister5StandardObject = MyEntry(base.Background, 94, 305, entry=base.passwordRegister5Entry,
+        base.passwordForgotStandardObject = MyEntry(base.Background, 94, 305, entry=base.passwordForgotEntry,
                                                        standardImg=base.emailLogingStandardlImg,
                                                        hoverImg=base.emailLogingHoverImg, marginX=21, marginY=5,
                                                        placeholder="***********",modified=self.passwordRegisterModified,value=self.passwordRegisterVar)
-        base.passwordRegister5StandardObject.validate=lambda :passFunction()
+        base.passwordForgotStandardObject.validate=lambda :passFunction()
 
         # password confirmation
-        base.confirmRegister5Text = base.Background.create_text(115, 343, text="Confirm password",
+        base.confirmForgotText = base.Background.create_text(115, 343, text="Confirm New Password",
                                                                  font=("Montserrat", 6, "bold"),
                                                                  fill="#bb86fc", anchor=tk.NW)
-        base.confirmRegister5Entry = tk.Entry(base.Background, border=0, bg="#1f1a24", fg="white",
+        base.confirmForgotEntry = tk.Entry(base.Background, border=0, bg="#1f1a24", fg="white",
                                                font=("Montserrat", 10, "bold"), disabledbackground="#1f1a24",
                                                highlightthickness=0, borderwidth=0, width=36, show="*",textvariable=self.pConfirmationRegisterVar)
         try :
-            self.pConfirmationRegisterModified = base.pconfirmRegister5StandardObject.getModified()
+            self.pConfirmationRegisterModified = base.pconfirmForgotStandardObject.getModified()
         except:
             pass
-        base.pconfirmRegister5StandardObject = MyEntry(base.Background, 94, 356, entry=base.confirmRegister5Entry,
+        base.pconfirmForgotStandardObject = MyEntry(base.Background, 94, 356, entry=base.confirmForgotEntry,
                                                        standardImg=base.emailLogingStandardlImg,
                                                        hoverImg=base.emailLogingHoverImg, marginX=21, marginY=5,
                                                        placeholder="***********",modified=self.pConfirmationRegisterModified,value=self.pConfirmationRegisterVar)
-        base.pconfirmRegister5StandardObject.validate=lambda :checkPassword(base.passwordRegister5Entry.get(),base.confirmRegister5Entry.get())
+        base.pconfirmForgotStandardObject.validate=lambda :checkPassword(base.passwordForgotEntry.get(),base.confirmForgotEntry.get())
 
-        base.register5Form = MyForm(base,base.emailRegister5StandardObject,base.passwordRegister5StandardObject,base.pconfirmRegister5StandardObject)
-        base.register5Form.validate=lambda:checkRegister5Form(base.register5Form,self)
-        base.register5Form.get=lambda:self.values
-
-        base.registerForm = MyForm(base,base.register1Form,base.register2Form,base.register3Form,base.register4Form,base.register5Form)
-        base.registerForm.get=lambda:getRegisterInfo(base,base.registerForm)
+        base.forgotForm = MyForm(base,base.emailForgotStandardObject,base.passwordForgotStandardObject,base.pconfirmForgotStandardObject)
+        base.forgotForm.validate=lambda:checkForgotForm(base.forgotForm,self)
+        base.forgotForm.get=lambda:self.values
 
 
 
-        # next
-        base.nextRegister4ButtonImg = Image.open(
-            base.resourcePath("assest\general\\nextButtonStandardImg.png"))
-        base.nextRegister5Button = MyButton(base.Background, 340, 453, standardImg=base.nextRegister1ButtonImg,
-                                            cursor="hand2", behavior=base.register5ToRegister6)
 
         # submit
         base.submitLoginButtonImg = Image.open(
-            base.resourcePath("assest\general\submitDisabledButtonImg.png"))
-        base.submitRegister5Button = MyButton(base.Background, 221, 453, standardImg=base.submitLoginButtonImg,
-                                              cursor="X_cursor")
+            base.resourcePath("assest/loginPage/submitButton.png"))
+        base.submitForgotButton = MyButton(base.Background, 221, 453, standardImg=base.submitLoginButtonImg,
+                                              cursor="hand2",behavior=self.forget)
 
-        # back
-        base.backRegister4ButtonImg = Image.open(
-            base.resourcePath("assest\general\\backButtonStandardImg.png"))
-        base.backRegister5Button = MyButton(base.Background, 141, 453, standardImg=base.backRegister4ButtonImg,
-                                            cursor="hand2", behavior=base.register5ToRegister4)
 
-        base.register5Group = MyWidgetsGroup(base.Background,base.register5WidgetsFrame,base.emailRegister5Text,base.passwordRegister5Text,base.confirmRegister5Text, base.emailRegister5StandardObject,base.passwordRegister5StandardObject,base.pconfirmRegister5StandardObject,base.submitRegister5Button,base.register5Title)
+        base.forgotGroup = MyWidgetsGroup(base.Background,base.ForgotWidgetsFrame,base.emailForgotText,base.passwordForgotText,base.confirmForgotText, base.emailForgotStandardObject,base.passwordForgotStandardObject,base.pconfirmForgotStandardObject,base.ForgotTitle)
+
+    def forget(self):
+        if self.base.forgotForm.validate():
+            conn, mycursor = connectDB('student_managment')
+
+            mycursor.execute("SELECT email_acadymic FROM login")
+            results = mycursor.fetchall()
+            email=self.base.forgotForm.get()[0]
+            emails = [result[0] for result in results]
+            if email in emails:
+                new_password = self.base.forgotForm.get()[1]
+                print('the new password is ', new_password)
+                new_password_hashed = hash_password(new_password)
+                print(new_password_hashed)
+                sql = "UPDATE login SET password = %s WHERE email_acadymic =  %s"
+                values = (new_password_hashed, email)
+                mycursor.execute(sql, values)
+                conn.commit()
+                self.base.onLogoClick()
+                print("password changed")
+                return 'password changed'
+
+            else:
+                print("Email not found ")
+                return 'Email Error'
 
 
 # l=[['Ossama', 'Outmani', 'L1234', 'P112', 'Male', [2, 'March', 1962]],"[<PIL.Image.Image image mode=RGBA size=100x100 at 0x208E193A550>]",['Tanger', "Sc Mathematique 'B'", 'Spanish', '12', 'Al khawarizmi high school'],['Av masira Nr22 ', 'App3 etage4', '98000', '0689', 'Taza', 'Morocco'],['ossama.outmani@etu.uae.ac.ma', 'Nexos2002', 'Nexos2002']]

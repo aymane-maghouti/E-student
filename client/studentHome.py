@@ -6,6 +6,7 @@ from studentGrades import StudentGrades
 from studentProfile import StudentProfile
 from studentTimeTable import StudentTimeTable
 from studentAbout import StudentAbout
+from studentNewsDetails import StudentNewsDetail
 from datetime import datetime
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
@@ -22,6 +23,9 @@ class StudentHome:
 
     def remove(self):
         self.base.studentHomeGroup.removeGroup()
+
+    def removeInterface(self):
+        self.base.studentHomeInterfaceGroup.removeGroup()
 
     def toStudentHome(self):
         self.base.logoStudentObject.place_forget()
@@ -47,6 +51,8 @@ class StudentHome:
         self.base=base
         # self.hideWidgets=[]
 
+        self.detailNews=StudentNewsDetail()
+
 
         base.studentHomeTitle = base.Background.create_text(130, 158, text=f"Welcome {base.connectedUser['firstname']}",
                                                           font=("Montserrat", 20, "bold"), fill="white", anchor=tk.NW)
@@ -58,6 +64,11 @@ class StudentHome:
 
         base.studentHomeNewsFrame=MyScrollableFrame(base.Background,base.studentHomeNewsImg,"#1f1a24",210,320,615,107,10,50)
         base.studentHomeNewsText=base.Background.create_text(635,117,font=("Montserrat", 20, "bold"),fill="white",text="News",anchor=tk.NW)
+
+        # adding the logout button
+        base.logoutStudentStandardImg = Image.open(r"assest\studentHomePage\logoutStandardImg.png").resize((46,46))
+        base.logoutStudentHoverImg = Image.open(r"assest\studentHomePage\logoutHoverImg.png").resize((46,46))
+        base.logoutStudentButton = MyButton(base.Background,standardImg=base.logoutStudentStandardImg,hoverImg=base.logoutStudentHoverImg,cursor="hand2",x=750,y=43,behavior=base.studentLogout)
 
         cnx, mycursor = connectDB("student_managment")
         mycursor.execute(
@@ -77,7 +88,7 @@ class StudentHome:
         base.studentHomeGraphImg =ImageTk.PhotoImage(Image.open(
            base.resourcePath("assest/studentHomePage/graphBackground.png")))
 
-        base.studentHomeGraphFrame=MyFrame(base.Background,base.studentHomeGraphImg,"red",300,200,117,244,10,10)
+        base.studentHomeGraphFrame=MyFrame(base.Background,base.studentHomeGraphImg,"#1f1a24",300,200,117,244,10,10)
         self.show_graph()
 
         #Menu closed
@@ -178,7 +189,8 @@ class StudentHome:
 
         base.studentAboutExtendedIconButton=MyButton(base.studentMenuExtendedFrame.mainFrame,0,311,base.studentAboutExtendedIconImg,cursor="hand2",behavior=self.toAbout)
 
-        base.studentHomeGroup = MyWidgetsGroup(base.Background,base.studentHomeNewsText,base.studentHomeGraphFrame,base.studentHomeNewsFrame,base.studentHomeTitle)
+        base.studentHomeGroup = MyWidgetsGroup(base.Background,base.logoutStudentButton,base.studentHomeNewsText,base.studentHomeGraphFrame,base.studentHomeNewsFrame,base.studentHomeTitle)
+        base.studentHomeInterfaceGroup = MyWidgetsGroup(base.Background,base.studentHomeMenuFrame,base.logoStudentObject,base.logoutStudentButton,base.studentHomeNewsText,base.studentHomeGraphFrame,base.studentHomeNewsFrame,base.studentHomeTitle)
 
         self.hideWidgets=[self.base.studentHomeGraphFrame]
 
@@ -273,21 +285,17 @@ class StudentHome:
             num_lines = int(text_length / text_width) + (1 if text_length % text_width else 0)
 
             text = Text(table_frame, width=text_width, height=num_lines, takefocus=False,font=("Montserrat", 10, "bold"),relief="flat",cursor="hand2",foreground="#bb86fc",background="#1f1a24")
-            text.bind("<Button-1>", lambda event, i=i: self.show_details(notifications[i][2]))
+            text.bind("<Button-1>", lambda event, i=i: self.show_details(notifications,i))
             # texts.append(text)
             text.insert(END, f'{notifications[i][0]}')
             text.configure(state='disabled')
             text.grid(row=(2 * i), column=0)
-            Button(table_frame, text=f'{notifications[i][1]}', command=lambda i=i: self.show_details(notifications[i][2]),
+            Button(table_frame, text=f'{notifications[i][1]}', command=lambda i=i: self.show_details(notifications,i),
                    width=15, height=1,pady=0,padx=0,highlightthickness=0,relief="sunken",borderwidth=0,border=0,overrelief="sunken",foreground="white",background="#1f1a24",activeforeground="white",activebackground="#1f1a24",cursor="hand2",font=("Montserrat", 8, "bold")).grid(row=(2 * i) + 1, column=0,sticky="nw")
 
-    def show_details(self,details):
-        paragraph = details
-        n = len(paragraph)
-        label = Label(self.base.studentHomeGraphFrame, text=paragraph, wraplength=n, anchor="nw", justify='left')
-        label.pack()
-        required_height = label.winfo_reqheight()
-        label.config(height=required_height)
+    def show_details(self,notifications,i):
+        self.base.currentFrame.remove()
+        self.detailNews.createStudentNewsDetail(self.base,notifications,i)
 
     def show_graph(self):
         nb_visiteurs, dates = get_data()

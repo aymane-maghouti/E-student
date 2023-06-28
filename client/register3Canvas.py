@@ -1,10 +1,11 @@
 from CanvasToWidget import *
 import tkinter as tk
+from tkinter import messagebox
 
 def checkLenght(self,size,labelName="entry"):
-    size=20
-    if len(self.get())>size or len(self.get())<0 :#remake it 1
+    if len(self.get())>size or len(self.get())<1 :#remake it 1
         print(f"invalide {labelName}")
+        messagebox.showerror("Value Error",f"invalid {labelName}")
         return False
     print(f"valide {labelName}")
     return True
@@ -12,6 +13,7 @@ def checkLenght(self,size,labelName="entry"):
 def checkListChoice(self,choice,optionName="option"):
     if self.get()==choice:
         print(f"invalide {optionName}")
+        messagebox.showerror("Value Error",f"invalid {optionName}")
         return False
     print(f"valide {optionName}")
     return True
@@ -21,18 +23,21 @@ def checkGrade(self,labelName="entry"):
         value=float(self.get())
     except:
         print(f"invalide {labelName}")
+        messagebox.showerror("Value Error",f"invalid {labelName}")
         return False
     if 0<=value<=20:
         print(f"valide {labelName}")
         return True
     print(f"invalide {labelName}")
+    messagebox.showerror("Value Error", f"invalid {labelName}")
     return False
 
 def checkOption(self):
     if self.get()==None:
-        print("invalide gender")
+        messagebox.showerror("Value Error",f"invalid school type")
+        print("invalide school type")
         return False
-    print("valide gender")
+    print("valide school type")
     return True
 
 
@@ -43,6 +48,7 @@ def checkRegister3Form(self,register):
         try:
             if not element.validate():
                 valide=False
+                break
         except Exception as e:
             print(e)
 
@@ -158,7 +164,7 @@ class Register3:
                                                   standardImg=base.emailLogingStandardlImg,
                                                   hoverImg=base.emailLogingHoverImg, marginX=21, marginY=5,
                                                   placeholder="Imzoren High school",modified=self.highSchoolNameModified,value=self.highSchoolNameVar)
-        base.highRegisterStandardObject.validate=lambda :checkLenght(base.highRegisterStandardObject,4,"high school name")
+        base.highRegisterStandardObject.validate=lambda :checkLenght(base.highRegisterStandardObject,45,"high school name")
 
         # bac Sector
         base.bacSectorRegister3Text = base.Background.create_text(115, 241, text="Bac Sector",
