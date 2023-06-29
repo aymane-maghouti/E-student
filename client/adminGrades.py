@@ -84,15 +84,15 @@ class AdminGrades:
 
 
         base.menuAdminGradesClassMidStandardlImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionsmallStandardImg.png")
+            r"assest\general\optionsmallStandardImg.png")
         base.menuAdminGradesClassMidHoverImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionSmallHoverImg.png")
+            r"assest\general\optionSmallHoverImg.png")
 
         base.menuAdminGradesClassMidClickedImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionSmallClickedImg.png")
+            r"assest\general\optionSmallClickedImg.png")
 
         base.menuListAdminGradesClassMidStandardImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionlistMidStandardImg.png")
+            r"assest\general\optionlistMidStandardImg.png")
 
 
         # base.Grades=adminGrades()
@@ -160,9 +160,9 @@ class AdminGrades:
         base.adminGradesForm.get=lambda:self.values
 
         base.submitAdminGradesButtonImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\loginPage\submitButton.png")
+            r"assest\loginPage\submitButton.png")
         base.submitAdminGradesHoverButtonImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\loginPage\submitClicked.png")
+            r"assest\loginPage\submitClicked.png")
         base.submitAdminGradesButton = MyButton(base.Background, 350, 431, standardImg=base.submitAdminGradesButtonImg,clickImg=base.submitAdminGradesHoverButtonImg,
                                                  cursor="hand2",behavior=self.insertToDB)
 

@@ -76,15 +76,15 @@ class AdminUpdate:
 
 
         base.menuAdminUpdateClassMidStandardlImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionsmallStandardImg.png")
+            r"assest\general\optionsmallStandardImg.png")
         base.menuAdminUpdateClassMidHoverImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionSmallHoverImg.png")
+            r"assest\general\optionSmallHoverImg.png")
 
         base.menuAdminUpdateClassMidClickedImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionSmallClickedImg.png")
+            r"assest\general\optionSmallClickedImg.png")
 
         base.menuListAdminUpdateClassMidStandardImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionlistMidStandardImg.png")
+            r"assest\general\optionlistMidStandardImg.png")
 
 
         # base.Update=adminUpdate()
@@ -156,9 +156,9 @@ class AdminUpdate:
         base.adminUpdateForm.get=lambda:self.values
 
         base.submitAdminUpdateButtonImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\loginPage\submitButton.png")
+            r"assest\loginPage\submitButton.png")
         base.submitAdminUpdateHoverButtonImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\loginPage\submitClicked.png")
+            r"assest\loginPage\submitClicked.png")
         base.submitAdminUpdateButton = MyButton(base.Background, 350, 431, standardImg=base.submitAdminUpdateButtonImg,clickImg=base.submitAdminUpdateHoverButtonImg,
                                                  cursor="hand2",behavior=self.updateDB)
 

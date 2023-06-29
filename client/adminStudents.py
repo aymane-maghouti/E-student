@@ -44,15 +44,15 @@ class AdminStudents:
         self.base=base
 
         base.menuAdminStudentClassMidStandardlImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionsmallStandardImg.png")
+            r"assest\general\optionsmallStandardImg.png")
         base.menuAdminStudentClassMidHoverImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionSmallHoverImg.png")
+            r"assest\general\optionSmallHoverImg.png")
 
         base.menuAdminStudentClassMidClickedImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionSmallClickedImg.png")
+            r"assest\general\optionSmallClickedImg.png")
 
         base.menuListAdminStudentClassMidStandardImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionlistMidStandardImg.png")
+            r"assest\general\optionlistMidStandardImg.png")
 
 
         # base.Students=adminStudents()
@@ -81,9 +81,9 @@ class AdminStudents:
         base.adminStudentsClassList.validate=lambda:checkListChoice(base.adminStudentsClassList,"Select","Class")
 
         base.submitLoginButtonImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\loginPage\submitButton.png")
+            r"assest\loginPage\submitButton.png")
         base.submitLoginHoverButtonImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\loginPage\submitClicked.png")
+            r"assest\loginPage\submitClicked.png")
         base.submitAdminStudentsButton = MyButton(base.adminStudentsFrame.baseCanvas, 714, 133, standardImg=base.submitLoginButtonImg,clickImg=base.submitLoginHoverButtonImg,
                                               cursor="hand2",behavior=lambda:self.id_class(base.adminStudentsClassList.get()))
 

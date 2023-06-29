@@ -79,8 +79,8 @@ class AdminHome:
         base.logoadminObject=MyButton(base.Background,79,51,base.logoadminImg,cursor="hand2",behavior=lambda:self.toAdminHome())
 
         # adding the logout button
-        base.logoutStudentStandardImg = Image.open(r"C:\Users\ID 1\tkinterTest\E-student\client\assest\studentHomePage\logoutStandardImg.png").resize((46,46))
-        base.logoutStudentHoverImg = Image.open(r"C:\Users\ID 1\tkinterTest\E-student\client\assest\studentHomePage\logoutHoverImg.png").resize((46,46))
+        base.logoutStudentStandardImg = Image.open(r"assest\studentHomePage\logoutStandardImg.png").resize((46,46))
+        base.logoutStudentHoverImg = Image.open(r"assest\studentHomePage\logoutHoverImg.png").resize((46,46))
         base.logoutStudentButton = MyButton(base.Background,standardImg=base.logoutStudentStandardImg,hoverImg=base.logoutStudentHoverImg,cursor="hand2",x=750,y=43,behavior=base.studentLogout)
 
         base.adminHomeNewsImg =ImageTk.PhotoImage(Image.open(

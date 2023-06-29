@@ -70,15 +70,15 @@ class AdminTimeTable:
         self.base=base
 
         base.menuAdminTimeTableClassMidStandardlImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionsmallStandardImg.png")
+            r"assest\general\optionsmallStandardImg.png")
         base.menuAdminTimeTableClassMidHoverImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionSmallHoverImg.png")
+            r"assest\general\optionSmallHoverImg.png")
 
         base.menuAdminTimeTableClassMidClickedImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionSmallClickedImg.png")
+            r"assest\general\optionSmallClickedImg.png")
 
         base.menuListAdminTimeTableClassMidStandardImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionlistMidStandardImg.png")
+            r"assest\general\optionlistMidStandardImg.png")
 
 
         # base.TimeTable=adminTimeTable()
@@ -126,9 +126,9 @@ class AdminTimeTable:
         base.adminTimeTableForm.get=lambda:self.values
 
         base.submitAdminTimeTableButtonImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\loginPage\submitButton.png")
+            r"assest\loginPage\submitButton.png")
         base.submitAdminTimeTableHoverButtonImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\loginPage\submitClicked.png")
+            r"assest\loginPage\submitClicked.png")
         base.submitAdminTimeTableButton = MyButton(base.Background, 350, 431, standardImg=base.submitAdminTimeTableButtonImg,clickImg=base.submitAdminTimeTableHoverButtonImg,
                                                  cursor="hand2",behavior=self.insertToDB)
 

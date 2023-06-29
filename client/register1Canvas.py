@@ -146,7 +146,7 @@ class Register1:
             self.CNEVar = tk.StringVar(base)
 
         base.loginWidgetsImg = tk.PhotoImage(
-            file=r"C:\Users\ID 1\tkinterTest\E-student\client\assest\register1Page\registerFrame.png")
+            file=r"assest\register1Page\registerFrame.png")
         base.register1WidgetsFrame = base.Background.create_image(55, 136, image=base.loginWidgetsImg, anchor=tk.NW)
         base.register1Title = base.Background.create_text(94, 158, text="Create your account",
                                                           font=("Montserrat", 23, "bold"), fill="white", anchor=tk.NW)

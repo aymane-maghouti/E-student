@@ -71,15 +71,15 @@ class AdminNews:
         if self.titreVar == None:
             self.titreVar = tk.StringVar(base)
         base.menuAdminNewsClassMidStandardlImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionsmallStandardImg.png")
+            r"assest\general\optionsmallStandardImg.png")
         base.menuAdminNewsClassMidHoverImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionSmallHoverImg.png")
+            r"assest\general\optionSmallHoverImg.png")
 
         base.menuAdminNewsClassMidClickedImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionSmallClickedImg.png")
+            r"assest\general\optionSmallClickedImg.png")
 
         base.menuListAdminNewsClassMidStandardImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionlistMidStandardImg.png")
+            r"assest\general\optionlistMidStandardImg.png")
 
 
         base.adminNewsTitle = base.Background.create_text(156, 130, text="Upload News",
@@ -152,9 +152,9 @@ class AdminNews:
         base.adminNewsForm.get=lambda:self.values
 
         base.submitAdminNewsButtonImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\loginPage\submitButton.png")
+            r"assest\loginPage\submitButton.png")
         base.submitAdminNewsHoverButtonImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\loginPage\submitClicked.png")
+            r"assest\loginPage\submitClicked.png")
         base.submitAdminNewsButton = MyButton(base.Background, 350, 431, standardImg=base.submitAdminNewsButtonImg,clickImg=base.submitAdminNewsHoverButtonImg,
                                                  cursor="hand2",behavior=self.insertToDB)
 

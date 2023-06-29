@@ -188,9 +188,6 @@ class Register6:
         email_display.grid(row=34, column=0,columnspan=2, padx=5)
 
 
-        # emptyImg=Image.open(
-        #    (r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\emptyImg.jpg")).resize((60,60))
-
         emptyImg = Image.new("RGBA", (60, 60))
 
         # Open image in RGBA mode

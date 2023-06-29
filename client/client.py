@@ -51,13 +51,13 @@ class App(tk.Tk):
         # self.overrideredirect(True)
 
         #adding the background image to canvas
-        self.backImage = tk.PhotoImage(file=r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\loginBackgroundImg.png")
+        self.backImage = tk.PhotoImage(file=r"assest\general\loginBackgroundImg.png")
         self.Background = tk.Canvas(self, width=915, height=540, highlightthickness=0, background="#ab23ff")
         self.Background.create_image(0, 0, image=self.backImage, anchor=tk.NW)
         self.Background.place(x=0,y=0)
 
         #adding the top header Bar
-        self.headerBarImg = tk.PhotoImage(file=r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\headerBar.png")
+        self.headerBarImg = tk.PhotoImage(file=r"assest\general\headerBar.png")
         self.headerBarObject=self.Background.create_image(55, 42, image=self.headerBarImg, anchor=tk.NW)
 
         #adding the moving option to the header bar
@@ -66,8 +66,8 @@ class App(tk.Tk):
         self.Background.tag_bind(self.headerBarObject,"<B1-Motion>", self.on_move)
 
         # adding the close button
-        self.closeStandardImg = Image.open(r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\closeStandardImg.png").resize((46,46))
-        self.closeHoverImg = Image.open(r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\closeHoverImg.png").resize((46,46))
+        self.closeStandardImg = Image.open(r"assest\general\closeStandardImg.png").resize((46,46))
+        self.closeHoverImg = Image.open(r"assest\general\closeHoverImg.png").resize((46,46))
         self.closeButton = MyButton(self.Background,standardImg=self.closeStandardImg,hoverImg=self.closeHoverImg,cursor="hand2",x=812,y=43,behavior=self.quit)
 
         self.logoImg = Image.open(r"assest\general\EstudentLogo.png")

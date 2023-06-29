@@ -136,7 +136,7 @@ class Register4:
 
         base.config(cursor="arrow")
         base.register4WidgetsImg = tk.PhotoImage(
-            file=r"C:\Users\ID 1\tkinterTest\E-student\client\assest\register1Page\registerFrame.png")
+            file=r"assest\register1Page\registerFrame.png")
         base.register4WidgetsFrame = base.Background.create_image(55, 136, image=base.register4WidgetsImg, anchor=tk.NW)
         base.register4Title = base.Background.create_text(94, 158, text="Create your account",
                                                           font=("Montserrat", 23, "bold"), fill="white", anchor=tk.NW)
