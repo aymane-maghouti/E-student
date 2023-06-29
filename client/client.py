@@ -51,7 +51,7 @@ class App(tk.Tk):
         # self.overrideredirect(True)
 
         #adding the background image to canvas
-        self.backImage = tk.PhotoImage(file=r"assets\general\loginBackgroundImg.png")
+        self.backImage = tk.PhotoImage(file=r".\assets\general\loginBackgroundImg.png")
         self.Background = tk.Canvas(self, width=915, height=540, highlightthickness=0, background="#ab23ff")
         self.Background.create_image(0, 0, image=self.backImage, anchor=tk.NW)
         self.Background.place(x=0,y=0)
