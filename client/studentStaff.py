@@ -22,7 +22,7 @@ class StudentStaff:
                                                           font=("Montserrat", 20, "bold"), fill="white", anchor=tk.NW)
 
         base.studentStaffImg =ImageTk.PhotoImage(Image.open(
-           base.resourcePath("assest/studentStaffPage/staffBackground.png")))
+           base.resourcePath("assets/studentStaffPage/staffBackground.png")))
 
         base.studentStaffFrame=MyScrollableFrame(base.Background,base.studentStaffImg,"#1f1a24",685,297,117,174,20,20)
         # Create a canvas and add it to the root window

@@ -75,16 +75,16 @@ class AdminHome:
 
         base.adminHomeTitle = base.Background.create_text(130, 158, text="Welcome Admin",
                                                           font=("Montserrat", 20, "bold"), fill="white", anchor=tk.NW)
-        base.logoadminImg = Image.open(r"assest\general\EstudentLogo.png")
+        base.logoadminImg = Image.open(r"assets\general\EstudentLogo.png")
         base.logoadminObject=MyButton(base.Background,79,51,base.logoadminImg,cursor="hand2",behavior=lambda:self.toAdminHome())
 
         # adding the logout button
-        base.logoutStudentStandardImg = Image.open(r"assest\studentHomePage\logoutStandardImg.png").resize((46,46))
-        base.logoutStudentHoverImg = Image.open(r"assest\studentHomePage\logoutHoverImg.png").resize((46,46))
+        base.logoutStudentStandardImg = Image.open(r"assets\studentHomePage\logoutStandardImg.png").resize((46,46))
+        base.logoutStudentHoverImg = Image.open(r"assets\studentHomePage\logoutHoverImg.png").resize((46,46))
         base.logoutStudentButton = MyButton(base.Background,standardImg=base.logoutStudentStandardImg,hoverImg=base.logoutStudentHoverImg,cursor="hand2",x=750,y=43,behavior=base.studentLogout)
 
         base.adminHomeNewsImg =ImageTk.PhotoImage(Image.open(
-           base.resourcePath("assest/adminHomePage/newsBackground.png")))
+           base.resourcePath("assets/adminHomePage/newsBackground.png")))
 
         base.adminHomeNewsFrame=MyScrollableFrame(base.Background,base.adminHomeNewsImg,"#1f1a24",210,320,615,107,10,50)
         base.adminHomeNewsText=base.Background.create_text(635,117,font=("Montserrat", 20, "bold"),fill="white",text="News",anchor=tk.NW)
@@ -103,14 +103,14 @@ class AdminHome:
         self.show(notifications)
 
         base.adminHomeGraphImg =ImageTk.PhotoImage(Image.open(
-           base.resourcePath("assest/adminHomePage/graphBackground.png")))
+           base.resourcePath("assets/adminHomePage/graphBackground.png")))
 
         base.adminHomeGraphFrame=MyFrame(base.Background,base.adminHomeGraphImg,"red",460,240,117,244,10,10)
         self.show_graph()
 
         #Menu closed
         base.adminMenuImg =ImageTk.PhotoImage(Image.open(
-           base.resourcePath("assest/general/menuBackground.png")))
+           base.resourcePath("assets/general/menuBackground.png")))
 
         base.adminHomeMenuFrame=MyFrame(base.Background,base.adminMenuImg,"#1f1a24",40,351,55,107,4,23)
 
@@ -125,7 +125,7 @@ class AdminHome:
         base.update=AdminUpdate()
 
         base.selectedCircleadminImg =Image.open(
-           base.resourcePath("assest/general/selectedTaskCircle.png"))
+           base.resourcePath("assets/general/selectedTaskCircle.png"))
 
         base.selectedCircleadmin=MyButton(base.adminHomeMenuFrame.mainFrame,0,0,base.selectedCircleadminImg,cursor="hand2",behavior=lambda:print("hi"))
         base.selectedCircleadmin.place_forget()
@@ -133,79 +133,79 @@ class AdminHome:
 
 
         base.adminMenuIconImg =Image.open(
-           base.resourcePath("assest/general/menuIcon.png"))
+           base.resourcePath("assets/general/menuIcon.png"))
 
         base.adminMenuIconButton=MyButton(base.adminHomeMenuFrame.mainFrame,10,10,base.adminMenuIconImg,cursor="hand2",behavior=self.extendMenu)
 
         base.adminBooksIconImg =Image.open(
-           base.resourcePath("assest/general/booksUpIcon.png"))
+           base.resourcePath("assets/general/booksUpIcon.png"))
 
         base.adminBooksIconButton=MyButton(base.adminHomeMenuFrame.mainFrame,10,67,base.adminBooksIconImg,cursor="hand2",behavior=lambda:self.toCourses())
 
         base.adminTimetableIconImg =Image.open(
-           base.resourcePath("assest/general/timetableUpIcon.png"))
+           base.resourcePath("assets/general/timetableUpIcon.png"))
 
         base.adminTimetableIconButton=MyButton(base.adminHomeMenuFrame.mainFrame,10,117,base.adminTimetableIconImg,cursor="hand2",behavior=self.toTimeTable)
 
         base.adminGradesIconImg =Image.open(
-           base.resourcePath("assest/general/graduationUpIcon.png"))
+           base.resourcePath("assets/general/graduationUpIcon.png"))
 
         base.adminGradesIconButton=MyButton(base.adminHomeMenuFrame.mainFrame,10,166,base.adminGradesIconImg,cursor="hand2",behavior=self.toGrades)
 
         base.adminNewsIconImg =Image.open(
-           base.resourcePath("assest/general/annoucementUpIcon.png"))
+           base.resourcePath("assets/general/annoucementUpIcon.png"))
 
         base.adminNewsIconButton=MyButton(base.adminHomeMenuFrame.mainFrame,10,217,base.adminNewsIconImg,cursor="hand2",behavior=self.toNews)
 
         base.adminStudentsIconImg =Image.open(
-           base.resourcePath("assest/general/searchIcon.png"))
+           base.resourcePath("assets/general/searchIcon.png"))
 
         base.adminStudentsIconButton=MyButton(base.adminHomeMenuFrame.mainFrame,10,263,base.adminStudentsIconImg,cursor="hand2",behavior=self.toStudents)
 
         base.adminAboutIconImg =Image.open(
-           base.resourcePath("assest/general/aboutIcon.png"))
+           base.resourcePath("assets/general/aboutIcon.png"))
 
         base.adminAboutIconButton=MyButton(base.adminHomeMenuFrame.mainFrame,14,319,base.adminAboutIconImg,cursor="hand2",behavior=self.toAbout)
 
         #Menu extended
         base.adminMenuExtendedImg =ImageTk.PhotoImage(Image.open(
-           base.resourcePath("assest/general/menuExtendedBackground.png")))
+           base.resourcePath("assets/general/menuExtendedBackground.png")))
 
         base.adminMenuExtendedFrame=MyFrame(base.Background,base.adminMenuExtendedImg,"#1f1a24",187,351,55,107,4,23)
         base.adminMenuExtendedFrame.place_forget()
 
         base.adminMenuExtendedIconImg =Image.open(
-           base.resourcePath("assest/general/menuExtended.png"))
+           base.resourcePath("assets/general/menuExtended.png"))
 
         base.adminMenuIconButton=MyButton(base.adminMenuExtendedFrame.mainFrame,0,0,base.adminMenuExtendedIconImg,cursor="hand2",behavior=self.shrinkMenu)
 
         base.adminBooksExtendedIconImg =Image.open(
-           base.resourcePath("assest/general/booksUpExtended.png"))
+           base.resourcePath("assets/general/booksUpExtended.png"))
 
         base.adminBooksExtendedIconButton=MyButton(base.adminMenuExtendedFrame.mainFrame,0,57,base.adminBooksExtendedIconImg,cursor="hand2",behavior=lambda:self.toCourses())
 
         base.adminTimetableExtendedIconImg =Image.open(
-           base.resourcePath("assest/general/timetableUpExtended.png"))
+           base.resourcePath("assets/general/timetableUpExtended.png"))
 
         base.adminTimetableExtendedIconButton=MyButton(base.adminMenuExtendedFrame.mainFrame,0,107,base.adminTimetableExtendedIconImg,cursor="hand2",behavior=self.toTimeTable)
 
         base.adminGradesExtendedIconImg =Image.open(
-           base.resourcePath("assest/general/GradesUpExtended.png"))
+           base.resourcePath("assets/general/GradesUpExtended.png"))
 
         base.adminGradesExtendedIconButton=MyButton(base.adminMenuExtendedFrame.mainFrame,0,156,base.adminGradesExtendedIconImg,cursor="hand2",behavior=self.toGrades)
 
         base.adminNewsExtendedIconImg =Image.open(
-           base.resourcePath("assest/general/newsUpExtended.png"))
+           base.resourcePath("assets/general/newsUpExtended.png"))
 
         base.adminNewsExtendedIconButton=MyButton(base.adminMenuExtendedFrame.mainFrame,0,209,base.adminNewsExtendedIconImg,cursor="hand2",behavior=self.toNews)
 
         base.adminSearchExtendedIconImg =Image.open(
-           base.resourcePath("assest/general/studentsUpExtended.png"))
+           base.resourcePath("assets/general/studentsUpExtended.png"))
 
         base.adminSearchExtendedIconButton=MyButton(base.adminMenuExtendedFrame.mainFrame,0,254,base.adminSearchExtendedIconImg,cursor="hand2",behavior=self.toStudents)
 
         base.adminAboutExtendedIconImg =Image.open(
-           base.resourcePath("assest/general/aboutExtended.png"))
+           base.resourcePath("assets/general/aboutExtended.png"))
 
         base.adminAboutExtendedIconButton=MyButton(base.adminMenuExtendedFrame.mainFrame,0,311,base.adminAboutExtendedIconImg,cursor="hand2",behavior=self.toAbout)
 

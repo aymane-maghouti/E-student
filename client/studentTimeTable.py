@@ -70,7 +70,7 @@ class StudentTimeTable:
                                                           font=("Montserrat", 20, "bold"), fill="white", anchor=tk.NW)
 
         base.studentTimeTableImg =ImageTk.PhotoImage(Image.open(
-           base.resourcePath("assest/studentTimeTablePage/timeTableBackground.png")))
+           base.resourcePath("assets/studentTimeTablePage/timeTableBackground.png")))
 
         base.studentTimeTableFrame=MyScrollableFrame(base.Background,base.studentTimeTableImg,"#1f1a24",685,297,117,174,20,20)
 
@@ -85,7 +85,7 @@ class StudentTimeTable:
         Label(table, text="Published at", width=20, height=2,font=("Montserrat", 12, "bold"),foreground="#bb86fc",background="#1f1a24").grid(row=0, column=2)
 
         self.downloadStandardIcon = ImageTk.PhotoImage(Image.open(
-            self.base.resourcePath("assest/general/downloadStandardIcon.png")))
+            self.base.resourcePath("assets/general/downloadStandardIcon.png")))
 
         i=0
         for row in result:

@@ -146,62 +146,62 @@ class Register1:
             self.CNEVar = tk.StringVar(base)
 
         base.loginWidgetsImg = tk.PhotoImage(
-            file=r"assest\register1Page\registerFrame.png")
+            file=r"assets\register1Page\registerFrame.png")
         base.register1WidgetsFrame = base.Background.create_image(55, 136, image=base.loginWidgetsImg, anchor=tk.NW)
         base.register1Title = base.Background.create_text(94, 158, text="Create your account",
                                                           font=("Montserrat", 23, "bold"), fill="white", anchor=tk.NW)
 
         # option small
         base.optionStandardlImg = Image.open(
-           base.resourcePath("assest\general\optionStandardImg.png"))
+           base.resourcePath("assets\general\optionStandardImg.png"))
         base.optionClickImg = Image.open(
-           base.resourcePath("assest\general\optionClickedImg.png"))
+           base.resourcePath("assets\general\optionClickedImg.png"))
 
         # option medium
         base.optionMediumStandardlImg = Image.open(
-           base.resourcePath("assest\general\optionMediumStandardImg.png"))
+           base.resourcePath("assets\general\optionMediumStandardImg.png"))
         base.optionMediumClickImg = Image.open(
-           base.resourcePath("assest\general\optionMediumClickedImg.png"))
+           base.resourcePath("assets\general\optionMediumClickedImg.png"))
 
         # input label
         base.inputSmallStandardlImg = Image.open(
-           base.resourcePath("assest\general\inputLabelSmallImg.png"))
+           base.resourcePath("assets\general\inputLabelSmallImg.png"))
         base.inputSmallHoverImg = Image.open(
-           base.resourcePath("assest\general\inputLabelSmallHoveredImg.png"))
+           base.resourcePath("assets\general\inputLabelSmallHoveredImg.png"))
 
         # day menu list
         base.menuDayStandardlImg = Image.open(
-           base.resourcePath("assest\\register1Page\dayStandardImg.png"))
+           base.resourcePath("assets\\register1Page\dayStandardImg.png"))
         base.menuDayHoverImg = Image.open(
-           base.resourcePath("assest\\register1Page\dayHoverImg.png"))
+           base.resourcePath("assets\\register1Page\dayHoverImg.png"))
 
         base.menuDayClickedImg = Image.open(
-           base.resourcePath("assest\\register1Page\dayClickedImg.png"))
+           base.resourcePath("assets\\register1Page\dayClickedImg.png"))
 
         base.menuDayListStandardImg = Image.open(
-           base.resourcePath("assest\\register1Page\dayListHoverImg.png"))
+           base.resourcePath("assets\\register1Page\dayListHoverImg.png"))
 
         # month menu list
         base.menuMonthStandardlImg = Image.open(
-           base.resourcePath("assest\\register1Page\monthStandardImg.png"))
+           base.resourcePath("assets\\register1Page\monthStandardImg.png"))
         base.menuMonthHoverImg = Image.open(
-           base.resourcePath("assest\\register1Page\monthHoverImg.png"))
+           base.resourcePath("assets\\register1Page\monthHoverImg.png"))
 
         base.menuMonthClickedImg = Image.open(
-           base.resourcePath("assest\\register1Page\monthClickedImg.png"))
+           base.resourcePath("assets\\register1Page\monthClickedImg.png"))
 
         base.menuMonthListStandardImg = Image.open(
-           base.resourcePath("assest\\register1Page\monthListStandardImg.png"))
+           base.resourcePath("assets\\register1Page\monthListStandardImg.png"))
 
         # year menu list
         base.menuYearStandardlImg = Image.open(
-           base.resourcePath("assest\\register1Page\yearStandardImg.png"))
+           base.resourcePath("assets\\register1Page\yearStandardImg.png"))
         base.menuYearHoverImg = Image.open(
-           base.resourcePath("assest\\register1Page\yearHoverImg.png"))
+           base.resourcePath("assets\\register1Page\yearHoverImg.png"))
         base.menuYearClickedImg = Image.open(
-           base.resourcePath("assest\\register1Page\yearClickedImg.png"))
+           base.resourcePath("assets\\register1Page\yearClickedImg.png"))
         base.menuYearListStandardImg = Image.open(
-           base.resourcePath("assest\\register1Page\dayListHoverImg.png"))
+           base.resourcePath("assets\\register1Page\dayListHoverImg.png"))
 
         # Firstname
         base.firstNameRegisterText = base.Background.create_text(115, 241, text="First name",
@@ -347,22 +347,22 @@ class Register1:
 
         # submi
         base.submitLoginButtonImg = Image.open(
-           base.resourcePath("assest\general\submitDisabledButtonImg.png"))
+           base.resourcePath("assets\general\submitDisabledButtonImg.png"))
         base.submitLoginButtonClickedImg = Image.open(
-           base.resourcePath("assest\loginPage\submitClicked.png"))
+           base.resourcePath("assets\loginPage\submitClicked.png"))
 
         base.nextRegister1ButtonImg = Image.open(
-           base.resourcePath("assest\general\\nextButtonStandardImg.png"))
+           base.resourcePath("assets\general\\nextButtonStandardImg.png"))
         base.nextRegister1Button = MyButton(base.Background, 340, 453, standardImg=base.nextRegister1ButtonImg,
                                             cursor="hand2", behavior=base.register1ToRegister2)
 
         base.submitLoginButtonImg = Image.open(
-           base.resourcePath("assest\general\submitDisabledButtonImg.png"))
+           base.resourcePath("assets\general\submitDisabledButtonImg.png"))
         base.submitRegister1Button = MyButton(base.Background, 221, 453, standardImg=base.submitLoginButtonImg,
                                               cursor="X_cursor")
 
         base.backDisabledButtonImg = Image.open(
-           base.resourcePath("assest\general\\backDisabledButtonImg.png"))
+           base.resourcePath("assets\general\\backDisabledButtonImg.png"))
         base.backDisabledButton = MyButton(base.Background, 141, 453, standardImg=base.backDisabledButtonImg,
                                            cursor="X_cursor")
 

@@ -44,15 +44,15 @@ class AdminStudents:
         self.base=base
 
         base.menuAdminStudentClassMidStandardlImg = Image.open(
-            r"assest\general\optionsmallStandardImg.png")
+            r"assets\general\optionsmallStandardImg.png")
         base.menuAdminStudentClassMidHoverImg = Image.open(
-            r"assest\general\optionSmallHoverImg.png")
+            r"assets\general\optionSmallHoverImg.png")
 
         base.menuAdminStudentClassMidClickedImg = Image.open(
-            r"assest\general\optionSmallClickedImg.png")
+            r"assets\general\optionSmallClickedImg.png")
 
         base.menuListAdminStudentClassMidStandardImg = Image.open(
-            r"assest\general\optionlistMidStandardImg.png")
+            r"assets\general\optionlistMidStandardImg.png")
 
 
         # base.Students=adminStudents()
@@ -60,7 +60,7 @@ class AdminStudents:
                                                           font=("Montserrat", 20, "bold"), fill="white", anchor=tk.NW)
 
         base.adminStudentsImg =ImageTk.PhotoImage(Image.open(
-           base.resourcePath("assest/adminStudentsPage/StudentsBackground.png")))
+           base.resourcePath("assets/adminStudentsPage/StudentsBackground.png")))
 
         base.adminStudentsFrame=MyScrollableFrame(base.Background,base.adminStudentsImg,"#1f1a24",685,297,117,106,20,90)
 
@@ -81,9 +81,9 @@ class AdminStudents:
         base.adminStudentsClassList.validate=lambda:checkListChoice(base.adminStudentsClassList,"Select","Class")
 
         base.submitLoginButtonImg = Image.open(
-            r"assest\loginPage\submitButton.png")
+            r"assets\loginPage\submitButton.png")
         base.submitLoginHoverButtonImg = Image.open(
-            r"assest\loginPage\submitClicked.png")
+            r"assets\loginPage\submitClicked.png")
         base.submitAdminStudentsButton = MyButton(base.adminStudentsFrame.baseCanvas, 714, 133, standardImg=base.submitLoginButtonImg,clickImg=base.submitLoginHoverButtonImg,
                                               cursor="hand2",behavior=lambda:self.id_class(base.adminStudentsClassList.get()))
 
@@ -122,9 +122,9 @@ class AdminStudents:
     #     tk.Label(table_frame, text='details').grid(row=0, column=5)
     #
     #     deleteStandardIcon = ImageTk.PhotoImage(Image.open(
-    #         self.base.resourcePath("assest/general/deleteStandardIcon.png")))
+    #         self.base.resourcePath("assets/general/deleteStandardIcon.png")))
     #     deleteClickedIcon = ImageTk.PhotoImage(Image.open(
-    #         self.base.resourcePath("assest/general/deleteClickedIcon.png")))
+    #         self.base.resourcePath("assets/general/deleteClickedIcon.png")))
     #
     #     i=1
     #     for student in students:
@@ -176,11 +176,11 @@ class AdminStudents:
         tk.Label(table_frame, text='Update',font=("Montserrat", 12, "bold"),foreground="#bb86fc",background="#1f1a24", width=5, height=2).grid(row=0, column=6,padx=5)
 
         self.deleteStandardIcon = ImageTk.PhotoImage(Image.open(
-            self.base.resourcePath("assest/general/deleteStandardIcon.png")))
+            self.base.resourcePath("assets/general/deleteStandardIcon.png")))
         self.searchStandardIcon = ImageTk.PhotoImage(Image.open(
-            self.base.resourcePath("assest/general/searchStudentStandardIcon.png")))
+            self.base.resourcePath("assets/general/searchStudentStandardIcon.png")))
         self.editStandardIcon = ImageTk.PhotoImage(Image.open(
-            self.base.resourcePath("assest/general/editStandardIcon.png")))
+            self.base.resourcePath("assets/general/editStandardIcon.png")))
 
 
         i=1

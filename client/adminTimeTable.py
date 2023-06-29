@@ -70,15 +70,15 @@ class AdminTimeTable:
         self.base=base
 
         base.menuAdminTimeTableClassMidStandardlImg = Image.open(
-            r"assest\general\optionsmallStandardImg.png")
+            r"assets\general\optionsmallStandardImg.png")
         base.menuAdminTimeTableClassMidHoverImg = Image.open(
-            r"assest\general\optionSmallHoverImg.png")
+            r"assets\general\optionSmallHoverImg.png")
 
         base.menuAdminTimeTableClassMidClickedImg = Image.open(
-            r"assest\general\optionSmallClickedImg.png")
+            r"assets\general\optionSmallClickedImg.png")
 
         base.menuListAdminTimeTableClassMidStandardImg = Image.open(
-            r"assest\general\optionlistMidStandardImg.png")
+            r"assets\general\optionlistMidStandardImg.png")
 
 
         # base.TimeTable=adminTimeTable()
@@ -86,7 +86,7 @@ class AdminTimeTable:
                                                           font=("Montserrat", 20, "bold"), fill="white", anchor=tk.NW)
 
         base.adminTimeTableImg =ImageTk.PhotoImage(Image.open(
-           base.resourcePath("assest/adminTimeTablePage/TimeTableBackground.png")))
+           base.resourcePath("assets/adminTimeTablePage/TimeTableBackground.png")))
 
         base.adminTimeTableFrame=base.Background.create_image(117,174,image=base.adminTimeTableImg,anchor=tk.NW)
 
@@ -112,9 +112,9 @@ class AdminTimeTable:
                                                           fill="#bb86fc", anchor=tk.NW)
 
         base.importAdminTimeTableButtonImg = Image.open(
-            base.resourcePath("assest/general/uploadStandardImg.png"))
+            base.resourcePath("assets/general/uploadStandardImg.png"))
         base.importAdminTimeTableClickedButtonImg = Image.open(
-            base.resourcePath("assest/general/uploadClickedImg.png"))
+            base.resourcePath("assets/general/uploadClickedImg.png"))
         base.importAdminTimeTableButton = MyButton(base.Background, 250, 289, standardImg=base.importAdminTimeTableButtonImg,clickImg=base.importAdminTimeTableClickedButtonImg,
                                                  cursor="hand2",behavior=lambda :self.importPDF())
         base.importAdminTimeTableButton.validate=lambda:checkPdf(self.selectedPDF)
@@ -126,9 +126,9 @@ class AdminTimeTable:
         base.adminTimeTableForm.get=lambda:self.values
 
         base.submitAdminTimeTableButtonImg = Image.open(
-            r"assest\loginPage\submitButton.png")
+            r"assets\loginPage\submitButton.png")
         base.submitAdminTimeTableHoverButtonImg = Image.open(
-            r"assest\loginPage\submitClicked.png")
+            r"assets\loginPage\submitClicked.png")
         base.submitAdminTimeTableButton = MyButton(base.Background, 350, 431, standardImg=base.submitAdminTimeTableButtonImg,clickImg=base.submitAdminTimeTableHoverButtonImg,
                                                  cursor="hand2",behavior=self.insertToDB)
 

@@ -86,28 +86,28 @@ class AdminCourses:
             self.titreVar = tk.StringVar(base)
 
         base.menuAdminCoursesClassMidStandardlImg = Image.open(
-            r"assest\general\optionsmallStandardImg.png")
+            r"assets\general\optionsmallStandardImg.png")
         base.menuAdminCoursesClassMidHoverImg = Image.open(
-            r"assest\general\optionSmallHoverImg.png")
+            r"assets\general\optionSmallHoverImg.png")
 
         base.menuAdminCoursesClassMidClickedImg = Image.open(
-            r"assest\general\optionSmallClickedImg.png")
+            r"assets\general\optionSmallClickedImg.png")
 
         base.menuListAdminCoursesClassMidStandardImg = Image.open(
-            r"assest\general\optionlistMidStandardImg.png")
+            r"assets\general\optionlistMidStandardImg.png")
 
 
         base.adminCoursesTitle = base.Background.create_text(156, 130, text="Upload Courses",
                                                              font=("Montserrat", 20, "bold"), fill="white", anchor=tk.NW)
 
         base.adminCoursesImg =ImageTk.PhotoImage(Image.open(
-            base.resourcePath("assest/adminCoursesPage/coursesBackground.png")))
+            base.resourcePath("assets/adminCoursesPage/coursesBackground.png")))
 
         base.adminCoursesFrame=base.Background.create_image(117,174,image=base.adminCoursesImg,anchor=tk.NW)
 
-        base.moduleAdminCoursesStandardlImg = Image.open(base.resourcePath("assest\general\InputMidLargeLabelImg.png"))
+        base.moduleAdminCoursesStandardlImg = Image.open(base.resourcePath("assets\general\InputMidLargeLabelImg.png"))
         base.moduleAdminCoursesHoverImg = Image.open(
-            base.resourcePath("assest\general\InputMidLargeHoverImg.png"))
+            base.resourcePath("assets\general\InputMidLargeHoverImg.png"))
 
         base.moduleAdminCoursesText = base.Background.create_text(270, 278, text="Title", font=("Montserrat", 6, "bold"),
                                                           fill="#bb86fc", anchor=tk.NW)
@@ -160,9 +160,9 @@ class AdminCourses:
                                                           fill="#bb86fc", anchor=tk.NW)
 
         base.importAdminCoursesButtonImg = Image.open(
-            base.resourcePath("assest/general/uploadStandardImg.png"))
+            base.resourcePath("assets/general/uploadStandardImg.png"))
         base.importAdminCoursesClickedButtonImg = Image.open(
-            base.resourcePath("assest/general/uploadClickedImg.png"))
+            base.resourcePath("assets/general/uploadClickedImg.png"))
         base.importAdminCoursesButton = MyButton(base.Background, 250, 360, standardImg=base.importAdminCoursesButtonImg,clickImg=base.importAdminCoursesClickedButtonImg,
                                                  cursor="hand2",behavior=lambda :self.importPDF())
         base.importAdminCoursesButton.validate=lambda:checkPdf(self.selectedPdf)
@@ -173,9 +173,9 @@ class AdminCourses:
         base.adminCoursesForm.get=lambda:self.values
 
         base.submitAdminCoursesButtonImg = Image.open(
-            r"assest\loginPage\submitButton.png")
+            r"assets\loginPage\submitButton.png")
         base.submitAdminCoursesHoverButtonImg = Image.open(
-            r"assest\loginPage\submitClicked.png")
+            r"assets\loginPage\submitClicked.png")
         base.submitAdminCoursesButton = MyButton(base.Background, 350, 431, standardImg=base.submitAdminCoursesButtonImg,clickImg=base.submitAdminCoursesHoverButtonImg,
                                                  cursor="hand2",behavior=self.insertToDB)
 

@@ -56,18 +56,18 @@ class StudentHome:
 
         base.studentHomeTitle = base.Background.create_text(130, 158, text=f"Welcome {base.connectedUser['firstname']}",
                                                           font=("Montserrat", 20, "bold"), fill="white", anchor=tk.NW)
-        base.logoStudentImg = Image.open(r"assest\general\EstudentLogo.png")
+        base.logoStudentImg = Image.open(r"assets\general\EstudentLogo.png")
         base.logoStudentObject=MyButton(base.Background,79,51,base.logoStudentImg,cursor="hand2",behavior=lambda:self.toStudentHome())
 
         base.studentHomeNewsImg =ImageTk.PhotoImage(Image.open(
-           base.resourcePath("assest/studentHomePage/newsBackground.png")))
+           base.resourcePath("assets/studentHomePage/newsBackground.png")))
 
         base.studentHomeNewsFrame=MyScrollableFrame(base.Background,base.studentHomeNewsImg,"#1f1a24",210,320,615,107,10,50)
         base.studentHomeNewsText=base.Background.create_text(635,117,font=("Montserrat", 20, "bold"),fill="white",text="News",anchor=tk.NW)
 
         # adding the logout button
-        base.logoutStudentStandardImg = Image.open(r"assest\studentHomePage\logoutStandardImg.png").resize((46,46))
-        base.logoutStudentHoverImg = Image.open(r"assest\studentHomePage\logoutHoverImg.png").resize((46,46))
+        base.logoutStudentStandardImg = Image.open(r"assets\studentHomePage\logoutStandardImg.png").resize((46,46))
+        base.logoutStudentHoverImg = Image.open(r"assets\studentHomePage\logoutHoverImg.png").resize((46,46))
         base.logoutStudentButton = MyButton(base.Background,standardImg=base.logoutStudentStandardImg,hoverImg=base.logoutStudentHoverImg,cursor="hand2",x=750,y=43,behavior=base.studentLogout)
 
         cnx, mycursor = connectDB("student_managment")
@@ -86,14 +86,14 @@ class StudentHome:
         self.show(notifications)
 
         base.studentHomeGraphImg =ImageTk.PhotoImage(Image.open(
-           base.resourcePath("assest/studentHomePage/graphBackground.png")))
+           base.resourcePath("assets/studentHomePage/graphBackground.png")))
 
         base.studentHomeGraphFrame=MyFrame(base.Background,base.studentHomeGraphImg,"#1f1a24",300,200,117,244,10,10)
         self.show_graph()
 
         #Menu closed
         base.studentMenuImg =ImageTk.PhotoImage(Image.open(
-           base.resourcePath("assest/general/menuBackground.png")))
+           base.resourcePath("assets/general/menuBackground.png")))
 
         base.studentHomeMenuFrame=MyFrame(base.Background,base.studentMenuImg,"#1f1a24",40,351,55,107,4,23)
 
@@ -105,7 +105,7 @@ class StudentHome:
         base.about=StudentAbout()
 
         base.selectedCircleStudentImg =Image.open(
-           base.resourcePath("assest/general/selectedTaskCircle.png"))
+           base.resourcePath("assets/general/selectedTaskCircle.png"))
 
         base.selectedCircleStudent=MyButton(base.studentHomeMenuFrame.mainFrame,0,0,base.selectedCircleStudentImg,cursor="hand2",behavior=lambda:print("hi"))
         base.selectedCircleStudent.place_forget()
@@ -113,79 +113,79 @@ class StudentHome:
 
 
         base.studentMenuIconImg =Image.open(
-           base.resourcePath("assest/general/menuIcon.png"))
+           base.resourcePath("assets/general/menuIcon.png"))
 
         base.studentMenuIconButton=MyButton(base.studentHomeMenuFrame.mainFrame,10,10,base.studentMenuIconImg,cursor="hand2",behavior=self.extendMenu)
 
         base.studentBooksIconImg =Image.open(
-           base.resourcePath("assest/general/booksIcon.png"))
+           base.resourcePath("assets/general/booksIcon.png"))
 
         base.studentBooksIconButton=MyButton(base.studentHomeMenuFrame.mainFrame,10,67,base.studentBooksIconImg,cursor="hand2",behavior=lambda:self.toCourses())
 
         base.studentTimetableIconImg =Image.open(
-           base.resourcePath("assest/general/timetableIcon.png"))
+           base.resourcePath("assets/general/timetableIcon.png"))
 
         base.studentTimetableIconButton=MyButton(base.studentHomeMenuFrame.mainFrame,10,117,base.studentTimetableIconImg,cursor="hand2",behavior=self.toTimeTable)
 
         base.studentGradesIconImg =Image.open(
-           base.resourcePath("assest/general/graduationIcon.png"))
+           base.resourcePath("assets/general/graduationIcon.png"))
 
         base.studentGradesIconButton=MyButton(base.studentHomeMenuFrame.mainFrame,10,166,base.studentGradesIconImg,cursor="hand2",behavior=self.toGrades)
 
         base.studentStaffIconImg =Image.open(
-           base.resourcePath("assest/general/staffIcon.png"))
+           base.resourcePath("assets/general/staffIcon.png"))
 
         base.studentStaffIconButton=MyButton(base.studentHomeMenuFrame.mainFrame,10,217,base.studentStaffIconImg,cursor="hand2",behavior=self.toStaff)
 
         base.studentProfileIconImg =Image.open(
-           base.resourcePath("assest/general/profileIcon.png"))
+           base.resourcePath("assets/general/profileIcon.png"))
 
         base.studentProfileIconButton=MyButton(base.studentHomeMenuFrame.mainFrame,10,263,base.studentProfileIconImg,cursor="hand2",behavior=self.toProfile)
 
         base.studentAboutIconImg =Image.open(
-           base.resourcePath("assest/general/aboutIcon.png"))
+           base.resourcePath("assets/general/aboutIcon.png"))
 
         base.studentAboutIconButton=MyButton(base.studentHomeMenuFrame.mainFrame,14,319,base.studentAboutIconImg,cursor="hand2",behavior=self.toAbout)
 
         #Menu extended
         base.studentMenuExtendedImg =ImageTk.PhotoImage(Image.open(
-           base.resourcePath("assest/general/menuExtendedBackground.png")))
+           base.resourcePath("assets/general/menuExtendedBackground.png")))
 
         base.studentMenuExtendedFrame=MyFrame(base.Background,base.studentMenuExtendedImg,"#1f1a24",187,351,55,107,4,23)
         base.studentMenuExtendedFrame.place_forget()
 
         base.studentMenuExtendedIconImg =Image.open(
-           base.resourcePath("assest/general/menuExtended.png"))
+           base.resourcePath("assets/general/menuExtended.png"))
 
         base.studentMenuIconButton=MyButton(base.studentMenuExtendedFrame.mainFrame,0,0,base.studentMenuExtendedIconImg,cursor="hand2",behavior=self.shrinkMenu)
 
         base.studentBooksExtendedIconImg =Image.open(
-           base.resourcePath("assest/general/booksExtended.png"))
+           base.resourcePath("assets/general/booksExtended.png"))
 
         base.studentBooksExtendedIconButton=MyButton(base.studentMenuExtendedFrame.mainFrame,0,57,base.studentBooksExtendedIconImg,cursor="hand2",behavior=lambda:self.toCourses())
 
         base.studentTimetableExtendedIconImg =Image.open(
-           base.resourcePath("assest/general/timetableExtended.png"))
+           base.resourcePath("assets/general/timetableExtended.png"))
 
         base.studentTimetableExtendedIconButton=MyButton(base.studentMenuExtendedFrame.mainFrame,0,107,base.studentTimetableExtendedIconImg,cursor="hand2",behavior=self.toTimeTable)
 
         base.studentGradesExtendedIconImg =Image.open(
-           base.resourcePath("assest/general/GradesExtended.png"))
+           base.resourcePath("assets/general/GradesExtended.png"))
 
         base.studentGradesExtendedIconButton=MyButton(base.studentMenuExtendedFrame.mainFrame,0,156,base.studentGradesExtendedIconImg,cursor="hand2",behavior=self.toGrades)
 
         base.studentStaffExtendedIconImg =Image.open(
-           base.resourcePath("assest/general/staffExtended.png"))
+           base.resourcePath("assets/general/staffExtended.png"))
 
         base.studentStaffExtendedIconButton=MyButton(base.studentMenuExtendedFrame.mainFrame,0,207,base.studentStaffExtendedIconImg,cursor="hand2",behavior=self.toStaff)
 
         base.studentProfileExtendedIconImg =Image.open(
-           base.resourcePath("assest/general/profileExtended.png"))
+           base.resourcePath("assets/general/profileExtended.png"))
 
         base.studentProfileExtendedIconButton=MyButton(base.studentMenuExtendedFrame.mainFrame,0,256,base.studentProfileExtendedIconImg,cursor="hand2",behavior=self.toProfile)
 
         base.studentAboutExtendedIconImg =Image.open(
-           base.resourcePath("assest/general/aboutExtended.png"))
+           base.resourcePath("assets/general/aboutExtended.png"))
 
         base.studentAboutExtendedIconButton=MyButton(base.studentMenuExtendedFrame.mainFrame,0,311,base.studentAboutExtendedIconImg,cursor="hand2",behavior=self.toAbout)
 

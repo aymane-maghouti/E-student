@@ -84,15 +84,15 @@ class AdminGrades:
 
 
         base.menuAdminGradesClassMidStandardlImg = Image.open(
-            r"assest\general\optionsmallStandardImg.png")
+            r"assets\general\optionsmallStandardImg.png")
         base.menuAdminGradesClassMidHoverImg = Image.open(
-            r"assest\general\optionSmallHoverImg.png")
+            r"assets\general\optionSmallHoverImg.png")
 
         base.menuAdminGradesClassMidClickedImg = Image.open(
-            r"assest\general\optionSmallClickedImg.png")
+            r"assets\general\optionSmallClickedImg.png")
 
         base.menuListAdminGradesClassMidStandardImg = Image.open(
-            r"assest\general\optionlistMidStandardImg.png")
+            r"assets\general\optionlistMidStandardImg.png")
 
 
         # base.Grades=adminGrades()
@@ -100,16 +100,16 @@ class AdminGrades:
                                                           font=("Montserrat", 20, "bold"), fill="white", anchor=tk.NW)
 
         base.adminGradesImg =ImageTk.PhotoImage(Image.open(
-           base.resourcePath("assest/adminGradesPage/gradesBackground.png")))
+           base.resourcePath("assets/adminGradesPage/gradesBackground.png")))
 
         base.adminGradesImg =ImageTk.PhotoImage(Image.open(
-           base.resourcePath("assest/adminGradesPage/GradesBackground.png")))
+           base.resourcePath("assets/adminGradesPage/GradesBackground.png")))
 
         base.adminGradesFrame=base.Background.create_image(117,174,image=base.adminGradesImg,anchor=tk.NW)
 
-        base.moduleAdminGradesStandardlImg = Image.open(base.resourcePath("assest\general\InputMidLargeLabelImg.png"))
+        base.moduleAdminGradesStandardlImg = Image.open(base.resourcePath("assets\general\InputMidLargeLabelImg.png"))
         base.moduleAdminGradesHoverImg = Image.open(
-            base.resourcePath("assest\general\InputMidLargeHoverImg.png"))
+            base.resourcePath("assets\general\InputMidLargeHoverImg.png"))
 
         base.moduleLoginText = base.Background.create_text(270, 278, text="Module", font=("Montserrat", 6, "bold"),
                                                           fill="#bb86fc", anchor=tk.NW)
@@ -147,9 +147,9 @@ class AdminGrades:
                                                           fill="#bb86fc", anchor=tk.NW)
 
         base.importAdminGradesButtonImg = Image.open(
-            base.resourcePath("assest/general/uploadStandardImg.png"))
+            base.resourcePath("assets/general/uploadStandardImg.png"))
         base.importAdminGradesClickedButtonImg = Image.open(
-            base.resourcePath("assest/general/uploadClickedImg.png"))
+            base.resourcePath("assets/general/uploadClickedImg.png"))
         base.importAdminGradesButton = MyButton(base.Background, 250, 360, standardImg=base.importAdminGradesButtonImg,clickImg=base.importAdminGradesClickedButtonImg,
                                                  cursor="hand2",behavior=lambda :self.importPDF())
         base.importAdminGradesButton.validate=lambda:checkPdf(self.selectedPDF)
@@ -160,9 +160,9 @@ class AdminGrades:
         base.adminGradesForm.get=lambda:self.values
 
         base.submitAdminGradesButtonImg = Image.open(
-            r"assest\loginPage\submitButton.png")
+            r"assets\loginPage\submitButton.png")
         base.submitAdminGradesHoverButtonImg = Image.open(
-            r"assest\loginPage\submitClicked.png")
+            r"assets\loginPage\submitClicked.png")
         base.submitAdminGradesButton = MyButton(base.Background, 350, 431, standardImg=base.submitAdminGradesButtonImg,clickImg=base.submitAdminGradesHoverButtonImg,
                                                  cursor="hand2",behavior=self.insertToDB)
 

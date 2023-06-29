@@ -21,7 +21,7 @@ class StudentGrades:
                                                           font=("Montserrat", 20, "bold"), fill="white", anchor=tk.NW)
 
         base.studentGradesImg =ImageTk.PhotoImage(Image.open(
-           base.resourcePath("assest/studentGradesPage/gradesBackground.png")))
+           base.resourcePath("assets/studentGradesPage/gradesBackground.png")))
 
         base.studentGradesFrame=MyScrollableFrame(base.Background,base.studentGradesImg,"#1f1a24",685,297,117,174,20,20)
         self.show_grades()
@@ -52,7 +52,7 @@ class StudentGrades:
         Label(table_frame, text="Published at", width=15, height=2,font=("Montserrat", 12, "bold"),foreground="#bb86fc",background="#1f1a24").grid(row=0, column=3)
 
         self.downloadStandardIcon = ImageTk.PhotoImage(Image.open(
-            self.base.resourcePath("assest/general/downloadStandardIcon.png")))
+            self.base.resourcePath("assets/general/downloadStandardIcon.png")))
 
         # Add the data to the table
         i=0

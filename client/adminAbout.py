@@ -20,7 +20,7 @@ class AdminAbout:
                                                           font=("Montserrat", 20, "bold"), fill="white", anchor=tk.NW)
 
         base.adminAboutImg =ImageTk.PhotoImage(Image.open(
-           base.resourcePath("assest/adminAboutPage/aboutBackground.png")))
+           base.resourcePath("assets/adminAboutPage/aboutBackground.png")))
 
         base.adminAboutFrame=MyScrollableFrame(base.Background,base.adminAboutImg,"#1f1a24",685,297,117,174,20,20)
 

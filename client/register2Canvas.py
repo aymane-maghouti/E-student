@@ -122,7 +122,7 @@ class Register2:
         base.config(cursor="arrow")
 
         base.loginWidgetsImg = tk.PhotoImage(
-            file=r"assest\register1Page\registerFrame.png")
+            file=r"assets\register1Page\registerFrame.png")
         base.register2WidgetsFrame = base.Background.create_image(55, 136, image=base.loginWidgetsImg, anchor=tk.NW)
         base.register2Title = base.Background.create_text(94, 158, text="Create your account",
                                                           font=("Montserrat", 23, "bold"), fill="white", anchor=tk.NW)
@@ -134,23 +134,23 @@ class Register2:
 
         #import
         base.importRegister2ButtonImg = Image.open(
-           base.resourcePath("assest/register2Page/importRegister2StandardImg.png"))
+           base.resourcePath("assets/register2Page/importRegister2StandardImg.png"))
         base.importRegister2ClickedButtonImg = Image.open(
-           base.resourcePath("assest/register2Page/importRegisterClickedImg.png"))
+           base.resourcePath("assets/register2Page/importRegisterClickedImg.png"))
         base.importRegister2Button = MyButton(base.Background, 191, 254, standardImg=base.importRegister2ButtonImg,clickImg=base.importRegister2ClickedButtonImg,
                                             cursor="hand2",behavior=lambda :self.importPhoto(base))
 
         #remove
         base.removeRegister2ButtonImg = Image.open(
-           base.resourcePath("assest/register2Page/removeRegisterStandardImg.png"))
+           base.resourcePath("assets/register2Page/removeRegisterStandardImg.png"))
         base.removeRegister2ClickedButtonImg = Image.open(
-           base.resourcePath("assest/register2Page/removeRegisterClickedImg.png"))
+           base.resourcePath("assets/register2Page/removeRegisterClickedImg.png"))
         base.removeRegister2Button = MyButton(base.Background, 280, 254, standardImg=base.removeRegister2ButtonImg,clickImg=base.removeRegister2ClickedButtonImg,
                                             cursor="hand2", behavior=lambda :self.removePhoto(base))
 
         #Input photo
         base.inputPhotoRegister2ButtonImg = Image.open(
-           base.resourcePath("assest/register2Page/inputPhotoStandardImg.png"))
+           base.resourcePath("assets/register2Page/inputPhotoStandardImg.png"))
         base.inputPhotoRegister2Button = MyButton(base.Background, 223, 322, standardImg=base.inputPhotoRegister2ButtonImg if self.photoVar==None else self.photoVar,
                                             cursor="hand2",behavior=lambda :self.importPhoto(base))
         base.inputPhotoRegister2Button.get=lambda :self.getJPEGImage()
@@ -159,7 +159,7 @@ class Register2:
 
         #Input cadre
         base.inputPhotoCadreRegister2ButtonImg = Image.open(
-           base.resourcePath("assest/register2Page/inputPhotoCadreStandardImg.png"))
+           base.resourcePath("assets/register2Page/inputPhotoCadreStandardImg.png"))
         base.inputPhotoCadreRegister2Button = MyButton(base.Background, 220, 319, standardImg=base.inputPhotoCadreRegister2ButtonImg,
                                             cursor="hand2", behavior=lambda :self.importPhoto(base))
         base.inputPhotoCadreRegister2Button.get=lambda :self.photoVar
@@ -171,17 +171,17 @@ class Register2:
         base.register2Form.validate=lambda:checkRegister2Form(base.register2Form,self)
         # submit
         base.nextRegister2ButtonImg = Image.open(
-            r"assest\general\nextButtonStandardImg.png")
+            r"assets\general\nextButtonStandardImg.png")
         base.nextRegister2Button = MyButton(base.Background, 340, 453, standardImg=base.nextRegister2ButtonImg,
                                             cursor="hand2", behavior=base.register2ToRegister3)
 
         base.backRegister2ButtonImg = Image.open(
-            r"assest\general\backButtonStandardImg.png")
+            r"assets\general\backButtonStandardImg.png")
         base.backRegister2Button = MyButton(base.Background, 141, 453, standardImg=base.backRegister2ButtonImg,
                                             cursor="hand2", behavior=base.register2ToRegister1)
 
         base.submitLoginButtonImg = Image.open(
-            r"assest\general\submitDisabledButtonImg.png")
+            r"assets\general\submitDisabledButtonImg.png")
         base.submitRegister2Button = MyButton(base.Background, 221, 453, standardImg=base.submitLoginButtonImg,
                                               cursor="X_cursor")
 

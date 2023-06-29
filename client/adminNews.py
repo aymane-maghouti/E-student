@@ -71,31 +71,31 @@ class AdminNews:
         if self.titreVar == None:
             self.titreVar = tk.StringVar(base)
         base.menuAdminNewsClassMidStandardlImg = Image.open(
-            r"assest\general\optionsmallStandardImg.png")
+            r"assets\general\optionsmallStandardImg.png")
         base.menuAdminNewsClassMidHoverImg = Image.open(
-            r"assest\general\optionSmallHoverImg.png")
+            r"assets\general\optionSmallHoverImg.png")
 
         base.menuAdminNewsClassMidClickedImg = Image.open(
-            r"assest\general\optionSmallClickedImg.png")
+            r"assets\general\optionSmallClickedImg.png")
 
         base.menuListAdminNewsClassMidStandardImg = Image.open(
-            r"assest\general\optionlistMidStandardImg.png")
+            r"assets\general\optionlistMidStandardImg.png")
 
 
         base.adminNewsTitle = base.Background.create_text(156, 130, text="Upload News",
                                                           font=("Montserrat", 20, "bold"), fill="white", anchor=tk.NW)
 
         base.adminNewsImg =ImageTk.PhotoImage(Image.open(
-           base.resourcePath("assest/adminNewsPage/newsBackground.png")))
+           base.resourcePath("assets/adminNewsPage/newsBackground.png")))
 
         base.adminNewsImg =ImageTk.PhotoImage(Image.open(
-            base.resourcePath("assest/adminNewsPage/NewsBackground.png")))
+            base.resourcePath("assets/adminNewsPage/NewsBackground.png")))
 
         base.adminNewsFrame=base.Background.create_image(117,174,image=base.adminNewsImg,anchor=tk.NW)
 
-        base.moduleAdminNewsStandardlImg = Image.open(base.resourcePath("assest\general\InputMidLargeLabelImg.png"))
+        base.moduleAdminNewsStandardlImg = Image.open(base.resourcePath("assets\general\InputMidLargeLabelImg.png"))
         base.moduleAdminNewsHoverImg = Image.open(
-            base.resourcePath("assest\general\InputMidLargeHoverImg.png"))
+            base.resourcePath("assets\general\InputMidLargeHoverImg.png"))
 
         base.titreAdminNewsText = base.Background.create_text(270, 209, text="Titre", font=("Montserrat", 6, "bold"),
                                                           fill="#bb86fc", anchor=tk.NW)
@@ -112,9 +112,9 @@ class AdminNews:
                                                        placeholder="Architecture des ordinateurs",modified=self.titreModified,value=self.titreVar)
         base.titreAdminNewsStandardObject.validate=lambda:checkLenght(base.titreAdminNewsStandardObject,150,"Title")
 
-        base.detailAdminNewsStandardlImg = ImageTk.PhotoImage(Image.open(base.resourcePath("assest/general/InputTextArea.png")))
+        base.detailAdminNewsStandardlImg = ImageTk.PhotoImage(Image.open(base.resourcePath("assets/general/InputTextArea.png")))
         # base.moduleAdminNewsHoverImg = Image.open(
-        #     base.resourcePath("assest\general\InputMidLargeHoverImg.png"))
+        #     base.resourcePath("assets\general\InputMidLargeHoverImg.png"))
         base.adminNewsDetailBackground=base.Background.create_image(250,273,image=base.detailAdminNewsStandardlImg,anchor=tk.NW)
 
 
@@ -152,9 +152,9 @@ class AdminNews:
         base.adminNewsForm.get=lambda:self.values
 
         base.submitAdminNewsButtonImg = Image.open(
-            r"assest\loginPage\submitButton.png")
+            r"assets\loginPage\submitButton.png")
         base.submitAdminNewsHoverButtonImg = Image.open(
-            r"assest\loginPage\submitClicked.png")
+            r"assets\loginPage\submitClicked.png")
         base.submitAdminNewsButton = MyButton(base.Background, 350, 431, standardImg=base.submitAdminNewsButtonImg,clickImg=base.submitAdminNewsHoverButtonImg,
                                                  cursor="hand2",behavior=self.insertToDB)
 

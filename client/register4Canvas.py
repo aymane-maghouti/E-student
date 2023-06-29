@@ -136,22 +136,22 @@ class Register4:
 
         base.config(cursor="arrow")
         base.register4WidgetsImg = tk.PhotoImage(
-            file=r"assest\register1Page\registerFrame.png")
+            file=r"assets\register1Page\registerFrame.png")
         base.register4WidgetsFrame = base.Background.create_image(55, 136, image=base.register4WidgetsImg, anchor=tk.NW)
         base.register4Title = base.Background.create_text(94, 158, text="Create your account",
                                                           font=("Montserrat", 23, "bold"), fill="white", anchor=tk.NW)
 
         # option menu list
         base.menuRegister2MidStandardlImg = Image.open(
-            base.resourcePath("assest\general\optionMidStandardImg.png"))
+            base.resourcePath("assets\general\optionMidStandardImg.png"))
         base.menuRegister2MidHoverImg = Image.open(
-            base.resourcePath("assest\general\optionMidHoverImg.png"))
+            base.resourcePath("assets\general\optionMidHoverImg.png"))
 
         base.menuRegister2MidClickedImg = Image.open(
-            base.resourcePath("assest\general\optionMidClickedImg.png"))
+            base.resourcePath("assets\general\optionMidClickedImg.png"))
 
         base.menuListRegister2MidStandardImg = Image.open(
-            base.resourcePath("assest\general\optionlistMidStandardImg.png"))
+            base.resourcePath("assets\general\optionlistMidStandardImg.png"))
 
         # address line 1
         base.address1Register4Text = base.Background.create_text(115, 241, text="Address Line 1",
@@ -259,25 +259,25 @@ class Register4:
 
         # #submit
         # base.submitLoginButtonImg = Image.open(
-        #     base.resourcePath("assest\general\submitDisabledButtonImg.png")
+        #     base.resourcePath("assets\general\submitDisabledButtonImg.png")
         # base.submitLoginButtonClickedImg = Image.open(
-        #     base.resourcePath("assest\loginPage\submitClicked.png")
+        #     base.resourcePath("assets\loginPage\submitClicked.png")
 
         # next
         base.nextRegister4ButtonImg = Image.open(
-            base.resourcePath("assest\general\\nextButtonStandardImg.png"))
+            base.resourcePath("assets\general\\nextButtonStandardImg.png"))
         base.nextRegister4Button = MyButton(base.Background, 340, 453, standardImg=base.nextRegister1ButtonImg,
                                             cursor="hand2", behavior=base.register4ToRegister5)
 
         # submit
         base.submitLoginButtonImg = Image.open(
-            base.resourcePath("assest\general\submitDisabledButtonImg.png"))
+            base.resourcePath("assets\general\submitDisabledButtonImg.png"))
         base.submitRegister4Button = MyButton(base.Background, 221, 453, standardImg=base.submitLoginButtonImg,
                                               cursor="X_cursor")
 
         # back
         base.backRegister4ButtonImg = Image.open(
-            base.resourcePath("assest\general\\backButtonStandardImg.png"))
+            base.resourcePath("assets\general\\backButtonStandardImg.png"))
         base.backRegister4Button = MyButton(base.Background, 141, 453, standardImg=base.backRegister4ButtonImg,
                                             cursor="hand2", behavior=base.register4ToRegister3)
 

@@ -51,13 +51,13 @@ class App(tk.Tk):
         # self.overrideredirect(True)
 
         #adding the background image to canvas
-        self.backImage = tk.PhotoImage(file=r"assest\general\loginBackgroundImg.png")
+        self.backImage = tk.PhotoImage(file=r"assets\general\loginBackgroundImg.png")
         self.Background = tk.Canvas(self, width=915, height=540, highlightthickness=0, background="#ab23ff")
         self.Background.create_image(0, 0, image=self.backImage, anchor=tk.NW)
         self.Background.place(x=0,y=0)
 
         #adding the top header Bar
-        self.headerBarImg = tk.PhotoImage(file=r"assest\general\headerBar.png")
+        self.headerBarImg = tk.PhotoImage(file=r"assets\general\headerBar.png")
         self.headerBarObject=self.Background.create_image(55, 42, image=self.headerBarImg, anchor=tk.NW)
 
         #adding the moving option to the header bar
@@ -66,11 +66,11 @@ class App(tk.Tk):
         self.Background.tag_bind(self.headerBarObject,"<B1-Motion>", self.on_move)
 
         # adding the close button
-        self.closeStandardImg = Image.open(r"assest\general\closeStandardImg.png").resize((46,46))
-        self.closeHoverImg = Image.open(r"assest\general\closeHoverImg.png").resize((46,46))
+        self.closeStandardImg = Image.open(r"assets\general\closeStandardImg.png").resize((46,46))
+        self.closeHoverImg = Image.open(r"assets\general\closeHoverImg.png").resize((46,46))
         self.closeButton = MyButton(self.Background,standardImg=self.closeStandardImg,hoverImg=self.closeHoverImg,cursor="hand2",x=812,y=43,behavior=self.quit)
 
-        self.logoImg = Image.open(r"assest\general\EstudentLogo.png")
+        self.logoImg = Image.open(r"assets\general\EstudentLogo.png")
         self.logoObject=MyButton(self.Background,79,51,self.logoImg,cursor="hand2",behavior=self.onLogoClick)
 
         # create a Toplevel window
@@ -320,13 +320,13 @@ class App(tk.Tk):
     def studentLogout(self):
         self.currentFrame.removeInterface()
         self.login.createLogin(self)
-        self.logoImg = Image.open(r"assest\general\EstudentLogo.png")
+        self.logoImg = Image.open(r"assets\general\EstudentLogo.png")
         self.logoObject=MyButton(self.Background,79,51,self.logoImg,cursor="hand2",behavior=self.onLogoClick)
 
     def adminLogout(self):
         self.currentFrame.removeInterface()
         self.login.createLogin(self)
-        self.logoImg = Image.open(r"assest\general\EstudentLogo.png")
+        self.logoImg = Image.open(r"assets\general\EstudentLogo.png")
         self.logoObject=MyButton(self.Background,79,51,self.logoImg,cursor="hand2",behavior=self.onLogoClick)
 
 

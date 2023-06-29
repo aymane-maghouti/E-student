@@ -55,22 +55,22 @@ class Login:
         self.base.currentFrame=self
 
         base.loginWidgetsImg = tk.PhotoImage(
-            file=base.resourcePath("assest\loginPage\loginFrame.png"))
+            file=base.resourcePath("assets\loginPage\loginFrame.png"))
         base.loginWidgetsFrame = base.Background.create_image(55, 136, image=base.loginWidgetsImg, anchor=tk.NW)
         base.loginTitle = base.Background.create_text(94, 158, text="Login to your account",
                                                       font=("Montserrat", 23, "bold"), fill="white", anchor=tk.NW)
 
         base.signupStandardlImg = Image.open(
-            base.resourcePath("assest\loginPage\signupStandardImg.png"))
+            base.resourcePath("assets\loginPage\signupStandardImg.png"))
         base.signupHoverImg = Image.open(
-            base.resourcePath("assest\loginPage\signupHoverImg.png"))
+            base.resourcePath("assets\loginPage\signupHoverImg.png"))
 
         base.Background.signup = MyButton(base.Background, 221, 212,base.signupStandardlImg,hoverImg=base.signupHoverImg,cursor="hand2",behavior=base.loginToRegister1)
 
         base.forgotStandardlImg = Image.open(
-            base.resourcePath("assest\loginPage\\forgotStandardImg.png"))
+            base.resourcePath("assets\loginPage\\forgotStandardImg.png"))
         base.forgotHoverImg = Image.open(
-            base.resourcePath("assest\loginPage\\forgotHoverImg.png"))
+            base.resourcePath("assets\loginPage\\forgotHoverImg.png"))
 
         base.Background.forgot = MyButton(base.Background, 219, 375,base.forgotStandardlImg,hoverImg=base.forgotHoverImg,cursor="hand2",behavior=base.loginToForgot)
 
@@ -79,9 +79,9 @@ class Login:
 
 
 
-        base.emailLogingStandardlImg = Image.open(base.resourcePath("assest\general\inputLabelImg.png"))
+        base.emailLogingStandardlImg = Image.open(base.resourcePath("assets\general\inputLabelImg.png"))
         base.emailLogingHoverImg = Image.open(
-            base.resourcePath("assest\general\inputLabelHoveredImg.png"))
+            base.resourcePath("assets\general\inputLabelHoveredImg.png"))
 
         base.emailLoginText = base.Background.create_text(115, 241, text="Email address", font=("Montserrat", 6, "bold"),
                                                           fill="#bb86fc", anchor=tk.NW)
@@ -124,9 +124,9 @@ class Login:
 
 
         base.submitLoginButtonImg = Image.open(
-            base.resourcePath("assest\loginPage\submitButton.png"))
+            base.resourcePath("assets\loginPage\submitButton.png"))
         base.submitLoginButtonClickedImg = Image.open(
-            base.resourcePath("assest\loginPage\submitClicked.png"))
+            base.resourcePath("assets\loginPage\submitClicked.png"))
         base.submitLoginButton = MyButton(base.Background, 221, 412, standardImg=base.submitLoginButtonImg,
                                           clickImg=base.submitLoginButtonClickedImg, cursor="hand2",
                                           behavior=base.loginToHome)

@@ -43,7 +43,7 @@ class Register6:
 
         base.config(cursor="arrow")
         base.register6WidgetsImg = tk.PhotoImage(
-            file=base.resourcePath("assest\\register1Page\\registerFrame.png"))
+            file=base.resourcePath("assets\\register1Page\\registerFrame.png"))
         base.register6WidgetsFrame = base.Background.create_image(55, 136, image=base.register6WidgetsImg, anchor=tk.NW)
 
 
@@ -55,7 +55,7 @@ class Register6:
                                                                  fill="#bb86fc", anchor=tk.NW)
 
         base.register6BackgroundWidgetsImg = tk.PhotoImage(
-            file=base.resourcePath("assest/register6Page/backgroundRegister6Img.png"))
+            file=base.resourcePath("assets/register6Page/backgroundRegister6Img.png"))
 
         registerInfo=MyScrollableFrame(base.Background,base.register6BackgroundWidgetsImg,"#1f1a24",315,159,95,255,14,15)
         l=base.getRegisterValues()
@@ -192,7 +192,7 @@ class Register6:
 
         # Open image in RGBA mode
         input_photo_cadre_register_7_button_img = Image.open(
-            base.resourcePath(r"assest\register2Page\inputPhotoCadreStandardImg.png")).convert('RGBA')
+            base.resourcePath(r"assets\register2Page\inputPhotoCadreStandardImg.png")).convert('RGBA')
         photo_img = l[1][0].convert('RGBA').resize((56,56))
 
         # Resize image
@@ -227,19 +227,19 @@ class Register6:
 
         # next
         base.nextRegister6ButtonImg = Image.open(
-            base.resourcePath("assest\general\\nextDisabledButtonImg.png"))
+            base.resourcePath("assets\general\\nextDisabledButtonImg.png"))
         base.nextRegister6Button = MyButton(base.Background, 340, 453, standardImg=base.nextRegister6ButtonImg,
                                             cursor="X_cursor")
 
         # submit
         base.submitRegister6ButtonImg = Image.open(
-            base.resourcePath("assest\loginPage\submitButton.png"))
+            base.resourcePath("assets\loginPage\submitButton.png"))
         base.submitRegister6Button = MyButton(base.Background, 221, 453, standardImg=base.submitRegister6ButtonImg,
                                               cursor="hand2",behavior=lambda :self.submit(base.getRegisterValues()))
 
         # back
         base.backRegister6ButtonImg = Image.open(
-            base.resourcePath("assest\general\\backButtonStandardImg.png"))
+            base.resourcePath("assets\general\\backButtonStandardImg.png"))
         base.backRegister6Button = MyButton(base.Background, 141, 453, standardImg=base.backRegister6ButtonImg,
                                             cursor="hand2",behavior=base.register6ToRegister5)
 

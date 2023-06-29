@@ -29,7 +29,7 @@ class StudentCourses:
                                                           font=("Montserrat", 20, "bold"), fill="white", anchor=tk.NW)
 
         base.studentCoursesImg =ImageTk.PhotoImage(Image.open(
-           base.resourcePath("assest/studentCoursesPage/coursesBackground.png")))
+           base.resourcePath("assets/studentCoursesPage/coursesBackground.png")))
 
         base.studentCoursesFrame=MyScrollableFrame(base.Background,base.studentCoursesImg,"#1f1a24",685,297,117,174,20,20)
         self.table = Frame(base.studentCoursesFrame.scrollable_frame, width=600, height=500,background="#1f1a24")
@@ -55,7 +55,7 @@ class StudentCourses:
         Label(self.table, text="Published at", width=15, height=2,font=("Montserrat", 12, "bold"),foreground="#bb86fc",background="#1f1a24").grid(row=0, column=3)
 
         self.downloadStandardIcon = ImageTk.PhotoImage(Image.open(
-            self.base.resourcePath("assest/general/downloadStandardIcon.png")))
+            self.base.resourcePath("assets/general/downloadStandardIcon.png")))
 
         i=0
         for row in result:

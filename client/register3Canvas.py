@@ -111,28 +111,28 @@ class Register3:
 
         base.config(cursor="arrow")
         base.regiter2WidgetsImg = tk.PhotoImage(
-            file=r"assest\register1Page\registerFrame.png")
+            file=r"assets\register1Page\registerFrame.png")
         base.register3WidgetsFrame = base.Background.create_image(55, 136, image=base.regiter2WidgetsImg, anchor=tk.NW)
         base.register3Title = base.Background.create_text(94, 158, text="Create your account",
                                                           font=("Montserrat", 23, "bold"), fill="white", anchor=tk.NW)
 
         # option menu list
         base.menuRegister3MidStandardlImg = Image.open(
-            r"assest\general\optionMidStandardImg.png")
+            r"assets\general\optionMidStandardImg.png")
         base.menuRegister3MidHoverImg = Image.open(
-            r"assest\general\optionMidHoverImg.png")
+            r"assets\general\optionMidHoverImg.png")
 
         base.menuRegister3MidClickedImg = Image.open(
-            r"assest\general\optionMidClickedImg.png")
+            r"assets\general\optionMidClickedImg.png")
 
         base.menuListRegister3MidStandardImg = Image.open(
-            r"assest\general\optionlistMidStandardImg.png")
+            r"assets\general\optionlistMidStandardImg.png")
 
         # long input
         base.longInputStandardlImg = Image.open(
-            r"assest\general\inputLabelImg.png")
+            r"assets\general\inputLabelImg.png")
         base.longInputHoverImg = Image.open(
-            r"assest\general\inputLabelHoveredImg.png")
+            r"assets\general\inputLabelHoveredImg.png")
 
         # Bac Grade
         base.gradeRegisterText = base.Background.create_text(115, 292, text="Bac Grade", font=("Montserrat", 6, "bold"),
@@ -253,17 +253,17 @@ class Register3:
 
 
         base.nextRegister3ButtonImg = Image.open(
-            r"assest\general\nextButtonStandardImg.png")
+            r"assets\general\nextButtonStandardImg.png")
         base.nextRegister3Button = MyButton(base.Background, 340, 453, standardImg=base.nextRegister3ButtonImg,
                                             cursor="hand2", behavior=base.register3ToRegister4)
 
         base.backRegister3ButtonImg = Image.open(
-            r"assest\general\backButtonStandardImg.png")
+            r"assets\general\backButtonStandardImg.png")
         base.backRegister3Button = MyButton(base.Background, 141, 453, standardImg=base.backRegister3ButtonImg,
                                             cursor="hand2", behavior=base.register3ToRegister2)
 
         base.submitLoginButtonImg = Image.open(
-            r"assest\general\submitDisabledButtonImg.png")
+            r"assets\general\submitDisabledButtonImg.png")
         base.submitRegister3Button = MyButton(base.Background, 221, 453, standardImg=base.submitLoginButtonImg,
                                               cursor="X_cursor")
 

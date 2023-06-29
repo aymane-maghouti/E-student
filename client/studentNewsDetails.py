@@ -19,7 +19,7 @@ class StudentNewsDetail:
                                                           font=("Montserrat", 20, "bold"), fill="white", anchor=tk.NW)
 
         base.studentNewsDetailImg =ImageTk.PhotoImage(Image.open(
-           base.resourcePath("assest/studentNewsDetailPage/newsDetailBackground.png")))
+           base.resourcePath("/studentNewsDetailPage/newsDetailBackground.png")))
 
         base.studentNewsDetailFrame=MyScrollableFrame(base.Background,base.studentNewsDetailImg,"#1f1a24",685,297,117,174,20,20)
 
