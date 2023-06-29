@@ -4,14 +4,17 @@ from tkinter import filedialog
 from io import BytesIO
 import os
 import numpy
+from tkinter import messagebox
 
 def checkPhoto(self,labelName):
     if self.photoVar==None:
         print(f"invalide {labelName}")
+        messagebox.showerror("Value Error","invalid Photo")
         return False
     filename, extension = os.path.splitext(os.path.basename(self.photopath))
     if extension not in [".jpg",".jpeg"]:
         print(f"invalide {labelName}")
+        messagebox.showerror("Value Error","invalid Photo (only .jpg and .jpeg are accepted)")
         return False
     print(f"valide {labelName}")
     return True
@@ -24,6 +27,7 @@ def checkRegister2Form(self,register):
         try:
             if not element.validate():
                 valide=False
+                break
         except Exception as e:
             print(e)
 
@@ -118,7 +122,7 @@ class Register2:
         base.config(cursor="arrow")
 
         base.loginWidgetsImg = tk.PhotoImage(
-            file=r"C:\Users\ID 1\tkinterTest\E-student\client\assest\register1Page\registerFrame.png")
+            file=r"assest\register1Page\registerFrame.png")
         base.register2WidgetsFrame = base.Background.create_image(55, 136, image=base.loginWidgetsImg, anchor=tk.NW)
         base.register2Title = base.Background.create_text(94, 158, text="Create your account",
                                                           font=("Montserrat", 23, "bold"), fill="white", anchor=tk.NW)
@@ -165,19 +169,19 @@ class Register2:
 
         base.register2Form = MyForm(base,base.inputPhotoRegister2Button)
         base.register2Form.validate=lambda:checkRegister2Form(base.register2Form,self)
-        # submi
+        # submit
         base.nextRegister2ButtonImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\nextButtonStandardImg.png")
+            r"assest\general\nextButtonStandardImg.png")
         base.nextRegister2Button = MyButton(base.Background, 340, 453, standardImg=base.nextRegister2ButtonImg,
                                             cursor="hand2", behavior=base.register2ToRegister3)
 
         base.backRegister2ButtonImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\backButtonStandardImg.png")
+            r"assest\general\backButtonStandardImg.png")
         base.backRegister2Button = MyButton(base.Background, 141, 453, standardImg=base.backRegister2ButtonImg,
                                             cursor="hand2", behavior=base.register2ToRegister1)
 
         base.submitLoginButtonImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\submitDisabledButtonImg.png")
+            r"assest\general\submitDisabledButtonImg.png")
         base.submitRegister2Button = MyButton(base.Background, 221, 453, standardImg=base.submitLoginButtonImg,
                                               cursor="X_cursor")
 

@@ -178,7 +178,7 @@ def insert_into_notification(title, detail, filiere):
     mycursor.execute(sql, val)
     mydb.commit()
 
-update_student("filiere",'ID',31)
-update_student("class",'ID1',31)
+# update_student("filiere",'ID',37)
+# update_student("class",'ID1',37)
 # for i in range(23,31):
-#     delete_student(i)
+# delete_student(53)

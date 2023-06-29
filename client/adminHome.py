@@ -6,6 +6,9 @@ from adminGrades import AdminGrades
 from adminStudents import AdminStudents
 from adminTimeTable import AdminTimeTable
 from adminAbout import AdminAbout
+from adminAdvancedSearch import AdminAdvancedSearch
+from adminNewsDetails import AdminNewsDetail
+from adminUpdate import AdminUpdate
 from datetime import datetime
 import matplotlib as mpl
 import matplotlib.pyplot as plt
@@ -40,6 +43,8 @@ class AdminHome:
 
     def remove(self):
         self.base.adminHomeGroup.removeGroup()
+    def removeInterface(self):
+        self.base.adminHomeInterfaceGroup.removeGroup()
 
     def toAdminHome(self):
         self.base.logoadminObject.place_forget()
@@ -65,11 +70,18 @@ class AdminHome:
         self.base=base
         # self.hideWidgets=[]
 
+        self.detailNews=AdminNewsDetail()
+
 
         base.adminHomeTitle = base.Background.create_text(130, 158, text="Welcome Admin",
                                                           font=("Montserrat", 20, "bold"), fill="white", anchor=tk.NW)
         base.logoadminImg = Image.open(r"assest\general\EstudentLogo.png")
         base.logoadminObject=MyButton(base.Background,79,51,base.logoadminImg,cursor="hand2",behavior=lambda:self.toAdminHome())
+
+        # adding the logout button
+        base.logoutStudentStandardImg = Image.open(r"assest\studentHomePage\logoutStandardImg.png").resize((46,46))
+        base.logoutStudentHoverImg = Image.open(r"assest\studentHomePage\logoutHoverImg.png").resize((46,46))
+        base.logoutStudentButton = MyButton(base.Background,standardImg=base.logoutStudentStandardImg,hoverImg=base.logoutStudentHoverImg,cursor="hand2",x=750,y=43,behavior=base.studentLogout)
 
         base.adminHomeNewsImg =ImageTk.PhotoImage(Image.open(
            base.resourcePath("assest/adminHomePage/newsBackground.png")))
@@ -108,6 +120,9 @@ class AdminHome:
         base.timeTable=AdminTimeTable()
         base.students=AdminStudents()
         base.about=AdminAbout()
+        base.advancedSearch=AdminAdvancedSearch()
+        base.advancedSearch=AdminAdvancedSearch()
+        base.update=AdminUpdate()
 
         base.selectedCircleadminImg =Image.open(
            base.resourcePath("assest/general/selectedTaskCircle.png"))
@@ -194,7 +209,8 @@ class AdminHome:
 
         base.adminAboutExtendedIconButton=MyButton(base.adminMenuExtendedFrame.mainFrame,0,311,base.adminAboutExtendedIconImg,cursor="hand2",behavior=self.toAbout)
 
-        base.adminHomeGroup = MyWidgetsGroup(base.Background,base.adminHomeNewsText,base.adminHomeGraphFrame,base.adminHomeNewsFrame,base.adminHomeTitle)
+        base.adminHomeGroup = MyWidgetsGroup(base.Background,base.logoutStudentButton,base.adminHomeNewsText,base.adminHomeGraphFrame,base.adminHomeNewsFrame,base.adminHomeTitle)
+        base.adminHomeInterfaceGroup = MyWidgetsGroup(base.Background,base.logoadminObject,base.logoutStudentButton,base.adminHomeNewsText,base.adminHomeGraphFrame,base.adminHomeNewsFrame,base.adminHomeTitle,base.adminHomeMenuFrame,base.adminHomeMenuFrame.mainFrame)
 
         self.hideWidgets=[self.base.adminHomeGraphFrame]
 
@@ -297,21 +313,17 @@ class AdminHome:
             num_lines = int(text_length / text_width) + (1 if text_length % text_width else 0)
 
             text = Text(table_frame, width=text_width, height=num_lines, takefocus=False,font=("Montserrat", 10, "bold"),relief="flat",cursor="hand2",foreground="#bb86fc",background="#1f1a24")
-            text.bind("<Button-1>", lambda event, i=i: self.show_details(notifications[i][2]))
+            text.bind("<Button-1>", lambda event, i=i: self.show_details(notifications,i))
             # texts.append(text)
             text.insert(END, f'{notifications[i][0]}')
             text.configure(state='disabled')
             text.grid(row=(2 * i), column=0)
-            Button(table_frame, text=f'{notifications[i][1]}', command=lambda i=i: self.show_details(notifications[i][2]),
+            Button(table_frame, text=f'{notifications[i][1]}', command=lambda i=i: self.show_details(notifications,i),
                    width=15, height=1,pady=0,padx=0,highlightthickness=0,relief="sunken",borderwidth=0,border=0,overrelief="sunken",foreground="white",background="#1f1a24",activeforeground="white",activebackground="#1f1a24",cursor="hand2",font=("Montserrat", 8, "bold")).grid(row=(2 * i) + 1, column=0,sticky="nw")
 
-    def show_details(self,details):
-        paragraph = details
-        n = len(paragraph)
-        label = Label(self.base.adminHomeGraphFrame, text=paragraph, wraplength=n, anchor="nw", justify='left')
-        label.pack()
-        required_height = label.winfo_reqheight()
-        label.config(height=required_height)
+    def show_details(self,notifications,i):
+        self.base.currentFrame.remove()
+        self.detailNews.createAdminNewsDetail(self.base,notifications,i)
 
     def show_graph(self):
         nb_visiteurs, dates = get_data()

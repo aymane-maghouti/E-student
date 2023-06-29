@@ -1,10 +1,11 @@
 from CanvasToWidget import *
 import tkinter as tk
+from tkinter import messagebox
 
 def checkLenght(self,size,labelName="entry"):
-    size=20
-    if len(self.get())>size or len(self.get())<0 :#remake it 1
+    if len(self.get())>size or len(self.get())<1 :#remake it 1
         print(f"invalide {labelName}")
+        messagebox.showerror("Value Error",f"invalid {labelName}")
         return False
     print(f"valide {labelName}")
     return True
@@ -12,6 +13,7 @@ def checkLenght(self,size,labelName="entry"):
 def checkListChoice(self,choice,optionName="option"):
     if self.get()==choice:
         print(f"invalide {optionName}")
+        messagebox.showerror("Value Error",f"invalid {optionName}")
         return False
     print(f"valide {optionName}")
     return True
@@ -21,18 +23,21 @@ def checkGrade(self,labelName="entry"):
         value=float(self.get())
     except:
         print(f"invalide {labelName}")
+        messagebox.showerror("Value Error",f"invalid {labelName}")
         return False
     if 0<=value<=20:
         print(f"valide {labelName}")
         return True
     print(f"invalide {labelName}")
+    messagebox.showerror("Value Error", f"invalid {labelName}")
     return False
 
 def checkOption(self):
     if self.get()==None:
-        print("invalide gender")
+        messagebox.showerror("Value Error",f"invalid school type")
+        print("invalide school type")
         return False
-    print("valide gender")
+    print("valide school type")
     return True
 
 
@@ -43,6 +48,7 @@ def checkRegister3Form(self,register):
         try:
             if not element.validate():
                 valide=False
+                break
         except Exception as e:
             print(e)
 
@@ -105,28 +111,28 @@ class Register3:
 
         base.config(cursor="arrow")
         base.regiter2WidgetsImg = tk.PhotoImage(
-            file=r"C:\Users\ID 1\tkinterTest\E-student\client\assest\register1Page\registerFrame.png")
+            file=r"assest\register1Page\registerFrame.png")
         base.register3WidgetsFrame = base.Background.create_image(55, 136, image=base.regiter2WidgetsImg, anchor=tk.NW)
         base.register3Title = base.Background.create_text(94, 158, text="Create your account",
                                                           font=("Montserrat", 23, "bold"), fill="white", anchor=tk.NW)
 
         # option menu list
         base.menuRegister3MidStandardlImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionMidStandardImg.png")
+            r"assest\general\optionMidStandardImg.png")
         base.menuRegister3MidHoverImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionMidHoverImg.png")
+            r"assest\general\optionMidHoverImg.png")
 
         base.menuRegister3MidClickedImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionMidClickedImg.png")
+            r"assest\general\optionMidClickedImg.png")
 
         base.menuListRegister3MidStandardImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionlistMidStandardImg.png")
+            r"assest\general\optionlistMidStandardImg.png")
 
         # long input
         base.longInputStandardlImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\inputLabelImg.png")
+            r"assest\general\inputLabelImg.png")
         base.longInputHoverImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\inputLabelHoveredImg.png")
+            r"assest\general\inputLabelHoveredImg.png")
 
         # Bac Grade
         base.gradeRegisterText = base.Background.create_text(115, 292, text="Bac Grade", font=("Montserrat", 6, "bold"),
@@ -158,7 +164,7 @@ class Register3:
                                                   standardImg=base.emailLogingStandardlImg,
                                                   hoverImg=base.emailLogingHoverImg, marginX=21, marginY=5,
                                                   placeholder="Imzoren High school",modified=self.highSchoolNameModified,value=self.highSchoolNameVar)
-        base.highRegisterStandardObject.validate=lambda :checkLenght(base.highRegisterStandardObject,4,"high school name")
+        base.highRegisterStandardObject.validate=lambda :checkLenght(base.highRegisterStandardObject,45,"high school name")
 
         # bac Sector
         base.bacSectorRegister3Text = base.Background.create_text(115, 241, text="Bac Sector",
@@ -247,17 +253,17 @@ class Register3:
 
 
         base.nextRegister3ButtonImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\nextButtonStandardImg.png")
+            r"assest\general\nextButtonStandardImg.png")
         base.nextRegister3Button = MyButton(base.Background, 340, 453, standardImg=base.nextRegister3ButtonImg,
                                             cursor="hand2", behavior=base.register3ToRegister4)
 
         base.backRegister3ButtonImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\backButtonStandardImg.png")
+            r"assest\general\backButtonStandardImg.png")
         base.backRegister3Button = MyButton(base.Background, 141, 453, standardImg=base.backRegister3ButtonImg,
                                             cursor="hand2", behavior=base.register3ToRegister2)
 
         base.submitLoginButtonImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\submitDisabledButtonImg.png")
+            r"assest\general\submitDisabledButtonImg.png")
         base.submitRegister3Button = MyButton(base.Background, 221, 453, standardImg=base.submitLoginButtonImg,
                                               cursor="X_cursor")
 

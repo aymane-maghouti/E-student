@@ -3,7 +3,11 @@ import hashlib
 import numpy as np
 from PIL import Image,ImageTk
 from datetime import datetime
-
+import random as rd
+import tkinter.filedialog as filedialog
+import os
+import tempfile
+from tkinter import messagebox
 def connectMySQL():
     try:
         conn = connector.Connect(host="localhost",  # your host, usually localhost
@@ -61,15 +65,31 @@ def insert_data(table_name, columns, data):
     cnx.commit()
 
 
+def update_image(img, id_student):
+    conn, cursor = connectDB("student_managment")
+    resized_photo = img.resize((60, 60))
+    img_np = np.array(resized_photo)
+    sql_update = "UPDATE student SET image = %s WHERE id_student = %s"
+    val = (img_np.tobytes(), id_student)
+    cursor.execute(sql_update, val)
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+
+
 def student_inscription(l):
     l[0] = [-1] + l[0]
-    cnx, cursor = connectDB('student_managment')
-
-    img = l[1][0]
+    cnx,cursor = connectDB('student_managment')
+    print(l[1][0])
+    img = l[1][0].resize((60,60))
+    print(img)
     img_np = np.array(img)
     img_bytes = img_np.tobytes()
+    print(img," after image byte")
+    print(type(img_bytes),"image byte")
 
-    month = l[0][6][1]
+    month=l[0][6][1]
     if month.lower() == "january":
         num = 1
     elif month.lower() == "february":
@@ -97,11 +117,11 @@ def student_inscription(l):
     else:
         num = None
 
-    std_data = [(f'{l[0][0]}', f'{l[0][1]}', f'{l[0][2]}', f'{l[0][3]}', f'{l[0][4]}', f'{l[0][5]}',
-                 f'{l[0][6][2]}-{num}-{l[0][6][0]}', f'{img_bytes}'), ]
-    columns_std = ['id_class', 'firstname', 'lastname', 'CIN', 'CNE', 'gender', 'birthday', 'image']
+    print(l)
+    std_data=[(f'{l[0][0]}',f'{l[0][1]}',f'{l[0][2]}',f'{l[0][3]}',f'{l[0][4]}',f'{l[0][5]}',f'{l[0][6][2]}-{num}-{l[0][6][0]}',f'{img_bytes}'),]
+    columns_std=['id_class','firstname','lastname','CIN','CNE','gender','birthday','image']
+    insert_data("student",columns_std,std_data)
 
-    insert_data("student", columns_std, std_data)
 
     print("done student")
 
@@ -110,35 +130,40 @@ def student_inscription(l):
     query = ("SELECT id_student FROM student WHERE cin = %s")
     try:
         cursor.execute(query, (cin,))
-    except connector.Error as e:
-        print(e)
+    except connector.Error as e :
         return
     id_student = cursor.fetchone()[0]
     print(id_student)
-    cursor.close()
-    cnx.close()
+    print(img,"before update")
 
-    columns_bac = ['id_student', 'bac_filier', 'bac_language', 'grid', 'bac_city', 'school_city', 'school_type']
-    bac_data = [(f'{id_student}', f'{l[2][1]}', f'{l[2][2]}', f'{l[2][3]}', f'{l[2][0]}', f'{l[2][4]}', f'{l[2][5]}'), ]
-    insert_data("bac_student", columns_bac, bac_data)
+    update_image(img,id_student)
+
+
+
+
+    columns_bac=['id_student','bac_filier','bac_language','grid','bac_city','school_city','school_type']
+    bac_data=[(f'{id_student}',f'{l[2][1]}',f'{l[2][2]}',f'{l[2][3]}',f'{l[2][0]}',f'{l[2][4]}',f'{l[2][5]}'),]
+    insert_data("bac_student",columns_bac,bac_data)
     print("done bac")
 
-    columns_login = ['id_filier', 'email_acadymic', 'password']
-    login_data = [(-1, f'{l[4][0]}', f'{hash_password(l[4][1])}'), ]
-    insert_data("login", columns_login, login_data)
+    columns_login=['id_filier','email_acadymic','password']
+    login_data=[(-1,f'{l[4][0]}',f'{hash_password(l[4][1])}'),]
+    insert_data("login",columns_login,login_data)
     print("done login")
 
-    columns_ct = ['id_student', 'adresse1', 'adresse2', 'country', 'city', 'postal_code', 'phone_number',
-                  'email_acadymic']
-    con_data = [(f'{id_student}', f'{l[3][0]}', f'{l[3][1]}', f'{l[3][5]}', f'{l[3][4]}', f'{l[3][2]}', f'{l[3][3]}',
-                 f'{l[4][0]}'), ]
-    insert_data("contact", columns_ct, con_data)
+
+    columns_ct = ['id_student','adresse1','adresse2','country','city','postal_code','phone_number','email_acadymic']
+    con_data=[(f'{id_student}',f'{l[3][0]}',f'{l[3][1]}',f'{l[3][5]}',f'{l[3][4]}',f'{l[3][2]}',f'{l[3][3]}',f'{l[4][0]}'),]
+    insert_data("contact",columns_ct,con_data)
     print("done contact")
 
-    columns_fs = ['id_filier', 'id_student']
-    fs_data = [(-1, f'{id_student}'), ]
-    insert_data("filier_student", columns_fs, fs_data)
+
+    columns_fs=['id_filier','id_student']
+    fs_data=[(-1,f'{id_student}'),]
+    insert_data("filier_student",columns_fs,fs_data)
     print("done fs")
+
+
 
     print("fin")
 
@@ -301,6 +326,7 @@ def delete_student(student_id):
     mycursor.execute(del_from_login, (email_academic,))
     mycursor.execute(del_from_filiere_student, val)
     mycursor.execute(del_from_student, val)
+    messagebox.showinfo("Deletion", "User successfully deleted")
 
     mydb.commit()
 
@@ -320,11 +346,13 @@ def insert_into_document(file_type, file_class, file_titre, file_path):
         cursor.close()
         cnx.close()
         print("done")
+        messagebox.showinfo("Insertion","Document successfully inserted")
+        return True
 
 
     except connector.Error as err:
         print(err)
-        return
+        return False
 
 def save_into_emploi_temps(file_class, file_path):
     execution_date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -343,10 +371,13 @@ def save_into_emploi_temps(file_class, file_path):
 
         cursor.close()
         cnx.close()
+        messagebox.showinfo("Insertion", "Document inserted succesfully")
+
 
 
     except connector.Error as err:
         print(err)
+        messagebox.showerror("Insertion", "Document inserted failed")
         return
 
 def save_into_affichage(file_class, file_module, file_path):
@@ -365,8 +396,11 @@ def save_into_affichage(file_class, file_module, file_path):
 
         cursor.close()
         cnx.close()
+        messagebox.showinfo("Insertion", "Document inserted succesfully")
+
     except connector.Error as err:
         print(err)
+        messagebox.showerror("Insertion", "Document inserted failed")
         return
 
 def insert_into_notification(title, detail, filiere):
@@ -379,6 +413,8 @@ def insert_into_notification(title, detail, filiere):
     val = (id_filier, title, detail, date_pub)
     mycursor.execute(sql, val)
     mydb.commit()
+    messagebox.showerror("Insertion", "News added succesfully")
+
 
 def get_data():
     conn , cursor = connectDB('student_managment')
@@ -425,4 +461,105 @@ def update_data_base():
         cursor.execute(update_req, val)
         conn.commit()
         print("update date")
+
+def get_pdf_affichage_from_database(index):
+    conn ,cursor = connectDB('student_managment')
+
+    query = "SELECT notetable FROM affichage order by date_pub desc "
+    cursor.execute(query)
+    rows = cursor.fetchall()
+    if index >= len(rows):
+        return None
+
+    pdf_content = rows[index][0]
+    return pdf_content
+
+def download_pdf(pdf_content):
+    # Demander à l'utilisateur de choisir le dossier où il souhaite stocker le fichier PDF
+    folder_path = filedialog.askdirectory()
+
+    if folder_path:
+        temp_file = tempfile.NamedTemporaryFile(delete=False)
+        temp_file.write(pdf_content)
+        temp_file.close()
+
+        # Obtenez le nom de fichier aléatoire
+        n = rd.randrange(1000000000000000000, 999999999999999999999)
+        name_file = f"{n}.pdf"
+
+        # Créez le fichier de destination dans le dossier choisi par l'utilisateur
+        destination_file = os.path.join(folder_path, name_file)
+
+        # Copiez le contenu du fichier temporaire vers le fichier de destination
+        with open(destination_file, "wb") as f:
+            f.write(pdf_content)
+
+        # Ouvrez le dossier dans l'explorateur de fichiers
+        os.startfile(folder_path)
+
+
+def download_button_click(index):
+    pdf_content = get_pdf_affichage_from_database(index)
+    if pdf_content is not None:
+        download_pdf(pdf_content)
+
+def update_student(field_name, new_value, id_student):
+
+    if field_name == 'class':
+        if new_value == 'ID1':
+            update_table('student', 'id_class', 1, id_student)
+        elif new_value == 'ID2':
+            update_table('student', 'id_class', 2, id_student)
+        elif new_value == 'GI1':
+            update_table('student', 'id_class', 3, id_student)
+        elif new_value == 'GI2':
+            update_table('student', 'id_class', 4, id_student)
+        elif new_value == 'GC1':
+            update_table('student', 'id_class', 5, id_student)
+        elif new_value == 'GC2':
+            update_table('student', 'id_class', 6, id_student)
+        elif new_value == 'GEER1':
+            update_table('student', 'id_class', 7, id_student)
+        elif new_value == 'GEER2':
+            update_table('student', 'id_class', 8, id_student)
+    if field_name == 'filiere':
+        cnx,cursor = connectDB('student_managment')
+        cursor.execute("Select email_acadymic from contact where id_student = %s ", (id_student,))
+        email = cursor.fetchall()[0][0]
+        print(email)
+        if new_value == 'ID':
+            update_table('filier_student', 'id_filier', 1, id_student)
+            update_login('login','id_filier',1,email)
+        elif new_value == 'GI':
+            update_table('filier_student', 'id_filier', 2, id_student)
+            update_login('login','id_filier',2,email)
+        elif new_value == 'GC':
+            update_table('filier_student', 'id_filier', 3, id_student)
+            update_login('login','id_filier',3,email)
+
+        elif new_value == 'GEER':
+            update_table('filier_student', 'id_filier', 4, id_student)
+            update_login('login','id_filier',4,email)
+
+
+
+def update_table(table_name, field_name, new_value, id_student):
+    db, cursor = connectDB('student_managment')
+    sql_query = f"UPDATE {table_name} SET {field_name} = %s WHERE id_student = %s"
+    cursor.execute(sql_query, (new_value, id_student))
+    db.commit()
+    print(f"Nombre de lignes mises à jour : {cursor.rowcount}")
+    cursor.close()
+    db.close()
+
+def update_login(table_name, field_name, new_value, email):
+    db, cursor = connectDB('student_managment')
+    sql_query = f"UPDATE {table_name} SET {field_name} = %s WHERE email_acadymic = %s"
+    cursor.execute(sql_query, (new_value, email))
+    db.commit()
+    print(f"Nombre de lignes mises à jour : {cursor.rowcount}")
+    cursor.close()
+    db.close()
+
+
 

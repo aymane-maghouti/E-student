@@ -86,15 +86,15 @@ class AdminCourses:
             self.titreVar = tk.StringVar(base)
 
         base.menuAdminCoursesClassMidStandardlImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionsmallStandardImg.png")
+            r"assest\general\optionsmallStandardImg.png")
         base.menuAdminCoursesClassMidHoverImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionSmallHoverImg.png")
+            r"assest\general\optionSmallHoverImg.png")
 
         base.menuAdminCoursesClassMidClickedImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionSmallClickedImg.png")
+            r"assest\general\optionSmallClickedImg.png")
 
         base.menuListAdminCoursesClassMidStandardImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\general\optionlistMidStandardImg.png")
+            r"assest\general\optionlistMidStandardImg.png")
 
 
         base.adminCoursesTitle = base.Background.create_text(156, 130, text="Upload Courses",
@@ -109,7 +109,7 @@ class AdminCourses:
         base.moduleAdminCoursesHoverImg = Image.open(
             base.resourcePath("assest\general\InputMidLargeHoverImg.png"))
 
-        base.moduleLoginText = base.Background.create_text(270, 278, text="Titre", font=("Montserrat", 6, "bold"),
+        base.moduleAdminCoursesText = base.Background.create_text(270, 278, text="Title", font=("Montserrat", 6, "bold"),
                                                           fill="#bb86fc", anchor=tk.NW)
         base.moduleAdminCoursesEntry = tk.Entry(base.Background, border=0, bg="#382b47", fg="white",
                                                font=("Montserrat", 10, "bold"), disabledbackground="#382b47",
@@ -156,7 +156,7 @@ class AdminCourses:
                                             border=0, highlightthickness=0, padx=10, pady=6)
         base.adminCoursesTypeList.validate=lambda:checkListChoice(base.adminCoursesTypeList,"Select","Type")
         #import
-        base.moduleLoginText = base.Background.create_text(270, 349, text="file", font=("Montserrat", 6, "bold"),
+        base.moduleAdminCoursesFileText = base.Background.create_text(270, 349, text="file", font=("Montserrat", 6, "bold"),
                                                           fill="#bb86fc", anchor=tk.NW)
 
         base.importAdminCoursesButtonImg = Image.open(
@@ -173,12 +173,12 @@ class AdminCourses:
         base.adminCoursesForm.get=lambda:self.values
 
         base.submitAdminCoursesButtonImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\loginPage\submitButton.png")
+            r"assest\loginPage\submitButton.png")
         base.submitAdminCoursesHoverButtonImg = Image.open(
-            r"C:\Users\ID 1\tkinterTest\E-student\client\assest\loginPage\submitClicked.png")
+            r"assest\loginPage\submitClicked.png")
         base.submitAdminCoursesButton = MyButton(base.Background, 350, 431, standardImg=base.submitAdminCoursesButtonImg,clickImg=base.submitAdminCoursesHoverButtonImg,
                                                  cursor="hand2",behavior=self.insertToDB)
 
 
-        base.adminCoursesGroup=MyWidgetsGroup(base.Background,base.adminCoursesClassText,base.moduleAdminCoursesEntry,base.moduleLoginText,base.adminCoursesTypeText,base.adminCoursesClassLabel,base.adminCoursesTypeLabel,base.adminCoursesTitle,base.adminCoursesFrame,base.adminCoursesTypeList,base.adminCoursesClassList)
+        base.adminCoursesGroup=MyWidgetsGroup(base.Background,base.adminCoursesClassText,base.moduleAdminCoursesEntry,base.moduleAdminCoursesText,base.adminCoursesTypeText,base.adminCoursesClassLabel,base.adminCoursesTypeLabel,base.adminCoursesTitle,base.adminCoursesFrame,base.adminCoursesTypeList,base.adminCoursesClassList,base.moduleAdminCoursesStandardObject,base.moduleAdminCoursesFileText,base.importAdminCoursesButton)
         self.hideWidgets=[]

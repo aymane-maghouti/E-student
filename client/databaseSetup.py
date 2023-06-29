@@ -192,12 +192,10 @@ with open('doc/GI1/Chapitre 0-Introduction GENERALE.pdf', 'rb') as f31,\
     tp2_web = f35.read()
 
 with open('doc/GI2/Ccharp.pdf', 'rb') as f36, \
-        open('doc/GI2/Cours TypeScript-1.pdf', 'rb') as f37, \
         open('doc/GI2/Introduction sécurité.pdf', 'rb') as f38, \
         open('doc/GI2/TD1 crypto.pdf', 'rb') as f39, \
         open('doc/GI2/TP Ccharp.pdf', 'rb') as f40:
     csharp = f36.read()
-    ts_chp0 = f37.read()
     si_chp0 = f38.read()
     td_crypto = f39.read()
     tpcsharp = f40.read()
@@ -205,23 +203,23 @@ with open('doc/GI2/Ccharp.pdf', 'rb') as f36, \
 
 
 columns_doc = ['type','titre','class','file','date_doc']
-data_doc = [('Cours','PL/SQL','ID1',pl_sql,'2023-03-28 19:53:09'),
+data_doc1 = [('Cours','PL/SQL','ID1',pl_sql,'2023-03-28 19:53:09'),
             ('Cours','Data Mining','ID1',dm,'2023-03-15 14:19:43'),
             ('Cours','Gestion des Exception','ID1',ge,'2023-04-05 20:17:28'),
-            ('TP','Le langage SQL','ID1',tp2,'2023-03-29 13:28:28'),
-            ('TP','Analyse de donnnees avec R','ID1',tp1,'2023-04-15 19:28:50'),
+            ('TP','Le langage SQL','ID1',tp2,'2023-03-29 13:28:28')]
+data_doc2 = [('TP','Analyse de donnnees avec R','ID1',tp1,'2023-04-15 19:28:50'),
             ('Cours','Analyse de donnees','ID1',sgd,'2023-03-17 11:28:54'),
             ('TP','PL/SQL instruction de Base','ID1',tp3,'2023-04-26 13:34:48'),
-            ('Cours', 'Java/JEE', 'ID2', java_jee, '2023-03-17 12:53:09'),
-            ('Cours', 'Programmation web (SERVLET)', 'ID2', servelet, '2023-03-24 13:12:34'),
+            ('Cours', 'Java/JEE', 'ID2', java_jee, '2023-03-17 12:53:09')]
+data_doc3 = [('Cours', 'Programmation web (SERVLET)', 'ID2', servelet, '2023-03-24 13:12:34'),
             ('TP', 'TP1 - JEE', 'ID2', tp1_jee, '2023-03-25 14:34:28'),
             ('TP', 'TP2 - JEE', 'ID2', tp2_jee, '2023-04-01 14:40:11'),
-            ('Cours','Ch.0 : Introduction Au WEB','GI1',WEB_CHP0,'2023-03-17 12:34:48'),
-            ('Cours', 'Ch.1 : Fonctionnement du WEB ', 'GI1', web_chp1, '2023-03-17 11:53:09'),
+            ('Cours','Ch.0 : Introduction Au WEB','GI1',WEB_CHP0,'2023-03-17 12:34:48')]
+data_doc4 = [('Cours', 'Ch.1 : Fonctionnement du WEB ', 'GI1', web_chp1, '2023-03-17 11:53:09'),
             ('Cours', 'Ch.2 : HTML', 'GI1', html, '2023-03-24 14:12:34'),
             ('TP', 'TP1 - Notion Du base', 'GI1', tp1_web, '2023-03-25 14:38:28'),
-            ('TP', 'TP2 - HTML', 'GI1', tp2_web, '2023-04-01 15:40:11'),
-            ('Cours','Introduction A la securite Informatique','GI2',si_chp0,'2023-03-17 19:34:48'),
+            ('TP', 'TP2 - HTML', 'GI1', tp2_web, '2023-04-01 15:40:11')]
+data_doc5 = [('Cours','Introduction A la securite Informatique','GI2',si_chp0,'2023-03-17 19:34:48'),
             ('TD', 'TD1 : Crypto', 'GI2', td_crypto, '2023-03-18 10:12:34'),
             ('TP', 'TP1 - C#', 'GI2', tpcsharp, '2023-03-21 00:55:28'),
             ('Cours', 'Support du Cours : C#', 'GI2', csharp, '2023-03-21 00:50:11')]
@@ -353,9 +351,14 @@ data_login=[('1','ossama.outmani@etu.uae.ac.ma','69432d34708334dc6088b7b7c76c730
 # insert_data("admin", columns_admin, data_admin)
 # insert_data("admin_login", columns_admin_login, data_admin_login)
 # insert_data("affichage", columns_affichage, data_affichage)
-# insert_data("departement", columns_departement, data_depertement)
-# insert_data("filier", columns_filier, data_filier)
+# # insert_data("departement", columns_departement, data_depertement)
+# # insert_data("filier", columns_filier, data_filier)
 # insert_data("emploi_temps", columns_time, data_time)
+insert_data("documents", columns_doc, data_doc1)
+insert_data("documents", columns_doc, data_doc2)
+insert_data("documents", columns_doc, data_doc3)
+insert_data("documents", columns_doc, data_doc4)
+insert_data("documents", columns_doc, data_doc5)
 # insert_data("class", columns_class, data_class)
 # insert_data("prof", columns_prof, data_prof)
 # insert_data("student", columns_std, data_std)
