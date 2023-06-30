@@ -17,15 +17,19 @@ def check_email(self):
     return False
 
 def checkLoginForm(self,register):
-    valide=sign(self.components[0].get(),self.components[1].get())
-    if valide=="Password Error":
-        messagebox.showerror(title="Login Failed", message="Password Error")
-        print("password Error")
+    try :
+        valide=sign(self.components[0].get(),self.components[1].get())
+        if valide=="Password Error":
+            messagebox.showerror(title="Login Failed", message="Password Error")
+            print("password Error")
+            return False
+        if valide=='Email Error':
+            messagebox.showerror(title="Login Failed", message="Email Error")
+            return False
+        return valide
+    except:
+        messagebox.showerror(title="Internal error", message="Logging failed")
         return False
-    if valide=='Email Error':
-        messagebox.showerror(title="Login Failed", message="Email Error")
-        return False
-    return valide
 
 
 class Login:
@@ -95,14 +99,14 @@ class Login:
         base.emailLogingStandardObject = MyEntry(base.Background, 94, 254, entry=base.emailLogingEntry,
                                                  standardImg=base.emailLogingStandardlImg,
                                                  hoverImg=base.emailLogingHoverImg, marginX=21, marginY=5,
-                                                 placeholder="exemple@etu.uae.ac.ma",modified=self.emailModified,value=self.emailVar)
+                                                 placeholder="first.last@etu.uae.ac.ma",modified=self.emailModified,value=self.emailVar)
         base.emailLogingStandardObject.validate=lambda:check_email(base.emailLogingStandardObject)
 
         base.passwordLoginText = base.Background.create_text(115, 315, text="Password", font=("Montserrat", 6, "bold"),
                                                              fill="#bb86fc", anchor=tk.NW)
         base.passwordLogingEntry = tk.Entry(base.Background, border=0, bg="#1f1a24", fg="white",
                                             font=("Montserrat", 10, "bold"), disabledbackground="#1f1a24",
-                                            highlightthickness=0, borderwidth=0, width=36,cursor="arrow", show="*",textvariable=self.passwordVar)
+                                            highlightthickness=0, borderwidth=0, width=36,cursor="hand2", show="*",textvariable=self.passwordVar)
         try :
             self.passwordModified = base.passwordLogingStandardObject.getModified()
         except:
