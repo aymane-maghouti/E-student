@@ -8,11 +8,30 @@ import tkinter.filedialog as filedialog
 import os
 import tempfile
 from tkinter import messagebox
+import configparser
+
+def get_database_credentials():
+    # Create a ConfigParser object
+    config = configparser.ConfigParser()
+
+    # Read the config file
+    config.read('config.ini')
+
+    # Retrieve the database credentials
+    username = config.get('database', 'username')
+    password = config.get('database', 'password')
+    host = config.get('database', 'host')
+    port = config.get('database', 'port')
+    return {"username":username,"password":password,"host":host,"port":port}
+
+
 def connectMySQL():
+    credentials=get_database_credentials()
     try:
-        conn = connector.Connect(host="localhost",  # your host, usually localhost
-                                 user="root",  # your username
-                                 port="3306"  # port (3306 default)
+        conn = connector.Connect(host=credentials["host"],  # your host, usually localhost
+                                 user=credentials["username"],  # your username
+                                 port=credentials["port"],  # port (3306 default)
+                                 password=credentials["password"]
                                  )
         # Creating the cursor
         cur = conn.cursor()
@@ -36,11 +55,14 @@ def createDb(nameDB):
         print(e)
 
 def connectDB(nameDB):
+    credentials=get_database_credentials()
     try:
-        conn = connector.Connect(host="localhost",  # your host, usually localhost
-                                 user="root",  # your username
-                                 port="3306",  # port (3306 default)
+        conn = connector.Connect(host=credentials["host"],  # your host, usually localhost
+                                 user=credentials["username"],# your username
+                                 password=credentials["password"],
+                                 port=int(credentials["port"]),  # port (3306 default)
                                  db=nameDB
+
                                  )
         # Creating the cursor
         cur = conn.cursor()
