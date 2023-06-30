@@ -1,8 +1,11 @@
+from tkinter import messagebox
+
 from CanvasToWidget import *
 import tkinter as tk
 import re
 # from client import *
 from backEndUtilities import student_inscription
+from loginCanvas import Login
 
 
 
@@ -235,7 +238,7 @@ class Register6:
         base.submitRegister6ButtonImg = Image.open(
             base.resourcePath("assets\loginPage\submitButton.png"))
         base.submitRegister6Button = MyButton(base.Background, 221, 453, standardImg=base.submitRegister6ButtonImg,
-                                              cursor="hand2",behavior=lambda :self.submit(base.getRegisterValues()))
+                                              cursor="hand2",behavior=lambda :self.submit(base.getRegisterValues(),base))
 
         # back
         base.backRegister6ButtonImg = Image.open(
@@ -245,8 +248,15 @@ class Register6:
 
         base.register6Group = MyWidgetsGroup(base.Background,registerInfo,base.register6WidgetsFrame,base.register6Title,base.confirmChoicesText,base.submitRegister6Button)
 
-    def submit(self,values):
-        student_inscription(values)
+    def submit(self,values,base):
+        try:
+            student_inscription(values)
+            messagebox.showinfo("Success", f"Submission done successfully")
+            base.register6ToLogin()
+
+        except :
+            messagebox.showerror("Internal Error", f"Submission failed please try again")
+
 
 
 

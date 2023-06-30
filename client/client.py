@@ -271,6 +271,14 @@ class App(tk.Tk):
         self.r5.createRegister5(self)
         self.currentFrame = self.r5
 
+    def register6ToLogin(self):
+        self.register6Group.removeGroup()
+        self.nextRegister6Button.place_forget()
+        self.backRegister6Button.place_forget()
+        self.login.createLogin(self)
+        self.currentFrame = self.login
+
+
     def loginToRegister6(self):
         self.config(cursor="arrow")
         self.Background.delete(self.forgot)
