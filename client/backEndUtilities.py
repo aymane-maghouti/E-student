@@ -435,7 +435,7 @@ def insert_into_notification(title, detail, filiere):
     val = (id_filier, title, detail, date_pub)
     mycursor.execute(sql, val)
     mydb.commit()
-    messagebox.showerror("Insertion", "News added succesfully")
+    messagebox.showinfo("Insertion", "News added succesfully")
 
 
 def get_data():
