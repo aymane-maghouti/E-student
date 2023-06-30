@@ -22,7 +22,7 @@ class AdminAdvancedSearch:
                                                           font=("Montserrat", 20, "bold"), fill="white", anchor=tk.NW)
 
         base.adminAdvancedSearchImg =ImageTk.PhotoImage(Image.open(
-           base.resourcePath("assest/studentProfilePage/profileBackground.png")))
+           base.resourcePath("assets/studentProfilePage/profileBackground.png")))
 
         base.adminAdvancedSearchFrame=MyScrollableFrame(base.Background,base.adminAdvancedSearchImg,"#1f1a24",685,297,117,174,20,20)
         l=return_data_by_id(student[0])
@@ -172,7 +172,7 @@ class AdminAdvancedSearch:
 
         # Open image in RGBA mode
         input_photo_cadre_register_7_button_img = Image.open(
-            base.resourcePath(r"assest\register2Page\inputPhotoCadreStandardImg.png")).convert('RGBA')
+            base.resourcePath(r"assets\register2Page\inputPhotoCadreStandardImg.png")).convert('RGBA')
         photo_img = l[1][0].convert('RGBA').resize((56,56))
 
         # Resize image

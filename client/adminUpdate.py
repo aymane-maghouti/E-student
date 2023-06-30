@@ -76,15 +76,15 @@ class AdminUpdate:
 
 
         base.menuAdminUpdateClassMidStandardlImg = Image.open(
-            r"assest\general\optionsmallStandardImg.png")
+            r"assets\general\optionsmallStandardImg.png")
         base.menuAdminUpdateClassMidHoverImg = Image.open(
-            r"assest\general\optionSmallHoverImg.png")
+            r"assets\general\optionSmallHoverImg.png")
 
         base.menuAdminUpdateClassMidClickedImg = Image.open(
-            r"assest\general\optionSmallClickedImg.png")
+            r"assets\general\optionSmallClickedImg.png")
 
         base.menuListAdminUpdateClassMidStandardImg = Image.open(
-            r"assest\general\optionlistMidStandardImg.png")
+            r"assets\general\optionlistMidStandardImg.png")
 
 
         # base.Update=adminUpdate()
@@ -92,16 +92,16 @@ class AdminUpdate:
                                                           font=("Montserrat", 20, "bold"), fill="white", anchor=tk.NW)
 
         base.adminUpdateImg =ImageTk.PhotoImage(Image.open(
-           base.resourcePath("assest/adminUpdatePage/updateBackground.png")))
+           base.resourcePath("assets/adminUpdatePage/updateBackground.png")))
 
         base.adminUpdateImg =ImageTk.PhotoImage(Image.open(
-           base.resourcePath("assest/adminUpdatePage/updateBackground.png")))
+           base.resourcePath("assets/adminUpdatePage/updateBackground.png")))
 
         base.adminUpdateFrame=base.Background.create_image(117,174,image=base.adminUpdateImg,anchor=tk.NW)
 
-        base.moduleAdminUpdateStandardlImg = Image.open(base.resourcePath("assest\general\InputMidLargeLabelImg.png"))
+        base.moduleAdminUpdateStandardlImg = Image.open(base.resourcePath("assets\general\InputMidLargeLabelImg.png"))
         base.moduleAdminUpdateHoverImg = Image.open(
-            base.resourcePath("assest\general\InputMidLargeHoverImg.png"))
+            base.resourcePath("assets\general\InputMidLargeHoverImg.png"))
 
         # base.moduleLoginText = base.Background.create_text(270, 278, text="Module", font=("Montserrat", 6, "bold"),
         #                                                   fill="#bb86fc", anchor=tk.NW)
@@ -156,9 +156,9 @@ class AdminUpdate:
         base.adminUpdateForm.get=lambda:self.values
 
         base.submitAdminUpdateButtonImg = Image.open(
-            r"assest\loginPage\submitButton.png")
+            r"assets\loginPage\submitButton.png")
         base.submitAdminUpdateHoverButtonImg = Image.open(
-            r"assest\loginPage\submitClicked.png")
+            r"assets\loginPage\submitClicked.png")
         base.submitAdminUpdateButton = MyButton(base.Background, 350, 431, standardImg=base.submitAdminUpdateButtonImg,clickImg=base.submitAdminUpdateHoverButtonImg,
                                                  cursor="hand2",behavior=self.updateDB)
 
