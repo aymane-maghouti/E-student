@@ -14,9 +14,12 @@ from forgetPassword import Forgot
 import sys,os
 import cv2
 import numpy as np
+from appInstaller import *
 
 class App(tk.Tk):
     def __init__(self):
+        if not checkIfAlreadyInstalled("student_managment"):
+            run()
         super(App, self).__init__()
         self.i=1
         self.geometry("915x540+250+100")

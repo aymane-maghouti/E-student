@@ -2,8 +2,7 @@ from backEndUtilities import createDb,connectMySQL, connectDB,insert_data,hash_p
 
 
 def  checkIfAlreadyInstalled(database_name):
-    conn = connectMySQL()
-    cursor = conn.cursor()
+    conn, cursor = connectMySQL()
     query = "SHOW DATABASES LIKE %s"
     cursor.execute(query, (database_name,))
     database_exists = cursor.fetchone() is not None
