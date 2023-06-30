@@ -92,7 +92,7 @@ class Forgot:
         base.currentFrame=self
         base.config(cursor="arrow")
         base.ForgotWidgetsImg = tk.PhotoImage(
-            file=base.resourcePath("assest\\register1Page\\registerFrame.png"))
+            file=base.resourcePath("assets\\register1Page\\registerFrame.png"))
         base.ForgotWidgetsFrame = base.Background.create_image(55, 136, image=base.ForgotWidgetsImg, anchor=tk.NW)
         base.ForgotTitle = base.Background.create_text(94, 158, text="Forgot Password",
                                                           font=("Montserrat", 23, "bold"), fill="white", anchor=tk.NW)
@@ -160,7 +160,7 @@ class Forgot:
 
         # submit
         base.submitLoginButtonImg = Image.open(
-            base.resourcePath("assest/loginPage/submitButton.png"))
+            base.resourcePath("assets/loginPage/submitButton.png"))
         base.submitForgotButton = MyButton(base.Background, 221, 453, standardImg=base.submitLoginButtonImg,
                                               cursor="hand2",behavior=self.forget)
 
