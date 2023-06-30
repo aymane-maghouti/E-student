@@ -12,7 +12,8 @@ def connectMySQL():
     try:
         conn = connector.Connect(host="localhost",  # your host, usually localhost
                                  user="root",  # your username
-                                 port="3306"  # port (3306 default)
+                                 port="3306",  # port (3306 default)
+                                 passwod='MG1234'
                                  )
         # Creating the cursor
         cur = conn.cursor()
@@ -40,7 +41,8 @@ def connectDB(nameDB):
         conn = connector.Connect(host="localhost",  # your host, usually localhost
                                  user="root",  # your username
                                  port="3306",  # port (3306 default)
-                                 db=nameDB
+                                 db=nameDB,
+                                 password = 'MG1234'
                                  )
         # Creating the cursor
         cur = conn.cursor()
