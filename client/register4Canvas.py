@@ -1,22 +1,26 @@
-from CanvasToWidget import *
 import tkinter as tk
 from tkinter import messagebox
 
-def checkLenght(self,size,labelName="entry"):
-    if len(self.get())>size or len(self.get())<1 :#remake it 0
+from CanvasToWidget import *
+
+
+def checkLenght(self, size, labelName="entry"):
+    if len(self.get()) > size or len(self.get()) < 1:  # remake it 0
         print(f"invalide {labelName}")
-        messagebox.showerror("Value Error",f"invalid {labelName}")
+        messagebox.showerror("Value Error", f"invalid {labelName}")
         return False
     print(f"valide {labelName}")
     return True
 
-def checkLenghtOptional(self,size,labelName="entry"):
-    if len(self.get())>size or len(self.get())<0 :#remake it 0
+
+def checkLenghtOptional(self, size, labelName="entry"):
+    if len(self.get()) > size or len(self.get()) < 0:  # remake it 0
         print(f"invalide {labelName}")
-        messagebox.showerror("Value Error",f"invalid {labelName}")
+        messagebox.showerror("Value Error", f"invalid {labelName}")
         return False
     print(f"valide {labelName}")
     return True
+
 
 # def checkPhone(self,size,labelName="entry"):
 #     try:
@@ -34,17 +38,18 @@ def checkLenghtOptional(self,size,labelName="entry"):
 #     return True
 
 
-def checkListChoice(self,choice,optionName="option"):
-    if self.get()==choice:
+def checkListChoice(self, choice, optionName="option"):
+    if self.get() == choice:
         print(f"invalide {optionName}")
-        messagebox.showerror("Value Error",f"invalid {optionName}")
+        messagebox.showerror("Value Error", f"invalid {optionName}")
         return False
     print(f"valide {optionName}")
     return True
 
+
 def checkPostal(code):
     if len(code) != 5:
-        messagebox.showerror("Value Error",f"invalid postal code")
+        messagebox.showerror("Value Error", f"invalid postal code")
         return False
     for char in code:
         if not char.isdigit():
@@ -52,12 +57,13 @@ def checkPostal(code):
             return False
     return True
 
+
 def checkPhone(phone):
     if len(phone) != 10:
-        messagebox.showerror("Value Error",f"invalid phone number (wrong nuber of digits)")
+        messagebox.showerror("Value Error", f"invalid phone number (wrong nuber of digits)")
         return False
     if phone[0] != '0':
-        messagebox.showerror("Value Error",f"invalid phone number")
+        messagebox.showerror("Value Error", f"invalid phone number")
         return False
     for char in phone[1:]:
         if not char.isdigit():
@@ -66,13 +72,13 @@ def checkPhone(phone):
     return True
 
 
-def checkRegister4Form(self,register):
-    valide=True
-    register.values=[]
+def checkRegister4Form(self, register):
+    valide = True
+    register.values = []
     for element in self.components:
         try:
             if not element.validate():
-                valide=False
+                valide = False
                 break
         except Exception as e:
             print(e)
@@ -81,29 +87,30 @@ def checkRegister4Form(self,register):
     print(register.values)
     return valide
 
+
 class Register4:
     def __init__(self):
-        self.address1Var=None
-        self.address1Modified=False
-        self.address2Var=None
-        self.address2Modified=False
-        self.postalCodeVar=None
-        self.postalCodeModified=False
-        self.phoneVar=None
-        self.phoneModified=False
+        self.address1Var = None
+        self.address1Modified = False
+        self.address2Var = None
+        self.address2Modified = False
+        self.postalCodeVar = None
+        self.postalCodeModified = False
+        self.phoneVar = None
+        self.phoneModified = False
 
-        self.cityVar=None
-        self.countryVar=None
+        self.cityVar = None
+        self.countryVar = None
 
-        self.values=[]
+        self.values = []
 
-    def remove(self,base):
+    def remove(self, base):
         base.register4Group.removeGroup()
         base.submitRegister4Button.place_forget()
         base.nextRegister4Button.place_forget()
         base.backRegister4Button.place_forget()
 
-    def createRegister4(self,base):
+    def createRegister4(self, base):
         # base=tk.Tk()
         # base.Background=tk.Canvas()
         try:
@@ -159,16 +166,19 @@ class Register4:
                                                                  fill="#bb86fc", anchor=tk.NW)
         base.address1Register4Entry = tk.Entry(base.Background, border=0, bg="#1f1a24", fg="white",
                                                font=("Montserrat", 10, "bold"), disabledbackground="#1f1a24",
-                                               highlightthickness=0, borderwidth=0, width=36,textvariable=self.address1Var)
-        try :
+                                               highlightthickness=0, borderwidth=0, width=36,
+                                               textvariable=self.address1Var)
+        try:
             self.address1Modified = base.address1Register4StandardObject.getModified()
         except:
             pass
         base.address1Register4StandardObject = MyEntry(base.Background, 94, 254, entry=base.address1Register4Entry,
                                                        standardImg=base.emailLogingStandardlImg,
                                                        hoverImg=base.emailLogingHoverImg, marginX=21, marginY=5,
-                                                       placeholder="Av Najah Nr 12 bouki Hoceima",modified=self.address1Modified,value=self.address1Var)
-        base.address1Register4StandardObject.validate=lambda :checkLenght(base.address1Register4StandardObject,150,"Address line 1")
+                                                       placeholder="Av Najah Nr 12 bouki Hoceima",
+                                                       modified=self.address1Modified, value=self.address1Var)
+        base.address1Register4StandardObject.validate = lambda: checkLenght(base.address1Register4StandardObject, 150,
+                                                                            "Address line 1")
 
         # address line 2
         base.address2Register4Text = base.Background.create_text(115, 292, text="Address Line 2 (optional)",
@@ -176,86 +186,97 @@ class Register4:
                                                                  fill="#bb86fc", anchor=tk.NW)
         base.address2Register4Entry = tk.Entry(base.Background, border=0, bg="#1f1a24", fg="white",
                                                font=("Montserrat", 10, "bold"), disabledbackground="#1f1a24",
-                                               highlightthickness=0, borderwidth=0, width=36,textvariable=self.address2Var)
-        try :
+                                               highlightthickness=0, borderwidth=0, width=36,
+                                               textvariable=self.address2Var)
+        try:
             self.address2Modified = base.address2Register4StandardObject.getModified()
         except:
             pass
         base.address2Register4StandardObject = MyEntry(base.Background, 94, 305, entry=base.address2Register4Entry,
                                                        standardImg=base.emailLogingStandardlImg,
                                                        hoverImg=base.emailLogingHoverImg, marginX=21, marginY=5,
-                                                       placeholder="floor Nr 2 App 7",modified=self.address2Modified,value=self.address2Var)
-        base.address2Register4StandardObject.validate=lambda :checkLenghtOptional(base.address2Register4StandardObject,150,"Address line 2")
-
+                                                       placeholder="floor Nr 2 App 7", modified=self.address2Modified,
+                                                       value=self.address2Var)
+        base.address2Register4StandardObject.validate = lambda: checkLenghtOptional(
+            base.address2Register4StandardObject, 150, "Address line 2")
 
         # Postal code
-        base.postalRegisterText = base.Background.create_text(115, 394, text="Postal code", font=("Montserrat", 6, "bold"),
+        base.postalRegisterText = base.Background.create_text(115, 394, text="Postal code",
+                                                              font=("Montserrat", 6, "bold"),
                                                               fill="#bb86fc", anchor=tk.NW)
         base.postalRegisterEntry = tk.Entry(base.Background, border=0, bg="#1f1a24", fg="white",
                                             font=("Montserrat", 10, "bold"), disabledbackground="#1f1a24",
-                                            highlightthickness=0, borderwidth=0, width=12,textvariable=self.postalCodeVar)
-        try :
+                                            highlightthickness=0, borderwidth=0, width=12,
+                                            textvariable=self.postalCodeVar)
+        try:
             self.postalCodeModified = base.postalRegisterStandardObject.getModified()
         except:
             pass
         base.postalRegisterStandardObject = MyEntry(base.Background, 94, 405, entry=base.postalRegisterEntry,
                                                     standardImg=base.inputSmallStandardlImg,
                                                     hoverImg=base.inputSmallHoverImg, marginX=21, marginY=5,
-                                                    placeholder="93000",modified=self.postalCodeModified,value=self.postalCodeVar)
-        base.postalRegisterStandardObject.validate=lambda :checkPostal(base.postalRegisterStandardObject.get())
+                                                    placeholder="93000", modified=self.postalCodeModified,
+                                                    value=self.postalCodeVar)
+        base.postalRegisterStandardObject.validate = lambda: checkPostal(base.postalRegisterStandardObject.get())
 
         # Country
-        base.countryRegister4Text = base.Background.create_text(115, 343, text="Country", font=("Montserrat", 6, "bold"),
+        base.countryRegister4Text = base.Background.create_text(115, 343, text="Country",
+                                                                font=("Montserrat", 6, "bold"),
                                                                 fill="#bb86fc", anchor=tk.NW)
-        base.countryRegister4Label = tk.Label(text="Select", foreground="white", background="#1f1a24", bd=0, relief="flat",
+        base.countryRegister4Label = tk.Label(text="Select", foreground="white", background="#1f1a24", bd=0,
+                                              relief="flat",
                                               font=("Montserrat", 8, "bold"), width=14, anchor=tk.NW)
-        base.countryRegister4Label.config(text=self.countryVar if self.countryVar!=None else "Select")
+        base.countryRegister4Label.config(text=self.countryVar if self.countryVar != None else "Select")
 
         base.countryRegister4List = MyMenu(base.Background, 94, 356, base.countryRegister4Label,
                                            base.menuRegister2MidStandardlImg, base.menuRegister2MidHoverImg,
                                            base.menuRegister2MidClickedImg, base.menuListRegister2MidStandardImg,
-                                           menuListMarginY=35, hideWidgets=[base.postalRegisterEntry],options=["Select", "Morocco", "USA", "UK", "Canada"],
-                                           width=20, height=5, listBoxMarginY=40, border=0, highlightthickness=0, padx=15,
+                                           menuListMarginY=35, hideWidgets=[base.postalRegisterEntry],
+                                           options=["Select", "Morocco", "USA", "UK", "Canada"],
+                                           width=20, height=5, listBoxMarginY=40, border=0, highlightthickness=0,
+                                           padx=15,
                                            pady=7)
-        base.countryRegister4List.validate=lambda:checkListChoice(base.countryRegister4List,"Select","Country")
-
+        base.countryRegister4List.validate = lambda: checkListChoice(base.countryRegister4List, "Select", "Country")
 
         # Phone number
-        base.phoneRegisterText = base.Background.create_text(324, 394, text="Phone number", font=("Montserrat", 6, "bold"),
+        base.phoneRegisterText = base.Background.create_text(324, 394, text="Phone number",
+                                                             font=("Montserrat", 6, "bold"),
                                                              fill="#bb86fc", anchor=tk.NW)
         base.phoneRegisterEntry = tk.Entry(base.Background, border=0, bg="#1f1a24", fg="white",
                                            font=("Montserrat", 10, "bold"), disabledbackground="#1f1a24",
-                                           highlightthickness=0, borderwidth=0, width=12,textvariable=self.phoneVar)
-        try :
+                                           highlightthickness=0, borderwidth=0, width=12, textvariable=self.phoneVar)
+        try:
             self.phoneModified = base.phoneRegisterStandardObject.getModified()
         except:
             pass
         base.phoneRegisterStandardObject = MyEntry(base.Background, 304, 405, entry=base.phoneRegisterEntry,
                                                    standardImg=base.inputSmallStandardlImg,
                                                    hoverImg=base.inputSmallHoverImg, marginX=21, marginY=5,
-                                                   placeholder="0680992244",modified=self.phoneModified,value=self.phoneVar)
-        base.phoneRegisterStandardObject.validate=lambda :checkPhone( base.phoneRegisterStandardObject.get())
+                                                   placeholder="0680992244", modified=self.phoneModified,
+                                                   value=self.phoneVar)
+        base.phoneRegisterStandardObject.validate = lambda: checkPhone(base.phoneRegisterStandardObject.get())
 
         # City
         base.cityRegister4Text = base.Background.create_text(324, 343, text="City", font=("Montserrat", 6, "bold"),
                                                              fill="#bb86fc", anchor=tk.NW)
         base.cityRegister4Label = tk.Label(text="Select", foreground="white", background="#1f1a24", bd=0, relief="flat",
                                            font=("Montserrat", 8, "bold"), width=14, anchor=tk.NW)
-        base.cityRegister4Label.config(text=self.cityVar if self.cityVar!=None else "Select")
-
+        base.cityRegister4Label.config(text=self.cityVar if self.cityVar != None else "Select")
 
         base.cityRegister4List = MyMenu(base.Background, 304, 356, base.cityRegister4Label,
                                         base.menuRegister2MidStandardlImg, base.menuRegister2MidHoverImg,
                                         base.menuRegister2MidClickedImg, base.menuListRegister2MidStandardImg,
-                                        menuListMarginY=35,hideWidgets=[base.phoneRegisterEntry],
-                                        options=["Tetouan", "Hoceima", "Taza", "Tangier", "Rabat", "Casablanca"], width=20,
+                                        menuListMarginY=35, hideWidgets=[base.phoneRegisterEntry],
+                                        options=["Tetouan", "Hoceima", "Taza", "Tangier", "Rabat", "Casablanca"],
+                                        width=20,
                                         height=5, listBoxMarginY=40, border=0, highlightthickness=0, padx=15, pady=7)
-        base.cityRegister4List.validate=lambda:checkListChoice(base.cityRegister4List,"Select","City")
+        base.cityRegister4List.validate = lambda: checkListChoice(base.cityRegister4List, "Select", "City")
 
-
-        base.register4Form = MyForm(base,base.address1Register4StandardObject,base.address2Register4StandardObject,base.postalRegisterStandardObject,base.phoneRegisterStandardObject,base.cityRegister4List,base.countryRegister4List)
-        base.register4Form.validate=lambda:checkRegister4Form(base.register4Form,self)
-        base.register4Form.get=lambda:self.values
+        base.register4Form = MyForm(base, base.address1Register4StandardObject, base.address2Register4StandardObject,
+                                    base.postalRegisterStandardObject, base.phoneRegisterStandardObject,
+                                    base.cityRegister4List, base.countryRegister4List)
+        base.register4Form.validate = lambda: checkRegister4Form(base.register4Form, self)
+        base.register4Form.get = lambda: self.values
 
         # #submit
         # base.submitLoginButtonImg = Image.open(
@@ -281,11 +302,12 @@ class Register4:
         base.backRegister4Button = MyButton(base.Background, 141, 453, standardImg=base.backRegister4ButtonImg,
                                             cursor="hand2", behavior=base.register4ToRegister3)
 
-        base.register4Group = MyWidgetsGroup(base.Background,base.register4Title, base.postalRegisterText,
+        base.register4Group = MyWidgetsGroup(base.Background, base.register4Title, base.postalRegisterText,
                                              base.postalRegisterEntry, base.postalRegisterStandardObject,
                                              base.phoneRegisterText, base.phoneRegisterEntry,
                                              base.phoneRegisterStandardObject, base.cityRegister4Text,
                                              base.cityRegister4Label, base.cityRegister4List, base.countryRegister4Text,
                                              base.countryRegister4Label, base.countryRegister4List,
                                              base.address1Register4Text, base.address1Register4StandardObject,
-                                             base.address2Register4Text, base.address2Register4StandardObject, base.submitRegister4Button,base.register4WidgetsFrame)
+                                             base.address2Register4Text, base.address2Register4StandardObject,
+                                             base.submitRegister4Button, base.register4WidgetsFrame)

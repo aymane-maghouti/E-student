@@ -1,53 +1,58 @@
-from CanvasToWidget import *
 import tkinter as tk
 from tkinter import messagebox
 
-def checkLenght(self,size,labelName="entry"):
-    if len(self.get())>size or len(self.get())<1 :#remake it 1
+from CanvasToWidget import *
+
+
+def checkLenght(self, size, labelName="entry"):
+    if len(self.get()) > size or len(self.get()) < 1:  # remake it 1
         print(f"invalide {labelName}")
-        messagebox.showerror("Value Error",f"invalid {labelName}")
+        messagebox.showerror("Value Error", f"invalid {labelName}")
         return False
     print(f"valide {labelName}")
     return True
 
-def checkListChoice(self,choice,optionName="option"):
-    if self.get()==choice:
+
+def checkListChoice(self, choice, optionName="option"):
+    if self.get() == choice:
         print(f"invalide {optionName}")
-        messagebox.showerror("Value Error",f"invalid {optionName}")
+        messagebox.showerror("Value Error", f"invalid {optionName}")
         return False
     print(f"valide {optionName}")
     return True
 
-def checkGrade(self,labelName="entry"):
+
+def checkGrade(self, labelName="entry"):
     try:
-        value=float(self.get())
+        value = float(self.get())
     except:
         print(f"invalide {labelName}")
-        messagebox.showerror("Value Error",f"invalid {labelName}")
+        messagebox.showerror("Value Error", f"invalid {labelName}")
         return False
-    if 0<=value<=20:
+    if 0 <= value <= 20:
         print(f"valide {labelName}")
         return True
     print(f"invalide {labelName}")
     messagebox.showerror("Value Error", f"invalid {labelName}")
     return False
 
+
 def checkOption(self):
-    if self.get()==None:
-        messagebox.showerror("Value Error",f"invalid school type")
+    if self.get() == None:
+        messagebox.showerror("Value Error", f"invalid school type")
         print("invalide school type")
         return False
     print("valide school type")
     return True
 
 
-def checkRegister3Form(self,register):
-    valide=True
-    register.values=[]
+def checkRegister3Form(self, register):
+    valide = True
+    register.values = []
     for element in self.components:
         try:
             if not element.validate():
-                valide=False
+                valide = False
                 break
         except Exception as e:
             print(e)
@@ -61,28 +66,26 @@ def checkRegister3Form(self,register):
 class Register3:
 
     def __init__(self):
-        self.bacGradeVar=None
-        self.bacGradeModified=False
-        self.highSchoolNameVar=None
-        self.highSchoolNameModified=False
+        self.bacGradeVar = None
+        self.bacGradeModified = False
+        self.highSchoolNameVar = None
+        self.highSchoolNameModified = False
 
         self.bacSectorVar = None
         self.bacLanguageVar = None
         self.bacCityVar = None
 
-        self.schoolTypeVar=None
+        self.schoolTypeVar = None
 
-        self.values=[]
+        self.values = []
 
-    def remove(self,base):
+    def remove(self, base):
         base.register3Group.removeGroup()
         base.submitRegister3Button.place_forget()
         base.nextRegister3Button.place_forget()
         base.backRegister3Button.place_forget()
 
-
-
-    def createRegister3(self,base):
+    def createRegister3(self, base):
         # base=tk.Tk()
         # base.Background=tk.Canvas()
         try:
@@ -102,12 +105,10 @@ class Register3:
         except:
             pass
 
-
         if self.bacGradeVar == None:
             self.bacGradeVar = tk.StringVar(base)
         if self.highSchoolNameVar == None:
             self.highSchoolNameVar = tk.StringVar(base)
-
 
         base.config(cursor="arrow")
         base.regiter2WidgetsImg = tk.PhotoImage(
@@ -139,32 +140,36 @@ class Register3:
                                                              fill="#bb86fc", anchor=tk.NW)
         base.gradeRegisterEntry = tk.Entry(base.Background, border=0, bg="#1f1a24", fg="white",
                                            font=("Montserrat", 10, "bold"), disabledbackground="#1f1a24",
-                                           highlightthickness=0, borderwidth=0, width=12,textvariable=self.bacGradeVar)
-        try :
+                                           highlightthickness=0, borderwidth=0, width=12, textvariable=self.bacGradeVar)
+        try:
             self.bacGradeModified = base.gradeRegisterStandardObject.getModified()
         except:
             pass
         base.gradeRegisterStandardObject = MyEntry(base.Background, 94, 305, entry=base.gradeRegisterEntry,
                                                    standardImg=base.inputSmallStandardlImg,
                                                    hoverImg=base.inputSmallHoverImg, marginX=21, marginY=5,
-                                                   placeholder="15.27",modified=self.bacGradeModified,value=self.bacGradeVar)
-        base.gradeRegisterStandardObject.validate=lambda :checkGrade(base.gradeRegisterStandardObject,"grade")
+                                                   placeholder="15.27", modified=self.bacGradeModified,
+                                                   value=self.bacGradeVar)
+        base.gradeRegisterStandardObject.validate = lambda: checkGrade(base.gradeRegisterStandardObject, "grade")
         # High School Name
         base.highRegisterText = base.Background.create_text(115, 343, text="High school name",
                                                             font=("Montserrat", 6, "bold"),
                                                             fill="#bb86fc", anchor=tk.NW)
         base.highRegisterEntry = tk.Entry(base.Background, border=0, bg="#1f1a24", fg="white",
                                           font=("Montserrat", 10, "bold"), disabledbackground="#1f1a24",
-                                          highlightthickness=0, borderwidth=0, width=36,textvariable=self.highSchoolNameVar)
-        try :
+                                          highlightthickness=0, borderwidth=0, width=36,
+                                          textvariable=self.highSchoolNameVar)
+        try:
             self.highSchoolNameModified = base.highRegisterStandardObject.getModified()
         except:
             pass
         base.highRegisterStandardObject = MyEntry(base.Background, 94, 356, entry=base.highRegisterEntry,
                                                   standardImg=base.emailLogingStandardlImg,
                                                   hoverImg=base.emailLogingHoverImg, marginX=21, marginY=5,
-                                                  placeholder="Imzoren High school",modified=self.highSchoolNameModified,value=self.highSchoolNameVar)
-        base.highRegisterStandardObject.validate=lambda :checkLenght(base.highRegisterStandardObject,45,"high school name")
+                                                  placeholder="Imzoren High school",
+                                                  modified=self.highSchoolNameModified, value=self.highSchoolNameVar)
+        base.highRegisterStandardObject.validate = lambda: checkLenght(base.highRegisterStandardObject, 45,
+                                                                       "high school name")
 
         # bac Sector
         base.bacSectorRegister3Text = base.Background.create_text(115, 241, text="Bac Sector",
@@ -172,33 +177,39 @@ class Register3:
                                                                   anchor=tk.NW)
         base.bacSectorRegister3Label = tk.Label(text="Select", foreground="white", background="#1f1a24", bd=0,
                                                 relief="flat", font=("Montserrat", 8, "bold"), width=14, anchor=tk.NW)
-        base.bacSectorRegister3Label.config(text=self.bacSectorVar if self.bacSectorVar!=None else "Select")
+        base.bacSectorRegister3Label.config(text=self.bacSectorVar if self.bacSectorVar != None else "Select")
 
         base.bacSectorRegister3List = MyMenu(base.Background, 94, 254, base.bacSectorRegister3Label,
                                              base.menuRegister3MidStandardlImg, base.menuRegister3MidHoverImg,
                                              base.menuRegister3MidClickedImg, base.menuListRegister3MidStandardImg,
                                              menuListMarginY=35,
-                                             options=["Select","Sc Mathematique 'A'", "Sc Mathematique 'B'", "Sc Physique Chimie",
+                                             options=["Select", "Sc Mathematique 'A'", "Sc Mathematique 'B'",
+                                                      "Sc Physique Chimie",
                                                       "Sc de Vie et Terre", "Sc et Technologie Mecanique"],
-                                             hideWidgets=[base.highRegisterEntry], width=20, height=5, listBoxMarginY=40,
+                                             hideWidgets=[base.highRegisterEntry], width=20, height=5,
+                                             listBoxMarginY=40,
                                              border=0, highlightthickness=0, padx=15, pady=7)
-        base.bacSectorRegister3List.validate=lambda:checkListChoice(base.bacSectorRegister3List,"Select","bac Sector")
+        base.bacSectorRegister3List.validate = lambda: checkListChoice(base.bacSectorRegister3List, "Select",
+                                                                       "bac Sector")
 
         # bac City
-        base.bacCityRegister3Text = base.Background.create_text(324, 292, text="Bac City", font=("Montserrat", 6, "bold"),
+        base.bacCityRegister3Text = base.Background.create_text(324, 292, text="Bac City",
+                                                                font=("Montserrat", 6, "bold"),
                                                                 fill="#bb86fc", anchor=tk.NW)
-        base.bacCityRegister3Label = tk.Label(text="Select", foreground="white", background="#1f1a24", bd=0, relief="flat",
+        base.bacCityRegister3Label = tk.Label(text="Select", foreground="white", background="#1f1a24", bd=0,
+                                              relief="flat",
                                               font=("Montserrat", 8, "bold"))
-        base.bacCityRegister3Label.config(text=self.bacCityVar if self.bacCityVar!=None else "Select")
+        base.bacCityRegister3Label.config(text=self.bacCityVar if self.bacCityVar != None else "Select")
 
         base.bacCityRegister3List = MyMenu(base.Background, 304, 305, base.bacCityRegister3Label,
                                            base.menuRegister3MidStandardlImg, base.menuRegister3MidHoverImg,
                                            base.menuRegister3MidClickedImg, base.menuListRegister3MidStandardImg,
                                            menuListMarginY=35,
-                                           options=["Select","Tetouan", "Tanger", "Hoceima", "Casablanca", "Rabat", "Oujda",
+                                           options=["Select", "Tetouan", "Tanger", "Hoceima", "Casablanca", "Rabat",
+                                                    "Oujda",
                                                     "Other"], hideWidgets=[base.highRegisterEntry], width=20, height=5,
                                            listBoxMarginY=40, border=0, highlightthickness=0, padx=15, pady=7)
-        base.bacCityRegister3List.validate=lambda:checkListChoice(base.bacCityRegister3List,"Select","city")
+        base.bacCityRegister3List.validate = lambda: checkListChoice(base.bacCityRegister3List, "Select", "city")
 
         # bac Language
         base.bacLanguageRegister3Text = base.Background.create_text(324, 241, text="Bac Language",
@@ -206,21 +217,25 @@ class Register3:
                                                                     anchor=tk.NW)
         base.bacLanguageRegister3Label = tk.Label(text="Select", foreground="white", background="#1f1a24", bd=0,
                                                   relief="flat", font=("Montserrat", 8, "bold"))
-        base.bacLanguageRegister3Label.config(text=self.bacLanguageVar if self.bacLanguageVar!=None else "Select")
+        base.bacLanguageRegister3Label.config(text=self.bacLanguageVar if self.bacLanguageVar != None else "Select")
 
         base.bacLanguageRegister3List = MyMenu(base.Background, 304, 254, base.bacLanguageRegister3Label,
                                                base.menuRegister3MidStandardlImg, base.menuRegister3MidHoverImg,
                                                base.menuRegister3MidClickedImg, base.menuListRegister3MidStandardImg,
                                                hideWidgets=[base.bacCityRegister3Label, base.highRegisterEntry],
                                                menuListMarginY=35,
-                                               options=["Select","Arabic", "French", "English", "Spanish", "Deutsh"], width=20,
-                                               height=5, listBoxMarginY=40, border=0, highlightthickness=0, padx=15, pady=7)
-        base.bacLanguageRegister3List.validate=lambda:checkListChoice(base.bacLanguageRegister3List,"Select","bac Language")
+                                               options=["Select", "Arabic", "French", "English", "Spanish", "Deutsh"],
+                                               width=20,
+                                               height=5, listBoxMarginY=40, border=0, highlightthickness=0, padx=15,
+                                               pady=7)
+        base.bacLanguageRegister3List.validate = lambda: checkListChoice(base.bacLanguageRegister3List, "Select",
+                                                                         "bac Language")
 
         # high School type
 
         base.hTypeRegisterText = base.Background.create_text(115, 394, text="High School type",
-                                                             font=("Montserrat", 6, "bold"), fill="#bb86fc", anchor=tk.NW)
+                                                             font=("Montserrat", 6, "bold"), fill="#bb86fc",
+                                                             anchor=tk.NW)
 
         base.hTypeRegisterOptionList = MyOptionList([])
         base.stateRegisterOption = MyOption(base.Background, 94, 405, value="State", entry="State",
@@ -236,21 +251,19 @@ class Register3:
         base.privateRegisterOption.setOptionlist(base.hTypeRegisterOptionList)
 
         base.hTypeRegisterOptionList.optionsList = [base.stateRegisterOption, base.privateRegisterOption]
-        base.hTypeRegisterOptionList.validate=lambda :checkOption(base.hTypeRegisterOptionList)
+        base.hTypeRegisterOptionList.validate = lambda: checkOption(base.hTypeRegisterOptionList)
 
-        if self.schoolTypeVar!=None:
+        if self.schoolTypeVar != None:
             for option in base.hTypeRegisterOptionList.optionsList:
-                if option.getValue()==self.schoolTypeVar:
+                if option.getValue() == self.schoolTypeVar:
                     option.setOn()
                     break
 
-
-
-        base.register3Form = MyForm(base,base.bacCityRegister3List,base.bacSectorRegister3List,base.bacLanguageRegister3List,base.gradeRegisterStandardObject,base.highRegisterStandardObject,base.hTypeRegisterOptionList )
-        base.register3Form.validate=lambda:checkRegister3Form(base.register3Form,self)
-        base.register3Form.get=lambda:self.values
-
-
+        base.register3Form = MyForm(base, base.bacCityRegister3List, base.bacSectorRegister3List,
+                                    base.bacLanguageRegister3List, base.gradeRegisterStandardObject,
+                                    base.highRegisterStandardObject, base.hTypeRegisterOptionList)
+        base.register3Form.validate = lambda: checkRegister3Form(base.register3Form, self)
+        base.register3Form.get = lambda: self.values
 
         base.nextRegister3ButtonImg = Image.open(
             r"assets\general\nextButtonStandardImg.png")
@@ -267,13 +280,16 @@ class Register3:
         base.submitRegister3Button = MyButton(base.Background, 221, 453, standardImg=base.submitLoginButtonImg,
                                               cursor="X_cursor")
 
-        base.register3Group = MyWidgetsGroup(base.Background, base.bacSectorRegister3Label, base.bacLanguageRegister3Text,
-                                             base.highRegisterText, base.bacLanguageRegister3Label, base.highRegisterText,
+        base.register3Group = MyWidgetsGroup(base.Background, base.bacSectorRegister3Label,
+                                             base.bacLanguageRegister3Text,
+                                             base.highRegisterText, base.bacLanguageRegister3Label,
+                                             base.highRegisterText,
                                              base.bacCityRegister3Text, base.bacCityRegister3Label,
                                              base.highRegisterStandardObject, base.submitRegister3Button,
                                              base.register3Title, base.bacLanguageRegister3List,
-                                             base.bacSectorRegister3Text, base.bacCityRegister3List, base.highRegisterText,
-                                             base.bacSectorRegister3List, base.gradeRegisterText, base.hTypeRegisterText,
+                                             base.bacSectorRegister3Text, base.bacCityRegister3List,
+                                             base.highRegisterText,
+                                             base.bacSectorRegister3List, base.gradeRegisterText,
+                                             base.hTypeRegisterText,
                                              base.gradeRegisterStandardObject, base.stateRegisterOption,
                                              base.privateRegisterOption, base.register3WidgetsFrame)
-
