@@ -210,7 +210,7 @@ class AdminHome:
         base.adminAboutExtendedIconButton=MyButton(base.adminMenuExtendedFrame.mainFrame,0,311,base.adminAboutExtendedIconImg,cursor="hand2",behavior=self.toAbout)
 
         base.adminHomeGroup = MyWidgetsGroup(base.Background,base.logoutStudentButton,base.adminHomeNewsText,base.adminHomeGraphFrame,base.adminHomeNewsFrame,base.adminHomeTitle)
-        base.adminHomeInterfaceGroup = MyWidgetsGroup(base.Background,base.logoadminObject,base.logoutStudentButton,base.adminHomeNewsText,base.adminHomeGraphFrame,base.adminHomeNewsFrame,base.adminHomeTitle,base.adminHomeMenuFrame,base.adminHomeMenuFrame.mainFrame)
+        base.adminHomeInterfaceGroup = MyWidgetsGroup(base.Background,base.logoadminObject,base.logoutStudentButton,base.adminHomeNewsText,base.adminHomeGraphFrame,base.adminHomeNewsFrame,base.adminHomeTitle,base.adminHomeMenuFrame)
 
         self.hideWidgets=[self.base.adminHomeGraphFrame]
 

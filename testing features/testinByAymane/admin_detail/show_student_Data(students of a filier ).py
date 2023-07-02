@@ -1,6 +1,5 @@
 import tkinter as tk
 
-
 root = tk.Tk()
 root.geometry("600x500")
 root.title("application")
@@ -138,7 +137,6 @@ def gi1_students_page():
     root.mainloop()
 
 
-
 def gc1_students_page():
     import mysql.connector
     import io
@@ -204,9 +202,11 @@ def gc1_students_page():
 
     root.mainloop()
 
+
 def delete_pages():
     for frame in main_frame.winfo_children():
-        frame.destroy() # detruire chaque cadre
+        frame.destroy()  # detruire chaque cadre
+
 
 def hide_indicate():
     # Réinitialisation de la couleur de fond de toutes les étiquettes d'indication de page
@@ -215,48 +215,46 @@ def hide_indicate():
     gi1_students_indicate.config(bg="#c3c3c3")
 
 
-def indicate(lb,page):
-    hide_indicate() # masquer toutes les etiquettes
-    lb.config(bg='#158aff') # definir la couleur de fond  de l'etiquette d'indication de page selectionnee
-    delete_pages() # detruire toutes les pages actuelles dans le cadre principale
-    page() # Afficher la page sélectionnée dans le cadre principal
-
+def indicate(lb, page):
+    hide_indicate()  # masquer toutes les etiquettes
+    lb.config(bg='#158aff')  # definir la couleur de fond  de l'etiquette d'indication de page selectionnee
+    delete_pages()  # detruire toutes les pages actuelles dans le cadre principale
+    page()  # Afficher la page sélectionnée dans le cadre principal
 
 
 # Création du panneau d'options à gauche de la fenêtre principale
-options_frame = tk.Frame(root,bg='#c3c3c3')
+options_frame = tk.Frame(root, bg='#c3c3c3')
 
-id1_students_btn = tk.Button(options_frame,text='ID1',font=('bold',15),
-                     fg='#158aff',bd=0,bg='#c3c3c3', command=lambda :indicate(id1_students_indicate,id1_students_page))
-id1_students_btn.place(x=5,y=50)
+id1_students_btn = tk.Button(options_frame, text='ID1', font=('bold', 15),
+                             fg='#158aff', bd=0, bg='#c3c3c3',
+                             command=lambda: indicate(id1_students_indicate, id1_students_page))
+id1_students_btn.place(x=5, y=50)
 
-id1_students_indicate = tk.Label(options_frame, text='',bg='#c3c3c3')
-id1_students_indicate.place(x=3,y=50,width=5,height=40)
+id1_students_indicate = tk.Label(options_frame, text='', bg='#c3c3c3')
+id1_students_indicate.place(x=3, y=50, width=5, height=40)
 
-gc1_students_btn = tk.Button(options_frame,text='CG1',font=('bold',15),
-                     fg='#158aff',bd=0,bg='#c3c3c3', command=lambda :indicate(gc1_students_indicate,gc1_students_page))
-gc1_students_btn.place(x=5,y=100)
+gc1_students_btn = tk.Button(options_frame, text='CG1', font=('bold', 15),
+                             fg='#158aff', bd=0, bg='#c3c3c3',
+                             command=lambda: indicate(gc1_students_indicate, gc1_students_page))
+gc1_students_btn.place(x=5, y=100)
 
-gc1_students_indicate = tk.Label(options_frame, text='',bg='#c3c3c3')
-gc1_students_indicate.place(x=3,y=100,width=5,height=40)
+gc1_students_indicate = tk.Label(options_frame, text='', bg='#c3c3c3')
+gc1_students_indicate.place(x=3, y=100, width=5, height=40)
 
+gi1_students_btn = tk.Button(options_frame, text='GI1', font=('bold', 15),
+                             fg='#158aff', bd=0, bg='#c3c3c3',
+                             command=lambda: indicate(gi1_students_indicate, gi1_students_page))
+gi1_students_btn.place(x=5, y=150)
 
-
-gi1_students_btn = tk.Button(options_frame,text='GI1',font=('bold',15),
-                     fg='#158aff',bd=0,bg='#c3c3c3', command=lambda :indicate(gi1_students_indicate,gi1_students_page))
-gi1_students_btn.place(x=5,y=150)
-
-gi1_students_indicate = tk.Label(options_frame, text='',bg='#c3c3c3')
-gi1_students_indicate.place(x=3,y=150,width=5,height=40)
-
-
+gi1_students_indicate = tk.Label(options_frame, text='', bg='#c3c3c3')
+gi1_students_indicate.place(x=3, y=150, width=5, height=40)
 
 options_frame.pack(side=tk.LEFT)
 options_frame.pack_propagate(False)
-options_frame.configure(width=100,height=400)
-main_frame = tk.Frame(root,highlightbackground='black',highlightthickness=2)
+options_frame.configure(width=100, height=400)
+main_frame = tk.Frame(root, highlightbackground='black', highlightthickness=2)
 
 main_frame.pack(side=tk.LEFT)
 main_frame.pack_propagate(False)
-main_frame.configure(height=400,width=500)
+main_frame.configure(height=400, width=500)
 root.mainloop()

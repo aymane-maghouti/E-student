@@ -1,5 +1,6 @@
-import mysql.connector
 import tkinter as tk
+
+import mysql.connector
 
 # Connexion à la base de données MySQL
 mydb = mysql.connector.connect(
@@ -8,6 +9,7 @@ mydb = mysql.connector.connect(
     password="MG1234",
     database="gestion_etudiant"
 )
+
 
 # Fonction appelée lorsque le bouton "Mettre à jour" est cliqué
 def update_database():
@@ -24,7 +26,10 @@ def update_database():
     mydb.commit()
 
     # Affichage d'un message de confirmation
-    message_label.config(text="Champ {} mis à jour avec la valeur {} pour l'enregistrement d'ID {}".format(champ, valeur, id_enregistrement))
+    message_label.config(
+        text="Champ {} mis à jour avec la valeur {} pour l'enregistrement d'ID {}".format(champ, valeur,
+                                                                                          id_enregistrement))
+
 
 # Création de l'interface utilisateur
 root = tk.Tk()

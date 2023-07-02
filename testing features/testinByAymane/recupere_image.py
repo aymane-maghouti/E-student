@@ -1,6 +1,7 @@
 import tkinter as tk
 from io import BytesIO
 from tkinter import filedialog
+
 import mysql.connector
 from PIL import Image, ImageTk
 
@@ -17,7 +18,6 @@ cursor = conn.cursor()
 cursor.execute("CREATE TABLE IF NOT EXISTS personnes (nom VARCHAR(255), prenom VARCHAR(255), age INT, image LONGBLOB)")
 
 
-
 def ajouter_personne():
     nom = nom_entree.get()
     prenom = prenom_entree.get()
@@ -31,8 +31,10 @@ def ajouter_personne():
         image_bytes = f.read()
 
     # Insérer les données dans la base de données
-    cursor.execute("INSERT INTO personnes (nom, prenom, age, image) VALUES (%s, %s, %s, %s)", (nom, prenom, age, image_bytes))
+    cursor.execute("INSERT INTO personnes (nom, prenom, age, image) VALUES (%s, %s, %s, %s)",
+                   (nom, prenom, age, image_bytes))
     conn.commit()
+
 
 def afficher_personnes():
     # Récupérer les données de la base de données
@@ -56,8 +58,6 @@ def afficher_personnes():
     # Enregistrer l'image dans un fichier
     image.save("C:/Users/pc/PycharmProjects/pythonProject/projet_web/mon_image.png")
 
-
-
     frame2.tkraise()
     for personne in personnes:
         nom_label = tk.Label(frame2, text="Nom : " + personne[0])
@@ -69,7 +69,6 @@ def afficher_personnes():
         age_label = tk.Label(frame2, text="Âge : " + str(personne[2]))
         age_label.pack()
 
-
         # resized_image = photo2.resize((300, 150), Image.ANTIALIAS)
         converted_image = ImageTk.PhotoImage(Image.open("logo-ensah.png"))
 
@@ -79,14 +78,17 @@ def afficher_personnes():
 
 def show_frame1():
     frame1.tkraise()
+
+
 def show_frame2():
     frame2.tkraise()
 
+
 fenetre = tk.Tk()
 
-frame1 = tk.Frame(fenetre, bg='red',width=600,height=400)
-frame2 = tk.Frame(fenetre, bg='green',width=600,height=400)
-frame3 = tk.Frame(fenetre,bg='blue',width=600,height=400)
+frame1 = tk.Frame(fenetre, bg='red', width=600, height=400)
+frame2 = tk.Frame(fenetre, bg='green', width=600, height=400)
+frame3 = tk.Frame(fenetre, bg='blue', width=600, height=400)
 # frame = Frame(win, width=600, height=400)
 # frame.pack()
 frame3.pack()
@@ -104,7 +106,6 @@ afficher_pag2.pack()
 
 afficher_pag2 = tk.Button(frame2, text="afficher data", command=afficher_personnes)
 afficher_pag2.pack()
-
 
 nom_label = tk.Label(frame1, text="Nom : ")
 nom_label.pack()
@@ -134,7 +135,6 @@ image_bouton.pack()
 afficher_pag3 = tk.Button(frame2, text="-->page3", command=show_frame1)
 afficher_pag3.pack()
 
-
 # retour_button = tk.Button(frame2,text="retour",command=show_frame2)
 # retour_button.pack()
 fenetre.geometry("500x500")
@@ -142,6 +142,3 @@ fenetre.geometry("500x500")
 fenetre.mainloop()
 
 conn.close()
-
-
-

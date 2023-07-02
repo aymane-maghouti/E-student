@@ -92,9 +92,9 @@
 # root.mainloop()
 
 
+from tkinter import *
 
 import mysql.connector
-from tkinter import *
 
 # Se connecter à la base de données
 mydb = mysql.connector.connect(
@@ -104,6 +104,7 @@ mydb = mysql.connector.connect(
     database="gestion_etudiant"
 )
 
+
 # Créer une fonction pour insérer les données
 def inserer_donnees():
     # Créer un curseur pour exécuter des requêtes SQL
@@ -111,7 +112,7 @@ def inserer_donnees():
 
     # Récupérer les valeurs entrées par l'utilisateur
     description = desc_entry.get()
-    detail = detail_entry.get("1.0", END) # Récupérer tout le texte du champ de texte
+    detail = detail_entry.get("1.0", END)  # Récupérer tout le texte du champ de texte
     filiere = filiere_entry.get()
 
     # Créer la requête SQL
@@ -125,6 +126,7 @@ def inserer_donnees():
     mydb.commit()
 
     print(mycursor.rowcount, "enregistrement inséré avec succès.")
+
 
 # Créer une fenêtre
 root = Tk()

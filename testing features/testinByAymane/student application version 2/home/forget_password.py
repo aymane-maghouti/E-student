@@ -1,19 +1,19 @@
 import hashlib
-from conneToDB import connectDB
 import random
 import string
 
-conn,mycursor  = connectDB('student_managment')
+from conneToDB import connectDB
+
+conn, mycursor = connectDB('student_managment')
+
 
 def hash_password(password):
     hash_object = hashlib.sha256(password.encode())
     return hash_object.hexdigest()
-def sendpasswod(email,password):
 
+
+def sendpasswod(email, password):
     return 'the password is sended'
-
-
-
 
 
 def generate_password():
@@ -39,29 +39,24 @@ def generate_password():
     return password
 
 
-
-
-
 def forget(email):
     mycursor.execute("SELECT email_acadymic FROM login")
     results = mycursor.fetchall()
     emails = [result[0] for result in results]
     if email in emails:
         new_password = generate_password()
-        print('the new password is ',new_password)
+        print('the new password is ', new_password)
         new_password_hashed = hash_password(new_password)
         print(new_password_hashed)
         sql = "UPDATE login SET password = %s WHERE email_acadymic =  %s"
-        values = (new_password_hashed,email)
+        values = (new_password_hashed, email)
         mycursor.execute(sql, values)
         conn.commit()
-        print(sendpasswod(email,new_password))
+        print(sendpasswod(email, new_password))
         return 'password changed'
 
-    else :
-        return  'Email Error'
-
-
+    else:
+        return 'Email Error'
 
 
 print(forget('aymane.maghouti@etu.uae.ac.ma'))

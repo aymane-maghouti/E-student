@@ -1,6 +1,6 @@
 from insert_data import connectDB
-mydb,mycursor =connectDB('student_managment')
 
+mydb, mycursor = connectDB('student_managment')
 
 mycursor.execute("insert into departement(id_departement,name) values (-1,'-')")
 mycursor.execute("insert into filier(id_filier,name,description,id_departement) values (-1,'-','-',-1)")

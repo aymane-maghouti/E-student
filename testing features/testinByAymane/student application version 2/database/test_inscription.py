@@ -1,6 +1,8 @@
 from tkinter import Tk
 from tkinter.filedialog import askopenfilename
+
 from PIL import Image
+
 from student_registration import student_inscription
 
 root = Tk()
@@ -11,15 +13,12 @@ file_path = askopenfilename()
 img = Image.open(file_path)
 print(img)
 
-#exemple de la liste retourne
-l=[['aymane', 'Outmani', 'L1258', 'P112144555', 'Male', [2, 'March', 2002]],
-   [img],
-   ['Tanger', "Sc Mathematique 'B'", 'Spanish', '12', 'Al khawarizmi high school','State'],
-   ['Av masira Nr22 ', 'App3 etage4', '98000', '0689557803', 'Taza', 'Morocco'],
-   ['aymane.outmani@etu.uae.ac.ma', 'Majid1234', 'Majid1234']]
-
-
-
+# exemple de la liste retourne
+l = [['aymane', 'Outmani', 'L1258', 'P112144555', 'Male', [2, 'March', 2002]],
+     [img],
+     ['Tanger', "Sc Mathematique 'B'", 'Spanish', '12', 'Al khawarizmi high school', 'State'],
+     ['Av masira Nr22 ', 'App3 etage4', '98000', '0689557803', 'Taza', 'Morocco'],
+     ['aymane.outmani@etu.uae.ac.ma', 'Majid1234', 'Majid1234']]
 
 student_inscription(l)
 print("done")

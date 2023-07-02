@@ -1,10 +1,14 @@
 import hashlib
+
 from conneToDB import connectDB
 
-conn,mycursor  = connectDB('student_managment')
+conn, mycursor = connectDB('student_managment')
+
+
 def hash_password(password):
     hash_object = hashlib.sha256(password.encode())
     return hash_object.hexdigest()
+
 
 def sign(email, password):
     # Check if the user is an admin
@@ -43,23 +47,21 @@ def sign(email, password):
                 mycursor.execute("SELECT lastname FROM student WHERE id_student = %s", (id_student,))
                 result = mycursor.fetchone()
                 lastname = result[0]
-                mycursor.execute("SELECT name_class FROM class c, student s WHERE s.id_class = c.id_class AND id_student = %s", (id_student,))
+                mycursor.execute(
+                    "SELECT name_class FROM class c, student s WHERE s.id_class = c.id_class AND id_student = %s",
+                    (id_student,))
                 result = mycursor.fetchone()
                 class_name = result[0]
-                mycursor.execute("SELECT f.name FROM filier f, filier_student fs WHERE f.id_filier = fs.id_filier AND fs.id_student = %s", (id_student,))
+                mycursor.execute(
+                    "SELECT f.name FROM filier f, filier_student fs WHERE f.id_filier = fs.id_filier AND fs.id_student = %s",
+                    (id_student,))
                 result = mycursor.fetchone()
                 filiere = result[0]
-                dict_std = {'firstname': firstname, 'lastname': lastname, 'id': id_student, 'class': class_name, 'filiere': filiere}
+                dict_std = {'firstname': firstname, 'lastname': lastname, 'id': id_student, 'class': class_name,
+                            'filiere': filiere}
                 tuple_std = ('student', dict_std)
                 return tuple_std
             else:
                 return 'Password Error'
         else:
             return 'Email Error'
-
-
-
-
-
-
-

@@ -1,14 +1,16 @@
 import tkinter as tk
 from tkinter import filedialog
+
 import mysql.connector
 
 # Se connecter à la base de données MySQL
 mydb = mysql.connector.connect(
-  host="localhost",
-  user="root",
-  password="MG1234",
-  database="gestion_etudiant"
+    host="localhost",
+    user="root",
+    password="MG1234",
+    database="gestion_etudiant"
 )
+
 
 # Fonction pour ajouter un utilisateur à la base de données
 def ajouter_utilisateur(nom, prenom, age, image):
@@ -18,6 +20,7 @@ def ajouter_utilisateur(nom, prenom, age, image):
     mycursor.execute(sql, val)
     mydb.commit()
     print(mycursor.rowcount, "utilisateur inséré.")
+
 
 # Fonction appelée lorsque le bouton "Ajouter" est cliqué
 def ajouter_clic():
@@ -31,11 +34,13 @@ def ajouter_clic():
 
     ajouter_utilisateur(nom, prenom, age, image_data)
 
+
 # Fonction appelée lorsque le bouton "Parcourir" est cliqué
 def parcourir_clic():
     filename = filedialog.askopenfilename()
     image_entree.delete(0, tk.END)
     image_entree.insert(0, filename)
+
 
 # Créer la fenêtre principale
 fenetre = tk.Tk()

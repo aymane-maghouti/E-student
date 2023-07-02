@@ -1,5 +1,7 @@
-import mysql.connector
 import tkinter as tk
+
+import mysql.connector
+
 
 # Fonction appelée lorsque l'utilisateur clique sur le bouton "Supprimer"
 def delete_student():
@@ -27,6 +29,7 @@ def delete_student():
 
     # Affichage du nombre d'enregistrements supprimés
     result_label.configure(text=mycursor.rowcount + " enregistrement(s) supprimé(s)")
+
 
 # Création de la fenêtre principale
 window = tk.Tk()

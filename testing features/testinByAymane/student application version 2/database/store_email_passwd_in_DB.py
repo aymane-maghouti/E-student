@@ -1,8 +1,9 @@
+import hashlib
 import re
 import tkinter as tk
 from tkinter import messagebox
+
 import mysql.connector
-import hashlib
 
 # Connexion à la base de données MySQL
 mydb = mysql.connector.connect(
@@ -12,10 +13,12 @@ mydb = mysql.connector.connect(
     database="gestion_etudiant"
 )
 
+
 # Fonction de vérification de l'adresse e-mail
 def check_email(email):
     pattern = r"^[a-zA-Z0-9]+\.([a-zA-Z0-9]+)+@+etu.uae.ac.ma$"
     return re.match(pattern, email)
+
 
 # Fonction de vérification du mot de passe
 def check_password(password, confirm_password):
@@ -36,10 +39,12 @@ def check_password(password, confirm_password):
         return False
     return True
 
+
 # Fonction de hachage du mot de passe
 def hash_password(password):
     hash_object = hashlib.sha256(password.encode())
     return hash_object.hexdigest()
+
 
 # Fonction de stockage des données dans la base de données
 def store_data(email, password):
@@ -54,17 +59,21 @@ def store_data(email, password):
     password_entry.delete(0, tk.END)
     confirm_password_entry.delete(0, tk.END)
 
+
 # Fonction de gestion du formulaire
 def submit_form():
     email = email_entry.get()
     password = password_entry.get()
     confirm_password = confirm_password_entry.get()
     if not check_email(email):
-        messagebox.showerror("Erreur", "L'adresse e-mail saisie est invalide. Veuillez saisir une adresse e-mail valide.")
+        messagebox.showerror("Erreur",
+                             "L'adresse e-mail saisie est invalide. Veuillez saisir une adresse e-mail valide.")
     elif not check_password(password, confirm_password):
-        messagebox.showerror("Erreur", "Le mot de passe ne respecte pas les normes de sécurité. Veuillez entrer un mot de passe qui respecte les normes.")
+        messagebox.showerror("Erreur",
+                             "Le mot de passe ne respecte pas les normes de sécurité. Veuillez entrer un mot de passe qui respecte les normes.")
     else:
         store_data(email, password)
+
 
 # Interface graphique
 root = tk.Tk()

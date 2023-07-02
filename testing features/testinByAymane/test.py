@@ -1,6 +1,7 @@
 from io import BytesIO
-from PIL import Image
+
 import mysql.connector
+from PIL import Image
 
 # Open the image file with Pillow
 image = Image.open('image.jpg')

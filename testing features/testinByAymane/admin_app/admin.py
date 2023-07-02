@@ -1,5 +1,6 @@
-import mysql.connector
 from datetime import datetime
+
+import mysql.connector
 
 
 def connectDB(nameDB):

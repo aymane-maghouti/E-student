@@ -1,8 +1,10 @@
 import csv
-from tkinter import  *
 import tkinter as tk
+from tkinter import *
 from tkinter import filedialog
+
 from PIL import ImageTk, Image
+
 
 class ExampleApp(tk.Tk):
     def __init__(self):
@@ -16,11 +18,10 @@ class ExampleApp(tk.Tk):
         self.page4 = tk.Frame(self, bg="purple")
 
         # Création des boutons "Next" et "Back"
-        self.button_back = tk.Button(self,text='Back',font=('Bold',12),bg='#1877f2', fg='white',width=8, command=self.show_previous_page)
-        self.button_next = tk.Button(self, text='Next',font=('Bold',12),bg='#1877f2', fg='white',width=8, command=self.show_next_page)
-
-
-
+        self.button_back = tk.Button(self, text='Back', font=('Bold', 12), bg='#1877f2', fg='white', width=8,
+                                     command=self.show_previous_page)
+        self.button_next = tk.Button(self, text='Next', font=('Bold', 12), bg='#1877f2', fg='white', width=8,
+                                     command=self.show_next_page)
 
         # Ajout des widgets à la fenêtre
         self.page1.pack(fill="both", expand=True)
@@ -30,14 +31,11 @@ class ExampleApp(tk.Tk):
         self.button_back.pack(side="left", padx=5, pady=5)
         self.button_next.pack(side="right", padx=5, pady=5)
 
-
-
         # Initialisation de l'index de la page affichée
         self.current_page = 0
         self.show_current_page()
 
-
-        #@page 1
+        # @page 1
         self.label_nom = tk.Label(self.page1, text="Nom:")
         self.label_prenom = tk.Label(self.page1, text="Prenom:")
         self.label_CIN = tk.Label(self.page1, text="CIN :")
@@ -82,8 +80,6 @@ class ExampleApp(tk.Tk):
         menu = tk.OptionMenu(self.page1, var, *countries)
         menu.grid(row=6, column=1, padx=5, pady=5)
 
-
-
         self.label_title1 = tk.Label(self.page1, text="IDENTIFICATION DE L'ETUDIANT", font=("Arial", 16))
         self.label_title2 = tk.Label(self.page2, text="NAISSANCE DE L'ETUDIANT", font=("Arial", 16))
         self.label_title3 = tk.Label(self.page3, text="COORDONNEES DE L'ETUDIANT", font=("Arial", 16))
@@ -95,8 +91,7 @@ class ExampleApp(tk.Tk):
         self.button_select_image = tk.Button(self.page1, text="Select Image", command=self.select_image)
         self.button_select_image.grid(row=7, column=0, padx=5, pady=5)
 
-
-        #@page 2
+        # @page 2
         self.label_DN = tk.Label(self.page2, text="Date de Naissance :")
         self.label_VN = tk.Label(self.page2, text="Ville de Naissance :")
         self.label_PN = tk.Label(self.page2, text="Province de Naissance :")
@@ -129,9 +124,7 @@ class ExampleApp(tk.Tk):
         menu = tk.OptionMenu(self.page2, var, *villes)
         menu.grid(row=2, column=1, padx=5, pady=5)
 
-
-
-        #@PAGE3
+        # @PAGE3
         self.label_TELE = tk.Label(self.page3, text="Tele :")
         self.label_EP = tk.Label(self.page3, text="Email Personnel :")
         self.label_EI = tk.Label(self.page3, text="Email Institutionnel :")
@@ -146,7 +139,6 @@ class ExampleApp(tk.Tk):
         self.entry_TELE.grid(row=1, column=1, padx=5, pady=5)
         self.entry_EP.grid(row=2, column=1, padx=5, pady=5)
         self.entry_EI.grid(row=3, column=1, padx=5, pady=5)
-
 
         # @page4
         self.label_AB = tk.Label(self.page4, text="Année d'obtention BAC  :")

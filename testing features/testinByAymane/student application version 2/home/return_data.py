@@ -1,13 +1,15 @@
-from conneToDB import connectDB
-from PIL import Image
 import numpy as np
+from PIL import Image
+
+from conneToDB import connectDB
 
 
 def Convert_IMG(binary_data):
     array = np.frombuffer(binary_data, dtype=np.uint8)
-    array = array.reshape((60,60, 3))
+    array = array.reshape((60, 60, 3))
     image = Image.fromarray(array)
     return image
+
 
 def return_data_by_id(id_student):
     def convert_number_to_month(number):
@@ -68,4 +70,3 @@ def return_data_by_id(id_student):
 
 
 print(return_data_by_id(12))
-

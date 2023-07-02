@@ -1,8 +1,6 @@
 import threading
 from tkinter import *
 from PIL import Image,ImageTk
-from time import *
-from threading import *
 
 def toTransparent(image):
 

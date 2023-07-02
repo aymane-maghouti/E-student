@@ -1,30 +1,28 @@
+import tkinter as tk
+
 import matplotlib.pyplot as plt
 import numpy as np
-from scipy.interpolate import splrep, splev
-from helper import get_data
-import tkinter as tk
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from scipy.interpolate import splrep, splev
 
+from helper import get_data
 
 
 def show_graph():
     root = tk.Tk()
     root.title("Statistiques d'accès à eServices")
 
-    nb_visiteurs , dates = get_data()
+    nb_visiteurs, dates = get_data()
     labels = []
     for i in range(len(nb_visiteurs)):
         label = f"{dates[i]} \n nbr.Connexions {nb_visiteurs[i][0]}"
         labels.append(label)
 
-
-
-
     dates_smooth = np.linspace(0, 4, 100)
     spl = splrep(range(len(dates)), nb_visiteurs)
     y_smooth = splev(dates_smooth, spl)
 
-    fig , ax = plt.subplots()
+    fig, ax = plt.subplots()
     scatter = plt.scatter(dates, nb_visiteurs)
 
     def hover(event):
@@ -47,7 +45,6 @@ def show_graph():
     plt.xlabel('')
     plt.ylabel('')
     plt.title("Statistiques d'accès à eServices")
-
 
     canvas = FigureCanvasTkAgg(fig, master=root)
     canvas.draw()

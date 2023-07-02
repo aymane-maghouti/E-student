@@ -190,7 +190,7 @@ class StudentHome:
         base.studentAboutExtendedIconButton=MyButton(base.studentMenuExtendedFrame.mainFrame,0,311,base.studentAboutExtendedIconImg,cursor="hand2",behavior=self.toAbout)
 
         base.studentHomeGroup = MyWidgetsGroup(base.Background,base.logoutStudentButton,base.studentHomeNewsText,base.studentHomeGraphFrame,base.studentHomeNewsFrame,base.studentHomeTitle)
-        base.studentHomeInterfaceGroup = MyWidgetsGroup(base.Background,base.studentHomeMenuFrame,base.logoStudentObject,base.logoutStudentButton,base.studentHomeNewsText,base.studentHomeGraphFrame,base.studentHomeNewsFrame,base.studentHomeTitle)
+        base.studentHomeInterfaceGroup = MyWidgetsGroup(base.Background,base.logoStudentObject,base.logoutStudentButton,base.studentHomeNewsText,base.studentHomeGraphFrame,base.studentHomeNewsFrame,base.studentHomeTitle,base.studentHomeMenuFrame)
 
         self.hideWidgets=[self.base.studentHomeGraphFrame]
 

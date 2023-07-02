@@ -1,13 +1,13 @@
 from tkinter import *
+
 from conneToDB import connectDB
-
-
-
 
 
 def show_prof(filier_name):
     mydb, mycursor = connectDB("student_managment")
-    mycursor.execute("select firstname , lastname , email_prof from prof p , filier f , departement d where f.id_departement = d.id_departement  and p.id_departement = d.id_departement and f.name = %s ",(filier_name,))
+    mycursor.execute(
+        "select firstname , lastname , email_prof from prof p , filier f , departement d where f.id_departement = d.id_departement  and p.id_departement = d.id_departement and f.name = %s ",
+        (filier_name,))
     result = mycursor.fetchall()
     # Créer une fenêtre et un canvas avec une barre de défilement verticale
     root = Tk()
@@ -40,8 +40,3 @@ def show_prof(filier_name):
 
 
 show_prof('ID')
-
-
-
-
-

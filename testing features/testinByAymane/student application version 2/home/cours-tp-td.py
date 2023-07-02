@@ -1,18 +1,20 @@
+import os
 from tkinter import *
 from tkinter import filedialog
-import os
-from conneToDB import connectDB
-# Se connecter à la base de données MySQL
-mydb ,mycursor = connectDB("student_managment")
 
+from conneToDB import connectDB
+
+# Se connecter à la base de données MySQL
+mydb, mycursor = connectDB("student_managment")
 
 
 def documents(class_name):
-    mycursor.execute("SELECT type,titre,file,date_doc FROM documents where class = %s order by date_doc desc ", (class_name,))
+    mycursor.execute("SELECT type,titre,file,date_doc FROM documents where class = %s order by date_doc desc ",
+                     (class_name,))
     result = mycursor.fetchall()
 
     def get_pdf_from_database(index):
-        conn , cursor = connectDB("student_managment")
+        conn, cursor = connectDB("student_managment")
         query = "SELECT file FROM documents WHERE class = 'id1' order by date_doc desc"
         cursor.execute(query)
         rows = cursor.fetchall()
@@ -33,7 +35,7 @@ def documents(class_name):
 
         # Créer un nom de fichier aléatoire avec l'extension .pdf
         import random as rd
-        n=rd.randrange(1000000000000000000,999999999999999999999)
+        n = rd.randrange(1000000000000000000, 999999999999999999999)
         filename = f"{n}.pdf"
 
         # Construire le chemin complet du fichier de destination
@@ -50,7 +52,6 @@ def documents(class_name):
         pdf_content = get_pdf_from_database(index)
         if pdf_content is not None:
             download_pdf(pdf_content)
-
 
     # Créer une fenêtre
     root = Tk()
@@ -70,19 +71,20 @@ def documents(class_name):
 
     # Ajouter un cadre pour contenir les étiquettes
     table = Frame(canvas)
-    canvas.create_window((0,0), window=table, anchor=NW)
+    canvas.create_window((0, 0), window=table, anchor=NW)
 
     # Ajouter les étiquettes au cadre
-    Label(table,text="Type" , width=10,height=2).grid(row=0,column=0)
-    Label(table,text="Titre" , width=25,height=2).grid(row=0,column=1)
-    Label(table,text="file" , width=10,height=2).grid(row=0,column=2)
-    Label(table,text="date de publication" , width=15,height=2).grid(row=0,column=3)
+    Label(table, text="Type", width=10, height=2).grid(row=0, column=0)
+    Label(table, text="Titre", width=25, height=2).grid(row=0, column=1)
+    Label(table, text="file", width=10, height=2).grid(row=0, column=2)
+    Label(table, text="date de publication", width=15, height=2).grid(row=0, column=3)
 
     for i, row in enumerate(result):
-        Label(table, text=row[0],width=10,height=2).grid(row=i+1, column=0)
-        Label(table, text=row[1],width=25,height=2).grid(row=i+1, column=1)
-        Button(table, text="telecharger", command=lambda index=i: download_button_click(index), width=15, height=2).grid(row=i+1, column=2)
-        Label(table, text=row[3],width=15,height=2).grid(row=i+1, column=3)
+        Label(table, text=row[0], width=10, height=2).grid(row=i + 1, column=0)
+        Label(table, text=row[1], width=25, height=2).grid(row=i + 1, column=1)
+        Button(table, text="telecharger", command=lambda index=i: download_button_click(index), width=15,
+               height=2).grid(row=i + 1, column=2)
+        Label(table, text=row[3], width=15, height=2).grid(row=i + 1, column=3)
 
     # Redimensionner le canevas en fonction de son contenu
     table.update_idletasks()
@@ -90,5 +92,6 @@ def documents(class_name):
 
     # Afficher la fenêtre
     root.mainloop()
+
 
 documents('gi1')

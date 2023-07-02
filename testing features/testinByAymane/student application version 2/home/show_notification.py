@@ -1,21 +1,25 @@
 from datetime import datetime
+
 from conneToDB import connectDB
 
 mydb, mycursor = connectDB("student_managment")
+
 
 def show_details(details):
     root1 = Tk()
     root1.geometry('200x200')
     paragraph = details
     n = len(paragraph)
-    label =Label(root1, text=paragraph, wraplength=n, anchor="nw", justify='left')
+    label = Label(root1, text=paragraph, wraplength=n, anchor="nw", justify='left')
     label.pack()
     required_height = label.winfo_reqheight()
     label.config(height=required_height)
 
     root1.mainloop()
 
-mycursor.execute("SELECT title, date_not, detail FROM notification n, filier f WHERE f.id_filier = n.id_filier AND name = 'ID' order by date_not desc ")
+
+mycursor.execute(
+    "SELECT title, date_not, detail FROM notification n, filier f WHERE f.id_filier = n.id_filier AND name = 'ID' order by date_not desc ")
 results = mycursor.fetchall()
 
 notifications = []
@@ -26,22 +30,24 @@ for result in results:
 
 print(notifications)
 
-
 from tkinter import *
+
 
 def show_details(details):
     root1 = Tk()
     root1.geometry('200x200')
     paragraph = details
     n = len(paragraph)
-    label =Label(root1, text=paragraph, wraplength=n, anchor="nw", justify='left')
+    label = Label(root1, text=paragraph, wraplength=n, anchor="nw", justify='left')
     label.pack()
     required_height = label.winfo_reqheight()
     label.config(height=required_height)
 
     root1.mainloop()
 
+
 texts = []
+
 
 def show(notifications):
     root = Tk()
@@ -83,6 +89,4 @@ def show(notifications):
     root.mainloop()
 
 
-
 show(notifications)
-

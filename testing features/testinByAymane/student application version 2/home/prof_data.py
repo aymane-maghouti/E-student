@@ -1,8 +1,9 @@
-from conneToDB import  connectDB
+from conneToDB import connectDB
+
 
 def get_prof_by_class(class_id):
     # se connecter à la base de données
-    conn , cursor = connectDB("student_managment")
+    conn, cursor = connectDB("student_managment")
 
     # exécuter une requête SQL pour récupérer les résultats
     sql = "SELECT DISTINCT p.firstname, p.lastname, email_prof FROM prof p, departement d, filier f, class c, student s WHERE f.id_departement = p.id_departement AND c.id_filier = f.id_filier AND p.id_departement = d.id_departement AND s.id_class = c.id_class AND s.id_class = %s"

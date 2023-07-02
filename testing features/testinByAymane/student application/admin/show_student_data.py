@@ -1,8 +1,12 @@
-from PIL import Image,ImageTk
-import numpy as np
 import tkinter as tk
-from admin import connectDB,delete_student
+
+import numpy as np
+from PIL import Image, ImageTk
 from mysql import connector
+
+from admin import connectDB, delete_student
+
+
 def connectDB(nameDB):
     try:
         conn = connector.Connect(host="localhost",  # your host, usually localhost
@@ -18,6 +22,7 @@ def connectDB(nameDB):
     except connector.Error as e:
         print(e)
         return e
+
 
 liste_images = []
 
@@ -35,9 +40,8 @@ class_entry = tk.Entry(main_frame)
 class_entry.pack(pady=10)
 
 
-
 def Convert_IMG(binary_data):
-    array = np.frombuffer(binary_data, dtype=np.uint8).reshape((60,60,3))
+    array = np.frombuffer(binary_data, dtype=np.uint8).reshape((60, 60, 3))
     return Image.fromarray(array)
 
 
@@ -62,9 +66,6 @@ def id_class():
     elif class_name == 'GEER2':
         class_id = 8
     display_students(class_id)
-
-
-
 
 
 # Display the list of students for a given class
@@ -93,18 +94,19 @@ def display_students(class_id):
     # Update the scroll region when the size of the frame changes
     def update_scrollregion(event):
         canvas.configure(scrollregion=canvas.bbox("all"))
+
     scrollable_frame.bind("<Configure>", update_scrollregion)
 
     # Create the column headers in row 0
     tk.Label(scrollable_frame, text='Nom complet').grid(row=0, column=1)
     tk.Label(scrollable_frame, text='id').grid(row=0, column=2)
     tk.Label(scrollable_frame, text='Photo').grid(row=0, column=3)
-    tk.Label(scrollable_frame,text='delete student').grid(row=0,column=4)
+    tk.Label(scrollable_frame, text='delete student').grid(row=0, column=4)
 
     for i, student in enumerate(students, start=1):
         imgobject = Convert_IMG(student[3])
         img = ImageTk.PhotoImage(imgobject)
-        tk.Button(scrollable_frame, text="delete", command=lambda : delete_student(student[0])).grid(row=i, column=4)
+        tk.Button(scrollable_frame, text="delete", command=lambda: delete_student(student[0])).grid(row=i, column=4)
         full_name = f"{student[1]} {student[2]}"
         tk.Label(scrollable_frame, text=full_name).grid(row=i, column=1, ipadx=20)
         tk.Label(scrollable_frame, text=student[0]).grid(row=i, column=2, ipadx=60)
@@ -112,9 +114,10 @@ def display_students(class_id):
         liste_images.append(img)
     cursor.close()
 
+
 # Create a button to display the list of students
 display_button = tk.Button(main_frame, text="Afficher les étudiants", command=id_class)
-display_button.pack(pady=10,expand=False)
+display_button.pack(pady=10, expand=False)
 
 # Start the main event loop
 root.mainloop()

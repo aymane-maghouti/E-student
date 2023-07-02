@@ -20,9 +20,9 @@
 # root.mainloop()
 
 
-
 # Import required libraries
 from tkinter import *
+
 from PIL import ImageTk, Image
 
 # Create an instance of tkinter window
@@ -39,7 +39,7 @@ frame.place(anchor='center', relx=0.5, rely=0.5)
 img = ImageTk.PhotoImage(Image.open("logo-ensah.png"))
 
 # Create a Label Widget to display the text or Image
-label = Label(frame, image = img)
+label = Label(frame, image=img)
 label.pack()
 
 win.mainloop()

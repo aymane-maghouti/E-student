@@ -1,14 +1,17 @@
 import tkinter as tk
+from datetime import datetime
 from tkinter import filedialog
+
 import mysql.connector
 from mysql.connector import errorcode
-from datetime import datetime
+
 
 # Fonction appelée lorsque l'utilisateur clique sur le bouton "Sélectionner un fichier"
 def select_file():
     file_path = filedialog.askopenfilename(filetypes=[("Fichiers PDF", "*.pdf")])
     file_path_entry.delete(0, tk.END)
     file_path_entry.insert(0, file_path)
+
 
 # Fonction appelée lorsque l'utilisateur clique sur le bouton "Enregistrer"
 def save_file():
@@ -20,7 +23,7 @@ def save_file():
     try:
         # Connexion à la base de données MySQL
         cnx = mysql.connector.connect(user='root', password='MG1234',
-                                       host='localhost', database='gestion_etudiant')
+                                      host='localhost', database='gestion_etudiant')
         cursor = cnx.cursor()
 
         # Insertion des données dans la table "files"
@@ -45,16 +48,15 @@ def save_file():
         else:
             tk.messagebox.showerror("Erreur", "Erreur lors de la connexion à la base de données.")
 
+
 # Création de la fenêtre principale
 root = tk.Tk()
 root.title("Emploi du temps")
 
-
-file_class_label = tk.Label(root,text="Class : ")
+file_class_label = tk.Label(root, text="Class : ")
 file_class_label.grid(row=0, column=0, padx=10, pady=10)
 file_class_entry = tk.Entry(root)
 file_class_entry.grid(row=0, column=1, columnspan=3, padx=10, pady=10)
-
 
 file_path_label = tk.Label(root, text="Emploi du temps :")
 file_path_label.grid(row=2, column=0, padx=10, pady=10)
@@ -66,4 +68,3 @@ save_button = tk.Button(root, text="Enregistrer", command=save_file)
 save_button.grid(row=4, column=1, columnspan=2, padx=10, pady=10)
 
 root.mainloop()
-

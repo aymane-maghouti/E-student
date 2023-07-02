@@ -1,6 +1,9 @@
-import mysql.connector
 from tkinter import Tk, Label, Entry, Button
 from tkinter.filedialog import askopenfilename
+
+import mysql.connector
+
+
 # Fonction pour insérer les données et l'image dans la base de données
 def insert_student_data():
     # Connexion à la base de données MySQL
@@ -30,11 +33,13 @@ def insert_student_data():
 
     print(mycursor.rowcount, "record inserted.")
 
+
 # Fonction pour sélectionner le fichier image à partir de la machine de l'utilisateur
 def select_image_file():
     global filename
     Tk().withdraw()
     filename = askopenfilename()
+
 
 # Création de la fenêtre Tkinter
 root = Tk()
@@ -65,7 +70,3 @@ insert_button = Button(root, text="Insérer les données", command=insert_studen
 insert_button.pack()
 
 root.mainloop()
-
-
-
-

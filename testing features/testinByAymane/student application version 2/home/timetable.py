@@ -1,18 +1,17 @@
+import os
 from tkinter import *
 from tkinter import filedialog
-import os
+
 from conneToDB import connectDB
 
 # Se connecter à la base de données MySQL
-mydb  ,mycursor = connectDB("student_managment")
+mydb, mycursor = connectDB("student_managment")
 mycursor.execute("SELECT class,timetable,date_pub FROM emploi_temps order by date_pub desc ")
 result = mycursor.fetchall()
 
 
-
 def get_pdf_from_database(index):
-
-    conn , cursor = connectDB("student_managment")
+    conn, cursor = connectDB("student_managment")
     query = "SELECT timetable FROM emploi_temps order by date_pub desc"
     cursor.execute(query)
     rows = cursor.fetchall()
@@ -54,7 +53,6 @@ def download_button_click(index):
         download_pdf(pdf_content)
 
 
-
 # Créer une fenêtre et un canvas avec une barre de défilement verticale
 root = Tk()
 root.geometry('400x100')
@@ -71,15 +69,16 @@ canvas.bind('<Configure>', lambda e: canvas.configure(scrollregion=canvas.bbox("
 
 # Créer un cadre pour le tableau
 table = Frame(canvas)
-canvas.create_window((0,0), window=table, anchor="nw")
+canvas.create_window((0, 0), window=table, anchor="nw")
 
 # Afficher les données dans un tableau tkinter
-Label(table,text="Class" , width=10,height=2).grid(row=0,column=0)
-Label(table,text="emploi du temps" , width=15,height=2).grid(row=0,column=1)
-Label(table,text="date de publication" , width=15,height=2).grid(row=0,column=2)
+Label(table, text="Class", width=10, height=2).grid(row=0, column=0)
+Label(table, text="emploi du temps", width=15, height=2).grid(row=0, column=1)
+Label(table, text="date de publication", width=15, height=2).grid(row=0, column=2)
 for i, row in enumerate(result):
-    Label(table, text=row[0],width=10,height=2).grid(row=i+1, column=0)
-    Button(table, text="telecharger", command=lambda index=i: download_button_click(index), width=15, height=2).grid(row=i+1, column=1)
-    Label(table, text=row[2],width=15,height=2).grid(row=i+1, column=2)
+    Label(table, text=row[0], width=10, height=2).grid(row=i + 1, column=0)
+    Button(table, text="telecharger", command=lambda index=i: download_button_click(index), width=15, height=2).grid(
+        row=i + 1, column=1)
+    Label(table, text=row[2], width=15, height=2).grid(row=i + 1, column=2)
 
 root.mainloop()
