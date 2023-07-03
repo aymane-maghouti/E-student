@@ -328,6 +328,7 @@ class App(tk.Tk):
         self.logoObject = MyButton(self.Background, 79, 51, self.logoImg, cursor="hand2", behavior=self.onLogoClick)
 
     def adminLogout(self):
+        self.currentFrame.firstTime=True
         self.currentFrame.removeInterface()
         self.login.createLogin(self)
         self.logoImg = Image.open(r"assets\general\EstudentLogo.png")

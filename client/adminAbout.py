@@ -12,9 +12,6 @@ class AdminAbout:
         self.base.adminAboutGroup.removeGroup()
 
     def createAdminAbout(self, base):
-        # base=tk.Tk()
-        # base.Background=tk.Canvas()
-
         base.currentFrame = self
         self.base = base
         base.adminAboutTitle = base.Background.create_text(156, 130, text="About",

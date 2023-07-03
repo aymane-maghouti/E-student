@@ -22,6 +22,7 @@ class StudentHome:
         self.taskSelected = False
         self.menuOn = False
         self.hiddenWidgetsPlaces = []
+        self.firstTime=True
 
     def remove(self):
         self.base.studentHomeGroup.removeGroup()
@@ -102,8 +103,6 @@ class StudentHome:
         base.studentMenuImg = ImageTk.PhotoImage(Image.open(
             base.resourcePath("assets/general/menuBackground.png")))
 
-        base.studentHomeMenuFrame = MyFrame(base.Background, base.studentMenuImg, "#1f1a24", 40, 351, 55, 107, 4, 23)
-
         base.courses = StudentCourses()
         base.staff = StudentStaff()
         base.grades = StudentGrades()
@@ -111,56 +110,62 @@ class StudentHome:
         base.profile = StudentProfile()
         base.about = StudentAbout()
 
-        base.selectedCircleStudentImg = Image.open(
-            base.resourcePath("assets/general/selectedTaskCircle.png"))
+        if self.firstTime:
+            base.studentHomeMenuFrame = MyFrame(base.Background, base.studentMenuImg, "#1f1a24", 40, 351, 55, 107, 4, 23)
+            self.firstTime=False
 
-        base.selectedCircleStudent = MyButton(base.studentHomeMenuFrame.mainFrame, 0, 0, base.selectedCircleStudentImg,
-                                              cursor="hand2", behavior=lambda: print("hi"))
-        base.selectedCircleStudent.place_forget()
-        # base.selectedCircleStudent.place(0,0)
+            base.selectedCircleStudentImg = Image.open(
+                base.resourcePath("assets/general/selectedTaskCircle.png"))
 
-        base.studentMenuIconImg = Image.open(
-            base.resourcePath("assets/general/menuIcon.png"))
+            base.selectedCircleStudent = MyButton(base.studentHomeMenuFrame.mainFrame, 0, 0, base.selectedCircleStudentImg,
+                                                  cursor="hand2", behavior=lambda: print("hi"))
+            base.selectedCircleStudent.place_forget()
+            # base.selectedCircleStudent.place(0,0)
 
-        base.studentMenuIconButton = MyButton(base.studentHomeMenuFrame.mainFrame, 10, 10, base.studentMenuIconImg,
-                                              cursor="hand2", behavior=self.extendMenu)
+            base.studentMenuIconImg = Image.open(
+                base.resourcePath("assets/general/menuIcon.png"))
 
-        base.studentBooksIconImg = Image.open(
-            base.resourcePath("assets/general/booksIcon.png"))
+            base.studentMenuIconButton = MyButton(base.studentHomeMenuFrame.mainFrame, 10, 10, base.studentMenuIconImg,
+                                                  cursor="hand2", behavior=self.extendMenu)
 
-        base.studentBooksIconButton = MyButton(base.studentHomeMenuFrame.mainFrame, 10, 67, base.studentBooksIconImg,
-                                               cursor="hand2", behavior=lambda: self.toCourses())
+            base.studentBooksIconImg = Image.open(
+                base.resourcePath("assets/general/booksIcon.png"))
 
-        base.studentTimetableIconImg = Image.open(
-            base.resourcePath("assets/general/timetableIcon.png"))
+            base.studentBooksIconButton = MyButton(base.studentHomeMenuFrame.mainFrame, 10, 67, base.studentBooksIconImg,
+                                                   cursor="hand2", behavior=lambda: self.toCourses())
 
-        base.studentTimetableIconButton = MyButton(base.studentHomeMenuFrame.mainFrame, 10, 117,
-                                                   base.studentTimetableIconImg, cursor="hand2",
-                                                   behavior=self.toTimeTable)
+            base.studentTimetableIconImg = Image.open(
+                base.resourcePath("assets/general/timetableIcon.png"))
 
-        base.studentGradesIconImg = Image.open(
-            base.resourcePath("assets/general/graduationIcon.png"))
+            base.studentTimetableIconButton = MyButton(base.studentHomeMenuFrame.mainFrame, 10, 117,
+                                                       base.studentTimetableIconImg, cursor="hand2",
+                                                       behavior=self.toTimeTable)
 
-        base.studentGradesIconButton = MyButton(base.studentHomeMenuFrame.mainFrame, 10, 166, base.studentGradesIconImg,
-                                                cursor="hand2", behavior=self.toGrades)
+            base.studentGradesIconImg = Image.open(
+                base.resourcePath("assets/general/graduationIcon.png"))
 
-        base.studentStaffIconImg = Image.open(
-            base.resourcePath("assets/general/staffIcon.png"))
+            base.studentGradesIconButton = MyButton(base.studentHomeMenuFrame.mainFrame, 10, 166, base.studentGradesIconImg,
+                                                    cursor="hand2", behavior=self.toGrades)
 
-        base.studentStaffIconButton = MyButton(base.studentHomeMenuFrame.mainFrame, 10, 217, base.studentStaffIconImg,
-                                               cursor="hand2", behavior=self.toStaff)
+            base.studentStaffIconImg = Image.open(
+                base.resourcePath("assets/general/staffIcon.png"))
 
-        base.studentProfileIconImg = Image.open(
-            base.resourcePath("assets/general/profileIcon.png"))
+            base.studentStaffIconButton = MyButton(base.studentHomeMenuFrame.mainFrame, 10, 217, base.studentStaffIconImg,
+                                                   cursor="hand2", behavior=self.toStaff)
 
-        base.studentProfileIconButton = MyButton(base.studentHomeMenuFrame.mainFrame, 10, 263,
-                                                 base.studentProfileIconImg, cursor="hand2", behavior=self.toProfile)
+            base.studentProfileIconImg = Image.open(
+                base.resourcePath("assets/general/profileIcon.png"))
 
-        base.studentAboutIconImg = Image.open(
-            base.resourcePath("assets/general/aboutIcon.png"))
+            base.studentProfileIconButton = MyButton(base.studentHomeMenuFrame.mainFrame, 10, 263,
+                                                     base.studentProfileIconImg, cursor="hand2", behavior=self.toProfile)
 
-        base.studentAboutIconButton = MyButton(base.studentHomeMenuFrame.mainFrame, 14, 319, base.studentAboutIconImg,
-                                               cursor="hand2", behavior=self.toAbout)
+            base.studentAboutIconImg = Image.open(
+                base.resourcePath("assets/general/aboutIcon.png"))
+
+            base.studentAboutIconButton = MyButton(base.studentHomeMenuFrame.mainFrame, 14, 319, base.studentAboutIconImg,
+                                                   cursor="hand2", behavior=self.toAbout)
+        else :
+            base.selectedCircleStudent.place_forget()
 
         # Menu extended
         base.studentMenuExtendedImg = ImageTk.PhotoImage(Image.open(
@@ -329,7 +334,7 @@ class StudentHome:
             text.configure(state='disabled')
             text.grid(row=(2 * i), column=0)
             Button(table_frame, text=f'{notifications[i][1]}', command=lambda i=i: self.show_details(notifications, i),
-                   width=15, height=1, pady=0, padx=0, highlightthickness=0, relief="sunken", borderwidth=0, border=0,
+                   width=20, height=1, pady=0, padx=0, highlightthickness=0, relief="sunken", borderwidth=0, border=0,
                    overrelief="sunken", foreground="white", background="#1f1a24", activeforeground="white",
                    activebackground="#1f1a24", cursor="hand2", font=("Montserrat", 8, "bold")).grid(row=(2 * i) + 1,
                                                                                                     column=0,

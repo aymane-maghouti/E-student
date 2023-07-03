@@ -357,7 +357,7 @@ class AdminHome:
             text.configure(state='disabled')
             text.grid(row=(2 * i), column=0)
             Button(table_frame, text=f'{notifications[i][1]}', command=lambda i=i: self.show_details(notifications, i),
-                   width=15, height=1, pady=0, padx=0, highlightthickness=0, relief="sunken", borderwidth=0, border=0,
+                   width=20, height=1, pady=0, padx=0, highlightthickness=0, relief="sunken", borderwidth=0, border=0,
                    overrelief="sunken", foreground="white", background="#1f1a24", activeforeground="white",
                    activebackground="#1f1a24", cursor="hand2", font=("Montserrat", 8, "bold")).grid(row=(2 * i) + 1,
                                                                                                     column=0,

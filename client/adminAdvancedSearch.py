@@ -13,12 +13,8 @@ class AdminAdvancedSearch:
         self.base.adminAdvancedSearchGroup.removeGroup()
 
     def createAdminAdvancedSearch(self, base, student):
-        # base=tk.Tk()
-        # base.Background=tk.Canvas()
-
         base.currentFrame = self
         self.base = base
-        # base.AdvancedSearch=adminAdvancedSearch()
         base.adminAdvancedSearchTitle = base.Background.create_text(156, 130, text="Advanced Search",
                                                                     font=("Montserrat", 20, "bold"), fill="white",
                                                                     anchor=tk.NW)
@@ -32,7 +28,7 @@ class AdminAdvancedSearch:
         full_name_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="Full Name :",
                                 font=("Montserrat", 8, "bold"),
                                 fg="#bb86fc", bg="#1f1a24", width=60, height=0,
-                                anchor=W)  # age_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="Age :")
+                                anchor=W)
         full_name_label.grid(row=1, column=0, padx=5, sticky=W)
         full_name_display = Label(base.adminAdvancedSearchFrame.scrollable_frame, text=f"{l[0][0]} {l[0][1]}",
                                   font=("Montserrat", 8, "bold"),
@@ -41,7 +37,7 @@ class AdminAdvancedSearch:
 
         CIN_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="CIN :", font=("Montserrat", 8, "bold"),
                           fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                          pady=0)  # age_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="Age :")
+                          pady=0)
         CIN_label.grid(row=3, column=0, padx=5, sticky=W)
         CIN_display = Label(base.adminAdvancedSearchFrame.scrollable_frame, text=f"{l[0][2]}",
                             font=("Montserrat", 8, "bold"),
@@ -50,7 +46,7 @@ class AdminAdvancedSearch:
 
         CNE_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="CNE :", font=("Montserrat", 8, "bold"),
                           fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                          pady=0)  # age_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="Age :")
+                          pady=0)
         CNE_label.grid(row=5, column=0, padx=5, sticky=W)
         CNE_display = Label(base.adminAdvancedSearchFrame.scrollable_frame, text=f"{l[0][3]}",
                             font=("Montserrat", 8, "bold"),
@@ -60,7 +56,7 @@ class AdminAdvancedSearch:
         gender_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="Gender :",
                              font=("Montserrat", 8, "bold"),
                              fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                             pady=0)  # age_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="Age :")
+                             pady=0)
         gender_label.grid(row=7, column=0, padx=5, sticky=W)
         gender_display = Label(base.adminAdvancedSearchFrame.scrollable_frame, text=f"{l[0][4]}",
                                font=("Montserrat", 8, "bold"),
@@ -70,7 +66,7 @@ class AdminAdvancedSearch:
         birthday_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="Birthday :",
                                font=("Montserrat", 8, "bold"),
                                fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                               pady=0)  # age_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="Age :")
+                               pady=0)
         birthday_label.grid(row=9, column=0, padx=5, sticky=W)
         birthday_display = Label(base.adminAdvancedSearchFrame.scrollable_frame,
                                  text=f"{l[0][5][0]} / {l[0][5][1]} / {l[0][5][2]}", font=("Montserrat", 8, "bold"),
@@ -80,7 +76,7 @@ class AdminAdvancedSearch:
         bac_sector_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="Bac Sector :",
                                  font=("Montserrat", 8, "bold"),
                                  fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                                 pady=0)  # age_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="Age :")
+                                 pady=0)
         bac_sector_label.grid(row=11, column=0, padx=5, sticky=W)
         bac_sector_display = Label(base.adminAdvancedSearchFrame.scrollable_frame, text=f"{l[2][1]}",
                                    font=("Montserrat", 8, "bold"),
@@ -90,7 +86,7 @@ class AdminAdvancedSearch:
         bac_language_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="Bac language :",
                                    font=("Montserrat", 8, "bold"),
                                    fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                                   pady=0)  # age_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="Age :")
+                                   pady=0)
         bac_language_label.grid(row=11, column=0, padx=5, sticky=W)
         bac_language_display = Label(base.adminAdvancedSearchFrame.scrollable_frame, text=f"{l[2][2]}",
                                      font=("Montserrat", 8, "bold"),
@@ -100,7 +96,7 @@ class AdminAdvancedSearch:
         bac_grade_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="Bac grade :",
                                 font=("Montserrat", 8, "bold"),
                                 fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                                pady=0)  # age_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="Age :")
+                                pady=0)
         bac_grade_label.grid(row=13, column=0, padx=5, sticky=W)
         bac_grade_display = Label(base.adminAdvancedSearchFrame.scrollable_frame, text=f"{l[2][3]}",
                                   font=("Montserrat", 8, "bold"),
@@ -110,7 +106,7 @@ class AdminAdvancedSearch:
         bac_city_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="Bac city :",
                                font=("Montserrat", 8, "bold"),
                                fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                               pady=0)  # age_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="Age :")
+                               pady=0)
         bac_city_label.grid(row=15, column=0, padx=5, sticky=W)
         bac_city_display = Label(base.adminAdvancedSearchFrame.scrollable_frame, text=f"{l[2][0]}",
                                  font=("Montserrat", 8, "bold"),
@@ -120,7 +116,7 @@ class AdminAdvancedSearch:
         high_school_name_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="High school name :",
                                        font=("Montserrat", 8, "bold"),
                                        fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                                       pady=0)  # age_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="Age :")
+                                       pady=0)
         high_school_name_label.grid(row=17, column=0, padx=5, sticky=W)
         high_school_name_display = Label(base.adminAdvancedSearchFrame.scrollable_frame, text=f"{l[2][4]}",
                                          font=("Montserrat", 8, "bold"),
@@ -131,7 +127,7 @@ class AdminAdvancedSearch:
         high_school_type_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="High school type :",
                                        font=("Montserrat", 8, "bold"),
                                        fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                                       pady=0)  # age_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="Age :")
+                                       pady=0)
         high_school_type_label.grid(row=19, column=0, padx=5, sticky=W)
         high_school_type_display = Label(base.adminAdvancedSearchFrame.scrollable_frame, text=f"{l[2][5]}",
                                          font=("Montserrat", 8, "bold"),
@@ -141,7 +137,7 @@ class AdminAdvancedSearch:
         address1_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="Address line 1 :",
                                font=("Montserrat", 8, "bold"),
                                fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                               pady=0)  # age_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="Age :")
+                               pady=0)
         address1_label.grid(row=21, column=0, padx=5, sticky=W)
         address1_display = Label(base.adminAdvancedSearchFrame.scrollable_frame, text=f"{l[3][0]}",
                                  font=("Montserrat", 8, "bold"),
@@ -151,7 +147,7 @@ class AdminAdvancedSearch:
         address2_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="Address line 2 :",
                                font=("Montserrat", 8, "bold"),
                                fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                               pady=0)  # age_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="Age :")
+                               pady=0)
         address2_label.grid(row=23, column=0, padx=5, sticky=W)
         address2_display = Label(base.adminAdvancedSearchFrame.scrollable_frame, text=f"{l[3][1]}",
                                  font=("Montserrat", 8, "bold"),
@@ -161,7 +157,7 @@ class AdminAdvancedSearch:
         city_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="City :",
                            font=("Montserrat", 8, "bold"),
                            fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                           pady=0)  # age_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="Age :")
+                           pady=0)
         city_label.grid(row=25, column=0, padx=5, sticky=W)
         city_display = Label(base.adminAdvancedSearchFrame.scrollable_frame, text=f"{l[3][4]}",
                              font=("Montserrat", 8, "bold"),
@@ -171,7 +167,7 @@ class AdminAdvancedSearch:
         country_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="Country :",
                               font=("Montserrat", 8, "bold"),
                               fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                              pady=0)  # age_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="Age :")
+                              pady=0)
         country_label.grid(row=27, column=0, padx=5, sticky=W)
         country_display = Label(base.adminAdvancedSearchFrame.scrollable_frame, text=f"{l[3][5]}",
                                 font=("Montserrat", 8, "bold"),
@@ -181,7 +177,7 @@ class AdminAdvancedSearch:
         postal_code_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="Postal code :",
                                   font=("Montserrat", 8, "bold"),
                                   fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                                  pady=0)  # age_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="Age :")
+                                  pady=0)
         postal_code_label.grid(row=29, column=0, padx=5, sticky=W)
         postal_code_display = Label(base.adminAdvancedSearchFrame.scrollable_frame, text=f"{l[3][2]}",
                                     font=("Montserrat", 8, "bold"),
@@ -191,7 +187,7 @@ class AdminAdvancedSearch:
         phone_number_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="Phone number :",
                                    font=("Montserrat", 8, "bold"),
                                    fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                                   pady=0)  # age_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="Age :")
+                                   pady=0)
         phone_number_label.grid(row=31, column=0, padx=5, sticky=W)
         phone_number_display = Label(base.adminAdvancedSearchFrame.scrollable_frame, text=f"{l[3][3]}",
                                      font=("Montserrat", 8, "bold"),
@@ -201,7 +197,7 @@ class AdminAdvancedSearch:
         email_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="Email address :",
                             font=("Montserrat", 8, "bold"),
                             fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                            pady=0)  # age_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="Age :")
+                            pady=0)
         email_label.grid(row=33, column=0, padx=5, sticky=W)
         email_display = Label(base.adminAdvancedSearchFrame.scrollable_frame, text=f"{l[4][0]}",
                               font=("Montserrat", 8, "bold"),
@@ -211,7 +207,7 @@ class AdminAdvancedSearch:
         filiere_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="Filiere :",
                               font=("Montserrat", 8, "bold"),
                               fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                              pady=0)  # age_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="Age :")
+                              pady=0)
         filiere_label.grid(row=35, column=0, padx=5, sticky=W)
         filiere_display = Label(base.adminAdvancedSearchFrame.scrollable_frame, text=f"{l[5][1]}",
                                 font=("Montserrat", 8, "bold"),
@@ -221,7 +217,7 @@ class AdminAdvancedSearch:
         class_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="Class :",
                             font=("Montserrat", 8, "bold"),
                             fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                            pady=0)  # age_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="Age :")
+                            pady=0)
         class_label.grid(row=37, column=0, padx=5, sticky=W)
         class_display = Label(base.adminAdvancedSearchFrame.scrollable_frame, text=f"{l[5][0]}",
                               font=("Montserrat", 8, "bold"),
@@ -249,7 +245,7 @@ class AdminAdvancedSearch:
         AdvancedSearch_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="Profile photo :",
                                      font=("Montserrat", 8, "bold"),
                                      fg="#bb86fc", bg="#1f1a24", width=20, height=0,
-                                     anchor=W)  # age_label = Label(base.adminAdvancedSearchFrame.scrollable_frame, text="Age :")
+                                     anchor=W)
 
         AdvancedSearch_label.grid(row=1, column=1, padx=0, pady=0, sticky=W)
 
