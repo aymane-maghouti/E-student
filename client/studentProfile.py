@@ -16,7 +16,6 @@ class StudentProfile:
 
         base.currentFrame = self
         self.base = base
-        # base.Profile=StudentProfile()
         base.studentProfileTitle = base.Background.create_text(156, 130, text="Profile",
                                                                font=("Montserrat", 20, "bold"), fill="white",
                                                                anchor=tk.NW)
@@ -30,7 +29,7 @@ class StudentProfile:
         full_name_label = Label(base.studentProfileFrame.scrollable_frame, text="Full Name :",
                                 font=("Montserrat", 8, "bold"),
                                 fg="#bb86fc", bg="#1f1a24", width=60, height=0,
-                                anchor=W)  # age_label = Label(base.studentProfileFrame.scrollable_frame, text="Age :")
+                                anchor=W)
         full_name_label.grid(row=1, column=0, padx=5, sticky=W)
         full_name_display = Label(base.studentProfileFrame.scrollable_frame, text=f"{l[0][0]} {l[0][1]}",
                                   font=("Montserrat", 8, "bold"),
@@ -39,7 +38,7 @@ class StudentProfile:
 
         CIN_label = Label(base.studentProfileFrame.scrollable_frame, text="CIN :", font=("Montserrat", 8, "bold"),
                           fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                          pady=0)  # age_label = Label(base.studentProfileFrame.scrollable_frame, text="Age :")
+                          pady=0)
         CIN_label.grid(row=3, column=0, padx=5, sticky=W)
         CIN_display = Label(base.studentProfileFrame.scrollable_frame, text=f"{l[0][2]}",
                             font=("Montserrat", 8, "bold"),
@@ -48,7 +47,7 @@ class StudentProfile:
 
         CNE_label = Label(base.studentProfileFrame.scrollable_frame, text="CNE :", font=("Montserrat", 8, "bold"),
                           fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                          pady=0)  # age_label = Label(base.studentProfileFrame.scrollable_frame, text="Age :")
+                          pady=0)
         CNE_label.grid(row=5, column=0, padx=5, sticky=W)
         CNE_display = Label(base.studentProfileFrame.scrollable_frame, text=f"{l[0][3]}",
                             font=("Montserrat", 8, "bold"),
@@ -57,7 +56,7 @@ class StudentProfile:
 
         gender_label = Label(base.studentProfileFrame.scrollable_frame, text="Gender :", font=("Montserrat", 8, "bold"),
                              fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                             pady=0)  # age_label = Label(base.studentProfileFrame.scrollable_frame, text="Age :")
+                             pady=0)
         gender_label.grid(row=7, column=0, padx=5, sticky=W)
         gender_display = Label(base.studentProfileFrame.scrollable_frame, text=f"{l[0][4]}",
                                font=("Montserrat", 8, "bold"),
@@ -67,7 +66,7 @@ class StudentProfile:
         birthday_label = Label(base.studentProfileFrame.scrollable_frame, text="Birthday :",
                                font=("Montserrat", 8, "bold"),
                                fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                               pady=0)  # age_label = Label(base.studentProfileFrame.scrollable_frame, text="Age :")
+                               pady=0)
         birthday_label.grid(row=9, column=0, padx=5, sticky=W)
         birthday_display = Label(base.studentProfileFrame.scrollable_frame,
                                  text=f"{l[0][5][0]} / {l[0][5][1]} / {l[0][5][2]}", font=("Montserrat", 8, "bold"),
@@ -77,7 +76,7 @@ class StudentProfile:
         bac_sector_label = Label(base.studentProfileFrame.scrollable_frame, text="Bac Sector :",
                                  font=("Montserrat", 8, "bold"),
                                  fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                                 pady=0)  # age_label = Label(base.studentProfileFrame.scrollable_frame, text="Age :")
+                                 pady=0)
         bac_sector_label.grid(row=11, column=0, padx=5, sticky=W)
         bac_sector_display = Label(base.studentProfileFrame.scrollable_frame, text=f"{l[2][1]}",
                                    font=("Montserrat", 8, "bold"),
@@ -87,7 +86,7 @@ class StudentProfile:
         bac_language_label = Label(base.studentProfileFrame.scrollable_frame, text="Bac language :",
                                    font=("Montserrat", 8, "bold"),
                                    fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                                   pady=0)  # age_label = Label(base.studentProfileFrame.scrollable_frame, text="Age :")
+                                   pady=0)
         bac_language_label.grid(row=11, column=0, padx=5, sticky=W)
         bac_language_display = Label(base.studentProfileFrame.scrollable_frame, text=f"{l[2][2]}",
                                      font=("Montserrat", 8, "bold"),
@@ -97,7 +96,7 @@ class StudentProfile:
         bac_grade_label = Label(base.studentProfileFrame.scrollable_frame, text="Bac grade :",
                                 font=("Montserrat", 8, "bold"),
                                 fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                                pady=0)  # age_label = Label(base.studentProfileFrame.scrollable_frame, text="Age :")
+                                pady=0)
         bac_grade_label.grid(row=13, column=0, padx=5, sticky=W)
         bac_grade_display = Label(base.studentProfileFrame.scrollable_frame, text=f"{l[2][3]}",
                                   font=("Montserrat", 8, "bold"),
@@ -107,7 +106,7 @@ class StudentProfile:
         bac_city_label = Label(base.studentProfileFrame.scrollable_frame, text="Bac city :",
                                font=("Montserrat", 8, "bold"),
                                fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                               pady=0)  # age_label = Label(base.studentProfileFrame.scrollable_frame, text="Age :")
+                               pady=0)
         bac_city_label.grid(row=15, column=0, padx=5, sticky=W)
         bac_city_display = Label(base.studentProfileFrame.scrollable_frame, text=f"{l[2][0]}",
                                  font=("Montserrat", 8, "bold"),
@@ -117,7 +116,7 @@ class StudentProfile:
         high_school_name_label = Label(base.studentProfileFrame.scrollable_frame, text="High school name :",
                                        font=("Montserrat", 8, "bold"),
                                        fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                                       pady=0)  # age_label = Label(base.studentProfileFrame.scrollable_frame, text="Age :")
+                                       pady=0)
         high_school_name_label.grid(row=17, column=0, padx=5, sticky=W)
         high_school_name_display = Label(base.studentProfileFrame.scrollable_frame, text=f"{l[2][4]}",
                                          font=("Montserrat", 8, "bold"),
@@ -128,7 +127,7 @@ class StudentProfile:
         high_school_type_label = Label(base.studentProfileFrame.scrollable_frame, text="High school type :",
                                        font=("Montserrat", 8, "bold"),
                                        fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                                       pady=0)  # age_label = Label(base.studentProfileFrame.scrollable_frame, text="Age :")
+                                       pady=0)
         high_school_type_label.grid(row=19, column=0, padx=5, sticky=W)
         high_school_type_display = Label(base.studentProfileFrame.scrollable_frame, text=f"{l[2][5]}",
                                          font=("Montserrat", 8, "bold"),
@@ -138,7 +137,7 @@ class StudentProfile:
         address1_label = Label(base.studentProfileFrame.scrollable_frame, text="Address line 1 :",
                                font=("Montserrat", 8, "bold"),
                                fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                               pady=0)  # age_label = Label(base.studentProfileFrame.scrollable_frame, text="Age :")
+                               pady=0)
         address1_label.grid(row=21, column=0, padx=5, sticky=W)
         address1_display = Label(base.studentProfileFrame.scrollable_frame, text=f"{l[3][0]}",
                                  font=("Montserrat", 8, "bold"),
@@ -148,7 +147,7 @@ class StudentProfile:
         address2_label = Label(base.studentProfileFrame.scrollable_frame, text="Address line 2 :",
                                font=("Montserrat", 8, "bold"),
                                fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                               pady=0)  # age_label = Label(base.studentProfileFrame.scrollable_frame, text="Age :")
+                               pady=0)
         address2_label.grid(row=23, column=0, padx=5, sticky=W)
         address2_display = Label(base.studentProfileFrame.scrollable_frame, text=f"{l[3][1]}",
                                  font=("Montserrat", 8, "bold"),
@@ -157,7 +156,7 @@ class StudentProfile:
 
         city_label = Label(base.studentProfileFrame.scrollable_frame, text="City :", font=("Montserrat", 8, "bold"),
                            fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                           pady=0)  # age_label = Label(base.studentProfileFrame.scrollable_frame, text="Age :")
+                           pady=0)
         city_label.grid(row=25, column=0, padx=5, sticky=W)
         city_display = Label(base.studentProfileFrame.scrollable_frame, text=f"{l[3][4]}",
                              font=("Montserrat", 8, "bold"),
@@ -167,7 +166,7 @@ class StudentProfile:
         country_label = Label(base.studentProfileFrame.scrollable_frame, text="Country :",
                               font=("Montserrat", 8, "bold"),
                               fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                              pady=0)  # age_label = Label(base.studentProfileFrame.scrollable_frame, text="Age :")
+                              pady=0)
         country_label.grid(row=27, column=0, padx=5, sticky=W)
         country_display = Label(base.studentProfileFrame.scrollable_frame, text=f"{l[3][5]}",
                                 font=("Montserrat", 8, "bold"),
@@ -177,7 +176,7 @@ class StudentProfile:
         postal_code_label = Label(base.studentProfileFrame.scrollable_frame, text="Postal code :",
                                   font=("Montserrat", 8, "bold"),
                                   fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                                  pady=0)  # age_label = Label(base.studentProfileFrame.scrollable_frame, text="Age :")
+                                  pady=0)
         postal_code_label.grid(row=29, column=0, padx=5, sticky=W)
         postal_code_display = Label(base.studentProfileFrame.scrollable_frame, text=f"{l[3][2]}",
                                     font=("Montserrat", 8, "bold"),
@@ -187,7 +186,7 @@ class StudentProfile:
         phone_number_label = Label(base.studentProfileFrame.scrollable_frame, text="Phone number :",
                                    font=("Montserrat", 8, "bold"),
                                    fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                                   pady=0)  # age_label = Label(base.studentProfileFrame.scrollable_frame, text="Age :")
+                                   pady=0)
         phone_number_label.grid(row=31, column=0, padx=5, sticky=W)
         phone_number_display = Label(base.studentProfileFrame.scrollable_frame, text=f"{l[3][3]}",
                                      font=("Montserrat", 8, "bold"),
@@ -197,7 +196,7 @@ class StudentProfile:
         email_label = Label(base.studentProfileFrame.scrollable_frame, text="Email address :",
                             font=("Montserrat", 8, "bold"),
                             fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                            pady=0)  # age_label = Label(base.studentProfileFrame.scrollable_frame, text="Age :")
+                            pady=0)
         email_label.grid(row=33, column=0, padx=5, sticky=W)
         email_display = Label(base.studentProfileFrame.scrollable_frame, text=f"{l[4][0]}",
                               font=("Montserrat", 8, "bold"),
@@ -207,7 +206,7 @@ class StudentProfile:
         filiere_label = Label(base.studentProfileFrame.scrollable_frame, text="Filiere :",
                               font=("Montserrat", 8, "bold"),
                               fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                              pady=0)  # age_label = Label(base.studentProfileFrame.scrollable_frame, text="Age :")
+                              pady=0)
         filiere_label.grid(row=35, column=0, padx=5, sticky=W)
         filiere_display = Label(base.studentProfileFrame.scrollable_frame, text=f"{l[5][1]}",
                                 font=("Montserrat", 8, "bold"),
@@ -216,7 +215,7 @@ class StudentProfile:
 
         class_label = Label(base.studentProfileFrame.scrollable_frame, text="Class :", font=("Montserrat", 8, "bold"),
                             fg="#bb86fc", bg="#1f1a24", width=50, height=0, anchor=W,
-                            pady=0)  # age_label = Label(base.studentProfileFrame.scrollable_frame, text="Age :")
+                            pady=0)
         class_label.grid(row=37, column=0, padx=5, sticky=W)
         class_display = Label(base.studentProfileFrame.scrollable_frame, text=f"{l[5][0]}",
                               font=("Montserrat", 8, "bold"),
@@ -247,7 +246,7 @@ class StudentProfile:
         profile_label = Label(base.studentProfileFrame.scrollable_frame, text="Profile photo :",
                               font=("Montserrat", 8, "bold"),
                               fg="#bb86fc", bg="#1f1a24", width=20, height=0,
-                              anchor=W)  # age_label = Label(base.studentProfileFrame.scrollable_frame, text="Age :")
+                              anchor=W)
 
         profile_label.grid(row=1, column=1, padx=0, pady=0, sticky=W)
 

@@ -12,10 +12,8 @@ class StudentAbout:
         self.base.studentAboutGroup.removeGroup()
 
     def createStudentAbout(self, base):
-
         base.currentFrame = self
         self.base = base
-        # base.About=StudentAbout()
         base.studentAboutTitle = base.Background.create_text(156, 130, text="About",
                                                              font=("Montserrat", 20, "bold"), fill="white",
                                                              anchor=tk.NW)

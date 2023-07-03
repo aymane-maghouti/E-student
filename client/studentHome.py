@@ -50,7 +50,6 @@ class StudentHome:
         base.currentFrame = self
         self.taskSelected = False
         self.base = base
-        # self.hideWidgets=[]
 
         self.detailNews = StudentNewsDetail()
 

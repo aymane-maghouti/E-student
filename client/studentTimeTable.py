@@ -58,14 +58,12 @@ class StudentTimeTable:
         self.base.studentTimeTableGroup.removeGroup()
 
     def createStudentTimeTable(self, base):
-
         mydb, mycursor = connectDB("student_managment")
         mycursor.execute("SELECT class,timetable,date_pub FROM emploi_temps order by date_pub desc ")
         result = mycursor.fetchall()
 
         base.currentFrame = self
         self.base = base
-        # base.TimeTable=StudentTimeTable()
         base.studentTimeTableTitle = base.Background.create_text(156, 130, text="TimeTable",
                                                                  font=("Montserrat", 20, "bold"), fill="white",
                                                                  anchor=tk.NW)

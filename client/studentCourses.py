@@ -15,10 +15,8 @@ class StudentCourses:
         self.base.studentCoursesGroup.removeGroup()
 
     def createStudentCourses(self, base):
-
         base.currentFrame = self
         self.base = base
-        # base.courses=StudentCourses()
         base.studentCoursesTitle = base.Background.create_text(156, 130, text="Courses",
                                                                font=("Montserrat", 20, "bold"), fill="white",
                                                                anchor=tk.NW)
@@ -40,8 +38,6 @@ class StudentCourses:
         mycursor.execute("SELECT type,titre,file,date_doc FROM documents where class = %s order by date_doc desc ",
                          (self.base.connectedUser['class'],))
         result = mycursor.fetchall()
-
-        # Créer un canevas pour contenir le self.tableau
 
         # Ajouter les étiquettes au cadre
         Label(self.table, text="Type", width=5, height=2, font=("Montserrat", 12, "bold"), foreground="#bb86fc",
