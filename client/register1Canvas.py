@@ -5,7 +5,7 @@ from CanvasToWidget import *
 
 
 def checkLenght(self, size, labelName="entry"):
-    if len(self.get()) > size or len(self.get()) < 1:  # remake it 1
+    if len(self.get()) > size or len(self.get()) < 1:
         messagebox.showerror("Value Error", "invalid name")
         print(f"invalide {labelName}")
         return False

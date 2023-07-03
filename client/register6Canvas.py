@@ -2,7 +2,6 @@ import tkinter as tk
 from tkinter import messagebox
 
 from CanvasToWidget import *
-# from client import *
 from backEndUtilities import student_inscription
 
 

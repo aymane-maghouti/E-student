@@ -89,9 +89,6 @@ class Register2:
         facesResized = base.detectFaces(resized)
         base.drawFace(resized, facesResized)
         photo = Image.fromarray(resized)
-        # photo.show()
-        # # Ouvrir l'image avec Pillow
-        # photo = Image.open(img_stream)
         base.inputPhotoRegister2Button.setImage(self, ImageTk.PhotoImage(photo), Image.fromarray(resizedNoFaces))
         print(self.photoVar)
 

@@ -5,7 +5,7 @@ from CanvasToWidget import *
 
 
 def checkLenght(self, size, labelName="entry"):
-    if len(self.get()) > size or len(self.get()) < 1:  # remake it 0
+    if len(self.get()) > size or len(self.get()) < 1:
         print(f"invalide {labelName}")
         messagebox.showerror("Value Error", f"invalid {labelName}")
         return False
@@ -14,28 +14,13 @@ def checkLenght(self, size, labelName="entry"):
 
 
 def checkLenghtOptional(self, size, labelName="entry"):
-    if len(self.get()) > size or len(self.get()) < 0:  # remake it 0
+    if len(self.get()) > size or len(self.get()) < 0:
         print(f"invalide {labelName}")
         messagebox.showerror("Value Error", f"invalid {labelName}")
         return False
     print(f"valide {labelName}")
     return True
 
-
-# def checkPhone(self,size,labelName="entry"):
-#     try:
-#         value=float(self.get())
-#     except:
-#         print(f"invalide {labelName}")
-#         messagebox.showerror("Value Error",f"invalid {labelName}")
-#         return False
-#
-#     if len(self.get())>size or len(self.get())<1 :#remake it 0
-#         print(f"invalide {labelName}")
-#         messagebox.showerror("Value Error",f"invalid {labelName}")
-#         return False
-#     print(f"valide {labelName}")
-#     return True
 
 
 def checkListChoice(self, choice, optionName="option"):
@@ -275,12 +260,6 @@ class Register4:
                                     base.cityRegister4List, base.countryRegister4List)
         base.register4Form.validate = lambda: checkRegister4Form(base.register4Form, self)
         base.register4Form.get = lambda: self.values
-
-        # #submit
-        # base.submitLoginButtonImg = Image.open(
-        #     base.resourcePath("assets\general\submitDisabledButtonImg.png")
-        # base.submitLoginButtonClickedImg = Image.open(
-        #     base.resourcePath("assets\loginPage\submitClicked.png")
 
         # next
         base.nextRegister4ButtonImg = Image.open(

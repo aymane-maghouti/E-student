@@ -123,12 +123,6 @@ class Login:
                                                     placeholder="**********", modified=self.passwordModified,
                                                     value=self.passwordVar)
 
-        # base.forgot = base.Background.create_text(219, 375, text="Forgot password ?", font=("Montserrat", 10, "underline"),
-        #                                           fill="#bb86fc", anchor=tk.NW, activefill="white")
-        # base.Background.tag_bind(base.forgot, "<Enter>", lambda event: base.config(cursor="hand2"))
-        # base.Background.tag_bind(base.forgot, "<Leave>", lambda event: base.config(cursor="arrow"))
-        # base.Background.tag_bind(base.forgot, "<Button-1>", lambda event: base.loginToAdminHome())
-
         base.loginForm = MyForm(base, base.emailLogingStandardObject, base.passwordLogingStandardObject)
         base.loginForm.validate = lambda: checkLoginForm(base.loginForm, self)
         base.loginForm.get = lambda: self.values
