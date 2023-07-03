@@ -13,8 +13,6 @@ class StudentGrades:
         self.base.studentGradesGroup.removeGroup()
 
     def createStudentGrades(self, base):
-        # base=tk.Tk()
-        # base.Background=tk.Canvas()
 
         base.currentFrame = self
         self.base = base

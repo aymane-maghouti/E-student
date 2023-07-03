@@ -15,8 +15,6 @@ class StudentCourses:
         self.base.studentCoursesGroup.removeGroup()
 
     def createStudentCourses(self, base):
-        # base=tk.Tk()
-        # base.Background=tk.Canvas()
 
         base.currentFrame = self
         self.base = base

@@ -15,7 +15,7 @@ def checkListChoice(self, choice, optionName="option"):
 
 
 def checkLenght(self, size, labelName="entry"):
-    if len(self.get()) > size or len(self.get()) < 1:  # remake it 1
+    if len(self.get()) > size or len(self.get()) < 1:
         print(f"invalide {labelName}")
         messagebox.showerror(f"Value Error", f"invalid {labelName}")
         return False
@@ -24,7 +24,7 @@ def checkLenght(self, size, labelName="entry"):
 
 
 def checkTextAreaLenght(self, size, labelName="entry"):
-    if len(self.get()) > size or len(self.get()) < 1:  # remake it 1
+    if len(self.get()) > size or len(self.get()) < 1:
         print(f"invalide {labelName}")
         messagebox.showerror(f"Value Error", f"invalid {labelName}")
         return False
@@ -67,12 +67,8 @@ class AdminNews:
             insert_into_notification(a, b, c)
 
     def createAdminNews(self, base):
-        # base=tk.Tk()
-        # base.Background=tk.Canvas()
-
         base.currentFrame = self
         self.base = base
-        # base.News=adminNews()
         if self.titreVar == None:
             self.titreVar = tk.StringVar(base)
         base.menuAdminNewsClassMidStandardlImg = Image.open(
@@ -120,8 +116,7 @@ class AdminNews:
 
         base.detailAdminNewsStandardlImg = ImageTk.PhotoImage(
             Image.open(base.resourcePath("assets/general/InputTextArea.png")))
-        # base.moduleAdminNewsHoverImg = Image.open(
-        #     base.resourcePath("assets\general\InputMidLargeHoverImg.png"))
+
         base.adminNewsDetailBackground = base.Background.create_image(250, 273, image=base.detailAdminNewsStandardlImg,
                                                                       anchor=tk.NW)
 
@@ -140,7 +135,6 @@ class AdminNews:
                                                               anchor=tk.NW)
         base.adminNewsClassLabel = tk.Label(text="Select", foreground="white", background="#382b47", bd=0,
                                             relief="flat", font=("Montserrat", 8, "bold"), width=6, anchor=tk.NW)
-        # base.adminNewsClassLabel.config(text=self.bacSectorVar if self.bacSectorVar!=None else "Select")
 
         base.adminNewsClassList = MyMenu(base.Background, 250, 410, base.adminNewsClassLabel,
                                          base.menuAdminNewsClassMidStandardlImg, base.menuAdminNewsClassMidHoverImg,

@@ -14,7 +14,6 @@ class AdminNewsDetail:
     def createAdminNewsDetail(self, base, notifications, i):
         base.currentFrame = self
         self.base = base
-        # base.=adminNewsDetail()
         base.adminNewsDetailTitle = base.Background.create_text(156, 130, text="Detail News",
                                                                 font=("Montserrat", 20, "bold"), fill="white",
                                                                 anchor=tk.NW)

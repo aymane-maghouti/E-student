@@ -38,9 +38,6 @@ class AdminStudents:
         self.base.adminStudentsGroup.removeGroup()
 
     def createAdminStudents(self, base):
-        # base=tk.Tk()
-        # base.Background=tk.Canvas()
-
         base.currentFrame = self
         self.base = base
 
@@ -55,7 +52,6 @@ class AdminStudents:
         base.menuListAdminStudentClassMidStandardImg = Image.open(
             r"assets\general\optionlistMidStandardImg.png")
 
-        # base.Students=adminStudents()
         base.adminStudentsTitle = base.Background.create_text(156, 130, text="Students",
                                                               font=("Montserrat", 20, "bold"), fill="white",
                                                               anchor=tk.NW)
@@ -106,59 +102,6 @@ class AdminStudents:
                                                  base.adminStudentsFrame)
         self.hideWidgets = [self.base.adminStudentsFrame]
 
-    # # Display the list of students for a given class
-    # def display_students(self,class_id):
-    #     # Connect to the database
-    #     my_conn, cursor = connectDB('student_managment')
-    #
-    #     # Get the list of students for the given class
-    #     cursor.execute("SELECT id_Student,firstname, lastname, image FROM student WHERE id_class = %s", (class_id,))
-    #     students = cursor.fetchall()
-    #
-    #     for widgets in self.base.adminStudentsFrame.table_frame.winfo_children():
-    #         widgets.destroy()
-    #     # Create a scrollable frame for displaying the students
-    #     # Create a canvas and add it to the root window
-    #     canvas = Canvas(self.base.adminStudentsFrame.table_frame, width=600, height=500)
-    #     canvas.pack(side=LEFT, fill=BOTH, expand=1)
-    #
-    #     # Create a frame to hold the table
-    #     table_frame = Frame(canvas,background="#1f1a24",width=10)
-    #     table_frame.pack(fill=BOTH, expand=1)
-    #
-    #     # Create the column headers in row 0
-    #     tk.Label(table_frame, text='Nom complet').grid(row=0, column=1)
-    #     tk.Label(table_frame, text='id').grid(row=0, column=2)
-    #     tk.Label(table_frame, text='Photo').grid(row=0, column=3)
-    #     tk.Label(table_frame, text='delete').grid(row=0, column=4)
-    #     tk.Label(table_frame, text='details').grid(row=0, column=5)
-    #
-    #     deleteStandardIcon = ImageTk.PhotoImage(Image.open(
-    #         self.base.resourcePath("assets/general/deleteStandardIcon.png")))
-    #     deleteClickedIcon = ImageTk.PhotoImage(Image.open(
-    #         self.base.resourcePath("assets/general/deleteClickedIcon.png")))
-    #
-    #     i=1
-    #     for student in students:
-    #
-    #         imgobject = Convert_IMG(student[3])
-    #         img = ImageTk.PhotoImage(imgobject)
-    #         # b=MyButton(delete_canvas,standardImg=deleteStandardIcon,hoverImg=deleteClickedIcon,x=0,y=0)
-    #         # b=tk.Button(table_frame,image=deleteStandardIcon, command=lambda: delete_student(student[0]))
-    #         b=tk.Button(table_frame,relief="sunken",borderwidth=0,cursor="hand2",activebackground="#1f1a24",background="#1f1a24",image=deleteStandardIcon)
-    #         b.bind("<Button-1>",lambda event:b.configure(image=deleteClickedIcon))
-    #         b.bind("<ButtonRelease-1>",lambda event:b.configure(image=deleteStandardIcon))
-    #         b.grid(row=i, column=4)
-    #         self.delete_images.append(deleteStandardIcon)
-    #
-    #         full_name = f"{student[1]} {student[2]}"
-    #         tk.Label(table_frame, text=full_name).grid(row=i, column=1, ipadx=20)
-    #         tk.Label(table_frame, text=student[0]).grid(row=i, column=2, ipadx=60)
-    #         tk.Label(table_frame, image=img,background="#1f1a24").grid(row=i, column=3, ipady=2,ipadx=2)
-    #         self.liste_images.append(img)
-    #         i+=1
-    #     cursor.close()
-
     # Display the list of students for a given class
     def display_students(self, class_id):
         # Connect to the database
@@ -204,7 +147,6 @@ class AdminStudents:
         for student in students:
             imgobject = Convert_IMG(student[3])
             img = ImageTk.PhotoImage(imgobject)
-            # tk.Button(table_frame, text="delete", command=lambda: delete_student(student[0])).grid(row=i, column=4)
             full_name = f"{student[1]} {student[2]}"
             tk.Label(table_frame, text=full_name, font=("Montserrat", 10), foreground="white", background="#1f1a24",
                      width=38, height=2).grid(row=i, column=1)
@@ -227,9 +169,6 @@ class AdminStudents:
                                    activebackground="#1f1a24", background="#1f1a24", image=self.editStandardIcon,
                                    command=lambda i=i, student=student: self.editClicked(student))
             editButton.grid(row=i, column=6)
-            # self.delete_images.append(deleteStandardIcon)
-            # self.delete_images.append(deleteClickedIcon)
-            # self.delete_images.append(b)
 
             i += 1
         cursor.close()
@@ -262,11 +201,9 @@ class AdminStudents:
             messagebox.showinfo(title="deletion", message=f"{student[1]} {student[2]} deletion Failed")
 
     def searchClicked(self, student):
-        # self.delete_images[i-1].bind("<Button-1>",lambda event: self.delete_images[i-1].configure(image=img))
         self.remove()
         self.base.advancedSearch.createAdminAdvancedSearch(self.base, student)
 
     def editClicked(self, student):
-        # self.delete_images[i-1].bind("<Button-1>",lambda event: self.delete_images[i-1].configure(image=img))
         self.remove()
         self.base.update.createAdminUpdate(self.base, student)

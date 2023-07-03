@@ -88,8 +88,6 @@ class Register5:
         base.backRegister5Button.place_forget()
 
     def createRegister5(self, base):
-        # base=tk.Tk()
-        # base.Background=tk.Canvas()
         try:
             base.nextRegister3Button.place_forget()
         except:

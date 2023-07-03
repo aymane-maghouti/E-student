@@ -65,13 +65,10 @@ class AdminHome:
             base.moveto(button.standardImgObject, x, y)
 
     def createAdminHome(self, base):
-        # base=tk.Tk()
-        # base.Background=tk.Canvas()
 
         base.currentFrame = self
         self.taskSelected = False
         self.base = base
-        # self.hideWidgets=[]
 
         self.detailNews = AdminNewsDetail()
 
@@ -145,7 +142,6 @@ class AdminHome:
             base.selectedCircleadmin = MyButton(base.adminHomeMenuFrame.mainFrame, 0, 0, base.selectedCircleadminImg,
                                                 cursor="hand2", behavior=lambda: print("hi"))
             base.selectedCircleadmin.place_forget()
-            # base.selectedCircleadmin.place(0,0)
 
             base.adminMenuIconImg = Image.open(
                 base.resourcePath("assets/general/menuIcon.png"))
@@ -341,7 +337,6 @@ class AdminHome:
         table_frame = Frame(canvas, background="#1f1a24", width=10)
         table_frame.pack(fill=BOTH, expand=1)
 
-        # Bind the canvas to the scrollbar
         # global texts
         for i in range(len(notifications)):
             text_length = len(notifications[i][0])
@@ -352,7 +347,6 @@ class AdminHome:
                         font=("Montserrat", 10, "bold"), relief="flat", cursor="hand2", foreground="#bb86fc",
                         background="#1f1a24")
             text.bind("<Button-1>", lambda event, i=i: self.show_details(notifications, i))
-            # texts.append(text)
             text.insert(END, f'{notifications[i][0]}')
             text.configure(state='disabled')
             text.grid(row=(2 * i), column=0)

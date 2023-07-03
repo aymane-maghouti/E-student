@@ -79,8 +79,6 @@ class Forgot:
         base.submitForgotButton.place_forget()
 
     def createForgot(self, base):
-        # base=tk.Tk()
-        # base.Background=tk.Canvas()
 
         self.base = base
         if self.emailRegisterVar == None:

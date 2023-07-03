@@ -6,7 +6,7 @@ from backEndUtilities import update_student
 
 
 def checkLenght(self, size, labelName="entry"):
-    if len(self.get()) > size or len(self.get()) < 1:  # remake it 1
+    if len(self.get()) > size or len(self.get()) < 1:
         print(f"invalide {labelName}")
         return False
     print(f"valide {labelName}")
@@ -64,8 +64,6 @@ class AdminUpdate:
         self.base.adminUpdateGroup.removeGroup()
 
     def createAdminUpdate(self, base, student):
-        # base=tk.Tk()
-        # base.Background=tk.Canvas()
 
         base.currentFrame = self
         self.base = base
@@ -101,27 +99,12 @@ class AdminUpdate:
         base.moduleAdminUpdateHoverImg = Image.open(
             base.resourcePath("assets\general\InputMidLargeHoverImg.png"))
 
-        # base.moduleLoginText = base.Background.create_text(270, 278, text="Module", font=("Montserrat", 6, "bold"),
-        #                                                   fill="#bb86fc", anchor=tk.NW)
-        # base.moduleAdminUpdateEntry = tk.Entry(base.Background, border=0, bg="#382b47", fg="white",
-        #                                        font=("Montserrat", 10, "bold"), disabledbackground="#382b47",
-        #                                        highlightthickness=0, borderwidth=0, width=30,textvariable=self.moduleVar)
-        # try :
-        #     self.moduleModified = base.moduleAdminUpdateStandardObject.getModified()
-        # except:
-        #     pass
-        # base.moduleAdminUpdateStandardObject = MyEntry(base.Background, 250, 289, entry=base.moduleAdminUpdateEntry,
-        #                                                standardImg=base.moduleAdminUpdateStandardlImg,
-        #                                                hoverImg=base.moduleAdminUpdateHoverImg, marginX=21, marginY=5,
-        #                                                placeholder="Architecture des ordinateur",modified=self.moduleModified,value=self.moduleVar)
-        # base.moduleAdminUpdateStandardObject.validate=lambda:checkLenght(base.moduleAdminUpdateStandardObject,45,"Module")
 
         base.adminUpdateFiliereText = base.Background.create_text(270, 278, text="filiere",
                                                                   font=("Montserrat", 6, "bold"), fill="#bb86fc",
                                                                   anchor=tk.NW)
         base.adminUpdateFiliereLabel = tk.Label(text="Select", foreground="white", background="#382b47", bd=0,
                                                 relief="flat", font=("Montserrat", 8, "bold"), width=6, anchor=tk.NW)
-        # base.adminUpdateClassLabel.config(text=self.bacSectorVar if self.bacSectorVar!=None else "Select")
 
         base.adminUpdateFiliereList = MyMenu(base.Background, 250, 289, base.adminUpdateFiliereLabel,
                                              base.menuAdminUpdateClassMidStandardlImg,
@@ -139,7 +122,6 @@ class AdminUpdate:
                                                                 anchor=tk.NW)
         base.adminUpdateClassLabel = tk.Label(text="Select", foreground="white", background="#382b47", bd=0,
                                               relief="flat", font=("Montserrat", 8, "bold"), width=6, anchor=tk.NW)
-        # base.adminUpdateClassLabel.config(text=self.bacSectorVar if self.bacSectorVar!=None else "Select")
 
         base.adminUpdateClassList = MyMenu(base.Background, 250, 223, base.adminUpdateClassLabel,
                                            base.menuAdminUpdateClassMidStandardlImg,

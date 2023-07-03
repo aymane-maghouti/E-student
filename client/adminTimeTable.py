@@ -68,8 +68,6 @@ class AdminTimeTable:
         self.selectedPDF = pdf_path
 
     def createAdminTimeTable(self, base):
-        # base=tk.Tk()
-        # base.Background=tk.Canvas()
 
         base.currentFrame = self
         self.base = base
@@ -85,7 +83,6 @@ class AdminTimeTable:
         base.menuListAdminTimeTableClassMidStandardImg = Image.open(
             r"assets\general\optionlistMidStandardImg.png")
 
-        # base.TimeTable=adminTimeTable()
         base.adminTimeTableTitle = base.Background.create_text(156, 130, text="Upload TimeTable",
                                                                font=("Montserrat", 20, "bold"), fill="white",
                                                                anchor=tk.NW)
@@ -100,7 +97,6 @@ class AdminTimeTable:
                                                                    anchor=tk.NW)
         base.adminTimeTableClassLabel = tk.Label(text="Select", foreground="white", background="#382b47", bd=0,
                                                  relief="flat", font=("Montserrat", 8, "bold"), width=6, anchor=tk.NW)
-        # base.adminTimeTableClassLabel.config(text=self.bacSectorVar if self.bacSectorVar!=None else "Select")
 
         base.adminTimeTableClassList = MyMenu(base.Background, 250, 223, base.adminTimeTableClassLabel,
                                               base.menuAdminTimeTableClassMidStandardlImg,

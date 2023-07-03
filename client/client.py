@@ -55,7 +55,6 @@ class App(tk.Tk):
 
         self.registerValues = []
         self.connectedUser = None
-        # self.overrideredirect(True)
 
         # adding the background image to canvas
         self.backImage = tk.PhotoImage(file=r".\assets\general\loginBackgroundImg.png")

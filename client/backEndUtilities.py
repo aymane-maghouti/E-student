@@ -30,9 +30,9 @@ def get_database_credentials():
 def connectMySQL():
     credentials = get_database_credentials()
     try:
-        conn = connector.Connect(host=credentials["host"],  # your host, usually localhost
-                                 user=credentials["username"],  # your username
-                                 port=credentials["port"],  # port (3306 default)
+        conn = connector.Connect(host=credentials["host"],
+                                 user=credentials["username"],
+                                 port=credentials["port"],
                                  password=credentials["password"]
                                  )
         # Creating the cursor
@@ -60,10 +60,10 @@ def createDb(nameDB):
 def connectDB(nameDB):
     credentials = get_database_credentials()
     try:
-        conn = connector.Connect(host=credentials["host"],  # your host, usually localhost
-                                 user=credentials["username"],  # your username
+        conn = connector.Connect(host=credentials["host"],
+                                 user=credentials["username"],
                                  password=credentials["password"],
-                                 port=int(credentials["port"]),  # port (3306 default)
+                                 port=int(credentials["port"]),
                                  db=nameDB
 
                                  )

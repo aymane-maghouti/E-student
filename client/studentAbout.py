@@ -12,8 +12,6 @@ class StudentAbout:
         self.base.studentAboutGroup.removeGroup()
 
     def createStudentAbout(self, base):
-        # base=tk.Tk()
-        # base.Background=tk.Canvas()
 
         base.currentFrame = self
         self.base = base

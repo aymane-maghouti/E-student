@@ -13,8 +13,6 @@ class StudentStaff:
         self.base.studentStaffGroup.removeGroup()
 
     def createStudentStaff(self, base):
-        # base=tk.Tk()
-        # base.Background=tk.Canvas()
 
         base.currentFrame = self
         self.base = base

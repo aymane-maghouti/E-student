@@ -46,8 +46,6 @@ class StudentHome:
             base.moveto(button.standardImgObject, x, y)
 
     def createStudentHome(self, base):
-        # base=tk.Tk()
-        # base.Background=tk.Canvas()
 
         base.currentFrame = self
         self.taskSelected = False

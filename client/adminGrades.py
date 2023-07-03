@@ -7,7 +7,7 @@ from backEndUtilities import save_into_affichage
 
 
 def checkLenght(self, size, labelName="entry"):
-    if len(self.get()) > size or len(self.get()) < 1:  # remake it 1
+    if len(self.get()) > size or len(self.get()) < 1:
         print(f"invalide {labelName}")
         return False
     print(f"valide {labelName}")
@@ -23,7 +23,7 @@ def checkListChoice(self, choice, optionName="option"):
 
 
 def checkPdf(self, labelName="pdf"):
-    if self == None:  # remake it 1
+    if self == None:
         print(f"invalide {labelName}")
         return False
     print(f"valide {labelName}")
@@ -78,9 +78,6 @@ class AdminGrades:
         self.selectedPDF = pdf_path
 
     def createAdminGrades(self, base):
-        # base=tk.Tk()
-        # base.Background=tk.Canvas()
-
         base.currentFrame = self
         self.base = base
 
@@ -98,7 +95,6 @@ class AdminGrades:
         base.menuListAdminGradesClassMidStandardImg = Image.open(
             r"assets\general\optionlistMidStandardImg.png")
 
-        # base.Grades=adminGrades()
         base.adminGradesTitle = base.Background.create_text(156, 130, text="Upload Grades",
                                                             font=("Montserrat", 20, "bold"), fill="white", anchor=tk.NW)
 
@@ -137,7 +133,6 @@ class AdminGrades:
                                                                 anchor=tk.NW)
         base.adminGradesClassLabel = tk.Label(text="Select", foreground="white", background="#382b47", bd=0,
                                               relief="flat", font=("Montserrat", 8, "bold"), width=6, anchor=tk.NW)
-        # base.adminGradesClassLabel.config(text=self.bacSectorVar if self.bacSectorVar!=None else "Select")
 
         base.adminGradesClassList = MyMenu(base.Background, 250, 223, base.adminGradesClassLabel,
                                            base.menuAdminGradesClassMidStandardlImg,

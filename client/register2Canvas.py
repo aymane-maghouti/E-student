@@ -103,8 +103,6 @@ class Register2:
         return self.original
 
     def createRegister2(self, base):
-        # base=tk.Tk()
-        # base.Background=tk.Canvas()
         base.config(cursor="arrow")
 
         try:

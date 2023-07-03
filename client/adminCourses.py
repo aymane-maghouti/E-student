@@ -7,7 +7,7 @@ from backEndUtilities import insert_into_document
 
 
 def checkLenght(self, size, labelName="entry"):
-    if len(self.get()) > size or len(self.get()) < 1:  # remake it 1
+    if len(self.get()) > size or len(self.get()) < 1:
         print(f"invalide {labelName}")
         return False
     print(f"valide {labelName}")
@@ -15,7 +15,7 @@ def checkLenght(self, size, labelName="entry"):
 
 
 def checkPdf(self, labelName="pdf"):
-    if self == None:  # remake it 1
+    if self == None:
         print(f"invalide {labelName}")
         return False
     print(f"valide {labelName}")
@@ -77,13 +77,9 @@ class AdminCourses:
         self.selectedPdf = pdf_path
 
     def createAdminCourses(self, base):
-        # base=tk.Tk()
-        # base.Background=tk.Canvas()
-
         base.currentFrame = self
         self.base = base
         self.selectedPdf = None
-        # base.Courses=adminCourses()
 
         if self.titreVar == None:
             self.titreVar = tk.StringVar(base)
@@ -136,7 +132,6 @@ class AdminCourses:
                                                                  anchor=tk.NW)
         base.adminCoursesClassLabel = tk.Label(text="Select", foreground="white", background="#382b47", bd=0,
                                                relief="flat", font=("Montserrat", 8, "bold"), width=6, anchor=tk.NW)
-        # base.adminCoursesClassLabel.config(text=self.bacSectorVar if self.bacSectorVar!=None else "Select")
 
         base.adminCoursesClassList = MyMenu(base.Background, 250, 223, base.adminCoursesClassLabel,
                                             base.menuAdminCoursesClassMidStandardlImg,
@@ -155,7 +150,6 @@ class AdminCourses:
                                                                 anchor=tk.NW)
         base.adminCoursesTypeLabel = tk.Label(text="Select", foreground="white", background="#382b47", bd=0,
                                               relief="flat", font=("Montserrat", 8, "bold"), width=6, anchor=tk.NW)
-        # base.adminCoursesClassLabel.config(text=self.bacSectorVar if self.bacSectorVar!=None else "Select")
 
         base.adminCoursesTypeList = MyMenu(base.Background, 400, 223, base.adminCoursesTypeLabel,
                                            base.menuAdminCoursesClassMidStandardlImg,

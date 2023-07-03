@@ -58,8 +58,6 @@ class StudentTimeTable:
         self.base.studentTimeTableGroup.removeGroup()
 
     def createStudentTimeTable(self, base):
-        # base=tk.Tk()
-        # base.Background=tk.Canvas()
 
         mydb, mycursor = connectDB("student_managment")
         mycursor.execute("SELECT class,timetable,date_pub FROM emploi_temps order by date_pub desc ")
