@@ -182,13 +182,13 @@ def run():
                   ('GEER2', 4)]
 
     # documents data
-    with open('doc/ID1/9. PL-SQL.pdf', 'rb') as f20, \
-            open('doc/ID1/CoursAnalyseDonne (2).pdf', 'rb') as f21, \
-            open('doc/ID1/Formation Data Mining.pdf', 'rb') as f22, \
-            open('doc/ID1/La gestion des exceptions.pdf', 'rb') as f23, \
-            open('doc/ID1/TP1-ID.pdf', 'rb') as f24, \
-            open('doc/ID1/TD TP N° 2.pdf', 'rb') as f25, \
-            open('doc/ID1/TD TP N° 3.pdf', 'rb') as f26:
+    with open('documents/ID1/9. PL-SQL.pdf', 'rb') as f20, \
+            open('documents/ID1/CoursAnalyseDonne (2).pdf', 'rb') as f21, \
+            open('documents/ID1/Formation Data Mining.pdf', 'rb') as f22, \
+            open('documents/ID1/La gestion des exceptions.pdf', 'rb') as f23, \
+            open('documents/ID1/TP1-ID.pdf', 'rb') as f24, \
+            open('documents/ID1/TD TP N° 2.pdf', 'rb') as f25, \
+            open('documents/ID1/TD TP N° 3.pdf', 'rb') as f26:
         pl_sql = f20.read()
         sgd = f21.read()
         dm = f22.read()
@@ -197,30 +197,30 @@ def run():
         tp2 = f25.read()
         tp3 = f26.read()
 
-    with open('doc/ID2/Java-jee.pdf', 'rb') as f27, \
-            open('doc/ID2/ProgrammationWEB avec servlet.pdf', 'rb') as f28, \
-            open('doc/ID2/TPJEE.pdf', 'rb') as f29, \
-            open('doc/ID2/TPJEEE.pdf', 'rb') as f30:
+    with open('documents/ID2/Java-jee.pdf', 'rb') as f27, \
+            open('documents/ID2/ProgrammationWEB avec servlet.pdf', 'rb') as f28, \
+            open('documents/ID2/TPJEE.pdf', 'rb') as f29, \
+            open('documents/ID2/TPJEEE.pdf', 'rb') as f30:
         java_jee = f27.read()
         servelet = f28.read()
         tp1_jee = f29.read()
         tp2_jee = f30.read()
 
-    with open('doc/GI1/Chapitre 0-Introduction GENERALE.pdf', 'rb') as f31, \
-            open('doc/GI1/Chapitre 1-Fonctionnement du Web .pdf', 'rb') as f32, \
-            open('doc/GI1/Chapitre 2- HTML5.pdf', 'rb') as f33, \
-            open('doc/GI1/TP1.pdf', 'rb') as f34, \
-            open('doc/GI1/TP2 (1).pdf', 'rb') as f35:
+    with open('documents/GI1/Chapitre 0-Introduction GENERALE.pdf', 'rb') as f31, \
+            open('documents/GI1/Chapitre 1-Fonctionnement du Web .pdf', 'rb') as f32, \
+            open('documents/GI1/Chapitre 2- HTML5.pdf', 'rb') as f33, \
+            open('documents/GI1/TP1.pdf', 'rb') as f34, \
+            open('documents/GI1/TP2 (1).pdf', 'rb') as f35:
         WEB_CHP0 = f31.read()
         web_chp1 = f32.read()
         html = f33.read()
         tp1_web = f34.read()
         tp2_web = f35.read()
 
-    with open('doc/GI2/Ccharp.pdf', 'rb') as f36, \
-            open('doc/GI2/Introduction sécurité.pdf', 'rb') as f38, \
-            open('doc/GI2/TD1 crypto.pdf', 'rb') as f39, \
-            open('doc/GI2/TP Ccharp.pdf', 'rb') as f40:
+    with open('documents/GI2/Ccharp.pdf', 'rb') as f36, \
+            open('documents/GI2/Introduction sécurité.pdf', 'rb') as f38, \
+            open('documents/GI2/TD1 crypto.pdf', 'rb') as f39, \
+            open('documents/GI2/TP Ccharp.pdf', 'rb') as f40:
         csharp = f36.read()
         si_chp0 = f38.read()
         td_crypto = f39.read()
