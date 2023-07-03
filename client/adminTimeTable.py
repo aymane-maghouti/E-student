@@ -144,5 +144,7 @@ class AdminTimeTable:
 
         base.adminTimeTableGroup = MyWidgetsGroup(base.Background, base.adminTimeTableTitle,
                                                   base.adminTimeTableClassText, base.adminTimeTableFrame,
-                                                  base.adminTimeTableClassLabel, base.adminTimeTableClassList)
+                                                  base.adminTimeTableClassLabel, base.adminTimeTableClassList,
+                                                  base.moduleLoginText, base.importAdminTimeTableButton,
+                                                  base.submitAdminTimeTableButton)
         self.hideWidgets = [self.base.adminTimeTableFrame]

@@ -168,5 +168,6 @@ class AdminUpdate:
         base.adminUpdateGroup = MyWidgetsGroup(base.Background, base.adminUpdateClassList, base.adminUpdateClassLabel,
                                                base.adminUpdateClassText, base.adminUpdateFiliereList,
                                                base.adminUpdateFiliereLabel, base.adminUpdateFiliereText,
-                                               base.adminUpdateTitle, base.adminUpdateFrame)
+                                               base.adminUpdateTitle, base.adminUpdateFrame,
+                                               base.submitAdminUpdateButton)
         self.hideWidgets = [self.base.adminUpdateFrame]

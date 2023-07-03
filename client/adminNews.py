@@ -169,5 +169,5 @@ class AdminNews:
                                              base.titreAdminNewsStandardObject, base.adminNewsClassList,
                                              base.adminNewsClassLabel, base.adminNewsClassText,
                                              base.detailAdminNewsEntry, base.adminNewsTitle, base.adminNewsFrame,
-                                             base.submitAdminNewsButton)
+                                             base.submitAdminNewsButton, base.adminNewsDetailBackground)
         self.hideWidgets = [self.base.adminNewsFrame]

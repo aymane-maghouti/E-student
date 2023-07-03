@@ -321,6 +321,7 @@ class App(tk.Tk):
         self.config(cursor="arrow")
 
     def studentLogout(self):
+        self.currentFrame.firstTime=True
         self.currentFrame.removeInterface()
         self.login.createLogin(self)
         self.logoImg = Image.open(r"assets\general\EstudentLogo.png")

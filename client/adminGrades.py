@@ -152,7 +152,7 @@ class AdminGrades:
         base.adminGradesClassList.validate = lambda: checkListChoice(base.adminGradesClassList, "Select", "Class")
 
         # import
-        base.moduleLoginText = base.Background.create_text(270, 349, text="file", font=("Montserrat", 6, "bold"),
+        base.moduleGradeFileText = base.Background.create_text(270, 349, text="file", font=("Montserrat", 6, "bold"),
                                                            fill="#bb86fc", anchor=tk.NW)
 
         base.importAdminGradesButtonImg = Image.open(
@@ -181,5 +181,7 @@ class AdminGrades:
         base.adminGradesGroup = MyWidgetsGroup(base.Background, base.moduleAdminGradesEntry,
                                                base.moduleAdminGradesStandardObject, base.adminGradesClassText,
                                                base.adminGradesClassLabel, base.adminGradesClassList,
-                                               base.adminGradesTitle, base.adminGradesFrame)
+                                               base.adminGradesTitle, base.adminGradesFrame, base.moduleLoginText,
+                                               base.importAdminGradesButton, base.submitAdminGradesButton,
+                                               base.moduleGradeFileText)
         self.hideWidgets = [self.base.adminGradesFrame]

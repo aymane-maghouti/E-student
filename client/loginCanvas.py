@@ -111,7 +111,7 @@ class Login:
                                                              fill="#bb86fc", anchor=tk.NW)
         base.passwordLogingEntry = tk.Entry(base.Background, border=0, bg="#1f1a24", fg="white",
                                             font=("Montserrat", 10, "bold"), disabledbackground="#1f1a24",
-                                            highlightthickness=0, borderwidth=0, width=36, cursor="hand2", show="*",
+                                            highlightthickness=0, borderwidth=0, width=36, show="*",
                                             textvariable=self.passwordVar)
         try:
             self.passwordModified = base.passwordLogingStandardObject.getModified()

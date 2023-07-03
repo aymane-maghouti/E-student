@@ -203,5 +203,6 @@ class AdminCourses:
                                                 base.adminCoursesTypeLabel, base.adminCoursesTitle,
                                                 base.adminCoursesFrame, base.adminCoursesTypeList,
                                                 base.adminCoursesClassList, base.moduleAdminCoursesStandardObject,
-                                                base.moduleAdminCoursesFileText, base.importAdminCoursesButton)
+                                                base.moduleAdminCoursesFileText, base.importAdminCoursesButton,
+                                                base.submitAdminCoursesButton)
         self.hideWidgets = []

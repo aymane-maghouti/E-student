@@ -41,6 +41,7 @@ class AdminHome:
         self.taskSelected = False
         self.menuOn = False
         self.hiddenWidgetsPlaces = []
+        self.firstTime=True
 
     def remove(self):
         self.base.adminHomeGroup.removeGroup()
@@ -118,8 +119,6 @@ class AdminHome:
         base.adminMenuImg = ImageTk.PhotoImage(Image.open(
             base.resourcePath("assets/general/menuBackground.png")))
 
-        base.adminHomeMenuFrame = MyFrame(base.Background, base.adminMenuImg, "#1f1a24", 40, 351, 55, 107, 4, 23)
-
         base.courses = AdminCourses()
         base.News = AdminNews()
         base.grades = AdminGrades()
@@ -130,55 +129,62 @@ class AdminHome:
         base.advancedSearch = AdminAdvancedSearch()
         base.update = AdminUpdate()
 
-        base.selectedCircleadminImg = Image.open(
-            base.resourcePath("assets/general/selectedTaskCircle.png"))
+        if self.firstTime:
+            base.adminHomeMenuFrame = MyFrame(base.Background, base.adminMenuImg, "#1f1a24", 40, 351, 55, 107, 4, 23)
+            self.firstTime=False
 
-        base.selectedCircleadmin = MyButton(base.adminHomeMenuFrame.mainFrame, 0, 0, base.selectedCircleadminImg,
-                                            cursor="hand2", behavior=lambda: print("hi"))
-        base.selectedCircleadmin.place_forget()
-        # base.selectedCircleadmin.place(0,0)
+            base.adminBooksIconImg = Image.open(
+                base.resourcePath("assets/general/booksUpIcon.png"))
 
-        base.adminMenuIconImg = Image.open(
-            base.resourcePath("assets/general/menuIcon.png"))
+            base.adminBooksIconButton = MyButton(base.adminHomeMenuFrame.mainFrame, 10, 67, base.adminBooksIconImg,
+                                                 cursor="hand2", behavior=lambda: self.toCourses())
 
-        base.adminMenuIconButton = MyButton(base.adminHomeMenuFrame.mainFrame, 10, 10, base.adminMenuIconImg,
-                                            cursor="hand2", behavior=self.extendMenu)
+            base.selectedCircleadminImg = Image.open(
+                base.resourcePath("assets/general/selectedTaskCircle.png"))
 
-        base.adminBooksIconImg = Image.open(
-            base.resourcePath("assets/general/booksUpIcon.png"))
+            base.selectedCircleadmin = MyButton(base.adminHomeMenuFrame.mainFrame, 0, 0, base.selectedCircleadminImg,
+                                                cursor="hand2", behavior=lambda: print("hi"))
+            base.selectedCircleadmin.place_forget()
+            # base.selectedCircleadmin.place(0,0)
 
-        base.adminBooksIconButton = MyButton(base.adminHomeMenuFrame.mainFrame, 10, 67, base.adminBooksIconImg,
-                                             cursor="hand2", behavior=lambda: self.toCourses())
+            base.adminMenuIconImg = Image.open(
+                base.resourcePath("assets/general/menuIcon.png"))
 
-        base.adminTimetableIconImg = Image.open(
-            base.resourcePath("assets/general/timetableUpIcon.png"))
+            base.adminMenuIconButton = MyButton(base.adminHomeMenuFrame.mainFrame, 10, 10, base.adminMenuIconImg,
+                                                cursor="hand2", behavior=self.extendMenu)
 
-        base.adminTimetableIconButton = MyButton(base.adminHomeMenuFrame.mainFrame, 10, 117, base.adminTimetableIconImg,
-                                                 cursor="hand2", behavior=self.toTimeTable)
 
-        base.adminGradesIconImg = Image.open(
-            base.resourcePath("assets/general/graduationUpIcon.png"))
+            base.adminTimetableIconImg = Image.open(
+                base.resourcePath("assets/general/timetableUpIcon.png"))
 
-        base.adminGradesIconButton = MyButton(base.adminHomeMenuFrame.mainFrame, 10, 166, base.adminGradesIconImg,
-                                              cursor="hand2", behavior=self.toGrades)
+            base.adminTimetableIconButton = MyButton(base.adminHomeMenuFrame.mainFrame, 10, 117, base.adminTimetableIconImg,
+                                                     cursor="hand2", behavior=self.toTimeTable)
 
-        base.adminNewsIconImg = Image.open(
-            base.resourcePath("assets/general/annoucementUpIcon.png"))
+            base.adminGradesIconImg = Image.open(
+                base.resourcePath("assets/general/graduationUpIcon.png"))
 
-        base.adminNewsIconButton = MyButton(base.adminHomeMenuFrame.mainFrame, 10, 217, base.adminNewsIconImg,
-                                            cursor="hand2", behavior=self.toNews)
+            base.adminGradesIconButton = MyButton(base.adminHomeMenuFrame.mainFrame, 10, 166, base.adminGradesIconImg,
+                                                  cursor="hand2", behavior=self.toGrades)
 
-        base.adminStudentsIconImg = Image.open(
-            base.resourcePath("assets/general/searchIcon.png"))
+            base.adminNewsIconImg = Image.open(
+                base.resourcePath("assets/general/annoucementUpIcon.png"))
 
-        base.adminStudentsIconButton = MyButton(base.adminHomeMenuFrame.mainFrame, 10, 263, base.adminStudentsIconImg,
-                                                cursor="hand2", behavior=self.toStudents)
+            base.adminNewsIconButton = MyButton(base.adminHomeMenuFrame.mainFrame, 10, 217, base.adminNewsIconImg,
+                                                cursor="hand2", behavior=self.toNews)
 
-        base.adminAboutIconImg = Image.open(
-            base.resourcePath("assets/general/aboutIcon.png"))
+            base.adminStudentsIconImg = Image.open(
+                base.resourcePath("assets/general/searchIcon.png"))
 
-        base.adminAboutIconButton = MyButton(base.adminHomeMenuFrame.mainFrame, 14, 319, base.adminAboutIconImg,
-                                             cursor="hand2", behavior=self.toAbout)
+            base.adminStudentsIconButton = MyButton(base.adminHomeMenuFrame.mainFrame, 10, 263, base.adminStudentsIconImg,
+                                                    cursor="hand2", behavior=self.toStudents)
+
+            base.adminAboutIconImg = Image.open(
+                base.resourcePath("assets/general/aboutIcon.png"))
+
+            base.adminAboutIconButton = MyButton(base.adminHomeMenuFrame.mainFrame, 14, 319, base.adminAboutIconImg,
+                                                 cursor="hand2", behavior=self.toAbout)
+        else :
+            base.selectedCircleadmin.place_forget()
 
         # Menu extended
         base.adminMenuExtendedImg = ImageTk.PhotoImage(Image.open(
