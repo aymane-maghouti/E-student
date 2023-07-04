@@ -241,8 +241,6 @@ class Register6:
         base.global_photo = photo
         # Configure image_label to display the photo
         image_label.config(image=photo)
-        print(photo.width(), photo.height())
-        print(emptyImg.size, emptyImg.mode)
 
         registerInfo.canvas.create_image(100, 100, image=ImageTk.PhotoImage(emptyImg))
 

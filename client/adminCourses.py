@@ -38,11 +38,8 @@ def checkAdminCoursesForm(self, register):
             if not element.validate():
                 valide = False
         except Exception as e:
-            print(e)
-
             continue
         register.values.append(element.get())
-    print(register.values)
     return valide
 
 
@@ -69,7 +66,6 @@ class AdminCourses:
 
     def importPDF(self):
         pdf_path = filedialog.askopenfilename()
-        print(pdf_path)
         filename, extension = os.path.splitext(os.path.basename(pdf_path))
         if extension not in [".pdf"]:
             print(f"please a valid extension")

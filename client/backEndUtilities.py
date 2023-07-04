@@ -37,7 +37,7 @@ def connectMySQL():
                                  )
         # Creating the cursor
         cur = conn.cursor()
-        print("Connected to MySQL")
+        #print("Connected to MySQL")
         return conn, cur
 
     except connector.Error as e:
@@ -69,7 +69,7 @@ def connectDB(nameDB):
                                  )
         # Creating the cursor
         cur = conn.cursor()
-        print(f"Connected to {nameDB}")
+        #print(f"Connected to {nameDB}")
         return conn, cur
 
     except connector.Error as e:
@@ -106,13 +106,9 @@ def update_image(img, id_student):
 def student_inscription(l):
     l[0] = [-1] + l[0]
     cnx, cursor = connectDB('student_managment')
-    print(l[1][0])
     img = l[1][0].resize((60, 60))
-    print(img)
     img_np = np.array(img)
     img_bytes = img_np.tobytes()
-    print(img, " after image byte")
-    print(type(img_bytes), "image byte")
 
     month = l[0][6][1]
     if month.lower() == "january":
@@ -142,13 +138,11 @@ def student_inscription(l):
     else:
         num = None
 
-    print(l)
     std_data = [(f'{l[0][0]}', f'{l[0][1]}', f'{l[0][2]}', f'{l[0][3]}', f'{l[0][4]}', f'{l[0][5]}',
                  f'{l[0][6][2]}-{num}-{l[0][6][0]}', f'{img_bytes}'), ]
     columns_std = ['id_class', 'firstname', 'lastname', 'CIN', 'CNE', 'gender', 'birthday', 'image']
     insert_data("student", columns_std, std_data)
 
-    print("done student")
 
     cin = l[0][3]
     cursor = cnx.cursor()
@@ -158,8 +152,6 @@ def student_inscription(l):
     except connector.Error as e:
         return
     id_student = cursor.fetchone()[0]
-    print(id_student)
-    print(img, "before update")
 
     update_image(img, id_student)
 
@@ -562,7 +554,6 @@ def update_student(field_name, new_value, id_student):
         cnx, cursor = connectDB('student_managment')
         cursor.execute("Select email_acadymic from contact where id_student = %s ", (id_student,))
         email = cursor.fetchall()[0][0]
-        print(email)
         if new_value == 'ID':
             update_table('filier_student', 'id_filier', 1, id_student)
             update_login('login', 'id_filier', 1, email)

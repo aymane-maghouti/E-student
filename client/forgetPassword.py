@@ -59,7 +59,7 @@ def checkForgotForm(self, register):
         if not element.validate():
             valide = False
         register.values.append(element.get())
-    print(register.values)
+
     return valide
 
 

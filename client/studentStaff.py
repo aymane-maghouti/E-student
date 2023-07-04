@@ -16,7 +16,6 @@ class StudentStaff:
 
         base.currentFrame = self
         self.base = base
-        # base.Staff=StudentStaff()
         base.studentStaffTitle = base.Background.create_text(156, 130, text="Staff",
                                                              font=("Montserrat", 20, "bold"), fill="white",
                                                              anchor=tk.NW)

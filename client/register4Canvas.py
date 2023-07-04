@@ -69,7 +69,7 @@ def checkRegister4Form(self, register):
             print(e)
             continue
         register.values.append(element.get())
-    print(register.values)
+
     return valide
 
 

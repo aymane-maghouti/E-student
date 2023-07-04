@@ -114,7 +114,6 @@ class App(tk.Tk):
 
         # Load the image
         img = np.array(photo)
-        print(img.shape)
 
         # Convert the image to grayscale
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -130,7 +129,6 @@ class App(tk.Tk):
     def cropFace(self, photo, faces, size=100):
         # If a face is detected, crop the image to the region containing the face
         img = np.array(photo)
-        print(img)
         (x, y, w, h) = faces[0]
         pading = min(int(w / 5), int(h / 5))
         cropped_img = img[y - pading:y + h + pading, x - pading:x + w + pading]
@@ -175,14 +173,11 @@ class App(tk.Tk):
         self.currentFrame = self.login
 
     def register1ToRegister2(self):
-        # print(self.register1Form.get())
         if self.register1Form.validate():
             self.r1.dayVar = self.dayRegisterList.get()
             self.r1.monthVar = self.monthRegisterList.get()
             self.r1.yearVar = self.yearRegisterList.get()
             self.r1.genderVar = self.genderRegisterOptionList.get()
-            print(self.r1.genderVar)
-            # print(self.r1.genderVar.getValue())
             self.register1Group.removeGroup()
             self.r2.createRegister2(self)
             self.currentFrame = self.r2
@@ -248,11 +243,7 @@ class App(tk.Tk):
 
     def register5ToRegister6(self):
         if self.register5Form.validate():
-            print("in client")
-
-            print(self.registerValues)
             self.registerValues = self.registerForm.get()[::]
-            print(self.registerValues)
             self.register5Group.removeGroup()
             self.nextRegister5Button.place_forget()
             self.backRegister5Button.place_forget()

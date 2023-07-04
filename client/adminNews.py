@@ -40,11 +40,8 @@ def checkAdminNewsForm(self, register):
             if not element.validate():
                 valide = False
         except Exception as e:
-            print(e)
-
             continue
         register.values.append(element.get())
-    print(register.values)
     return valide
 
 

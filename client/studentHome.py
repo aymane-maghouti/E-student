@@ -35,7 +35,6 @@ class StudentHome:
         if self.menuOn == True:
             self.shrinkMenu()
         self.base.currentFrame.remove()
-        print("inside toStudentHome")
         self.createStudentHome(self.base)
 
     def selectTask(self, base, button, x, y):
@@ -81,12 +80,10 @@ class StudentHome:
         results = mycursor.fetchall()
 
         notifications = []
-        print(results)
         for result in results:
             formatted_date = datetime.strftime(result[1], "%Y-%m-%d %H:%M:%S")
             notifications.append([result[0], formatted_date, result[2]])
 
-        print(notifications)
         self.show(notifications)
 
         base.studentHomeGraphImg = ImageTk.PhotoImage(Image.open(
@@ -115,7 +112,7 @@ class StudentHome:
                 base.resourcePath("assets/general/selectedTaskCircle.png"))
 
             base.selectedCircleStudent = MyButton(base.studentHomeMenuFrame.mainFrame, 0, 0, base.selectedCircleStudentImg,
-                                                  cursor="hand2", behavior=lambda: print("hi"))
+                                                  cursor="hand2")
             base.selectedCircleStudent.place_forget()
             # base.selectedCircleStudent.place(0,0)
 
@@ -284,7 +281,6 @@ class StudentHome:
             # saving the coorinates of widgets to hide while menu is active
             self.base.currentFrame.hiddenWidgetsPlaces.clear()
             for widget in self.base.currentFrame.hideWidgets:
-                print(widget.mainFrame.place_info()["x"])
                 self.base.currentFrame.hiddenWidgetsPlaces.append((widget.mainFrame, (
                 int(widget.mainFrame.place_info()["x"]), int(widget.mainFrame.place_info()["y"]))))
 

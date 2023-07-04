@@ -160,8 +160,6 @@ class MyEntry:
 
         if self.entry.get() == self.placeholder and self.modified==False:
             self.entry.delete(0,END)
-        print(self.modified)
-        print(self.get())
         self.behavior()
 
     def inputRelease(self,event):
@@ -201,7 +199,6 @@ class MyListBox(Listbox):
         self.bind("<Leave>", self.on_leave)
 
     def fill(self):
-        print(self.options)
         """Fills the listbox with some numbers"""
         for index in range(len(self.options)):
             self.insert(END, self.options[index])
@@ -221,7 +218,6 @@ class MyListBox(Listbox):
 
     def on_motion(self, event):
         """Calls everytime there's a motion of the mouse"""
-        # print(self.current)
         index = self.index("@%s,%s" % (event.x, event.y))
         if self.current != -1 and self.current != index:
             self.reset_colors()
@@ -317,7 +313,6 @@ class MyMenu:
 
             #saving the coorinates of widgets to hide while menu is active
             for widget in self.hideWidgets:
-                print(widget.place_info()["x"])
                 self.hiddenWidgetsPlaces.append((widget,(int(widget.place_info()["x"]), int(widget.place_info()["y"]))))
 
             #hiding the widgets while menu is active
@@ -347,7 +342,6 @@ class MyMenu:
         self.base.delete(self.clickedMenuListObject)
         self.base.itemconfig(self.menuButton, image=self.defaultMenuButtonPhoto)
         self.isActive=False
-        print(self.get())
 
     def menuButtonHover(self,event):
         self.base.configure(cursor="hand2")

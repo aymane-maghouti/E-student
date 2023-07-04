@@ -54,7 +54,6 @@ class AdminHome:
         if self.menuOn == True:
             self.shrinkMenu()
         self.base.currentFrame.remove()
-        print("inside toadminHome")
         self.createAdminHome(self.base)
 
     def selectTask(self, base, button, x, y):
@@ -98,12 +97,10 @@ class AdminHome:
         results = mycursor.fetchall()
 
         notifications = []
-        print(results)
         for result in results:
             formatted_date = datetime.strftime(result[1], "%Y-%m-%d %H:%M:%S")
             notifications.append([result[0], formatted_date, result[2]])
 
-        print(notifications)
         self.show(notifications)
 
         base.adminHomeGraphImg = ImageTk.PhotoImage(Image.open(
@@ -140,7 +137,7 @@ class AdminHome:
                 base.resourcePath("assets/general/selectedTaskCircle.png"))
 
             base.selectedCircleadmin = MyButton(base.adminHomeMenuFrame.mainFrame, 0, 0, base.selectedCircleadminImg,
-                                                cursor="hand2", behavior=lambda: print("hi"))
+                                                cursor="hand2")
             base.selectedCircleadmin.place_forget()
 
             base.adminMenuIconImg = Image.open(
@@ -301,7 +298,6 @@ class AdminHome:
             self.base.currentFrame.hiddenWidgetsPlaces.clear()
             try:
                 for widget in self.base.currentFrame.hideWidgets:
-                    print(widget.mainFrame.place_info()["x"])
                     self.base.currentFrame.hiddenWidgetsPlaces.append((widget.mainFrame, (
                     int(widget.mainFrame.place_info()["x"]), int(widget.mainFrame.place_info()["y"]))))
 

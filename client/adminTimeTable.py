@@ -34,7 +34,7 @@ def checkAdminTimeTableForm(self, register):
 
             continue
         register.values.append(element.get())
-    print(register.values)
+
     return valide
 
 

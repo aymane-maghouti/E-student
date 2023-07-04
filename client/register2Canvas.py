@@ -36,7 +36,7 @@ def checkRegister2Form(self, register):
 
             continue
         register.values.append(element.get())
-    print(register.values)
+
 
     return valide
 
@@ -58,13 +58,11 @@ class Register2:
     def removePhoto(self, source):
         source.inputPhotoRegister2Button.setImage(self, ImageTk.PhotoImage(source.inputPhotoRegister2ButtonImg),
                                                   value=None)
-        print(self.photoVar)
         self.photopath = None
 
     def importPhoto(self, base):
         image_path = filedialog.askopenfilename()
         self.photopath = image_path
-        print(image_path)
         filename, extension = os.path.splitext(os.path.basename(self.photopath))
         if extension not in [".jpg", ".jpeg"]:
             print(f"please a valid extension")
@@ -90,13 +88,11 @@ class Register2:
         base.drawFace(resized, facesResized)
         photo = Image.fromarray(resized)
         base.inputPhotoRegister2Button.setImage(self, ImageTk.PhotoImage(photo), Image.fromarray(resizedNoFaces))
-        print(self.photoVar)
 
     def getJPEGImage(self):
         b = BytesIO()
         self.original.save(b, format="jpeg")
         self.original = Image.open(b)
-        print(self.original, "in get JPEG")
         return self.original
 
     def createRegister2(self, base):

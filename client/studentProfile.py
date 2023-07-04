@@ -222,8 +222,6 @@ class StudentProfile:
                               fg="white", bg="#1f1a24", width=60)
         class_display.grid(row=38, column=0, columnspan=2, padx=5)
 
-        # emptyImg=Image.open(
-        #    (r"C:\Users\ID 1\tkinterTest\E-student\client\assets\general\emptyImg.jpg")).resize((60,60))
 
         emptyImg = Image.new("RGBA", (60, 60))
 

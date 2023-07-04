@@ -53,7 +53,6 @@ class AdminUpdate:
     def updateDB(self):
         if self.base.adminUpdateForm.validate():
             a, b = self.values
-            print(self.student)
             update_student("class", a, self.student[0])
             update_student("filiere", b, self.student[0])
             messagebox.showinfo("Update", "User successfully updated")

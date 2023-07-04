@@ -52,8 +52,6 @@ def getRegisterInfo(base, self):
     values = []
     for element in self.components:
         values.append(element.get())
-    print(values)
-    print("hi")
 
     return values
 
@@ -66,7 +64,7 @@ def checkRegister5Form(self, register):
             valide = False
             break
         register.values.append(element.get())
-    print(register.values)
+
     return valide
 
 

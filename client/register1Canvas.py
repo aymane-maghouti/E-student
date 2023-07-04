@@ -35,7 +35,7 @@ def checkRegister1Form(self, register):
 
             continue
         register.values.append(element.get())
-    print(register.values)
+
 
     return valide
 
