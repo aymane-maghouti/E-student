@@ -1,6 +1,6 @@
-import datetime
 
 from backEndUtilities import createDb, connectMySQL, connectDB, insert_data, hash_password
+import datetime
 
 
 def checkIfAlreadyInstalled(database_name):
@@ -90,14 +90,12 @@ def run():
     mydb.close()
 
     columns_admin = ['firstname', 'lastname', 'CIN', 'birthday', 'image', 'email_admin']
-    data_admin = [('cherradi', 'Mohamed', 'Z12345', '1989-01-12', '', 'medcherradi00@gmail.com')]
-    #insert_data("admin", columns_admin, data_admin)
-
+    data_admin = [('admin', 'admin', 'Z12345', '1989-01-12', '', 'admin2023@gmail.com')]
 
     # admin_login
     columns_admin_login = ['id_admin', 'email', 'password']
-    data_admin_login = [(1, 'medcherradi00@gmail.com', hash_password('Admin1234'))]
-    #insert_data("admin_login", columns_admin_login, data_admin_login)
+    data_admin_login = [(1, 'admin2023@gmail.com', hash_password('Admin1234'))]
+    insert_data("admin_login", columns_admin_login, data_admin_login)
 
     # AFFICHAGE DATA
     with open('les notes/BDD.pdf', 'rb') as f1, \
@@ -138,13 +136,13 @@ def run():
     columns_departement = ['name']
     data_depertement = [('Département Mathématiques et Informatique',),
                         ('Département Génie Civil Energétique et Environnement',)]
-    #insert_data("departement", columns_departement, data_depertement)
+    insert_data("departement", columns_departement, data_depertement)
 
     # filier data
     columns_filier = ['name', 'description', 'id_departement']
     data_filier = [('ID', 'Ingénierie des données', 1), ('GI', 'Génie Informatique', 1),
                    ('GEER', 'Génie énergétique et énergies renouvelables', 2), ('GC', 'Génie Civil', 2)]
-    #insert_data("filier", columns_filier, data_filier)
+    insert_data("filier", columns_filier, data_filier)
 
     # emploi_temps data
     columns_time = ['class', 'timetable', 'date_pub']
@@ -356,12 +354,6 @@ def run():
     data_noti = [(1, 'Avis aux élèves ingénieurs ID1',
                   'Il est porté à la connaissance des élèves ingénieurs \nde la première année Ingénieurie des données (ID1) que leDS du module Data Mining aura lieu \nle Jeudi 12/04/2023 à 09h00 à l’amphi A.',
                   '2023-04-02 13:12:34')]
-    # access Data
-    date_systeme = datetime.date.today()
-    date_systeme = date_systeme.strftime('%Y-%m-%d')
-    columns_graph = ['nb_visiteur', 'date']
-    data_graph=[(0,date_systeme),(0,date_systeme),(0,date_systeme),(0,date_systeme),(0,date_systeme),(0,date_systeme)]
-
 
     # Login data
 
@@ -393,13 +385,9 @@ def run():
     insert_data("class", columns_class, data_class)
     insert_data("prof", columns_prof, data_prof)
     insert_data("notification", columns_noti, data_noti)
-    insert_data('graph_table', columns_graph, data_graph)
-
 
     # insert_data("student", columns_std, data_std)
     # insert_data("contact", columns_ct, data_ct)
     # insert_data("bac_student", columns_bac, data_bac)
     # insert_data("filier_student", columns_fs, data_fs)
     # insert_data("login", columns_login, data_login)
-
-    print("Installation done")
