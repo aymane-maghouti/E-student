@@ -261,16 +261,16 @@ def run():
         return code
 
     columns_prof = ['firstname', 'lastname', 'CIN', 'email_prof', 'id_departement']
-    data_prof = [('Mohamed', 'ADDAM', generate_code(), 'm.addam@uae.ac.ma', 1),
-                 ('younes', 'ABOU EL HANOUNE', generate_code(), 'yabouelhanoune@uae.ac.ma', 1),
-                 ('Nabil', 'KANNOUF', generate_code(), 'n.kannouf@uae.ac.ma', 1),
-                 ('Tarik', 'BOUDAA', generate_code(), 't.boudaa@uae.ac.ma	', 1),
-                 ('Anass', 'ELHADDADI', generate_code(), 'a.elhaddadi@uae.ac.ma', 1),
-                 ('Abderrahim', 'BOULANOUAR', generate_code(), 'aboulanouar@uae.ac.ma', 2),
-                 ('Ismael', 'Driouch', generate_code(), 'i.driouch@uae.ac.ma', 2),
-                 ('Mohamed', 'EL HAIM', generate_code(), 'melhaim@uae.ac.ma', 2),
-                 ('Hossain', 'EL OUARGHI', generate_code(), 'helouarghi@uae.ac.ma', 2),
-                 ('Abdellatif', 'LAMHAMDI', generate_code(), 'a.lamhamdi@uae.ac.ma', 2)]
+    data_prof = [('profP1', 'profN1', generate_code(), 'profP1.profN1@uae.ac.ma', 1),
+                 ('profP2', 'profN2', generate_code(), 'profP2.profN2@uae.ac.ma', 1),
+                 ('profP3', 'profN3', generate_code(), 'profP3.profN3@uae.ac.ma', 1),
+                 ('profP4', 'profN4', generate_code(), 'profP4.profN4@uae.ac.ma', 1),
+                 ('profP5', 'profN5', generate_code(), 'profP5.profN5@uae.ac.ma', 1),
+                 ('profP6', 'profN6', generate_code(), 'profP6.profN6@uae.ac.ma', 2),
+                 ('profP7', 'profN7', generate_code(), 'profP7.profN7@uae.ac.ma', 2),
+                 ('profP8', 'profN8', generate_code(), 'profP8.profN8@uae.ac.ma', 2),
+                 ('profP9', 'profN9', generate_code(), 'profP9.profN9@uae.ac.ma', 2),
+                 ('profP10', 'profN10', generate_code(), 'profP10.profN10@uae.ac.ma', 2)]
 
     # Student data
 
