@@ -200,6 +200,8 @@ def sign(email, password):
             admin_info = list(result)
             dict_admin = {'firstname': admin_info[0], 'lastname': admin_info[1], 'email_admin': admin_info[2]}
             tuple_admin = ('admin', dict_admin)
+            update_data_base() #to remove
+
             return tuple_admin
         else:
             return 'Password Error'
@@ -453,8 +455,10 @@ def get_data():
     cursor.execute(date)
     dates_list = cursor.fetchall()
 
-    dates_str_list = [datetime.strftime(date[0], '%Y-%m-%d') for date in dates_list]
+    print([date[0] for date in dates_list])
 
+    dates_str_list = [datetime.strftime(date[0], '%Y-%m-%d') for date in dates_list]
+    print(dates_str_list)
     dates = np.array(dates_str_list)
 
     cursor.close()

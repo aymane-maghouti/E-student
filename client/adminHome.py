@@ -383,6 +383,7 @@ class AdminHome:
         ax.set_xlabel('X Axis Label', color='white')
         ax.set_ylabel('Y Axis Label', color='white')
 
+        print(dates,nb_visiteurs)
         scatter = plt.scatter(dates, nb_visiteurs, edgecolors="#bb86fc", color="#bb86fc")
 
         def hover(event):
