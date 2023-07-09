@@ -138,7 +138,7 @@ class Register5:
         base.emailRegister5StandardObject = MyEntry(base.Background, 94, 254, entry=base.emailRegister5Entry,
                                                     standardImg=base.emailLogingStandardlImg,
                                                     hoverImg=base.emailLogingHoverImg, marginX=21, marginY=5,
-                                                    placeholder="exemple@etu.uae.ac.ma",
+                                                    placeholder="first.last@etu.uae.ac.ma",
                                                     modified=self.emailRegisterModified, value=self.emailRegisterVar)
         base.emailRegister5StandardObject.validate = lambda: checkEmail(base.emailRegister5StandardObject)
 

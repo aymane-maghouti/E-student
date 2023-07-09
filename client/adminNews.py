@@ -158,7 +158,8 @@ class AdminNews:
 
         base.adminNewsGroup = MyWidgetsGroup(base.Background, base.titreAdminNewsText, base.titreAdminNewsEntry,
                                              base.titreAdminNewsStandardObject, base.adminNewsClassList,
-                                             base.adminNewsClassLabel, base.adminNewsClassText,
-                                             base.detailAdminNewsEntry, base.adminNewsTitle, base.adminNewsFrame,
-                                             base.submitAdminNewsButton, base.adminNewsDetailBackground)
+                                             base.adminNewsClassLabel, base.detailAdminNewsText,
+                                             base.adminNewsClassText, base.detailAdminNewsEntry,
+                                             base.adminNewsTitle, base.adminNewsFrame, base.submitAdminNewsButton,
+                                             base.adminNewsDetailBackground)
         self.hideWidgets = [self.base.adminNewsFrame]

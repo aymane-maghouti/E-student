@@ -95,7 +95,6 @@ def run():
     # admin_login
     columns_admin_login = ['id_admin', 'email', 'password']
     data_admin_login = [(1, 'admin2023@gmail.com', hash_password('Admin1234'))]
-    insert_data("admin_login", columns_admin_login, data_admin_login)
 
     # AFFICHAGE DATA
     with open('les notes/BDD.pdf', 'rb') as f1, \
@@ -136,13 +135,11 @@ def run():
     columns_departement = ['name']
     data_depertement = [('Département Mathématiques et Informatique',),
                         ('Département Génie Civil Energétique et Environnement',)]
-    insert_data("departement", columns_departement, data_depertement)
 
     # filier data
     columns_filier = ['name', 'description', 'id_departement']
     data_filier = [('ID', 'Ingénierie des données', 1), ('GI', 'Génie Informatique', 1),
                    ('GEER', 'Génie énergétique et énergies renouvelables', 2), ('GC', 'Génie Civil', 2)]
-    insert_data("filier", columns_filier, data_filier)
 
     # emploi_temps data
     columns_time = ['class', 'timetable', 'date_pub']
@@ -371,6 +368,13 @@ def run():
         ('2', 'mohamed.elhadadi@etu.uae.ac.ma', '17dd58aa247486788375d0b07f2b0369815bf84f67cd3b504183e773e67b9d19'),
         ('3', 'yassin.farissi@etu.uae.ac.ma', 'e9c45bc9793628c8810a117b4a281886ead1d60a513d988671d532c0e33e8e7c')]
 
+    # Acces data
+
+    date_systeme = datetime.date.today()
+    date_systeme = date_systeme.strftime('%Y-%m-%d')
+    columns_graoh = ['nb_visiteur', 'date']
+    data_graph=[(0,date_systeme),(0,date_systeme),(0,date_systeme),(0,date_systeme),(0,date_systeme),(0,date_systeme)]
+
     insert_data("admin", columns_admin, data_admin)
     insert_data("admin_login", columns_admin_login, data_admin_login)
     insert_data("affichage", columns_affichage, data_affichage)
@@ -385,6 +389,8 @@ def run():
     insert_data("class", columns_class, data_class)
     insert_data("prof", columns_prof, data_prof)
     insert_data("notification", columns_noti, data_noti)
+    insert_data('graph_table', columns_graoh, data_graph)
+
 
     # insert_data("student", columns_std, data_std)
     # insert_data("contact", columns_ct, data_ct)

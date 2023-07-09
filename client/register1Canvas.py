@@ -222,7 +222,6 @@ class Register1:
                                                        value=self.firstNameVar)
         base.firstNameRegisterStandardObject.validate = lambda: checkLenght(base.firstNameRegisterStandardObject, 45,
                                                                             "first name")
-        print(self.firstNameModified)
         # Lastname
         base.lastNameRegisterText = base.Background.create_text(325, 241, text="Last name",
                                                                 font=("Montserrat", 6, "bold"),

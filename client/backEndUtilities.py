@@ -455,10 +455,7 @@ def get_data():
     cursor.execute(date)
     dates_list = cursor.fetchall()
 
-    print([date[0] for date in dates_list])
-
     dates_str_list = [datetime.strftime(date[0], '%Y-%m-%d') for date in dates_list]
-    print(dates_str_list)
     dates = np.array(dates_str_list)
 
     cursor.close()
