@@ -106,7 +106,7 @@ class AdminHome:
         base.adminHomeGraphImg = ImageTk.PhotoImage(Image.open(
             base.resourcePath("assets/adminHomePage/graphBackground.png")))
 
-        base.adminHomeGraphFrame = MyFrame(base.Background, base.adminHomeGraphImg, "red", 460, 240, 117, 244, 10, 10)
+        base.adminHomeGraphFrame = MyFrame(base.Background, base.adminHomeGraphImg, "#1f1a24", 460, 240, 117, 244, 10, 10)
         self.show_graph()
 
         # Menu closed

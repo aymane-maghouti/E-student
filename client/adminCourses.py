@@ -118,7 +118,7 @@ class AdminCourses:
         base.moduleAdminCoursesStandardObject = MyEntry(base.Background, 250, 289, entry=base.moduleAdminCoursesEntry,
                                                         standardImg=base.moduleAdminCoursesStandardlImg,
                                                         hoverImg=base.moduleAdminCoursesHoverImg, marginX=21, marginY=5,
-                                                        placeholder="Architecture des ordinateur",
+                                                        placeholder="Architecture des ordinateures",
                                                         modified=self.titreModified, value=self.titreVar)
         base.moduleAdminCoursesStandardObject.validate = lambda: checkLenght(base.moduleAdminCoursesStandardObject, 45,
                                                                              "Titre")

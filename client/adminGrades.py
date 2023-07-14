@@ -119,7 +119,7 @@ class AdminGrades:
         base.moduleAdminGradesStandardObject = MyEntry(base.Background, 250, 289, entry=base.moduleAdminGradesEntry,
                                                        standardImg=base.moduleAdminGradesStandardlImg,
                                                        hoverImg=base.moduleAdminGradesHoverImg, marginX=21, marginY=5,
-                                                       placeholder="Architecture des ordinateur",
+                                                       placeholder="Architecture des ordinateurs",
                                                        modified=self.moduleModified, value=self.moduleVar)
         base.moduleAdminGradesStandardObject.validate = lambda: checkLenght(base.moduleAdminGradesStandardObject, 45,
                                                                             "Module")

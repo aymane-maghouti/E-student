@@ -33,7 +33,7 @@ class App(tk.Tk):
 
         self.overrideredirect(True)
         self.resizable(False, False)
-        self.title("test modern app")
+        self.title("E-Student")
         self.iconbitmap(r'EstudentLogoCircle.ico')
 
         self.wm_attributes('-transparentcolor', '#ab23ff')
