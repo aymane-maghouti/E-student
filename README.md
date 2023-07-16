@@ -108,7 +108,7 @@ you can run the application with two methods:
 
 ## Usage
 
-Before running the E-student app, ensure that the DBMS(DataBase Management system) is turned On. The system itself handles the auto creation of the database if it does not exist ,named **student_managment**.
+Before running the E-student app, ensure that MySQL is turned On. The app itself handles the auto creation of the database if it does not exist ,named **student_managment**.
 
 Upon launching the application, users will be prompted to either log in or register, depending on whether they are an admin or a student. During the registration process, students are required to provide their personal information, including an image of themselves for validation.
 
