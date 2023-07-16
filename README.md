@@ -39,14 +39,16 @@ This is a student management system project built using `Python` and the `Tkinte
 ---
 
 # Architecture
+
 The application is built using Python and utilizes the Tkinter library for the graphical user interface (GUI). The MySQL database is used as the backend database management system. The system follows a client-server architecture, where the client is the user interface and the server is responsible for interacting with the database (works locally).
 
 ---
-![Texte alternatif de l'image](Main/assets/architecture.png)
+![Texte alternatif de l'image](assets/architecture.png)
 ---
 
 
 # Prerequisites
+
 Before running the application, make sure you have the following prerequisites:
 
 `Python` 3.9.x installed
@@ -56,6 +58,7 @@ Before running the application, make sure you have the following prerequisites:
 ---
 
 # Database Configuration
+
 To configure the `MySQL database` connection, follow these steps:
 
 Open the project in Pycharme (or just find the config.ini file).
@@ -73,6 +76,7 @@ Open the conf.ini file and update the following properties with your MySQL datab
 ---
 
 # Running the Application
+
 Clone the repository:
 
 `git clone git@github.com:aymane-maghouti/E-student.git`
@@ -99,20 +103,20 @@ Mainly there are four interface
 
 #### Inerface 1 : `Registration`
 
-![Texte alternatif de l'image](Main/assets/registration.png)
+![Texte alternatif de l'image](assets/registration.png)
 
 #### Inerface 2 : `Login`
 
-![Texte alternatif de l'image](Main/assets/login.png)
+![Texte alternatif de l'image](assets/login.png)
 
 
 #### Inerface 3 : `Admin space`
 
-![Texte alternatif de l'image](Main/assets/admin.png)
+![Texte alternatif de l'image](assets/admin.png)
 
 #### Inerface 4 : `Student space`
 
-![Texte alternatif de l'image](Main/assets/student.png)
+![Texte alternatif de l'image](assets/student.png)
 
 
 If you want to see how it's work, check the linkedin post where there is a vedio explain how to use it, here it is the link of the post [https://www.linkedin.com/oussama]
@@ -124,7 +128,7 @@ or this one :
 # About : 
 Here is other information on the application and the developers :
 
-![Texte alternatif de l'image](Main/assets/about.png)
+![Texte alternatif de l'image](assets/about.png)
 
 ---
 
