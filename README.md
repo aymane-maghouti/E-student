@@ -18,11 +18,10 @@
 ---
 
 # Project Overview
-
 This is a student management system project built using `Python` and the `Tkinter` library. The application allows students to register, access their personal profile, and download course materials. It also provides an admin space for administrators to manage files, view student information, and upload news. The system utilizes `MySQL` as the database management system and incorporates features such as image validation using `opencv` and visitor tracking. The application is build using  `PyCharm IDEA`.
 
 ---
-![Texte alternatif de l'image](assets/tools.png)
+![Texte alternatif de l'image](assets/logo.png)
 ---
 
 # Features
@@ -102,16 +101,21 @@ After logging in, users will be directed to their respective spaces, where they 
 
 Mainly there are four interface
 
-#### Inerface 1 : `Registration`
-
-![Texte alternatif de l'image](assets/registration.png)
-
-#### Inerface 2 : `Login`
+#### Inerface 1 : `Login`
 
 ![Texte alternatif de l'image](assets/login.png)
 
+#### Inerface 2 : `Registration`
+
+![Texte alternatif de l'image](assets/registration.png)
 
 #### Inerface 3 : `Admin space`
+
+It should be noted that to consult the admin space, you must provide the following email and password:
+
+`Email`: admin2023@gmail.com
+
+`Password`: Admin1234
 
 ![Texte alternatif de l'image](assets/admin.png)
 
