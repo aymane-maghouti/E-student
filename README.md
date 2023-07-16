@@ -22,7 +22,7 @@
 This is a student management system project built using `Python` and the `Tkinter` library. The application allows students to register, access their personal profile, and download course materials. It also provides an admin space for administrators to manage files, view student information, and upload news. The system utilizes `MySQL` as the database management system and incorporates features such as image validation using `opencv` and visitor tracking. The application is build using  `PyCharm IDEA`.
 
 ---
-![Texte alternatif de l'image](assets/logo.png)
+![Texte alternatif de l'image](images/logo.png)
 ---
 
 ## Features
@@ -44,7 +44,7 @@ This is a student management system project built using `Python` and the `Tkinte
 The application is built using Python and utilizes the Tkinter library for the graphical user interface (GUI). The MySQL database is used as the backend database management system. The system follows a client-server architecture, where the client is the user interface and the server is responsible for interacting with the database (works locally).
 
 ---
-![Texte alternatif de l'image](assets/architecture.png)
+![Texte alternatif de l'image](images/architecture.png)
 ---
 
 
@@ -104,11 +104,11 @@ Mainly there are four interface
 
 #### Inerface 1 : `Login`
 
-![Texte alternatif de l'image](assets/login.png)
+![Texte alternatif de l'image](images/login.png)
 
 #### Inerface 2 : `Registration`
 
-![Texte alternatif de l'image](assets/registration.png)
+![Texte alternatif de l'image](images/registration.png)
 
 #### Inerface 3 : `Admin space`
 
@@ -118,11 +118,11 @@ It should be noted that to consult the admin space, you must provide the followi
 
 `Password`: Admin1234
 
-![Texte alternatif de l'image](assets/admin.png)
+![Texte alternatif de l'image](images/admin.png)
 
 #### Inerface 4 : `Student space`
 
-![Texte alternatif de l'image](assets/student.png)
+![Texte alternatif de l'image](images/student.png)
 
 
 If you want to see how it's work, check the linkedin post where there is a vedio explain how to use it, here it is the link of the post [https://www.linkedin.com/oussama]
@@ -134,7 +134,7 @@ or this one :
 ## About : 
 Here is other information on the application and the developers :
 
-![Texte alternatif de l'image](assets/about.png)
+![Texte alternatif de l'image](images/about.png)
 
 ---
 
