@@ -162,9 +162,13 @@ Here is other information on the application and the developers :
 We would like to express our gratitude to the following resources for their valuable contributions to this project:
 
 The official documentation of `Python` language.
+
 The documentation provided by `MySQL` for configuring and working with the database.
+
 The `Tkinter` documentation, which aided in creating the graphical user interface.
+
 `flaticon.com` for providing icons.
+
 `Photopia`  for the application's design
 
 
