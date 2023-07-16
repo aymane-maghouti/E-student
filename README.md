@@ -45,6 +45,7 @@ The application is built using Python and utilizes the Tkinter library for the g
 
 We tried to design a detailed architecture of our database in order to evaluate performance during the `CRUD`  (Create-Read-Update-Delete) operations, here is the result
 
+![Texte alternatif de l'image](images/E_R.png)
 
 ---
 
@@ -74,8 +75,6 @@ The libraries should be installed are :
 `scipy`
 
 Note that if you want to install all this labreris in one click, you just need to execute this command as it is shown [here](#running-the-application)
-
-![Texte alternatif de l'image](images/E_R.png)
 
 ---
 
