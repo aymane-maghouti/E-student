@@ -331,28 +331,32 @@ def id_class(class_name):
 
 
 def delete_student(student_id):
-    mydb, mycursor = connectDB('student_managment')
+    try :
+        mydb, mycursor = connectDB('student_managment')
 
-    # Récupérer l'e-mail académique de l'étudiant depuis la base de données
-    select_req = 'SELECT c.email_acadymic FROM student s, contact c WHERE s.id_student = c.id_student AND s.id_student = %s'
-    mycursor.execute(select_req, (student_id,))
-    email_academic = mycursor.fetchone()[0]
+        # Récupérer l'e-mail académique de l'étudiant depuis la base de données
+        select_req = 'SELECT c.email_acadymic FROM student s, contact c WHERE s.id_student = c.id_student AND s.id_student = %s'
+        mycursor.execute(select_req, (student_id,))
+        email_academic = mycursor.fetchone()[0]
 
-    # Suppression de l'étudiant
-    del_from_contact = "DELETE FROM contact WHERE id_student = %s"
-    del_from_login = "DELETE FROM login WHERE email_acadymic = %s"
-    del_from_bac_student = "DELETE FROM bac_student WHERE id_student = %s"
-    del_from_filiere_student = "DELETE FROM filier_student WHERE id_student = %s"
-    del_from_student = "DELETE FROM student WHERE id_student = %s"
-    val = (student_id,)
-    mycursor.execute(del_from_bac_student, val)
-    mycursor.execute(del_from_contact, val)
-    mycursor.execute(del_from_login, (email_academic,))
-    mycursor.execute(del_from_filiere_student, val)
-    mycursor.execute(del_from_student, val)
-    messagebox.showinfo("Deletion", "User successfully deleted")
+        # Suppression de l'étudiant
+        del_from_contact = "DELETE FROM contact WHERE id_student = %s"
+        del_from_login = "DELETE FROM login WHERE email_acadymic = %s"
+        del_from_bac_student = "DELETE FROM bac_student WHERE id_student = %s"
+        del_from_filiere_student = "DELETE FROM filier_student WHERE id_student = %s"
+        del_from_student = "DELETE FROM student WHERE id_student = %s"
+        val = (student_id,)
+        mycursor.execute(del_from_bac_student, val)
+        mycursor.execute(del_from_contact, val)
+        mycursor.execute(del_from_login, (email_academic,))
+        mycursor.execute(del_from_filiere_student, val)
+        mycursor.execute(del_from_student, val)
 
-    mydb.commit()
+        mydb.commit()
+        return True
+    except:
+        mydb.commit()
+        return False
 
 
 def insert_into_document(file_type, file_class, file_titre, file_path):
