@@ -17,7 +17,7 @@
 
 ---
 
-# Project Overview
+## Project Overview
 
 This is a student management system project built using `Python` and the `Tkinter` library. The application allows students to register, access their personal profile, and download course materials. It also provides an admin space for administrators to manage files, view student information, and upload news. The system utilizes `MySQL` as the database management system and incorporates features such as image validation using `opencv` and visitor tracking. The application is build using  `PyCharm IDEA`.
 
@@ -25,7 +25,7 @@ This is a student management system project built using `Python` and the `Tkinte
 ![Texte alternatif de l'image](assets/logo.png)
 ---
 
-# Features
+## Features
 
 `Student Registration` :student registration after providing the necessary information such as full name, email, image, ...
 
@@ -39,7 +39,7 @@ This is a student management system project built using `Python` and the `Tkinte
 
 ---
 
-# Architecture
+## Architecture
 
 The application is built using Python and utilizes the Tkinter library for the graphical user interface (GUI). The MySQL database is used as the backend database management system. The system follows a client-server architecture, where the client is the user interface and the server is responsible for interacting with the database (works locally).
 
@@ -48,7 +48,7 @@ The application is built using Python and utilizes the Tkinter library for the g
 ---
 
 
-# Prerequisites
+## Prerequisites
 
 Before running the application, make sure you have the following prerequisites:
 
@@ -58,7 +58,7 @@ Before running the application, make sure you have the following prerequisites:
 
 ---
 
-# Database Configuration
+## Database Configuration
 
 To configure the `MySQL database` connection, follow these steps:
 
@@ -76,7 +76,7 @@ Open the conf.ini file and update the following properties with your MySQL datab
 
 ---
 
-# Running the Application
+## Running the Application
 
 Clone the repository:
 
@@ -94,7 +94,7 @@ you can run the application with two methods:
 
 ---
 
-# Usage
+## Usage
 
 Upon launching the application, users will be prompted to either log in or register, depending on whether they are an admin or a student. During the registration process, students are required to provide their personal information, including an image of themselves for validation.
 
@@ -131,14 +131,14 @@ or this one :
 
 ---
 
-# About : 
+## About : 
 Here is other information on the application and the developers :
 
 ![Texte alternatif de l'image](assets/about.png)
 
 ---
 
-# Acknowledgments
+## Acknowledgments
 We would like to express our gratitude to the following resources for their valuable contributions to this project:
 
 The official documentation of `Python` language.
