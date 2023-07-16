@@ -102,7 +102,7 @@ Clone the repository:
 
 `git clone git@github.com:aymane-maghouti/E-student.git`
 
-Install the required dependencies:
+Install the required dependencies after navigating to the project folder (E-student):
 
 `pip install -r requirements.txt`
 
