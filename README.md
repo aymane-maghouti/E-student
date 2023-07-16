@@ -5,14 +5,14 @@
 ---
 
 - [Project Overview](#project-overview)
-- [Features](#Features)
-- [Architecture](#Architecture)
-- [Prerequisites](#Prerequisites)
-- [Database Configuration](#Database-Configuration)
-- [Running the Application](#Running-the-Application)
-- [Usage](#Usage)
-- [About](#About)
-- [Acknowledgments](#Acknowledgments)
+- [Features](#features)
+- [Architecture](#architecture)
+- [Prerequisites](#prerequisites)
+- [Database Configuration](#database-configuration)
+- [Running the Application](#running-the-application)
+- [Usage](#usage)
+- [About](#about)
+- [Acknowledgments](#acknowledgments)
 
 
 ---
