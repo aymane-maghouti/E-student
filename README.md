@@ -75,7 +75,7 @@ Note that if you want to install all this labreris in one click, you just need t
 
 To configure the `MySQL database` connection, follow these steps:
 
-Open the project in Pycharme (or just find the config.ini file).
+Open the project in Pycharm (or just find the config.ini file).
 Locate the configuration file named conf.ini in the project's client folder.
 Open the conf.ini file and update the following properties with your MySQL database credentials:
 
