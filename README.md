@@ -43,8 +43,9 @@ This is a student management system project built using `Python` and the `Tkinte
 
 The application is built using Python and utilizes the Tkinter library for the graphical user interface (GUI). The MySQL database is used as the backend database management system. The system follows a client-server architecture, where the client is the user interface and the server is responsible for interacting with the database (works locally).
 
----
-![Texte alternatif de l'image](images/architecture.png)
+We tried to design a detailed architecture of our database in order to evaluate performance during the `CRUD`  (Create-Read-Update-Delete) operations, here is the result
+
+
 ---
 
 
@@ -52,9 +53,29 @@ The application is built using Python and utilizes the Tkinter library for the g
 
 Before running the application, make sure you have the following prerequisites:
 
-`Python` 3.9.x installed
-`Tkinter` library installed
+`Python` 3.9.x installed 
+
 `MySQL` database installed
+
+The libraries should be installed are :
+
+`contourpy` 
+`cycler` 
+`fonttools`
+`kiwisolver`
+`matplotlib`
+`mysql-connector`
+`numpy`
+`opencv-python`
+`packaging`
+`Pillow`
+`pyparsing`
+`python-dateutil`
+`scipy`
+
+Note that if you want to install all this labreris in one click, you just need to execute this command as it is shown [here](#running-the-application)
+
+![Texte alternatif de l'image](images/E_R.png)
 
 ---
 
